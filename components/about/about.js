@@ -17,7 +17,7 @@ const About = () => {
         <div className={classes.row}>
           <div className={classes.columnLeft} data-aos='fade-right'>
             <p>
-              I am a skilled information systems professional with a knack for building relationships and technical expertise to drive business achievements. I'm experienced in leading diverse teams to analyze business processes, improve technical aspects, ensure quality, and enhance web-based solutions. 
+              I am a skilled information systems professional with a knack for building relationships and technical expertise to drive business achievements. I&apos;m experienced in leading diverse teams to analyze business processes, improve technical aspects, ensure quality, and enhance web-based solutions. 
             </p>
             <br></br>
             <p>
