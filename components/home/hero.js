@@ -35,39 +35,33 @@ const Hero = () => {
       <div className={classes.container}>
         <div className={classes.row}>
           <div className={classes.columnLeft}>
-            <h3 data-aos='fade-left'>Hi, my name is Lorem Ipsum.</h3>
-            <h1 data-aos='fade-right'>I&apos;m a Web Developer.</h1>
-            <p data-aos='fade-left' data-aos-delay='150'>
-              I build stuff with{' '}
+            <h2 data-aos='fade-left'>Hey, I'm Dave.</h2>
+            <h1 data-aos='fade-right'>I'm a Solutions Engineer.</h1>
+            <h4 data-aos='fade-left' data-aos-delay='150'>
+              I design and implement{' '}
               <span>
-                <Image
-                  src='/portfolio/images/js.png'
-                  alt='usa-flag'
-                  width={16}
-                  height={16}
-                />
               </span>{' '}
-              Javascript.
-            </p>
+              system architecture.
+            </h4>
             <div className={classes.socialMedia}>
-              <a href='#' target='_blank' rel='noreferrer'>
+              <a href='https://github.com/davelevine' target='_blank' rel='noreferrer'>
                 <i className='fab fa-github' data-aos='flip-up'></i>
               </a>
-              <a href='#' target='_blank' rel='noreferrer'>
+              <a href='https://www.linkedin.com/in/iamdavelevine' target='_blank' rel='noreferrer'>
                 <i
                   className='fab fa-linkedin'
                   data-aos='flip-up'
                   data-aos-delay='50'></i>
               </a>{' '}
-              <a href='#' target='_blank' rel='noreferrer'>
+              <a href='mailto:dave@levine.org' target='_blank' rel='noreferrer'>
                 <i
-                  className='fab fa-twitter'
+                  className='fa-regular fa-envelope'
                   data-aos='flip-up'
                   data-aos-delay='100'></i>
               </a>{' '}
-              <a href='#' target='_blank' rel='noreferrer'>
+              <a href='https://kb.levine.org' target='_blank' rel='noreferrer'>
                 <i
-                  className='fab fa-codepen'
+                  className='fa-solid fa-sitemap'
                   data-aos='flip-up'
                   data-aos-delay='150'></i>
               </a>

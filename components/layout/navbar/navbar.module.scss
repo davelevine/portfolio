@@ -24,15 +24,15 @@
   .logo {
     z-index: 3;
     font-weight: bold;
-    background-color: #efe3cf;
+    background-color: transparent; /* Set background to transparent */
     border-radius: 50%;
     padding: 5px;
-    font-size: 1.5rem;
+    font-size: 1.0rem;
     width: 45px;
     height: 45px;
-    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%),
-      0 1px 5px 0 rgb(0 0 0 / 20%);
+    box-shadow: none; /* Remove box-shadow */
   }
+  
 
   .navMenu {
     height: 0;
