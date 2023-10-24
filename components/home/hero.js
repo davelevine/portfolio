@@ -37,7 +37,7 @@ const Hero = () => {
           <div className={classes.columnLeft}>
             <h1 data-aos='fade-left'>Hey, I&apos;m {' '}
               <span>
-              Dave.
+              Dave!
               </span>{' '}</h1>
             <h2 data-aos='fade-right'>Solutions Engineer</h2>
             <h4 data-aos='fade-left' data-aos-delay='150'>
