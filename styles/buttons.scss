@@ -7,7 +7,7 @@ button {
 .btn {
   width: 100%;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 25px;
   padding: 15px 25px;
   box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%),
     0 1px 5px 0 rgb(0 0 0 / 20%);
@@ -24,15 +24,26 @@ button {
 }
 
 .btn-outlined {
-  color: var(--button-color);
-  background-color: transparent;
+  color: #22272e;
+  background-color: #ffffff;
   border: 1px solid var(--button-border);
+  font-size: 1.2rem;
+
+  &:hover {
+    background-color: #bcfe00; // Set the background color to #bcfe00 on hover
+  }
 }
 
 .btn-filled {
-  color: var(--background-card);
-  background-color: var(--background-secondary);
-  border: 1px solid var(--button-border);
+  color: #ffffff;
+  background-color: transparent;
+  border: 1px solid #bcfe00;
+  font-size: 1.2rem;
+
+  &:hover {
+    background-color: #bcfe00; // Set the background color to #bcfe00 on hover
+    color: #22272e;
+  }
 }
 
 @media only screen and (min-width: 480px) {

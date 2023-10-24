@@ -2,6 +2,7 @@
   padding: 50px 15px;
 
   a {
+    font-size: 1.3rem;
     color: var(--accent);
   }
 
@@ -9,6 +10,7 @@
     margin-bottom: 50px;
 
     p {
+      font-size: 1.3rem;
       margin: 10px 0;
     }
   }
@@ -73,15 +75,16 @@
 
     .columnLeft {
       align-self: center;
-      width: 40%;
+      width: 55%;
       display: flex;
       flex-direction: column;
       padding-right: 100px;
       margin-bottom: 0;
+      font-size: 1rem;
     }
 
     .columnRight {
-      width: 60%;
+      width: 40%;
       margin: auto;
 
       img {

@@ -10,7 +10,7 @@ const Hero = () => {
   const [showModal, setShowModal] = useState();
 
   function buttonHandler() {
-    window.location.href = '#projects';
+    window.location.href = '/davelevine-resume.pdf';
   }
 
   function showModalHandler() {
@@ -39,7 +39,7 @@ const Hero = () => {
               <span>
               Dave.
               </span>{' '}</h1>
-            <h2 data-aos='fade-right'>I&apos;m a Solutions Engineer.</h2>
+            <h2 data-aos='fade-right'>Solutions Engineer</h2>
             <h4 data-aos='fade-left' data-aos-delay='150'>
               I design and implement{' '}
               <span>
@@ -76,7 +76,7 @@ const Hero = () => {
                 className='btn btn-filled'
                 data-aos='fade-up'
                 onClick={buttonHandler}>
-                My Work
+                My Resume
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.1 }}
@@ -100,7 +100,7 @@ const Hero = () => {
           </div>
         </div>
         <div className='iconScrollContainer'>
-          <a href='#projects'>
+          <a href='/davelevine-resume.pdf'>
             <div
               className='iconScroll'
               data-aos='fade-down'
