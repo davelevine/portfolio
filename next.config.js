@@ -4,7 +4,7 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     loader: 'akamai',
-    path: isProd ? 'https://renebitter.github.io/' : '',
+    path: isProd ? '' : '',
   },
   basePath: '',
 };
