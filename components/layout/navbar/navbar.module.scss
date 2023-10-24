@@ -54,7 +54,7 @@
     }
 
     .linkWrapper a:hover {
-      color: var(--text-tertiary);
+      color: var(--text-secondary);
     }
 
     &.responsive {
@@ -90,7 +90,7 @@
         padding: 5px;
 
         path {
-          stroke: var(--text-secondary);
+          stroke: #ffffff;
         }
       }
     }

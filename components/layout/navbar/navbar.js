@@ -66,7 +66,7 @@ const Navbar = (props) => {
               <Link href='/projects'>
                 <motion.a
                   style={{ cursor: 'pointer' }}
-                  initial={{ opacity: 0, y: -30 }}
+                  initial={{ opacity: 0, y: -30, }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
                   onClick={toggleNav}>
@@ -85,7 +85,7 @@ const Navbar = (props) => {
                 </motion.a>
               </Link>
 
-              <Link href='/#about'>
+              <Link href='#about'>
                 <motion.a
                   style={{ cursor: 'pointer' }}
                   initial={{ opacity: 0, y: -30 }}
