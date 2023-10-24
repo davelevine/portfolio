@@ -7,23 +7,55 @@
     height: 100%;
   }
 
+  @media only screen and (max-width: 767px) {
+    .columnLeft {
+      margin-top: 50px; /* Move the entire content down on mobile */
+    }
+
+    .columnRight.profilePic {
+      max-width: 350px;
+      max-height: 350px;
+      margin: 0 auto 20px; /* Adjust the margin for mobile */
+    }
+  }
+
   .columnLeft {
     order: 2;
 
     h1 {
-      color: var(--text-secondary);
+      color: var(--navbar-primary);
+      font-size: 1.8rem;
       filter: drop-shadow(0px 3px 2px rgba(0, 0, 0, 0.15));
-      margin: 0; /* Add this line to remove margin */
+      margin: 0;
     }
 
     h2 {
-      margin: 0; /* Add this line to remove margin */
+      color: var(--text-secondary);
+      font-size: 2.2rem;
+      filter: drop-shadow(0px 3px 2px rgba(0, 0, 0, 0.15));
+      margin: 0;
+    }
+
+    h3 {
+      margin: 0;
+    }
+
+    h4 {
+      color: var(--navbar-primary);
+      filter: drop-shadow(0px 3px 2px rgba(0, 0, 0, 0.15));
+    }
+
+    h5 {
+      color: var(--text-secondary);
+      font-size: 2.2rem;
+      margin: 0;
     }
 
     span {
       position: relative;
       top: 1px;
     }
+
     .socialMedia {
       margin-top: 19px;
       i {
@@ -59,15 +91,9 @@
         filter: drop-shadow(0px -2px 4px rgb(0 0 0 / 35%));
         border-radius: 50%;
       }
-    }
-  }
 
-  @media only screen and (min-width: 480px) {
-    .columnRight {
-      &.profilePic {
-        max-width: 350px;
-        max-height: 350px;
-        margin: 0 auto 50px;
+      @media only screen and (max-width: 767px) {
+        margin: 80px auto 20px; /* Move the image down on mobile */
       }
     }
   }
@@ -104,8 +130,8 @@
       }
 
       h2 {
-        font-size: 1.8rem; /* Adjust font size for h2 */
-        margin: 0; /* Add this line to remove margin for h2 */
+        font-size: 2.8rem;
+        margin: 0;
       }
 
       h3 {

@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps }) {
               name='viewport'
               content='width=device-width, initial-scale=1'
             />
-            <link rel='shortcut icon' href='/portfolio/favicon.ico' />
+            <link rel='shortcut icon' href='/favicon.ico' />
           </Head>
           <Component {...pageProps} currentTheme={theme} />
           <Footer />

@@ -88,7 +88,7 @@ const ProjectContent = (props) => {
           {project.image && (
             <div className={classes.projectImage}>
               <Image
-                src={`../../portfolio/images/projects/${project.image}`}
+                src={`../../images/projects/${project.image}`}
                 width={500}
                 height={360}
                 alt=''
@@ -114,7 +114,7 @@ const ProjectContent = (props) => {
                 {project.screenshots.map((screenshot, index) => (
                   <SwiperSlide key={index}>
                     <Image
-                      src={`../../portfolio/images/projects/${project.slug}/${screenshot.screenshot}`}
+                      src={`../../images/projects/${project.slug}/${screenshot.screenshot}`}
                       width={1000}
                       height={700}
                       alt={screenshot.description}

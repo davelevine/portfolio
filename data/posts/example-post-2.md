@@ -9,7 +9,7 @@ tech: ['Markdown']
 
 # Using Markdown as a blog format
 
-![Image ...](/portfolio/images/posts/first-post/first-post.jpg)
+![Image ...](/images/posts/first-post/first-post.jpg)
 
 ```text
 ---

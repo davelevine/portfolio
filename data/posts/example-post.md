@@ -9,7 +9,7 @@ tech: ['Markdown']
 
 # Using Markdown as a blog format
 
-![Image ...](/portfolio/images/posts/first-post/markdown.jpg)
+![Image ...](/images/posts/first-post/markdown.jpg)
 
 ```text
 ---
@@ -34,7 +34,7 @@ const PostContent = (props) => {
 
   const title = post.title;
   const content = post.content;
-  const imagePath = `/portfolio/images/posts/${post.slug}/${post.image}`;
+  const imagePath = `/images/posts/${post.slug}/${post.image}`;
 
   const customRenderers = {
     p(paragraph) {

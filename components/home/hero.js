@@ -35,8 +35,11 @@ const Hero = () => {
       <div className={classes.container}>
         <div className={classes.row}>
           <div className={classes.columnLeft}>
-            <h2 data-aos='fade-left'>Hey, I'm Dave.</h2>
-            <h1 data-aos='fade-right'>I'm a Solutions Engineer.</h1>
+            <h1 data-aos='fade-left'>Hey, I'm {' '}
+              <span>
+              Dave.
+              </span>{' '}</h1>
+            <h2 data-aos='fade-right'>I'm a Solutions Engineer.</h2>
             <h4 data-aos='fade-left' data-aos-delay='150'>
               I design and implement{' '}
               <span>
@@ -88,7 +91,7 @@ const Hero = () => {
 
           <div className={`${classes.columnRight} ${classes.profilePic}`}>
             <Image
-              src='/portfolio/images/profile-pic.webp'
+              src='/images/profile-pic.webp'
               width={460}
               height={460}
               alt='profile-pic'

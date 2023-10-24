@@ -33,7 +33,7 @@ const About = () => {
           <div className={classes.columnRight}>
             <div className={classes.imageContainer}>
               <Image
-                src='/portfolio/images/profile-pic-2.webp'
+                src='/images/profile-pic-2.webp'
                 width={600}
                 height={600}
                 alt='profile-pic'
