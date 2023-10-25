@@ -3,7 +3,7 @@ import { useForm, ValidationError } from '@formspree/react';
 import { motion } from 'framer-motion';
 
 function ContactModal(props) {
-  const [state, handleSubmit] = useForm('123xyz'); //TODO: replaceWithYourOwn
+  const [state, handleSubmit] = useForm('xzbloaed'); //TODO: replaceWithYourOwn
   console.log(state);
   if (state.submitting) {
     return (
@@ -18,7 +18,7 @@ function ContactModal(props) {
               Also feel free to contact me via Linkedin:
             </p>
             <div className={classes.linkedinLink}>
-              <a href='#' target='_blank' rel='noreferrer'>
+              <a href='https://www.linkedin.com/in/iamdavelevine' target='_blank' rel='noreferrer'>
                 <i className='fab fa-linkedin'></i>
               </a>
             </div>
@@ -37,14 +37,14 @@ function ContactModal(props) {
             <i className='fa fa-xmark'></i>
           </a>
           <div>
-            <h2>Thanks for your contact!</h2>
+            <h2>Thanks for reaching out!</h2>
             <p>
               Your message was sent!
               <br />
               Also feel free to contact me via Linkedin:
             </p>
             <div className={classes.linkedinLink}>
-              <a href='#' target='_blank' rel='noreferrer'>
+              <a href='https://www.linkedin.com/in/iamdavelevine' target='_blank' rel='noreferrer'>
                 <i className='fab fa-linkedin'></i>
               </a>
             </div>
@@ -81,7 +81,7 @@ function ContactModal(props) {
               Also feel free to contact me via Linkedin:
             </p>
             <div className={classes.linkedinLink}>
-              <a href='#' target='_blank' rel='noreferrer'>
+              <a href='https://www.linkedin.com/in/iamdavelevine' target='_blank' rel='noreferrer'>
                 <i className='fab fa-linkedin'></i>
               </a>
             </div>
@@ -137,7 +137,7 @@ function ContactModal(props) {
 
           <div className={classes.action}>
             <div className={classes.linkedinLink}>
-              <a href='#' target='_blank' rel='noreferrer'>
+              <a href='https://www.linkedin.com/in/iamdavelevine' target='_blank' rel='noreferrer'>
                 <i className='fab fa-linkedin'></i>
               </a>
             </div>

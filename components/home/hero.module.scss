@@ -9,7 +9,7 @@
 
   @media only screen and (max-width: 767px) {
     .columnLeft {
-      margin-top: 20px; /* Move the entire content down on mobile */
+      margin-top: 40px; /* Move the entire content down on mobile */
     }
 
     .columnRight.profilePic {
@@ -38,12 +38,14 @@
 
     h3 {
       margin: 0;
+      filter: drop-shadow(0px 3px 2px rgba(0, 0, 0, 0.15));
     }
 
     h4 {
       color: var(--navbar-primary);
       filter: drop-shadow(0px 3px 2px rgba(0, 0, 0, 0.15));
       margin: 0;
+      font-weight: 400;
     }
 
     h5 {
@@ -71,7 +73,7 @@
       }
     }
     .ctaButtons {
-      margin-top: 35px;
+      margin-top: 40px;
       display: flex;
 
       :first-child {
@@ -83,8 +85,8 @@
   .columnRight {
     order: 1;
     &.profilePic {
-      max-width: 205px;
-      max-height: 205px;
+      max-width: 225px;
+      max-height: 200px;
       text-align: center;
       margin: 30px auto 0;
 
@@ -94,7 +96,7 @@
       }
 
       @media only screen and (max-width: 767px) {
-        margin: 80px auto 20px; /* Move the image down on mobile */
+        margin: 90px auto 20px; /* Move the image down on mobile */
       }
     }
   }

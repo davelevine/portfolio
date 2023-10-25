@@ -56,12 +56,6 @@ const Hero = () => {
                   data-aos='flip-up'
                   data-aos-delay='50'></i>
               </a>{' '}
-              <a href='mailto:dave@levine.org' target='_blank' rel='noreferrer'>
-                <i
-                  className='fa-regular fa-envelope'
-                  data-aos='flip-up'
-                  data-aos-delay='100'></i>
-              </a>{' '}
               <a href='https://kb.levine.org' target='_blank' rel='noreferrer'>
                 <i
                   className='fa-solid fa-sitemap'
