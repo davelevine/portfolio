@@ -1,9 +1,9 @@
 :root {
-  --background: whitesmoke;
+  --background: #f5f5f5;
   --background-card: #ffffff;
-  --background-secondary: #8bb2c3;
+  --background-secondary: #f652a0;
   --text-primary: black;
-  --text-secondary: #6e6d7a;
+  --text-secondary: #f652a0;
   --text-tertiary: #8bb2c3;
   --accent: #f4494e;
   --transparent-primary: #fffffff2;
@@ -15,6 +15,7 @@
   --button-border: #68788663;
   --gradient-primary: #8bb2c3;
   --gradient-secondary: #8bb2c3;
+  --navbar-primary: #4d5270;
 }
 [data-theme='dark'] {
   --background: #22272e;

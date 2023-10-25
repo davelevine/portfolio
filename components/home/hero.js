@@ -94,7 +94,7 @@ const Hero = () => {
           </div>
         </div>
         <div className='iconScrollContainer'>
-          <a href='/davelevine-resume.pdf'>
+          <a href='#about'>
             <div
               className='iconScroll'
               data-aos='fade-down'
