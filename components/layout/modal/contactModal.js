@@ -3,13 +3,13 @@ import { useForm, ValidationError } from '@formspree/react';
 import { motion } from 'framer-motion';
 
 function ContactModal(props) {
-  const [state, handleSubmit] = useForm('xzbloaed'); //TODO: replaceWithYourOwn
+  const [state, handleSubmit] = useForm('xzbloaed'); // TODO: replaceWithYourOwn
   console.log(state);
-  if (state.submitting) {
+
+  if (state && state.submitting) {
     return (
       <div className={classes.modal}>
-        <div
-          className={`${classes.contactModal} ${classes.contactModalConfirmation}`}>
+        <div className={`${classes.contactModal} ${classes.contactModalConfirmation}`}>
           <div>
             <h2>Sending Message</h2>
             <p>
@@ -28,11 +28,10 @@ function ContactModal(props) {
     );
   }
 
-  if (state.succeeded) {
+  if (state && state.succeeded) {
     return (
       <div className={classes.modal}>
-        <div
-          className={`${classes.contactModal} ${classes.contactModalConfirmation}`}>
+        <div className={`${classes.contactModal} ${classes.contactModalConfirmation}`}>
           <a href='#!' className={classes.close} onClick={props.onClose}>
             <i className='fa fa-xmark'></i>
           </a>
@@ -64,11 +63,10 @@ function ContactModal(props) {
     );
   }
 
-  if (state.errors.length > 0) {
+  if (state && state.errors && state.errors.length > 0) {
     return (
       <div className={classes.modal}>
-        <div
-          className={`${classes.contactModal} ${classes.contactModalConfirmation}`}>
+        <div className={`${classes.contactModal} ${classes.contactModalConfirmation}`}>
           <a href='#!' className={classes.close} onClick={props.onClose}>
             <i className='fa fa-xmark'></i>
           </a>
@@ -110,29 +108,18 @@ function ContactModal(props) {
 
         <h2>Contact me</h2>
 
-        <form
-          id='contactForm'
-          className={classes.contactForm}
-          onSubmit={handleSubmit}>
+        <form id='contactForm' className={classes.contactForm} onSubmit={handleSubmit}>
           <div className={classes.row}>
             <div className={classes.inputField}>
               <label htmlFor='email'>Email Address</label>
               <input id='email' type='email' name='email' required />
 
-              <ValidationError
-                prefix='Email'
-                field='email'
-                errors={state.errors}
-              />
+              <ValidationError prefix='Email' field='email' errors={state.errors} />
             </div>
           </div>
           <div className={classes.inputField}>
             <textarea id='message' name='message' required />
-            <ValidationError
-              prefix='Message'
-              field='message'
-              errors={state.errors}
-            />
+            <ValidationError prefix='Message' field='message' errors={state.errors} />
           </div>
 
           <div className={classes.action}>
@@ -157,4 +144,5 @@ function ContactModal(props) {
     </div>
   );
 }
+
 export default ContactModal;
