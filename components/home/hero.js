@@ -58,7 +58,7 @@ const Hero = () => {
               </a>{' '}
               <a href='https://kb.levine.org' target='_blank' rel='noreferrer'>
                 <i
-                  className='fa-solid fa-sitemap'
+                  className='fas fa-globe'
                   data-aos='flip-up'
                   data-aos-delay='150'></i>
               </a>
