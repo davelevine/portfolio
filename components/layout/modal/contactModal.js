@@ -102,7 +102,7 @@ function ContactModal(props) {
   }
 
   return (
-    <div div className={classes.modal}>
+    <div className={classes.modal}>
       <div className={classes.contactModal}>
         <a href='#!' className={classes.close} onClick={props.onClose}>
           <i className='fa fa-xmark'></i>

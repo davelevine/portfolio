@@ -20,8 +20,7 @@ const About = () => {
               <h1>Designing effective solutions, organizing knowledge, and conveying complexity through visual design.</h1>
             <p/>
             <br />
-            <p></p>
-              I&apos;m an information systems pro with a knack for building relationships and technical expertise to make great things happen for businesses. I&apos;m experienced in leading diverse teams and together, we've tackled the nitty-gritty of business processes, amped up the tech stuff, ensured top-notch quality, and made web-based solutions shine.
+              I&apos;m an information systems pro with a knack for building relationships and technical expertise to make great things happen for businesses. I&apos;m experienced in leading diverse teams and together, we&apos;ve tackled the nitty-gritty of business processes, amped up the tech stuff, ensured top-notch quality, and made web-based solutions shine.
             </p>
             <br />
             <p>
