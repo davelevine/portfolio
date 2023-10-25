@@ -32,8 +32,14 @@
     width: 45px;
     height: 30px;
     box-shadow: none; /* Remove box-shadow */
+
+    /* Add this CSS for hover effect */
+    transition: color 0.3s; /* Smooth transition for color change */
+    
+    &:hover {
+      color: #ffffff;
+    }
   }
-  
 
   .navMenu {
     height: 0;
@@ -106,7 +112,7 @@
     padding: 0 15px;
 
     .container {
-      max-width: 1200px;
+      max-width: 1500px;
       margin: auto;
       padding: unset;
     }
@@ -114,7 +120,7 @@
     .navMenu {
       height: auto;
       display: flex;
-      width: 85%;
+      width: 90%;
       top: 0;
       padding-top: 0;
       position: static;

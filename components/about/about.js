@@ -17,11 +17,15 @@ const About = () => {
         <div className={classes.row}>
           <div className={classes.columnLeft} data-aos='fade-right'>
             <p>
-              I am a skilled information systems professional with a knack for building relationships and technical expertise to drive business achievements. I&apos;m experienced in leading diverse teams to analyze business processes, improve technical aspects, ensure quality, and enhance web-based solutions. 
+              <h1>Designing effective solutions, organizing knowledge, and conveying complexity through visual design.</h1>
+            <p/>
+            <br />
+            <p></p>
+              I&apos;m an information systems pro with a knack for building relationships and technical expertise to make great things happen for businesses. I&apos;m experienced in leading diverse teams and together, we've tackled the nitty-gritty of business processes, amped up the tech stuff, ensured top-notch quality, and made web-based solutions shine.
             </p>
-            <br></br>
+            <br />
             <p>
-              Most recently, I work closely with the Solutions Architect to shape application architecture, refine development processes, and participate in solution design conversations to meet business needs.
+              Most recently, I work closely with the Solutions Architect to shape application architecture, fine-tune development processes, and participate in solution design discussions to meet business needs.
             </p>
           </div>
 
@@ -36,10 +40,6 @@ const About = () => {
               />
             </div>
             <div className={classes.quote} data-aos='fade-right'>
-              &quot;Your input determines your outlook. Your outlook determines your output, and your output determines your future. 
-              <p>
-              - Zig Ziglar&quot;
-              </p>
             </div>
           </div>
         </div>
