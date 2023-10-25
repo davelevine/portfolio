@@ -52,7 +52,7 @@ const Navbar = (props) => {
         }>
         <div className={classes.container}>
           <Link href='/'>
-            <a className={classes.logo}>{'</DaveLevine'}</a>
+            <a className={classes.logo}>{'</DaveLevine>'}</a>
           </Link>
 
           <nav
