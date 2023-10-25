@@ -48,7 +48,7 @@ const Navbar = (props) => {
     <>
       <div
         className={
-          sticky ? `${classes.navbar}  ${classes.sticky}` : `${classes.navbar} `
+          sticky ? `${classes.navbar}  ${classes.sticky}` : `${classes.navbar}`
         }>
         <div className={classes.container}>
           <Link href='/'>
