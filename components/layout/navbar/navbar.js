@@ -10,25 +10,30 @@ import { useRouter } from 'next/router'; // Import useRouter from Next.js
 const Navbar = (props) => {
   const { theme } = props;
 
+  // State variables
   const [sticky, setSticky] = useState(false);
   const [showModal, setShowModal] = useState();
 
   const [isOpen, toggleOpen] = useCycle(false, true);
   const router = useRouter(); // Get the current route
 
+  // Toggle between light and dark theme
   function setThemeHandler() {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     props.newTheme(newTheme);
   }
 
+  // Toggle the visibility of the modal
   function toggleModal() {
     setShowModal(!showModal);
   }
 
+  // Toggle the mobile navigation menu
   function toggleNav() {
     toggleOpen();
   }
 
+  // Function to apply sticky effect to the navbar
   function fixNavbar() {
     if (window.pageYOffset >= 100) {
       setSticky(true);
@@ -37,11 +42,13 @@ const Navbar = (props) => {
     }
   }
 
+// Effect to control body overflow when modal is shown or hidden
   useEffect(() => {
     if (showModal) document.body.style.overflow = 'hidden';
     if (!showModal) document.body.style.overflow = 'unset';
   }, [showModal]);
 
+  // Effect to apply sticky navbar on scroll
   useEffect(() => {
     window.onscroll = fixNavbar;
   }, []);
@@ -59,7 +66,11 @@ const Navbar = (props) => {
         }>
         <div className={classes.container}>
           <Link href='/'>
-            <a className={classes.logo}>{'</DAVELEVINE>'}</a>
+            <a className={classes.logo}>
+              <span className={classes.name}>&lt;</span>
+              /DAVELEVINE
+              <span className={classes.name}>&gt;</span>
+            </a>
           </Link>
 
           <nav

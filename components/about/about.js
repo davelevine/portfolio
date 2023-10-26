@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 
+  // Initialize AOS (Animate on Scroll) with a duration of 500 milliseconds
 const About = () => {
   useEffect(() => {
     Aos.init({ duration: 500 });
