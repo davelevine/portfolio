@@ -35,11 +35,11 @@ const Hero = () => {
       <div className={classes.container}>
         <div className={classes.row}>
           <div className={classes.columnLeft}>
-            <h1 data-aos='fade-left'>Hey, I&apos;m {' '}
+            <h2 data-aos='fade-left'>Hey, I&apos;m {' '}
               <span>
               Dave!
-              </span>{' '}</h1>
-            <h2 data-aos='fade-right'>Solutions Engineer</h2>
+              </span>{' '}</h2>
+            <h1 data-aos='fade-right'>Solutions Engineer</h1>
             <h4 data-aos='fade-left' data-aos-delay='150'>
               I design and implement{' '}
               <span>
