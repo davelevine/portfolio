@@ -5,6 +5,7 @@ import { AnimatePresence, motion, useCycle } from 'framer-motion';
 import Modal from '../../layout/modal/modal';
 import ThemeToggle from './themeToggle';
 import MenuToggle from './menuToggle';
+import { useRouter } from 'next/router'; // Import useRouter from Next.js
 
 const Navbar = (props) => {
   const { theme } = props;
@@ -13,6 +14,7 @@ const Navbar = (props) => {
   const [showModal, setShowModal] = useState();
 
   const [isOpen, toggleOpen] = useCycle(false, true);
+  const router = useRouter(); // Get the current route
 
   function setThemeHandler() {
     const newTheme = theme === 'light' ? 'dark' : 'light';
@@ -44,6 +46,11 @@ const Navbar = (props) => {
     window.onscroll = fixNavbar;
   }, []);
 
+  function isLinkActive(href) {
+    // Check if the current route matches the link's href
+    return router.pathname === href;
+  }
+
   return (
     <>
       <div
@@ -63,14 +70,29 @@ const Navbar = (props) => {
             }
             id='navMenu'>
             <div className={classes.linkWrapper}>
+              <Link href='/'>
+                <motion.a
+                  style={{ cursor: 'pointer' }}
+                  initial={{ opacity: 0, y: -30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+                  onClick={toggleNav}
+                  className={isLinkActive('/') ? classes.activeLink : ''} // Check if Home link is active
+                >
+                  HOME
+                </motion.a>
+              </Link>
+
               <Link href='/projects'>
                 <motion.a
                   style={{ cursor: 'pointer' }}
-                  initial={{ opacity: 0, y: -30, }}
+                  initial={{ opacity: 0, y: -30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
-                  onClick={toggleNav}>
-                  Projects
+                  onClick={toggleNav}
+                  className={isLinkActive('/projects') ? classes.activeLink : ''} // Check if Projects link is active
+                >
+                  PROJECTS
                 </motion.a>
               </Link>
 
@@ -80,8 +102,10 @@ const Navbar = (props) => {
                   initial={{ opacity: 0, y: -30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
-                  onClick={toggleNav}>
-                  Blog
+                  onClick={toggleNav}
+                  className={isLinkActive('/posts') ? classes.activeLink : ''} // Check if Blog link is active
+                >
+                  BLOG
                 </motion.a>
               </Link>
 
@@ -91,8 +115,10 @@ const Navbar = (props) => {
                   initial={{ opacity: 0, y: -30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.7 }}
-                  onClick={toggleNav}>
-                  About me
+                  onClick={toggleNav}
+                  className={isLinkActive('#about') ? classes.activeLink : ''} // Check if About me link is active
+                >
+                  ABOUT ME
                 </motion.a>
               </Link>
             </div>
