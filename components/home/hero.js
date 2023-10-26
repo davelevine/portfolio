@@ -95,11 +95,12 @@ const Hero = () => {
           <div className={`${classes.columnRight} ${classes.profilePic}`}>
             {/* Display the profile picture using Next.js Image component */}
             <Image
-              src='/images/profile-pic.webp'
+              src='/images/profile-pic-1.jpg'
               width={460}
               height={460}
               alt='profile-pic'
               data-aos='fade-left'
+              className='zoomed-out-image'
             />
           </div>
         </div>
