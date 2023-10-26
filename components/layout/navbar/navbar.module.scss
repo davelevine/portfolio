@@ -1,7 +1,7 @@
 .navbar {
   z-index: 2;
   height: 65px;
-  width: 96%;
+  width: 100%;
   position: fixed;
   transition: background 0.3s;
 
@@ -31,7 +31,8 @@
     width: 45px;
     height: 30px;
     box-shadow: none;
-    margin-right: auto;
+    margin-right: 45%;
+    margin-left: 20px;
 
     transition: color 0.3s;
 
@@ -134,7 +135,7 @@
         padding: 0 auto; /* Center content horizontally */
         display: flex;
         justify-content: flex-end;
-        width: 100%;
+        width: 96%;
 
         a {
           margin-left: 20px;
@@ -147,6 +148,10 @@
           margin-left: 0;
         }
       }
+    }
+
+    .logo {
+      margin-left: 10px;
     }
 
     .iconMain {
