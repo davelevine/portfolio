@@ -79,7 +79,7 @@ const Hero = () => {
                 className='btn btn-filled'
                 data-aos='fade-up'
                 onClick={buttonHandler}>
-                RESUME
+                MY RESUME
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.1 }}

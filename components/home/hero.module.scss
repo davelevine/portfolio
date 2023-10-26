@@ -7,8 +7,8 @@
     height: 100%;
   }
 
+  /* Mobile-specific styles */
   @media only screen and (max-width: 767px) {
-    /* Mobile-specific styles */
     .columnLeft {
       margin-top: 40px; /* Move the entire content down on mobile */
     }
@@ -158,7 +158,7 @@
 
       h1 {
         font-size: 4rem;
-        margin: -15px 0;  /* Adjust the distance between h1 and h2 */
+        margin: -10px 0;  /* Adjust the distance between h1 and h2 */
       }
 
       h2 {
