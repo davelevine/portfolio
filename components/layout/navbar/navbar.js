@@ -129,7 +129,7 @@ const Navbar = (props) => {
                   onClick={toggleNav}
                   className={isLinkActive('#about') ? classes.activeLink : ''} // Check if About me link is active
                 >
-                  ABOUT ME
+                  ABOUT
                 </motion.a>
               </Link>
             </div>
