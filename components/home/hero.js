@@ -44,7 +44,7 @@ const Hero = () => {
               I design and implement{' '}
               <span>
               </span>{' '}
-              system architecture.
+              systems.
             </h4>
             <div className={classes.socialMedia}>
               <a href='https://github.com/davelevine' target='_blank' rel='noreferrer'>
