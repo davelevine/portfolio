@@ -1,6 +1,8 @@
+/* Styles for the .about section */
 .about {
-  padding: 90px 15px;
+  padding: 90px 15px; /* Add padding to the section */
 
+  /* Styles for links within the section */
   a {
     font-size: 1.3rem;
     color: var(--accent);
@@ -9,7 +11,7 @@
   .columnLeft {
     margin-bottom: auto; /* Adjust margin as needed */
     margin: auto;
-  
+
     h1 {
       color: var(--navbar-primary);
       font-size: 1.5rem;
@@ -17,7 +19,7 @@
       margin: 0;
       margin-bottom: 25px; /* Add margin to create spacing between h1 and p */
     }
-  
+
     .h4 {
       color: var(--navbar-primary);
       font-size: 1.3rem;
@@ -25,13 +27,12 @@
       margin: 0;
       font-weight: 400;
     }
-  
+
     p {
       font-size: 1.3rem;
       padding-bottom: 1rem; /* Add padding to create spacing between paragraphs */
     }
   }
-  
 
   .columnRight {
     .imageContainer {
@@ -70,6 +71,7 @@
       }
     }
 
+    /* Show the tooltip on hover */
     .quote:hover {
       .tooltip {
         visibility: visible;
@@ -78,7 +80,7 @@
   }
 
   @media only screen and (min-width: 768px) {
-    padding: 200px 25px;
+    padding: 200px 25px; /* Adjust padding for desktop view */
     min-height: 100vh;
 
     .container {
@@ -95,7 +97,7 @@
     }
 
     h2 {
-      font-size: 3.5rem; // Adjust font size for desktop view
+      font-size: 3.5rem; /* Adjust font size for desktop view */
     }
 
     .columnLeft {

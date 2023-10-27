@@ -1,21 +1,25 @@
+/* Define styles for elements with the "greetings" class */
 .greetings {
-  padding: 25px 15px 50px;
+  padding: 25px 15px 50px; /* Padding for the entire container */
 
+  /* Define styles for elements with the "row" class inside the "greetings" container */
   .row {
-    display: flex;
-    flex-flow: column;
-    height: 100%;
+    display: flex; /* Use flex layout */
+    flex-flow: column; /* Layout in a column */
+    height: 100%; /* Occupy full height of the container */
   }
 
-  /* Mobile-specific styles */
+  /* Define mobile-specific styles using media queries */
   @media only screen and (max-width: 767px) {
+    /* Styles for the element with the class "columnLeft" on mobile */
     .columnLeft {
       margin-top: 40px; /* Move the entire content down on mobile */
     }
 
+    /* Styles for the element with the class "columnRight" and "profilePic" on mobile */
     .columnRight.profilePic {
-      max-width: 350px;
-      max-height: 350px;
+      max-width: 350px; /* Maximum width */
+      max-height: 350px; /* Maximum height */
       margin: 0 auto 20px; /* Adjust the margin for mobile */
 
       /* Media query for landscape orientation */
@@ -25,17 +29,19 @@
         }
 
         .columnRight.profilePic {
-          max-width: 350px;
-          max-height: 350px;
+          max-width: 350px; /* Maximum width */
+          max-height: 350px; /* Maximum height */
           margin: 0 auto 20px; /* Adjust the margin for mobile landscape orientation */
         }
       }
     }
   }
 
+  /* Styles for the element with the class "columnLeft" in the "row" container */
   .columnLeft {
-    order: 2;
+    order: 2; /* Display order in flex layout */
 
+    /* Heading styles */
     h1 {
       color: var(--navbar-primary);
       font-size: 2.5rem;
@@ -68,6 +74,7 @@
       margin: 0;
     }
 
+    /* Styles for specific classes within the "columnLeft" container */
     .name {
       color: var(--background-secondary); /* Set the color for the brackets */
     }
@@ -81,8 +88,10 @@
       top: 1px;
     }
 
+    /* Styles for social media icons */
     .socialMedia {
       margin-top: 30px;
+
       i {
         font-size: 2rem;
         margin: 0 5px;
@@ -94,71 +103,84 @@
         }
       }
     }
+
+    /* Styles for call-to-action buttons */
     .ctaButtons {
       margin-top: 40px;
       display: flex;
 
+      /* Styles for the first child within the "ctaButtons" container */
       :first-child {
         margin-right: 15px;
       }
     }
   }
 
+  /* Mobile-specific styles for "greetings" container */
   @media only screen and (max-width: 767px) {
     margin-top: 0; /* Reset margin for mobile */
   }
 
+  /* Styles for the element with the class "columnRight" */
   .columnRight {
-    order: 1;
-    &.profilePic {
-      max-width: 225px;
-      max-height: 200px;
-      text-align: center;
-      margin: 30px auto 0;
+    order: 1; /* Display order in flex layout */
 
+    /* Styles for the element with the class "profilePic" inside "columnRight" */
+    &.profilePic {
+      max-width: 225px; /* Maximum width */
+      max-height: 200px; /* Maximum height */
+      text-align: center;
+      margin: 30px auto 0; /* Margin settings */
+
+      /* Styles for images within the "profilePic" container */
       img {
         border-radius: 50%;
         object-fit: cover;
       }
 
+      /* Mobile-specific styles for "profilePic" */
       @media only screen and (max-width: 767px) {
-       /* Move the image down on mobile */
-        margin: 60px auto 20px;
+        margin: 60px auto 20px; /* Move the image down on mobile */
       }
     }
   }
 
+  /* Styles for screens with a minimum width of 768px */
   @media only screen and (min-width: 768px) {
-    padding: 120px 25px;
-    height: 100vh;
+    padding: 120px 25px; /* Padding for larger screens */
+    height: 100vh; /* Occupy the full viewport height */
 
+    /* Styles for the element with the class "container" */
     .container {
-      height: 105%;
-      max-width: 1200px;
+      height: 105%; /* Slightly taller than the parent container */
+      max-width: 1200px; /* Maximum width */
       margin: auto;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
 
+    /* Styles for the "row" container */
     .row {
       display: flex;
       flex-flow: row;
     }
 
+    /* Styles for the element with the class "columnLeft" within the "row" container */
     .columnLeft {
-      order: 1;
+      order: 1; /* Display order in flex layout */
       align-self: center;
       display: flex;
       flex-direction: column;
-      width: 55%;   /* Adjust the size of the desktop profile image*/
-      margin-bottom: unset;
-      margin-top: 40px;
-      margin: auto;
+      width: 55%; /* Adjust the size of the desktop profile image */
+      margin-bottom: unset; /* Remove bottom margin */
+      margin-top: 40px; /* Set top margin */
+      margin: auto; /* Center horizontally */
 
+      /* Heading styles */
       h1 {
         font-size: 4rem;
-        margin: -10px 0;  /* Adjust the distance between h1 and h2 */
+        margin: -10px 0; /* Adjust the distance between h1 and h2 */
       }
 
       h2 {
@@ -170,26 +192,31 @@
         font-size: 1.5rem;
       }
 
-      h4,
-      p {
+      /* Additional styles for paragraphs and text */
+      h4, p {
         margin: 0;
         font-size: 1.2rem;
       }
     }
 
+    /* Styles for the element with the class "columnRight" */
     .columnRight {
-      order: 2;
-      width: 38%;
+      order: 2; /* Display order in flex layout */
+      width: 38%; /* Width of the column */
       margin: auto;
+
+      /* Styles for the element with the class "profilePic" inside "columnRight" */
       &.profilePic {
-        max-width: 460px;
-        max-height: 460px;
+        max-width: 460px; /* Maximum width */
+        max-height: 460px; /* Maximum height */
         margin: auto;
-        margin-right: 5%;
-      }
-      img {
-        max-width: 100%;
-        height: auto;
+        margin-right: 5%; /* Right margin */
+
+        /* Styles for images within the "profilePic" container */
+        img {
+          max-width: 100%;
+          height: auto;
+        }
       }
     }
   }

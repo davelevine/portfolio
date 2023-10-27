@@ -1,23 +1,26 @@
+/* Styles for the .navbar component */
 .navbar {
-  z-index: 2;
+  z-index: 2; /* Set stacking context for navigation bar */
   height: 65px;
   width: 100%;
-  position: fixed;
-  transition: background 0.3s;
+  position: fixed; /* Fixed position at the top */
+  transition: background 0.3s; /* Smooth background transition */
 
   &.sticky {
+    /* Styles for the sticky navigation bar */
     position: fixed;
     top: 0;
-    background-color: var(--transparent-primary);
-    box-shadow: 0 6px 30px 2px rgb(0 0 0 / 3%), 0 3px 15px 1px rgb(0 0 0 / 2%), /* Add a box-shadow for the sticky navbar */
-      0 1px 8px 1px rgb(0 0 0 / 1%);
+    background-color: var(--transparent-primary); /* Change background color */
+    box-shadow: 0 6px 30px 2px rgb(0 0 0 / 3%),
+      0 3px 15px 1px rgb(0 0 0 / 2%),
+      0 1px 8px 1px rgb(0 0 0 / 1%); /* Add a box-shadow for the sticky navbar */
   }
 
   .container {
     display: flex;
     align-items: center;
     height: 100%;
-    padding: 0 auto;
+    padding: 0 auto; /* Center content horizontally */
   }
 
   .logo {
@@ -33,17 +36,15 @@
     box-shadow: none;
     margin-right: 45%;  /* Adjust the logo's right margin */
     margin-left: 20px;
-  
-  
-  .name {
-    color: var(--background-secondary); /* Set the color for the brackets */
-  }
-  
 
-    transition: color 0.3s;
+    .name {
+      color: var(--background-secondary); /* Set the color for the brackets */
+    }
+
+    transition: color 0.3s; /* Smooth color transition */
 
     &:hover {
-      color: var(--text-secondary);
+      color: var(--text-secondary); /* Change color on hover */
     }
   }
 
@@ -71,7 +72,7 @@
     }
 
     .activeLink {
-      color: var(--background-secondary); // Change the color for the active link
+      color: var(--background-secondary); /* Change the color for the active link */
     }
 
     &.responsive {
@@ -93,36 +94,35 @@
     position: relative;
     display: flex;
     align-items: center;
-  
+
     .icon {
       cursor: pointer;
       background-color: transparent;
       border: none;
-  
+
       i,
       svg {
         font-size: 1.5rem;
         color: var(--navbar-primary);
         padding: 5px;
-  
+
         path {
           stroke: var(--navbar-primary);
         }
       }
     }
-  
+
     .icon:hover i,
     .icon:hover svg {
       color: var(--text-secondary); /* Change color on hover */
     }
-  
+
     @media (max-width: 768px) {
       .iconMain {
         height: 40px; /* Adjust the height for mobile devices */
       }
     }
   }
-  
 }
 
 @media only screen and (min-width: 768px) {
@@ -178,4 +178,3 @@
     }
   }
 }
-

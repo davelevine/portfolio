@@ -1,17 +1,19 @@
+// Import required modules and components
 import classes from './hero.module.scss';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import Modal from '../layout/modal/modal';
-import Aos from 'aos';
-import 'aos/dist/aos.css';
+import Aos from 'aos'; // Library for scroll animations
+import 'aos/dist/aos.css'; // Styles for AOS animations
 import { motion, AnimatePresence } from 'framer-motion';
 
+// Define the Hero component
 const Hero = () => {
   // State for controlling the modal visibility
   const [showModal, setShowModal] = useState();
 
-  function buttonHandler() {
   // Function to handle button click for redirecting to a resume file
+  function buttonHandler() {
     window.location.href = '/davelevine-resume.pdf';
   }
 
@@ -33,7 +35,7 @@ const Hero = () => {
 
   // Initialize the AOS library with specified settings
   useEffect(() => {
-    Aos.init({ duration: 500 });
+    Aos.init({ duration: 500 }); // Initialize scroll animations
   }, []);
 
   return (
@@ -42,10 +44,11 @@ const Hero = () => {
         <div className={classes.row}>
           <div className={classes.columnLeft}>
             {/* Introduction section with data-aos animation attributes */}
-            <h2 data-aos='fade-left'>Hey, I&apos;m {' '}
+            <h2 data-aos='fade-left'>Hey, I&apos;m{' '}
               <span className={classes.name}>
                 Dave
-              </span>!{' '}</h2>
+              </span>{' '}
+            </h2>
             <h1 data-aos='fade-right'>Solutions Engineer</h1>
             <h4 data-aos='fade-left' data-aos-delay='150'>
               I design and implement systems
@@ -121,4 +124,6 @@ const Hero = () => {
     </section>
   );
 };
+
+// Export the Hero component
 export default Hero;

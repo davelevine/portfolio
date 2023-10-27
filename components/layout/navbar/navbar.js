@@ -1,3 +1,4 @@
+// Import required modules and components
 import classes from './navbar.module.scss';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -7,20 +8,21 @@ import ThemeToggle from './themeToggle';
 import MenuToggle from './menuToggle';
 import { useRouter } from 'next/router'; // Import useRouter from Next.js
 
+// Define the Navbar component
 const Navbar = (props) => {
   const { theme } = props;
 
   // State variables
-  const [sticky, setSticky] = useState(false);
-  const [showModal, setShowModal] = useState();
+  const [sticky, setSticky] = useState(false); // For sticky navbar effect
+  const [showModal, setShowModal] = useState(); // For controlling modal visibility
 
-  const [isOpen, toggleOpen] = useCycle(false, true);
+  const [isOpen, toggleOpen] = useCycle(false, true); // For mobile menu toggle
   const router = useRouter(); // Get the current route
 
-  // Toggle between light and dark theme
+  // Toggle between light and dark themes
   function setThemeHandler() {
     const newTheme = theme === 'light' ? 'dark' : 'light';
-    props.newTheme(newTheme);
+    props.newTheme(newTheme); // Call a function to change the theme
   }
 
   // Toggle the visibility of the modal
@@ -33,7 +35,7 @@ const Navbar = (props) => {
     toggleOpen();
   }
 
-  // Function to apply sticky effect to the navbar
+  // Function to apply a sticky effect to the navbar
   function fixNavbar() {
     if (window.pageYOffset >= 100) {
       setSticky(true);
@@ -42,22 +44,24 @@ const Navbar = (props) => {
     }
   }
 
-// Effect to control body overflow when modal is shown or hidden
+  // Effect to control body overflow when the modal is shown or hidden
   useEffect(() => {
     if (showModal) document.body.style.overflow = 'hidden';
     if (!showModal) document.body.style.overflow = 'unset';
   }, [showModal]);
 
-  // Effect to apply sticky navbar on scroll
+  // Effect to apply the sticky navbar on scroll
   useEffect(() => {
     window.onscroll = fixNavbar;
   }, []);
 
+  // Function to check if a link is active
   function isLinkActive(href) {
     // Check if the current route matches the link's href
     return router.pathname === href;
   }
 
+  // Render the Navbar component
   return (
     <>
       <div
@@ -81,6 +85,7 @@ const Navbar = (props) => {
             }
             id='navMenu'>
             <div className={classes.linkWrapper}>
+              {/* Links to different sections with animations */}
               <Link href='/'>
                 <motion.a
                   style={{ cursor: 'pointer' }}
@@ -136,6 +141,7 @@ const Navbar = (props) => {
           </nav>
 
           <div className={classes.navContainer}>
+            {/* Button to toggle the contact modal */}
             <motion.button
               initial={{ opacity: 0, y: -30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -151,6 +157,7 @@ const Navbar = (props) => {
               )}
             </motion.button>
 
+            {/* Button to toggle between light and dark themes */}
             <motion.button
               initial={{ opacity: 0, y: -30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -162,6 +169,7 @@ const Navbar = (props) => {
               <ThemeToggle theme={theme} />
             </motion.button>
 
+            {/* Button to toggle the mobile menu */}
             <motion.div
               className={classes.iconMain}
               initial={false}
@@ -171,6 +179,7 @@ const Navbar = (props) => {
           </div>
         </div>
       </div>
+      {/* Modal for contact information */}
       <AnimatePresence>
         {showModal && <Modal contact onClose={toggleModal} />}
       </AnimatePresence>
@@ -178,4 +187,6 @@ const Navbar = (props) => {
     </>
   );
 };
+
+// Export the Navbar component
 export default Navbar;

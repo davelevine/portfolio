@@ -1,13 +1,15 @@
+// Import required modules and components
 import classes from './about.module.scss';
 import { useEffect } from 'react';
 import Image from 'next/image';
-import Aos from 'aos';
-import 'aos/dist/aos.css';
+import Aos from 'aos'; // Library for scroll animations
+import 'aos/dist/aos.css'; // Styles for AOS animations
 
-  // Initialize AOS (Animate on Scroll) with a duration of 500 milliseconds
+// Define the About component
 const About = () => {
+  // Initialize AOS (Animate on Scroll) with a duration of 500 milliseconds
   useEffect(() => {
-    Aos.init({ duration: 500 });
+    Aos.init({ duration: 500 }); // Initialize scroll animations
   }, []);
 
   return (
@@ -17,6 +19,7 @@ const About = () => {
 
         <div className={classes.row}>
           <div className={classes.columnLeft} data-aos='fade-right'>
+            {/* Text content with data-aos animation attributes */}
             <h1>Designing effective solutions, organizing knowledge, and conveying complexity through visual design.</h1>
             <br />
             <p className={classes.h4}>
@@ -29,6 +32,7 @@ const About = () => {
           </div>
 
           <div className={classes.columnRight}>
+            {/* Image container with profile picture using Next.js Image component */}
             <div className={classes.imageContainer}>
               <Image
                 src='/images/profile-pic-1.webp'
@@ -46,4 +50,5 @@ const About = () => {
   );
 };
 
+// Export the About component
 export default About;
