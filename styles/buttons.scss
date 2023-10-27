@@ -53,3 +53,22 @@ button {
     width: unset;
   }
 }
+
+.btn-filled-project {
+  color: var(--navbar-primary);
+  background-color: transparent;
+  border: 1px solid var(--background-secondary);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: 10px; /* Default margin */
+
+  &:hover {
+    background-color: var(--background-secondary);
+    color: #22272e;
+  }
+
+  /* Media query for screens with a maximum width of 768px (typical for mobile devices) */
+  @media (max-width: 768px) {
+    margin-top: 45px; /* Adjust margin for mobile screens */
+  }
+}

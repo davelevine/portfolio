@@ -57,7 +57,7 @@ const ProjectContent = (props) => {
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className='btn btn-filled'>
+            className='btn btn-filled-project'>
             View All Projects
           </motion.button>
         </Link>

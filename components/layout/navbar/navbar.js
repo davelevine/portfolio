@@ -121,7 +121,7 @@ const Navbar = (props) => {
                   onClick={toggleNav}
                   className={isLinkActive('/posts') ? classes.activeLink : ''} // Check if Blog link is active
                 >
-                  BLOG
+                  CERTS
                 </motion.a>
               </Link>
 
