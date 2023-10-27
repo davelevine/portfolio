@@ -1,27 +1,16 @@
 ---
-title: 'Lorem Ipsum'
-date: '2022-04-03'
+title: 'AWS Certified Solutions Architect - Associate'
+date: '2023-08'
 image: first-post.jpg
-excerpt: 'How to build a blog using react-markdown to render posts written in markdown'
+excerpt: 'The AWS Certified Solutions Architect – Associate certification is for individuals who perform a Solutions Architect role. The exam validates your ability to effectively demonstrate your knowledge to architect and deploy secure and robust applications on AWS technologies.'
 isFeatured: true
-tech: ['Markdown']
+tech: ['AWS', 'Security', 'Compliance', 'Migration', 'Serverless']
 ---
 
-# Using Markdown as a blog format
+# AWS Certified Solutions Architect - Associate
 
-![Image ...](/images/posts/first-post/first-post.jpg)
+![AWS](/images/posts/first-post/aws.png)
 
-```text
----
-title: 'Using Markdown as a blog format'
-date: '2022-04-03'
-image: first-post.jpg
-excerpt: 'How to build a blog using react-markdown to render posts written in markdown'
-isFeatured: true
----
+## Certificate
 
-```
-
-Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos minima optio omnis commodi atque modi, dolores saepe nostrum vero sunt obcaecati recusandae animi delectus veritatis ut nam dolore magnam.
-
-Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis, explicabo necessitatibus cumque quis, labore incidunt facere dolor impedit odio fugit totam, praesentium blanditiis consequatur deleniti repellat reprehenderit modi aut enim.
+My certificate can be found [here](https://www.credly.com/badges/15634ffe-7069-4bc5-a820-4edcf854c18f).

@@ -9,7 +9,6 @@ const PostItem = (props) => {
 
   const formattedDate = new Date(date).toLocaleDateString('en-Us', {
     timeZone: 'UTC', //without this, date sets 1 day before
-    day: 'numeric',
     month: 'long',
     year: 'numeric',
   });
