@@ -46,8 +46,8 @@ const Hero = () => {
             {/* Introduction section with data-aos animation attributes */}
             <h2 data-aos='fade-left'>Hey, I&apos;m{' '}
               <span className={classes.name}>
-                Dave!
-              </span>{' '}
+                Dave
+              </span>!{' '}
             </h2>
             <h1 data-aos='fade-right'>Solutions Engineer</h1>
             <h4 data-aos='fade-left' data-aos-delay='150'>

@@ -119,9 +119,6 @@ const ProjectContent = (props) => {
                       height={700}
                       alt={screenshot.description}
                     />
-                    <div className={classes.description}>
-                      {index + 1}. {screenshot.description}
-                    </div>
                   </SwiperSlide>
                 ))}
               </Swiper>

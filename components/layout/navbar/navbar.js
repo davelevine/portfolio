@@ -72,7 +72,7 @@ const Navbar = (props) => {
           <Link href='/'>
             <a className={classes.logo}>
               <span className={classes.name}>&lt;</span>
-              /DAVELEVINE
+              /DAVE LEVINE
               <span className={classes.name}>&gt;</span>
             </a>
           </Link>

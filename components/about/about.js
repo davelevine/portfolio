@@ -35,7 +35,7 @@ const About = () => {
             {/* Image container with profile picture using Next.js Image component */}
             <div className={classes.imageContainer}>
               <Image
-                src='/images/profile-pic-1.webp'
+                src='/images/avatar.webp'
                 width={600}
                 height={600}
                 alt='profile-pic'
