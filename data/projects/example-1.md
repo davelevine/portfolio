@@ -1,28 +1,26 @@
 ---
-  title: Example 1
+  title: All Things Worthwhile
   tech:
-    - React
-    - MongoDB
-    - Node
-    - Express
-    - Context
-  description: This is a MERN Fullstack project with authentication and CRUD functionality.
-  liveLink: https://google.com/
-  githubLink: https://github.com/
-  image: contact-keeper.png
+    - Markdown
+    - MkDocs Material
+    - Git
+    - JAMStack
+  description: A knowledge base I started in 2016. It has since amassed to hundreds of articles, guides and documents that serve as a source of truth, second brain and a labor of love.
+  liveLink: https://kb.levine.org
+  githubLink: https://github.com/davelevine/docs-public
+  image: index.png
   isFeatured: true
   screenshots:
-    - screenshot: 01-home.png
-      description: Homepage with navbar and hero element.
+    - screenshot: 01-home.webp
+      description: This site was initially created to provide me with a better understanding of the projects I was working on at the time. It now serves as a container for all of my life projects.
     - screenshot: 02-home.png
       description: >-
-        Homepage. Carousel with 3 top-rated products and general product
-        listing.
+              A knowledge base I started in 2016. It has since amassed to hundreds of articles, guides and documents that serve as a source of truth, second brain and a labor of love.
 ---
 
 ## Description
 
-This is a MERN Fullstack project with authentication and CRUD functionality.
+A knowledge base I started in 2016. It has since amassed to hundreds of articles, guides and documents that serve as a source of truth, second brain and a labor of love.
 
 ## Key takeaways
 
