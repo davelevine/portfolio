@@ -13,7 +13,7 @@ export default function Home(props) {
         <title>Dave Levine - Solutions Engineer</title>
         <meta
           name='Portfolio'
-          content='Dave Levine Solutions Engineer Portfolio'
+          content='My personal portfolio including various projects and certifications.'
         />
       </Head>
       <Hero />
