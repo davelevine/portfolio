@@ -29,8 +29,6 @@ button {
   border: 1px solid var(--button-border);
   font-size: 1rem;
   font-weight: 700;
-  padding: 10px 20px; /* Adjust padding as needed */
-  margin: 5px 0; /* Add margin to separate buttons */
 
   &:hover {
     background-color: var(--background-secondary);
