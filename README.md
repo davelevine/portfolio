@@ -1,4 +1,4 @@
-## My Personal Developer Portfolio
+## My Personal Portfolio
 
 Developed with Next.js and Sass. Posts and projects are written in markdown and rendered with react-markdown and react-syntax-highlighter.
 
