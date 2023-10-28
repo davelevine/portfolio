@@ -7,7 +7,7 @@ isFeatured: true
 tech: ['System Architecture', 'Risk Management', 'Defining Scope']
 ---
 
-![AWS](/images/posts/eCornell.jpg)
+![eCornell](/images/posts/eCornell.jpg)
 
 ## Certificate
 

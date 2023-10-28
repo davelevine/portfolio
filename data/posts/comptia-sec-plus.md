@@ -7,7 +7,7 @@ isFeatured: true
 tech: ['Cybersecurity', 'Network Security', 'Risk Management']
 ---
 
-![AWS](/images/posts/comptia-security.jpg)
+![comptia-sec-plus](/images/posts/comptia-security.jpg)
 
 ## Certificate
 

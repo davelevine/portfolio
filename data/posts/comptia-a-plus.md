@@ -7,7 +7,7 @@ isFeatured: true
 tech: ['Troubleshooting', 'Fundamentals']
 ---
 
-![AWS](/images/posts/comptia-a-plus.jpg)
+![comptia-a-plus](/images/posts/comptia-a-plus.jpg)
 
 ## Certificate
 

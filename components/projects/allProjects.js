@@ -52,7 +52,7 @@ const AllProjects = (props) => {
           <h3><p>Sort By:</p></h3>
           <div className={classes.filterButtons}>
             <motion.button
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => handleClick('all')}
               className={
@@ -64,7 +64,7 @@ const AllProjects = (props) => {
             </motion.button>
             {selectedTechs.map((tech) => (
               <motion.button
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => handleClick(tech)}
                 className={

@@ -33,32 +33,61 @@ const AllPosts = (props) => {
     filteredPosts = posts
       .slice()
       .sort((a, b) => {
-        // Check if a is a legacy post with no expiration date
-        const isALegacyWithoutExpiration = a.title.includes('(Legacy)') && !a.expirationDate;
-        // Check if b is a legacy post with no expiration date
-        const isBLegacyWithoutExpiration = b.title.includes('(Legacy)') && !b.expirationDate;
+        // Check if a is a legacy post
+        const isALegacy = a.title.includes('(Legacy)');
+        // Check if b is a legacy post
+        const isBLegacy = b.title.includes('(Legacy)');
 
-        if (isALegacyWithoutExpiration && !isBLegacyWithoutExpiration) {
-          return 1; // Move a to the end
-        } else if (!isALegacyWithoutExpiration && isBLegacyWithoutExpiration) {
-          return -1; // Move b to the end
+        if (isALegacy && isBLegacy) {
+          // Sort alphabetically if both are legacy
+          return a.title.localeCompare(b.title);
+        } else if (isALegacy) {
+          return 1; // Move legacy post to the end
+        } else if (isBLegacy) {
+          return -1; // Move legacy post to the beginning
         } else {
-          return b.isFeatured - a.isFeatured;
+          // Check if a and b have expiration dates
+          const hasExpirationDateA = a.expirationDate;
+          const hasExpirationDateB = b.expirationDate;
+
+          if (hasExpirationDateA && hasExpirationDateB) {
+            // Sort by expiration date
+            return a.expirationDate.localeCompare(b.expirationDate);
+          } else if (hasExpirationDateA) {
+            return -1; // Move post with an expiration date to the beginning
+          } else if (hasExpirationDateB) {
+            return 1; // Move post with an expiration date to the end
+          } else {
+            return b.isFeatured - a.isFeatured;
+          }
         }
       });
   } else {
     filteredPosts = posts
       .filter((post) => post.tech.includes(filter))
       .sort((a, b) => {
-        const isALegacyWithoutExpiration = a.title.includes('(Legacy)') && !a.expirationDate;
-        const isBLegacyWithoutExpiration = b.title.includes('(Legacy)') && !b.expirationDate;
+        const isALegacy = a.title.includes('(Legacy)');
+        const isBLegacy = b.title.includes('(Legacy)');
 
-        if (isALegacyWithoutExpiration && !isBLegacyWithoutExpiration) {
-          return 1; // Move a to the end
-        } else if (!isALegacyWithoutExpiration && isBLegacyWithoutExpiration) {
-          return -1; // Move b to the end
+        if (isALegacy && isBLegacy) {
+          return a.title.localeCompare(b.title);
+        } else if (isALegacy) {
+          return 1;
+        } else if (isBLegacy) {
+          return -1;
         } else {
-          return b.isFeatured - a.isFeatured;
+          const hasExpirationDateA = a.expirationDate;
+          const hasExpirationDateB = b.expirationDate;
+
+          if (hasExpirationDateA && hasExpirationDateB) {
+            return a.expirationDate.localeCompare(b.expirationDate);
+          } else if (hasExpirationDateA) {
+            return -1;
+          } else if (hasExpirationDateB) {
+            return 1;
+          } else {
+            return b.isFeatured - a.isFeatured;
+          }
         }
       });
   }
@@ -71,7 +100,7 @@ const AllPosts = (props) => {
           <h3><p>Sort By:</p></h3>
           <div className={classes.filterButtons}>
             <motion.button
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => handleClick('all')}
               className={
@@ -83,7 +112,7 @@ const AllPosts = (props) => {
             </motion.button>
             {selectedPosts.map((tech) => (
               <motion.button
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => handleClick(tech)}
                 className={

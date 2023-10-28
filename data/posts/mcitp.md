@@ -7,7 +7,7 @@ isFeatured: true
 tech: ['System Administration', 'Desktop Administration']
 ---
 
-![AWS](/images/posts/mcitp.webp)
+![MCITP](/images/posts/mcitp.webp)
 
 ## Certificate
 
