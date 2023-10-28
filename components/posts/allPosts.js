@@ -45,7 +45,7 @@ const AllPosts = (props) => {
   return (
     <section className={classes.blog}>
       <div className={classes.container}>
-        <h1>Blog Posts</h1>
+        <h1>Certifications</h1>
         <div className={classes.filter}>
           <p>Sort by tech:</p>
           <div className={classes.filterButtons}>

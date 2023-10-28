@@ -15,7 +15,13 @@
   }
 
   time {
-    color: var(--text-tertiary);
+    color: var(--navbar-primary);
+  }
+
+  .expires { /* New class for "Expires" */
+    strong {
+      color: var(--accent); /* Make "Expires" red */
+    }
   }
 
   .cardAction {
