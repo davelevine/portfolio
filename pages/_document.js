@@ -23,6 +23,12 @@ class MyDocument extends Document {
             crossOrigin='anonymous'
             referrerPolicy='no-referrer'
           />
+
+          <script
+            src="/stats/js/script.js"
+            data-api="/stats/api/event"
+            data-domain="dave.levine.org"
+          ></script>
         </Head>
         <body>
           <Main />
