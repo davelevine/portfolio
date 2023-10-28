@@ -7,18 +7,29 @@ import 'aos/dist/aos.css';
 const PostItem = (props) => {
   const { title, excerpt, date, slug } = props.post;
 
-  const formattedDate = new Date(date).toLocaleDateString('en-US', {
-    timeZone: 'UTC',
-    month: 'long',
-    year: 'numeric',
-  });
+  let expiresDate = null;
+  const currentDate = new Date();
+  const expirationDate = new Date(date);
 
-  // Use HTML tags to make "Expires" bold and add the appropriate class name
-  const expiresDate = (
-    <span className={classes.expires}>
-      <strong>Expires:</strong> {formattedDate}
-    </span>
-  );
+  if (date === 'Never') {
+    expiresDate = <span className={classes.expires}><strong>Expires:</strong> Never</span>;
+  } else if (expirationDate < currentDate) {
+    // If the date is in the past, display "Expired"
+    const formattedDate = expirationDate.toLocaleDateString('en-US', {
+      timeZone: 'UTC',
+      month: 'long',
+      year: 'numeric',
+    });
+    expiresDate = <span className={classes.expired}><strong>Expired:</strong> {formattedDate}</span>;
+  } else {
+    // If the date is in the future, display "Expires"
+    const formattedDate = expirationDate.toLocaleDateString('en-US', {
+      timeZone: 'UTC',
+      month: 'long',
+      year: 'numeric',
+    });
+    expiresDate = <span className={classes.expires}><strong>Expires:</strong> {formattedDate}</span>;
+  }
 
   const linkPath = `/posts/${slug}`;
 

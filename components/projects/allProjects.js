@@ -49,7 +49,7 @@ const AllProjects = (props) => {
       <div className={classes.container}>
         <h1>Projects</h1>
         <div className={classes.filter}>
-          <p>Sort by tech:</p>
+          <p>Sort By:</p>
           <div className={classes.filterButtons}>
             <motion.button
               whileHover={{ scale: 1.1 }}

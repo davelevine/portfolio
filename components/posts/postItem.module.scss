@@ -24,6 +24,12 @@
     }
   }
 
+  .expired { /* New class for "Expires" */
+    strong {
+      color: var(--accent); /* Make "Expires" red */
+    }
+  }
+
   .cardAction {
     display: flex;
     flex-direction: row;

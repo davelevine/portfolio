@@ -8,38 +8,59 @@ const AllPosts = (props) => {
   const [filter, setFilter] = useState('all');
   const [activeButton, setActiveButton] = useState('all');
 
-  //Filter start
   const selectedPosts = [];
 
-  //Map through all used techs and add them individually to selectedPosts array
   posts.map((post) => {
-    //Complete array
     const techs = post.tech;
 
     if (Array.isArray(techs)) {
-      //Array item
       for (const tech of techs) {
         if (!selectedPosts.includes(tech)) selectedPosts.push(tech);
       }
     }
   });
 
-  //Sort techs alphabetically
   selectedPosts.sort();
 
-  //Set "filter" & current active button
   const handleClick = (tech) => {
     setFilter(tech);
     setActiveButton(tech);
   };
 
-  //Filter posts according to "filter"
   let filteredPosts;
 
   if (filter === 'all') {
-    filteredPosts = posts.sort((a, b) => b.isFeatured - a.isFeatured);
+    filteredPosts = posts
+      .slice()
+      .sort((a, b) => {
+        // Check if a is a legacy post with no expiration date
+        const isALegacyWithoutExpiration = a.title.includes('(Legacy)') && !a.expirationDate;
+        // Check if b is a legacy post with no expiration date
+        const isBLegacyWithoutExpiration = b.title.includes('(Legacy)') && !b.expirationDate;
+
+        if (isALegacyWithoutExpiration && !isBLegacyWithoutExpiration) {
+          return 1; // Move a to the end
+        } else if (!isALegacyWithoutExpiration && isBLegacyWithoutExpiration) {
+          return -1; // Move b to the end
+        } else {
+          return b.isFeatured - a.isFeatured;
+        }
+      });
   } else {
-    filteredPosts = posts.filter((post) => post.tech.includes(filter));
+    filteredPosts = posts
+      .filter((post) => post.tech.includes(filter))
+      .sort((a, b) => {
+        const isALegacyWithoutExpiration = a.title.includes('(Legacy)') && !a.expirationDate;
+        const isBLegacyWithoutExpiration = b.title.includes('(Legacy)') && !b.expirationDate;
+
+        if (isALegacyWithoutExpiration && !isBLegacyWithoutExpiration) {
+          return 1; // Move a to the end
+        } else if (!isALegacyWithoutExpiration && isBLegacyWithoutExpiration) {
+          return -1; // Move b to the end
+        } else {
+          return b.isFeatured - a.isFeatured;
+        }
+      });
   }
 
   return (
@@ -47,7 +68,7 @@ const AllPosts = (props) => {
       <div className={classes.container}>
         <h1>Certifications</h1>
         <div className={classes.filter}>
-          <p>Sort by tech:</p>
+          <p>Sort By:</p>
           <div className={classes.filterButtons}>
             <motion.button
               whileHover={{ scale: 1.1 }}
@@ -80,11 +101,9 @@ const AllPosts = (props) => {
         <div className={classes.galleryWrap}>
           <div className={classes.gallery}>
             <AnimatePresence>
-              {posts !== null &&
-                posts !== undefined &&
-                filteredPosts.map((post) => (
-                  <PostItem post={post} key={post.slug} />
-                ))}
+              {filteredPosts.map((post) => (
+                <PostItem post={post} key={post.slug} />
+              ))}
             </AnimatePresence>
           </div>
         </div>
@@ -92,4 +111,5 @@ const AllPosts = (props) => {
     </section>
   );
 };
+
 export default AllPosts;
