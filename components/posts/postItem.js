@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import classes from './postItem.module.scss'; // Import your SCSS styles
+import classes from './postItem.module.scss';
 import { useEffect } from 'react';
 import Aos from 'aos';
 import 'aos/dist/aos.css';

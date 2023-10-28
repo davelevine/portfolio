@@ -4,9 +4,9 @@
 
   /* Define styles for elements with the "row" class inside the "greetings" container */
   .row {
-    display: flex; /* Use flex layout */
-    flex-flow: column; /* Layout in a column */
-    height: 100%; /* Occupy full height of the container */
+    display: flex;
+    flex-flow: column;
+    height: 100%;
   }
 
   /* Define mobile-specific styles using media queries */
@@ -18,8 +18,8 @@
 
     /* Styles for the element with the class "columnRight" and "profilePic" on mobile */
     .columnRight.profilePic {
-      max-width: 350px; /* Maximum width */
-      max-height: 350px; /* Maximum height */
+      max-width: 350px;
+      max-height: 350px;
       margin: 0 auto 20px; /* Adjust the margin for mobile */
 
       /* Media query for landscape orientation */
@@ -29,8 +29,8 @@
         }
 
         .columnRight.profilePic {
-          max-width: 350px; /* Maximum width */
-          max-height: 350px; /* Maximum height */
+          max-width: 350px;
+          max-height: 350px;
           margin: 0 auto 20px; /* Adjust the margin for mobile landscape orientation */
         }
       }
@@ -127,10 +127,10 @@
 
     /* Styles for the element with the class "profilePic" inside "columnRight" */
     &.profilePic {
-      max-width: 225px; /* Maximum width */
-      max-height: 200px; /* Maximum height */
+      max-width: 225px;
+      max-height: 200px;
       text-align: center;
-      margin: 30px auto 0; /* Margin settings */
+      margin: 30px auto 0;
 
       /* Styles for images within the "profilePic" container */
       img {
@@ -153,7 +153,7 @@
     /* Styles for the element with the class "container" */
     .container {
       height: 105%; /* Slightly taller than the parent container */
-      max-width: 1200px; /* Maximum width */
+      max-width: 1200px;
       margin: auto;
       display: flex;
       flex-direction: column;
@@ -207,10 +207,10 @@
 
       /* Styles for the element with the class "profilePic" inside "columnRight" */
       &.profilePic {
-        max-width: 460px; /* Maximum width */
-        max-height: 460px; /* Maximum height */
+        max-width: 460px;
+        max-height: 460px;
         margin: auto;
-        margin-right: 5%; /* Right margin */
+        margin-right: 5%;
 
         /* Styles for images within the "profilePic" container */
         img {
