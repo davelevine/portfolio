@@ -13,8 +13,8 @@
   image: atomic-url.webp
   isFeatured: true
   screenshots:
-    - screenshot: 01-home.png
-    - screenshot: 02-home.png
+    - screenshot: 01-home.webp
+    - screenshot: 02-home.webp
       description: >-
               A URL shortener proof of concept built using Cloudflare Workers to show how one builds an actual URL shortener service using serverless computing.
 
