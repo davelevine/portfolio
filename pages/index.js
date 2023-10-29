@@ -4,15 +4,13 @@ import About from '../components/about/about';
 import { getFeaturedPosts } from '../util/posts-util';
 import { getFeaturedProjects } from '../util/projects-util';
 
-// TODO: Rename 'posts' to 'featuredPosts' for clarity
-
 export default function Home(props) {
   return (
     <>
       <Head>
         <title>Dave Levine - Solutions Engineer</title>
         <meta
-          name='Portfolio'
+          name='description' // Change 'name' to 'description'
           content='My personal portfolio including various projects and certifications.'
         />
       </Head>
