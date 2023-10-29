@@ -111,7 +111,7 @@ function ContactModal(props) {
         <form id='contactForm' className={classes.contactForm} onSubmit={handleSubmit}>
           <div className={classes.row}>
             <div className={classes.inputField}>
-              <label htmlFor='email'>From:</label>
+              <label htmlFor='email'>Email Address</label>
               <input id='email' type='email' name='email' required />
 
               <ValidationError prefix='Email' field='email' errors={state.errors} />

@@ -5,28 +5,39 @@ class MyDocument extends Document {
     return (
       <Html lang='en'>
         <Head>
-          <link rel='preconnect' href='https://fonts.googleapis.com' />
+          {/* Link to locally hosted Google Fonts CSS */}
           <link
-            rel='preconnect'
-            href='https://fonts.gstatic.com'
-            crossOrigin='anonymous'
-          />
-          <link
-            href='https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Poppins&display=swap'
             rel='stylesheet'
+            href='/fonts/googlefonts/google-fonts.css' // Path to locally hosted Google Fonts CSS
           />
 
+          {/* Link to locally hosted FontAwesome CSS */}
           <link
             rel='stylesheet'
-            href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css'
-            integrity='sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=='
-            crossOrigin='anonymous'
-            referrerPolicy='no-referrer'
+            href='/fonts/all.min.css' // Path to locally hosted FontAwesome CSS
           />
+
+          <style>{`
+            @font-face {
+              font-family: "Font Awesome 6 Free";
+              src: url('/webfonts/fa-solid-900.woff2') format('woff2'),
+                   url('/webfonts/fa-solid-900.ttf') format('truetype');
+              font-weight: 900;
+              font-style: normal;
+            }
+
+            @font-face {
+              font-family: "Font Awesome 6 Brands";
+              src: url('/webfonts/fa-brands-400.woff2') format('woff2'),
+                   url('/webfonts/fa-brands-400.ttf') format('truetype');
+              font-weight: 400;
+              font-style: normal;
+            }
+          `}
+          </style>
+
           <script defer data-domain="dave.levine.org" data-api="/data/api/event" src="/data/js/script.js"></script>
-
           <script defer data-domain="www.davelevine.io" data-api="/data/api/event" src="/data/js/script.js"></script>
-
           <script defer data-domain="www.davidlevine.com" data-api="/data/api/event" src="/data/js/script.js"></script>
         </Head>
         <body>
