@@ -12,8 +12,8 @@
   image: hn-pwa.webp
   isFeatured: true
   screenshots:
-    - screenshot: 01-home.png
-    - screenshot: 02-home.png
+    - screenshot: 01-home.webp
+    - screenshot: 02-home.webp
       description: >-
               A progressive web app for browsing Hacker News, built with React. Makes use of a self-hosted API for fetching content. Focuses on small touches missing from similar projects.
 ---
