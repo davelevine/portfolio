@@ -4,7 +4,7 @@ Developed with Next.js and Sass. Posts and projects are written in markdown and 
 
 Live at:
 
-[https://daves-portfolio.vercel.app/](https://daves-portfolio.vercel.app/)
+[https://www.davelevine.io/](https://www.davelevine.io/)
 
 Third party static contact form (formspree):
 
