@@ -31,7 +31,7 @@ const PostItem = (props) => {
     expiresDate = <span className={classes.expires}><strong>Expires:</strong> {formattedDate}</span>;
   }
 
-  const linkPath = `/posts/${slug}`;
+  const linkPath = `/certs/${slug}`;
 
   useEffect(() => {
     Aos.init({ duration: 500 });

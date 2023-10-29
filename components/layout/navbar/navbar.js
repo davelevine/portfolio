@@ -112,14 +112,14 @@ const Navbar = (props) => {
                 </motion.a>
               </Link>
 
-              <Link href='/posts'>
+              <Link href='/certs'>
                 <motion.a
                   style={{ cursor: 'pointer' }}
                   initial={{ opacity: 0, y: -30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
                   onClick={toggleNav}
-                  className={isLinkActive('/posts') ? classes.activeLink : ''} // Check if Blog link is active
+                  className={isLinkActive('/certs') ? classes.activeLink : ''} // Check if Blog link is active
                 >
                   CERTS
                 </motion.a>

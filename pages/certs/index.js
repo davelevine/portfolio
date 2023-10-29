@@ -1,6 +1,6 @@
 import Head from 'next/head';
-import { getAllPosts } from '../../util/posts-util';
-import AllPosts from '../../components/posts/allPosts';
+import { getAllPosts } from '../../util/certs-util';
+import AllPosts from '../../components/certs/allPosts';
 
 const Posts = (props) => {
   const { posts } = props;
