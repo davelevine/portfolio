@@ -4,7 +4,7 @@ date: 'Never'
 image: mcitp.webp
 excerpt: 'The Enterprise Desktop Administrator on Windows 7 certification is for IT Pros that have experience installing, configuring, and administering clients in a Windows networked environment and also have experience deploying operating systems and applications.'
 isFeatured: true
-tech: ['System Administration', 'Desktop Administration']
+tech: ['System Administration']
 ---
 
 ![MCITP](/images/posts/mcitp.webp)
