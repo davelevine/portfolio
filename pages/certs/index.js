@@ -8,10 +8,10 @@ const Posts = (props) => {
   return (
     <>
       <Head>
-        <title>Blog Posts</title>
+        <title>Certifications</title>
         <meta
           name='description'
-          content='List of all my web development blog posts/articles including technologies like React, Next.js, Redux, Typescript, Node.js, Express, MongoDB, Bootstrap and Shopware.'
+          content='List of all my certifications.'
         />
       </Head>
       <AllPosts posts={posts} />
