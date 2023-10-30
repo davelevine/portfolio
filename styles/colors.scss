@@ -16,6 +16,7 @@
   --gradient-primary: #8bb2c3;
   --gradient-secondary: #8bb2c3;
   --navbar-primary: #4d5270;
+  --text-gradient: linear-gradient(180deg,var(--accent),#8b3dff);
 }
 [data-theme='dark'] {
   --background: #22272e;
@@ -25,6 +26,7 @@
   --text-secondary: #bcfe00;
   --text-tertiary: #8bb2c3;
   --accent: #ff787e;
+  --accent-secondary: #bdff00;
   --transparent-primary: #2d333bed;
   --transparent-secondary: #242729fc;
   --border: #4b5154;
@@ -35,4 +37,5 @@
   --gradient-primary: #8bb2c3;
   --gradient-secondary: #8bb2c3;
   --navbar-primary: #ffffff;
+  --text-gradient: linear-gradient(180deg,var(--accent-secondary),#7ef5de);
 }

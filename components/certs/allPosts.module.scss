@@ -3,7 +3,11 @@
 
   h1 {
     text-align: center;
-    font-size: 2rem;
+    font-size: 3rem;
+    background: var(--text-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
   .filter {
@@ -32,6 +36,15 @@
     .container {
       max-width: 1200px;
       margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 4.6rem;
+      background: var(--text-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
     .gallery {

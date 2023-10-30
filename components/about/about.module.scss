@@ -96,8 +96,13 @@
       display: flex;
     }
 
+    /* Move h2 styles outside the media query */
     h2 {
       font-size: 3.5rem; /* Adjust font size for desktop view */
+      background: var(--text-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
     .columnLeft {
