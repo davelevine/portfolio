@@ -35,10 +35,8 @@ class MyDocument extends Document {
             }
           `}
           </style>
-
-          <script defer data-domain="dave.levine.org" data-api="/data/api/event" src="/data/js/script.js"></script>
+          {/* Plausible tracking script */}
           <script defer data-domain="www.davelevine.io" data-api="/data/api/event" src="/data/js/script.js"></script>
-          <script defer data-domain="www.davidlevine.com" data-api="/data/api/event" src="/data/js/script.js"></script>
         </Head>
         <body>
           <Main />

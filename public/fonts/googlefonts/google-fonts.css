@@ -1,31 +1,35 @@
-/* Example for IBM Plex Sans and Poppins fonts */
-
-/* IBM Plex Sans */
+/* IBM Plex Sans Regular */
 @font-face {
-    font-family: 'IBM Plex Sans';
-    src: url('../googlefonts/IBM-Plex-Sans-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'IBM Plex Sans';
-    src: url('../googlefonts/IBM-Plex-Sans-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'IBM Plex Sans';
-    src: url('../googlefonts/IBM-Plex-Sans-Italic.woff2') format('woff2');
-    font-weight: 400;
-    font-style: italic;
-  }
-  
-  /* Poppins */
-  @font-face {
-    font-family: 'Poppins';
-    src: url('../googlefonts/Poppins-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-  }
+  font-family: 'IBM Plex Sans';
+  src: url('../googlefonts/IBM-Plex-Sans-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+/* IBM Plex Sans Bold */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  src: url('../googlefonts/IBM-Plex-Sans-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+
+/* IBM Plex Sans Italic */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  src: url('../googlefonts/IBM-Plex-Sans-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: block;
+}
+
+/* Poppins Regular */
+@font-face {
+  font-family: 'Poppins';
+  src: url('../googlefonts/Poppins-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
