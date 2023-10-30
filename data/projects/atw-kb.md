@@ -1,7 +1,6 @@
 ---
   title: All Things Worthwhile
   tech:
-    - Markdown
     - MkDocs Material
     - Git
     - Static Site
@@ -23,7 +22,7 @@ A knowledge base I started in 2016. It has since amassed to hundreds of articles
 
 ## Key takeaways
 
-- Documentation is stored on GitHub.
+- Documentation is written in Markdown and stored on GitHub.
 - Generated with MkDocs Material Insiders.
 - Hosted with Cloudflare Pages.
 - Site analytics by Plausible.
