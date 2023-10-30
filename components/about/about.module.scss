@@ -8,6 +8,15 @@
     color: var(--accent);
   }
 
+  h2 {
+    font-size: 2.5rem; /* Default font size for mobile */
+
+    background: var(--text-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
   .columnLeft {
     margin-bottom: auto; /* Adjust margin as needed */
     margin: auto;
@@ -80,7 +89,7 @@
   }
 
   @media only screen and (min-width: 768px) {
-    padding: 200px 25px; /* Adjust padding for desktop view */
+    padding: 100px 25px; /* Adjust padding for desktop view */
     min-height: 100vh;
 
     .container {
@@ -96,13 +105,8 @@
       display: flex;
     }
 
-    /* Move h2 styles outside the media query */
     h2 {
-      font-size: 3.5rem; /* Adjust font size for desktop view */
-      background: var(--text-gradient);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      font-size: 3.5rem; /* Font size for desktop view */
     }
 
     .columnLeft {
