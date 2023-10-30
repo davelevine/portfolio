@@ -67,6 +67,7 @@
       font-size: 1.8rem;
       filter: drop-shadow(0px 3px 2px rgba(0, 0, 0, 0.15));
       margin: 0;
+      margin-bottom: 6px;
     }
 
     h3 {
@@ -81,9 +82,11 @@
       font-weight: 400;
       @media only screen and (max-width: 1601px) {
         line-height: 2.8;
+      }
       @media only screen and (max-width: 767px) {
         line-height: 2.8;
-        }
+        margin-bottom: -11px;
+        margin-top: -4px;
       }
     }
 
@@ -115,7 +118,7 @@
         font-size: 2rem;
         margin: 0 5px;
         color: var(--navbar-primary);
-        filter: drop-shadow(0 1px 1px rgb(0 0 0 / 14%));
+        filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.14));
 
         &:hover {
           color: var(--background-secondary);
@@ -123,20 +126,20 @@
       }
     }
 
-  /* Styles for call-to-action buttons */
-  .ctaButtons {
-    margin-top: 40px;
-    display: flex;
+    /* Styles for call-to-action buttons */
+    .ctaButtons {
+      margin-top: 40px;
+      display: flex;
 
-    &:first-child {
-      margin-right: 15px;
-    }
+      &:first-child {
+        margin-right: 15px;
+      }
 
-    /* Adjust the margin between buttons */
-    button + button {
-      margin-left: 15px;
+      /* Adjust the margin between buttons */
+      button + button {
+        margin-left: 15px;
+      }
     }
-  }
   }
 
   /* Mobile-specific styles for "greetings" container */

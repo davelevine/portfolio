@@ -11,16 +11,16 @@
     position: fixed;
     top: 0;
     background-color: var(--transparent-primary);
-    box-shadow: 0 6px 30px 2px rgb(0 0 0 / 3%),
-      0 3px 15px 1px rgb(0 0 0 / 2%),
-      0 1px 8px 1px rgb(0 0 0 / 1%);
+    box-shadow: 0 6px 30px 2px rgba(0, 0, 0, 0.03),
+      0 3px 15px 1px rgba(0, 0, 0, 0.02),
+      0 1px 8px 1px rgba(0, 0, 0, 0.01);
   }
 
   .container {
     display: flex;
     align-items: center;
     height: 100%;
-    padding: 0 auto; /* Center content horizontally */
+    margin: 0 auto; /* Center content horizontally */
   }
 
   .logo {
@@ -34,7 +34,7 @@
     width: 45px;
     height: 30px;
     box-shadow: none;
-    margin-right: 44%;  /* Adjust the logo's right margin */
+    margin-right: 44%; /* Adjust the logo's right margin */
     margin-left: 20px;
     white-space: nowrap;
 
@@ -126,14 +126,20 @@
   }
 }
 
+@media only screen and (max-width: 767px) {
+  /* Add a media query for mobile screens (adjust the max-width as needed) */
+  .navbar {
+    .logo {
+      margin-right: 45%; /* Adjust the logo's right margin for mobile */
+    }
+  }
+}
+
 @media only screen and (min-width: 768px) {
   .navbar {
-    padding: 0 auto;
-
     .container {
       max-width: 1265px;
-      margin: auto;
-      padding: 0 auto; /* Center content horizontally */
+      margin: 0 auto; /* Center content horizontally */
     }
 
     .navMenu {
@@ -151,7 +157,7 @@
       }
 
       .linkWrapper {
-        padding: 0 auto; /* Center content horizontally */
+        margin: 0 auto; /* Center content horizontally */
         display: flex;
         justify-content: flex-end;
         width: 97%;
@@ -159,7 +165,7 @@
         a {
           margin-left: 25px;
           border-bottom: none;
-          filter: drop-shadow(0px 3px 2px rgb(0 0 0 / 15%));
+          filter: drop-shadow(0px 3px 2px rgba(0, 0, 0, 0.15));
           font-size: 1.03rem;
         }
 
