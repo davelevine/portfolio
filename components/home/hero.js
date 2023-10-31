@@ -98,7 +98,7 @@ const Hero = () => {
           <div className={`${classes.columnRight} ${classes.profilePic}`}>
             {/* Display the profile picture using Next.js Image component */}
             <Image
-              src='/images/profile-pic-1.webp?imwidth=1080'
+              src='/images/profile-pic-1.webp'
               width={460}
               height={460}
               alt='profile-pic'
