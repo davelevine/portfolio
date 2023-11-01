@@ -92,6 +92,7 @@ const ProjectContent = (props) => {
                 width={500}
                 height={360}
                 alt=''
+                loading='eager' // Set loading attribute to 'eager' to indicate preload
               />
             </div>
           )}
@@ -118,6 +119,7 @@ const ProjectContent = (props) => {
                       width={1000}
                       height={700}
                       alt={screenshot.description}
+                      loading='eager' // Set loading attribute to 'eager' to indicate preload
                     />
                   </SwiperSlide>
                 ))}

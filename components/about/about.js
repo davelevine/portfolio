@@ -27,12 +27,12 @@ const About = () => {
             </p>
             <br />
             <p className={classes.h4}>
-            Most recently, my role involves shaping application architecture, fine-tuning development processes, and actively participating in solution design discussions to meet specific business needs.
+              Most recently, my role involves shaping application architecture, fine-tuning development processes, and actively participating in solution design discussions to meet specific business needs.
             </p>
           </div>
 
           <div className={classes.columnRight}>
-            {/* Image container with profile picture using Next.js Image component */}
+            {/* Image container with profile picture using Next.js Image component with preload */}
             <div className={classes.imageContainer}>
               <Image
                 src='/images/avatar.webp'
@@ -40,7 +40,7 @@ const About = () => {
                 height={600}
                 alt='profile-pic'
                 data-aos='fade-left'
-                loading='lazy'
+                loading='eager' // Set loading attribute to 'eager' to indicate preload
               />
             </div>
             <div className={classes.quote} data-aos='fade-right'></div>

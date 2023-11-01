@@ -12,7 +12,8 @@ const ProjectItem = (props) => {
       initial={{ opacity: 0 }}
       exit={{ scale: 0.1 }}
       layout
-      className={classes.card}>
+      className={classes.card}
+    >
       <Link href={`/projects/${project.slug}`}>
         <a>
           <div className={classes.cardContent}>
@@ -30,6 +31,7 @@ const ProjectItem = (props) => {
                   width={320}
                   height={220}
                   alt=''
+                  loading='eager' // Set loading attribute to 'eager' to indicate preload
                 />
               </div>
             ) : (

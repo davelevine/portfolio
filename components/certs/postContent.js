@@ -1,5 +1,4 @@
 import ReactMarkdown from 'react-markdown';
-// import Image from 'next/image';
 import classes from './postContent.module.scss';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import {
@@ -15,22 +14,6 @@ const PostContent = (props) => {
   const imagePath = `../images/posts/${post.slug}/${post.image}`;
 
   const customRenderers = {
-    // p(paragraph) {
-    //   const { node } = paragraph;
-    //   console.log(node);
-    //   if (node.children[0].tagName === 'img') {
-    //     const image = node.children[0];
-
-    //     return (
-    //       <div>
-    //         <Image src={imagePath} alt={image.alt} width={1230} height={760} />
-    //       </div>
-    //     );
-    //   }
-
-    //   return <p>{paragraph.children}</p>;
-    // },
-
     code(code) {
       const { className, children } = code;
       const language = className.split('-')[1]; // className is something like language-js => We need the "js" part here
@@ -63,6 +46,11 @@ const PostContent = (props) => {
     <div className={classes.postContent}>
       <div className={classes.container}>
         <article>
+          <img
+            src={imagePath}
+            alt={title} // Set alt text as appropriate
+            loading="eager" // Set loading attribute to 'eager' to indicate preload
+          />
           <ReactMarkdown components={customRenderers}>{content}</ReactMarkdown>
         </article>
       </div>

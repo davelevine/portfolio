@@ -96,7 +96,7 @@ const Hero = () => {
           </div>
 
           <div className={`${classes.columnRight} ${classes.profilePic}`}>
-            {/* Display the profile picture using Next.js Image component */}
+            {/* Display the profile picture using Next.js Image component with preload */}
             <Image
               src='/images/profile-pic-1.webp'
               width={460}
@@ -104,7 +104,7 @@ const Hero = () => {
               alt='profile-pic'
               data-aos='fade-left'
               className='zoomed-out-image'
-              loading='lazy'
+              loading='eager' // Set loading attribute to 'eager' to indicate preload
             />
           </div>
         </div>
