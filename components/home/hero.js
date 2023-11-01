@@ -81,7 +81,7 @@ const Hero = () => {
                 className='btn btn-filled'
                 data-aos='fade-up'
                 onClick={buttonHandler}
-                aria-label="View Resume" // Accessible name for the button
+                aria-label="My Resume" // Accessible name for the button
               >
                 MY RESUME
               </motion.button>
@@ -112,7 +112,7 @@ const Hero = () => {
           </div>
         </div>
         <div className='iconScrollContainer'>
-          <a href='#about'>
+          <a href='#about' aria-label="Jump to About Section">
             {/* Scroll-to section link with data-aos animation */}
             <div
               className='iconScroll'
