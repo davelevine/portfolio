@@ -14,7 +14,7 @@ const Hero = () => {
 
   // Function to handle button click for redirecting to a resume file
   function buttonHandler() {
-    window.location.href = '/davelevine-resume.pdf';
+    window.location.href = '/assets/davelevine-resume.pdf';
   }
 
   // Function to open the modal
@@ -104,6 +104,7 @@ const Hero = () => {
               alt='profile-pic'
               data-aos='fade-left'
               className='zoomed-out-image'
+              loading='lazy'
             />
           </div>
         </div>

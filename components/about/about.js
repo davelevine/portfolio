@@ -40,6 +40,7 @@ const About = () => {
                 height={600}
                 alt='profile-pic'
                 data-aos='fade-left'
+                loading='lazy'
               />
             </div>
             <div className={classes.quote} data-aos='fade-right'></div>

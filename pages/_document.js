@@ -20,8 +20,8 @@ class MyDocument extends Document {
           <style>{`
             @font-face {
               font-family: "Font Awesome 6 Free";
-              src: url('/webfonts/fa-solid-900.woff2') format('woff2'),
-                   url('/webfonts/fa-solid-900.ttf') format('truetype');
+              src: url('/fonts/webfonts/fa-solid-900.woff2') format('woff2'),
+                   url('/fonts/webfonts/fa-solid-900.ttf') format('truetype');
               font-weight: 900;
               font-style: normal;
             }
