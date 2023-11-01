@@ -31,7 +31,7 @@
         },
         {
           "key": "X-Robots-Tag",
-          "value": "noindex"
+          "value": "index"
         },
         {
           "key": "Content-Security-Policy",
