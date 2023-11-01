@@ -54,7 +54,9 @@ function ContactModal(props) {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               className='btn btn-filled'
-              onClick={props.onClose}>
+              onClick={props.onClose}
+              aria-label="Close Confirmation" // Accessible name for the button
+            >
               OK
             </motion.button>
           </div>
@@ -90,7 +92,9 @@ function ContactModal(props) {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               className='btn btn-filled'
-              onClick={props.onClose}>
+              onClick={props.onClose}
+              aria-label="Close Error" // Accessible name for the button
+            >
               OK
             </motion.button>
           </div>
@@ -134,7 +138,9 @@ function ContactModal(props) {
                 whileTap={{ scale: 0.9 }}
                 type='submit'
                 disabled={state.submitting}
-                className='btn btn-filled'>
+                className='btn btn-filled'
+                aria-label="Send Message" // Accessible name for the button
+              >
                 Send Message
               </motion.button>
             </div>

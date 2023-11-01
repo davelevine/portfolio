@@ -16,7 +16,9 @@ const MenuToggle = ({ toggleNav }) => (
     className={`${classes.icon} ${classes.iconMain}`}
     onClick={() => {
       toggleNav();
-    }}>
+    }}
+    aria-label="Toggle Mobile Menu" // Accessible name for the button
+  >
     <svg width='45' height='45' viewBox='0 0 23 23'>
       <Path
         variants={{

@@ -149,7 +149,9 @@ const Navbar = (props) => {
               className={classes.icon}
               onClick={() => {
                 toggleModal();
-              }}>
+              }}
+              aria-label="Toggle Contact Modal" // Accessible name for the button
+            >
               {showModal ? (
                 <i className='fa fa-envelope-open'></i>
               ) : (
@@ -165,7 +167,9 @@ const Navbar = (props) => {
               className={classes.icon}
               onClick={() => {
                 setThemeHandler();
-              }}>
+              }}
+              aria-label="Toggle Theme" // Accessible name for the button
+            >
               <ThemeToggle theme={theme} />
             </motion.button>
 
@@ -173,7 +177,9 @@ const Navbar = (props) => {
             <motion.div
               className={classes.iconMain}
               initial={false}
-              animate={isOpen ? 'open' : 'closed'}>
+              animate={isOpen ? 'open' : 'closed'}
+              aria-label="Toggle Mobile Menu" // Accessible name for the button
+            >
               <MenuToggle toggleNav={toggleNav} />
             </motion.div>
           </div>

@@ -1,4 +1,3 @@
-// Import required modules and components
 import classes from './hero.module.scss';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
@@ -58,16 +57,16 @@ const Hero = () => {
             </h4>
             <div className={classes.socialMedia}>
               {/* Links to social media profiles with data-aos animations */}
-              <a href='https://github.com/davelevine' target='_blank' rel='noreferrer'>
+              <a href='https://github.com/davelevine' target='_blank' rel='noreferrer' aria-label="GitHub Profile">
                 <i className='fab fa-github' data-aos='flip-up'></i>
               </a>
-              <a href='https://www.linkedin.com/in/iamdavelevine' target='_blank' rel='noreferrer'>
+              <a href='https://www.linkedin.com/in/iamdavelevine' target='_blank' rel='noreferrer' aria-label="LinkedIn Profile">
                 <i
                   className='fab fa-linkedin'
                   data-aos='flip-up'
                   data-aos-delay='50'></i>
               </a>{' '}
-              <a href='https://kb.levine.org' target='_blank' rel='noreferrer'>
+              <a href='https://kb.levine.org' target='_blank' rel='noreferrer' aria-label="Knowledge Base">
                 <i
                   className='fas fa-globe'
                   data-aos='flip-up'
@@ -81,7 +80,9 @@ const Hero = () => {
                 whileTap={{ scale: 0.9 }}
                 className='btn btn-filled'
                 data-aos='fade-up'
-                onClick={buttonHandler}>
+                onClick={buttonHandler}
+                aria-label="View Resume" // Accessible name for the button
+              >
                 MY RESUME
               </motion.button>
               <motion.button
@@ -89,7 +90,9 @@ const Hero = () => {
                 whileTap={{ scale: 0.9 }}
                 className='btn btn-outlined'
                 data-aos='fade-down'
-                onClick={showModalHandler}>
+                onClick={showModalHandler}
+                aria-label="Contact Me" // Accessible name for the button
+              >
                 CONTACT
               </motion.button>
             </div>
