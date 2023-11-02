@@ -11,7 +11,7 @@ const nextConfig = {
 
 module.exports = withPlugins(
   [
-    withImages, // Enable the next-images plugin if not already enabled
+    withImages,
     {
       // Add Brotli compression to Next.js
       compress: true,
