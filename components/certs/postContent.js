@@ -12,7 +12,7 @@ const PostContent = (props) => {
 
   const title = post.title;
   const content = post.content;
-  const imagePath = `../images/posts/${post.slug}/${post.image}`;
+  const imagePath = `/images/posts/${post.slug}/${post.image}`;
 
   const customRenderers = {
     code(code) {
@@ -51,6 +51,7 @@ const PostContent = (props) => {
             src={imagePath}
             alt={title} // Set alt text as appropriate
             loading="eager" // Set loading attribute to 'eager' to indicate preload
+            layout='fill'
           />
           <ReactMarkdown components={customRenderers}>{content}</ReactMarkdown>
         </article>
