@@ -6,7 +6,7 @@ import {
   solarizedlight,
 } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import classes from './projectContent.module.scss';
 import Link from 'next/link';
 
@@ -53,7 +53,7 @@ const ProjectContent = (props) => {
   return (
     <div className={classes.projectDetail}>
       <div className='container section mvh-100 projectDetail'>
-        <Link href='/projects/'>
+        <Link href='/projects/' legacyBehavior>
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}

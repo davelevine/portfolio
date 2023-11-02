@@ -1,5 +1,5 @@
 import classes from './hero.module.scss';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { useState, useEffect } from 'react';
 import Modal from '../layout/modal/modal';
 import Aos from 'aos'; // Library for scroll animations

@@ -46,7 +46,7 @@ const PostItem = (props) => {
       </div>
       <div className={classes.cardAction}>
         <Link href={linkPath}>
-          <a>Read more</a>
+          Read more
         </Link>
       </div>
     </div>
