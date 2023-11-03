@@ -1,6 +1,5 @@
 import React from 'react';
 import Head from 'next/head';
-import Image from 'next/legacy/image';
 import { useState, useEffect } from 'react';
 import Navbar from '../components/layout/navbar/navbar';
 import Footer from '../components/layout/footer';
@@ -20,6 +19,8 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
+        <title>Dave Levine - Solutions Engineer</title>
+
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="shortcut icon" href="/images/favicon/favicon.ico" />

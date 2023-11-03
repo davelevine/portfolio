@@ -1,6 +1,6 @@
 import ReactMarkdown from 'react-markdown';
 import classes from './postContent.module.scss';
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import {
   atomDark,
@@ -47,12 +47,6 @@ const PostContent = (props) => {
     <div className={classes.postContent}>
       <div className={classes.container}>
         <article>
-          <Image
-            src={imagePath}
-            alt={title} // Set alt text as appropriate
-            loading="eager" // Set loading attribute to 'eager' to indicate preload
-            layout='fill'
-          />
           <ReactMarkdown components={customRenderers}>{content}</ReactMarkdown>
         </article>
       </div>

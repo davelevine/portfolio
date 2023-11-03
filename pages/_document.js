@@ -1,16 +1,10 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { Helmet } from 'react-helmet';
 
 class MyDocument extends Document {
   render() {
     return (
       <Html lang='en'>
-        <Head>
-          <Helmet>
-            <title>Dave Levine - Solutions Engineer</title>
-            {/* Add other head elements here */}
-          </Helmet>
-          
+        <Head>          
           {/* Link to locally hosted Google Fonts CSS */}
           <link
             rel='stylesheet'
