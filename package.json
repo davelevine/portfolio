@@ -32,7 +32,7 @@
     "eslint-config-next": "^14.0.1"
   },
   "engines": {
-    "node": "14.x"
+    "node": "18.x"
   },
   "license": "MIT",
   "author": "Dave Levine",
