@@ -1,6 +1,7 @@
 {
   "name": "portfolio",
   "version": "0.1.0",
+  "description": "portfolio",
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
@@ -29,5 +30,11 @@
   "devDependencies": {
     "eslint": "^8.52.0",
     "eslint-config-next": "^14.0.1"
-  }
+  },
+  "engines": {
+    "node": "14.x"
+  },
+  "license": "MIT",
+  "author": "Dave Levine",
+  "repository": "https://github.com/davelevine/portfolio"
 }
