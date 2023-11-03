@@ -31,9 +31,6 @@
     "eslint": "^8.52.0",
     "eslint-config-next": "^14.0.1"
   },
-  "engines": {
-    "node": "18.x"
-  },
   "license": "MIT",
   "author": "Dave Levine",
   "repository": "https://github.com/davelevine/portfolio"
