@@ -89,8 +89,8 @@ const ProjectContent = (props) => {
             <div className={classes.projectImage}>
               <Image
                 src={`/images/projects/${project.image}`}
-                width={500}
-                height={360}
+                width={700}
+                height={480}
                 alt=''
                 loading='eager' // Set loading attribute to 'eager' to indicate preload
               />
