@@ -6,6 +6,9 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const nextConfig = {
   reactStrictMode: true,
   basePath: '',
+  experimental: {
+    webpackBuildWorker: true,
+  },
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.optimization.minimizer.push(new TerserPlugin());
