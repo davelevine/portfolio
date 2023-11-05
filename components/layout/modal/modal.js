@@ -1,6 +1,6 @@
 import classes from './modal.module.scss';
-import ContactModal from './contactModal';
 import { motion } from 'framer-motion';
+import React, { lazy, Suspense } from 'react';
 
 const dropIn = {
   hidden: {
@@ -20,6 +20,9 @@ const dropIn = {
   },
 };
 
+// Lazy load the ContactModal component
+const ContactModalDynamic = lazy(() => import('./contactModal'));
+
 const Modal = (props) => {
   return (
     <>
@@ -36,11 +39,15 @@ const Modal = (props) => {
             initial='hidden'
             animate='visible'
             exit='exit'>
-            <ContactModal {...props} />
+            <Suspense fallback={<p>Loading...</p>}>
+              {/* Use the dynamically loaded ContactModal component */}
+              <ContactModalDynamic {...props} />
+            </Suspense>
           </motion.div>
         </motion.div>
       )}
     </>
   );
 };
+
 export default Modal;
