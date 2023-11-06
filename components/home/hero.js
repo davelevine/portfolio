@@ -81,7 +81,7 @@ const Hero = () => {
                 className='btn btn-filled'
                 data-aos='fade-up'
                 onClick={buttonHandler}
-                aria-label="My Resume" // Accessible name for the button
+                aria-label="My Resume"
               >
                 MY RESUME
               </motion.button>
@@ -91,7 +91,7 @@ const Hero = () => {
                 className='btn btn-outlined'
                 data-aos='fade-down'
                 onClick={showModalHandler}
-                aria-label="Contact Me" // Accessible name for the button
+                aria-label="Contact Me"
               >
                 CONTACT
               </motion.button>
