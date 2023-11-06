@@ -17,6 +17,9 @@ class MyDocument extends Document {
             href='/fonts/all.min.css' // Adjust the path as needed
           />
 
+          {/* Reference to manifest.json */}
+          <link rel="manifest" href="/manifest.json" />
+
           {/* No need for custom @font-face declarations for Font Awesome */}
           {/* Plausible tracking script */}
           <script defer data-domain="www.davelevine.io" data-api="/data/api/event" src="/data/js/script.js"></script>
