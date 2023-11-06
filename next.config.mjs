@@ -1,12 +1,56 @@
 // Import necessary packages
 import withPWA from 'next-pwa';
-import runtimeCaching from 'next-pwa/cache.js';
-import CompressionPlugin from 'compression-webpack-plugin'; // Added for Gzip compression
+import CompressionPlugin from 'compression-webpack-plugin';
 import pkg from 'next-compose-plugins';
 import TerserPlugin from 'terser-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 
 const isProduction = process.env.NODE_ENV === 'production';
+
+// Define runtime caching strategies here
+const runtimeCaching = [
+  {
+    // Cache JavaScript files
+    urlPattern: /\.(js)$/,
+    handler: 'CacheFirst',
+    options: {
+      cacheName: 'js-cache',
+    },
+  },
+  {
+    // Cache CSS files
+    urlPattern: /\.(css)$/,
+    handler: 'CacheFirst',
+    options: {
+      cacheName: 'css-cache',
+    },
+  },
+  {
+    // Cache image files (JPEG, PNG, WebP, GIF, SVG)
+    urlPattern: /\.(jpe?g|png|webp|gif|svg)$/,
+    handler: 'CacheFirst',
+    options: {
+      cacheName: 'image-cache',
+    },
+  },
+  {
+    // Cache fonts
+    urlPattern: /\.(woff|woff2|ttf|otf)$/,
+    handler: 'CacheFirst',
+    options: {
+      cacheName: 'font-cache',
+    },
+  },
+  {
+    // Cache HTML documents
+    urlPattern: /\.(html)$/,
+    handler: 'NetworkFirst',
+    options: {
+      cacheName: 'html-cache',
+    },
+  },
+  // Add more caching strategies for other resources as needed
+];
 
 const nextConfig = {
   reactStrictMode: true,
@@ -31,19 +75,22 @@ const nextConfig = {
   },
 };
 
-export default withPWA({
-  dest: 'public',
-  disable: !isProduction,
-  runtimeCaching
-})(
-  pkg(
-    [
-      {
-        // Add Brotli compression
-        compress: true,
-        poweredByHeader: false,
-      },
-    ],
-    nextConfig
-  )
+export default pkg(
+  [
+    withPWA({
+      dest: 'public',
+      disable: !isProduction,
+      runtimeCaching, // Use the runtimeCaching configuration defined above
+      scope: '/', // Customize PWA scope if needed
+      dynamicStartUrl: true, // If your start URL varies based on user state
+      reloadOnOnline: false, // Decide how the app refreshes when online
+      // Add other options as needed
+    }),
+    {
+      // Add Brotli compression
+      compress: true,
+      poweredByHeader: false,
+    },
+  ],
+  nextConfig
 );
