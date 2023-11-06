@@ -27,7 +27,7 @@ const runtimeCaching = [
   },
   {
     // Cache image files (JPEG, PNG, WebP, GIF, SVG)
-    urlPattern: /\.(jpe?g|png|webp|gif|svg)$/,
+    urlPattern: /\.(jpeg|jpg|ico|png|webp|gif|svg)$/,
     handler: 'CacheFirst',
     options: {
       cacheName: 'image-cache',
@@ -49,7 +49,13 @@ const runtimeCaching = [
       cacheName: 'html-cache',
     },
   },
-  // Add more caching strategies for other resources as needed
+  {
+    urlPattern: /^http.*/,
+    handler: 'NetworkFirst',
+    options: {
+      cacheName: 'http-cache',
+    },
+  },
 ];
 
 const nextConfig = {
@@ -79,6 +85,8 @@ export default pkg(
   [
     withPWA({
       dest: 'public',
+      register: true,
+      skipWaiting: true,
       disable: !isProduction,
       runtimeCaching, // Use the runtimeCaching configuration defined above
       scope: '/', // Customize PWA scope if needed
