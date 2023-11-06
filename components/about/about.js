@@ -22,11 +22,11 @@ const About = () => {
             {/* Text content with data-aos animation attributes */}
             <h1>Designing effective solutions, organizing knowledge, and conveying complexity through visual design.</h1>
             <br />
-            <p className={classes.h4}>
+            <p className={classes.h3}>
               I&apos;m an information systems pro with a knack for building relationships and technical expertise to make great things happen. I&apos;m experienced in leading diverse teams, and together, we&apos;ve tackled the finer details of business processes, enhanced the technical aspects, ensured top-notch quality, and made web-based solutions shine.
             </p>
             <br />
-            <p className={classes.h4}>
+            <p className={classes.h3}>
               Most recently, my role involves shaping application architecture, fine-tuning development processes, and actively participating in solution design discussions to meet specific business needs.
             </p>
           </div>

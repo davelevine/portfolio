@@ -49,12 +49,12 @@ const Hero = () => {
               </span>!{' '}
             </h2>
             <h1 data-aos='fade-right'>Solutions Engineer</h1>
-            <h4 data-aos='fade-left' data-aos-delay='150'>
+            <h3 data-aos='fade-left' data-aos-delay='150'>
               I design and implement systems
               <span className={classes.punctuation}><b>.</b></span>
               <span>
               </span>{' '}
-            </h4>
+            </h3>
             <div className={classes.socialMedia}>
               {/* Links to social media profiles with data-aos animations */}
               <a href='https://github.com/davelevine' target='_blank' rel='noreferrer' aria-label="GitHub Profile">
