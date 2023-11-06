@@ -57,15 +57,33 @@
       ]
     },
     {
-      "source": "/data/api/event",
+      "source": "/service-worker.js",
       "headers": [
         {
-          "key": "Access-Control-Allow-Origin",
-          "value": "https://www.davelevine.io"
+          "key": "Service-Worker-Allowed",
+          "value": "/"
+        }
+      ]
+    },
+    {
+      "source": "/manifest.json",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/manifest+json"
+        }
+      ]
+    },
+    {
+      "source": "/",
+      "headers": [
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/"
         },
         {
-          "key": "Access-Control-Allow-Methods",
-          "value": "GET, OPTIONS"
+          "key": "Cross-Origin-Embedder-Policy",
+          "value": "require-corp"
         }
       ]
     }
