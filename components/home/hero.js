@@ -1,5 +1,5 @@
 import classes from './hero.module.scss';
-import Image from "next/legacy/image";
+import Image from 'next/legacy/image';
 import { useState, useEffect } from 'react';
 import Modal from '../layout/modal/modal';
 import Aos from 'aos'; // Library for scroll animations
@@ -10,6 +10,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Hero = () => {
   // State for controlling the modal visibility
   const [showModal, setShowModal] = useState();
+  const [isMobile, setIsMobile] = useState(false); // State to determine mobile/desktop
 
   // Function to handle button click for redirecting to a resume file
   function buttonHandler() {
@@ -35,6 +36,11 @@ const Hero = () => {
   // Initialize the AOS library with specified settings
   useEffect(() => {
     Aos.init({ duration: 500 }); // Initialize scroll animations
+  }, []);
+
+  // Detect if it's a mobile device on the client side
+  useEffect(() => {
+    setIsMobile(window.innerWidth <= 767);
   }, []);
 
   return (
@@ -99,16 +105,28 @@ const Hero = () => {
           </div>
 
           <div className={`${classes.columnRight} ${classes.profilePic}`}>
-            {/* Display the profile picture using Next.js Image component with preload */}
-            <Image
-              src='/images/profile-pic-1.webp'
-              width={460}
-              height={460}
-              alt='profile-pic'
-              data-aos='fade-left'
-              className='zoomed-out-image'
-              loading='eager' // Set loading attribute to 'eager' to indicate preload
-            />
+            {/* Conditionally render different images based on viewport width */}
+            {isMobile ? (
+              <Image
+                src="/images/profile-pic-1-mobile.webp"
+                width={230}
+                height={230}
+                alt="profile-pic"
+                data-aos="fade-left"
+                className="zoomed-out-image"
+                loading="eager"
+              />
+            ) : (
+              <Image
+                src="/images/profile-pic-1-desktop.webp"
+                width={460}
+                height={460}
+                alt="profile-pic"
+                data-aos="fade-left"
+                className="zoomed-out-image"
+                loading="eager"
+              />
+            )}
           </div>
         </div>
         <div className='iconScrollContainer'>
