@@ -22,20 +22,26 @@ class MyDocument extends Document {
           <script
             dangerouslySetInnerHTML={{
               __html: `
-                function loadCSS(href) {
+                function loadCSS(href, integrity) {
                   var link = document.createElement('link');
                   link.rel = 'stylesheet';
                   link.href = href;
                   link.type = 'text/css';
                   link.media = 'all';
+                  link.crossOrigin = 'anonymous';
+                  link.referrerPolicy = 'no-referrer';
+                  if (integrity) {
+                    link.integrity = integrity;
+                  }
                   document.head.appendChild(link);
                 }
 
                 loadCSS('/fonts/googlefonts/google-fonts.css');
-                loadCSS('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
+                loadCSS('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css', 'sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==');
               `,
             }}
           />
+
         </Head>
         <body>
           <Main />
