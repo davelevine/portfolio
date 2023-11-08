@@ -33,7 +33,7 @@ class MyDocument extends Document {
                 }
 
                 loadCSS('/fonts/googlefonts/google-fonts.css');
-                loadCSS('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css', 'sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==');
+                loadCSS('/fonts/all.min.css');
               `,
             }}
           />
