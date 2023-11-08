@@ -8,12 +8,8 @@ class MyDocument extends Document {
           {/* Reference to manifest.json */}
           <link rel="manifest" href="/manifest.json" />
 
-          {/* Add links for different favicon sizes here */}
-          <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon/android-chrome-192x192.png" />
-          <link rel="icon" type="image/png" sizes="512x512" href="/images/favicon/android-chrome-512x512.png" />
-          <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png" />
-          <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png" />
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png" />
+          {/* Single favicon.ico with multiple sizes */}
+          <link rel="icon" type="image/x-icon" href="/images/favicon/favicon.ico" />
           
           {/* Plausible tracking script */}
           <script defer data-domain="www.davelevine.io" data-api="/data/api/event" src="/data/js/script.js"></script>
