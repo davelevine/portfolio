@@ -62,132 +62,147 @@ const Navbar = (props) => {
   }
 
   // Render the Navbar component
-  return <>
-    <div
-      className={
-        sticky ? `${classes.navbar}  ${classes.sticky}` : `${classes.navbar}`
-      }>
-      <div className={classes.container}>
-        <Link href='/' className={classes.logo}>
+  return (
+    <>
+      <div
+        className={
+          sticky
+            ? `${classes.navbar}  ${classes.sticky}`
+            : `${classes.navbar}`
+        }
+      >
+        <div className={classes.container}>
+          <Link href='/' legacyBehavior>
+            <a className={classes.logo}>
+              <span className={classes.name}>&lt;</span>/DAVE LEVINE
+              <span className={classes.name}>&gt;</span>
+            </a>
+          </Link>
 
-          <span className={classes.name}>&lt;</span>/DAVE LEVINE<span className={classes.name}>&gt;</span>
+          <nav
+            className={
+              isOpen
+                ? `${classes.navMenu} ${classes.responsive}`
+                : `${classes.navMenu}`
+            }
+            id='navMenu'
+          >
+            <div className={classes.linkWrapper}>
+              {/* Links to different sections with animations */}
+              <Link href='/' legacyBehavior>
+                <motion.a
+                  style={{ cursor: 'pointer' }}
+                  initial={{ opacity: 0, y: -30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+                  onClick={toggleNav}
+                  className={
+                    isLinkActive('/') ? classes.activeLink : ''
+                  } // Check if Home link is active
+                >
+                  HOME
+                </motion.a>
+              </Link>
 
-        </Link>
+              <Link href='/projects' legacyBehavior>
+                <motion.a
+                  style={{ cursor: 'pointer' }}
+                  initial={{ opacity: 0, y: -30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  onClick={toggleNav}
+                  className={
+                    isLinkActive('/projects') ? classes.activeLink : ''
+                  } // Check if Projects link is active
+                >
+                  PROJECTS
+                </motion.a>
+              </Link>
 
-        <nav
-          className={
-            isOpen
-              ? `${classes.navMenu} ${classes.responsive}`
-              : `${classes.navMenu}`
-          }
-          id='navMenu'>
-          <div className={classes.linkWrapper}>
-            {/* Links to different sections with animations */}
-            <Link href='/' legacyBehavior>
-              <motion.a
-                style={{ cursor: 'pointer' }}
-                initial={{ opacity: 0, y: -30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
-                onClick={toggleNav}
-                className={isLinkActive('/') ? classes.activeLink : ''} // Check if Home link is active
-              >
-                HOME
-              </motion.a>
-            </Link>
+              <Link href='/certs' legacyBehavior>
+                <motion.a
+                  style={{ cursor: 'pointer' }}
+                  initial={{ opacity: 0, y: -30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  onClick={toggleNav}
+                  className={
+                    isLinkActive('/certs') ? classes.activeLink : ''
+                  } // Check if Blog link is active
+                >
+                  CERTS
+                </motion.a>
+              </Link>
 
-            <Link href='/projects' legacyBehavior>
-              <motion.a
-                style={{ cursor: 'pointer' }}
-                initial={{ opacity: 0, y: -30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                onClick={toggleNav}
-                className={isLinkActive('/projects') ? classes.activeLink : ''} // Check if Projects link is active
-              >
-                PROJECTS
-              </motion.a>
-            </Link>
+              <Link href='/#about' legacyBehavior>
+                <motion.a
+                  style={{ cursor: 'pointer' }}
+                  initial={{ opacity: 0, y: -30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7 }}
+                  onClick={toggleNav}
+                  className={
+                    isLinkActive('/#about') ? classes.activeLink : ''
+                  } // Check if About me link is active
+                >
+                  ABOUT
+                </motion.a>
+              </Link>
+            </div>
+          </nav>
 
-            <Link href='/certs' legacyBehavior>
-              <motion.a
-                style={{ cursor: 'pointer' }}
-                initial={{ opacity: 0, y: -30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                onClick={toggleNav}
-                className={isLinkActive('/certs') ? classes.activeLink : ''} // Check if Blog link is active
-              >
-                CERTS
-              </motion.a>
-            </Link>
+          <div className={classes.navContainer}>
+            {/* Button to toggle the contact modal */}
+            <motion.button
+              initial={{ opacity: 0, y: -30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className={classes.icon}
+              onClick={() => {
+                toggleModal();
+              }}
+              aria-label='Toggle Contact Modal' // Accessible name for the button
+            >
+              {showModal ? (
+                <i className='fa fa-envelope-open'></i>
+              ) : (
+                <i className='fa fa-envelope'></i>
+              )}
+            </motion.button>
 
-            <Link href='/#about' legacyBehavior>
-              <motion.a
-                style={{ cursor: 'pointer' }}
-                initial={{ opacity: 0, y: -30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7 }}
-                onClick={toggleNav}
-                className={isLinkActive('/#about') ? classes.activeLink : ''} // Check if About me link is active
-              >
-                ABOUT
-              </motion.a>
-            </Link>
+            {/* Button to toggle between light and dark themes */}
+            <motion.button
+              initial={{ opacity: 0, y: -30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              className={classes.icon}
+              onClick={() => {
+                setThemeHandler();
+              }}
+              aria-label='Toggle Theme' // Accessible name for the button
+            >
+              <ThemeToggle theme={theme} />
+            </motion.button>
+
+            {/* Button to toggle the mobile menu */}
+            <motion.div
+              className={classes.iconMain}
+              initial={false}
+              animate={isOpen ? 'open' : 'closed'}
+              aria-label='Toggle Mobile Menu' // Accessible name for the button
+            >
+              <MenuToggle toggleNav={toggleNav} />
+            </motion.div>
           </div>
-        </nav>
-
-        <div className={classes.navContainer}>
-          {/* Button to toggle the contact modal */}
-          <motion.button
-            initial={{ opacity: 0, y: -30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className={classes.icon}
-            onClick={() => {
-              toggleModal();
-            }}
-            aria-label="Toggle Contact Modal" // Accessible name for the button
-          >
-            {showModal ? (
-              <i className='fa fa-envelope-open'></i>
-            ) : (
-              <i className='fa fa-envelope'></i>
-            )}
-          </motion.button>
-
-          {/* Button to toggle between light and dark themes */}
-          <motion.button
-            initial={{ opacity: 0, y: -30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className={classes.icon}
-            onClick={() => {
-              setThemeHandler();
-            }}
-            aria-label="Toggle Theme" // Accessible name for the button
-          >
-            <ThemeToggle theme={theme} />
-          </motion.button>
-
-          {/* Button to toggle the mobile menu */}
-          <motion.div
-            className={classes.iconMain}
-            initial={false}
-            animate={isOpen ? 'open' : 'closed'}
-            aria-label="Toggle Mobile Menu" // Accessible name for the button
-          >
-            <MenuToggle toggleNav={toggleNav} />
-          </motion.div>
         </div>
       </div>
-    </div>
-    {/* Modal for contact information */}
-    <AnimatePresence>
-      {showModal && <Modal contact onClose={toggleModal} />}
-    </AnimatePresence>
-    <main>{props.children}</main>
-  </>;
+      {/* Modal for contact information */}
+      <AnimatePresence>
+        {showModal && <Modal contact onClose={toggleModal} />}
+      </AnimatePresence>
+      <main>{props.children}</main>
+    </>
+  );
 };
 
 // Export the Navbar component
