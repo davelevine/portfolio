@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import classes from './navbar.module.scss';
 
+// Path component for the SVG paths
 const Path = (props) => (
   <motion.path
     fill='transparent'
@@ -11,15 +12,17 @@ const Path = (props) => (
   />
 );
 
+// MenuToggle component for the mobile menu button
 const MenuToggle = ({ toggleNav }) => (
   <button
     className={`${classes.icon} ${classes.iconMain}`}
     onClick={() => {
       toggleNav();
     }}
-    aria-label="Toggle Mobile Menu" // Accessible name for the button
+    aria-label="Toggle Mobile Menu"
   >
     <svg width='45' height='45' viewBox='0 0 23 23'>
+      {/* Path components for the SVG paths */}
       <Path
         variants={{
           closed: { d: 'M 2 2.5 L 20 2.5' },

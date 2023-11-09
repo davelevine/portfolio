@@ -3,8 +3,8 @@ import Link from 'next/link';
 import Image from "next/legacy/image";
 import { motion } from 'framer-motion';
 
-const ProjectItem = (props) => {
-  const { project } = props;
+const ProjectItem = ({ project }) => {
+  const { title, tech, image, description, githubLink, liveLink, slug } = project;
 
   return (
     <motion.div
@@ -14,24 +14,21 @@ const ProjectItem = (props) => {
       layout
       className={classes.card}
     >
-      <Link href={`/projects/${project.slug}`}>
-
+      <Link href={`/projects/${slug}`}>
         <div className={classes.cardContent}>
-          <h4>{project.title}</h4>
+          <h4>{title}</h4>
           <small className='mb-10 d-block'>
-            {Array.isArray(project.tech)
-              ? project.tech.join(', ')
-              : project.tech}
+            {Array.isArray(tech) ? tech.join(', ') : tech}
           </small>
 
-          {project.image ? (
+          {image ? (
             <div className={classes.image}>
               <Image
-                src={`/images/projects/${project.image}`}
+                src={`/images/projects/${image}`}
                 width={320}
                 height={220}
                 alt=''
-                loading='eager' // Set loading attribute to 'eager' to indicate preload
+                loading='eager'
               />
             </div>
           ) : (
@@ -40,26 +37,24 @@ const ProjectItem = (props) => {
             </div>
           )}
         </div>
-
       </Link>
 
-      <p>{project.description}</p>
+      <p>{description}</p>
 
       <div className={classes.projectLinks}>
-        {project.githubLink && (
-          <a href={project.githubLink} target='_blank' rel='noreferrer'>
+        {githubLink && (
+          <a href={githubLink} target='_blank' rel='noreferrer'>
             <i className='fab fa-github'></i>
             Github
           </a>
         )}
-        {project.liveLink && (
-          <a href={project.liveLink} target='_blank' rel='noreferrer'>
+        {liveLink && (
+          <a href={liveLink} target='_blank' rel='noreferrer'>
             <i className='fas fa-link'></i>
             Website
           </a>
         )}
-        <Link href={`/projects/${project.slug}`}>
-
+        <Link href={`/projects/${slug}`}>
           <i className='fa fa-circle-info'></i>Details
         </Link>
       </div>

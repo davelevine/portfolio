@@ -3,94 +3,57 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import PostItem from './postItem';
 
-const AllPosts = (props) => {
-  const { posts } = props;
+const AllPosts = ({ posts }) => {
   const [filter, setFilter] = useState('all');
   const [activeButton, setActiveButton] = useState('all');
 
-  const selectedPosts = [];
+  const selectedPosts = new Set();
 
-  posts.map((post) => {
+  posts.forEach((post) => {
     const techs = post.tech;
-
     if (Array.isArray(techs)) {
-      for (const tech of techs) {
-        if (!selectedPosts.includes(tech)) selectedPosts.push(tech);
-      }
+      techs.forEach((tech) => {
+        selectedPosts.add(tech);
+      });
     }
   });
 
-  selectedPosts.sort();
+  const sortedUniqueTechs = [...selectedPosts].sort();
 
   const handleClick = (tech) => {
     setFilter(tech);
     setActiveButton(tech);
   };
 
-  let filteredPosts;
+  const commonSortLogic = (a, b) => {
+    const isALegacy = a.title.includes('(Legacy)');
+    const isBLegacy = b.title.includes('(Legacy)');
 
-  if (filter === 'all') {
-    filteredPosts = posts
-      .slice()
-      .sort((a, b) => {
-        // Check if a is a legacy post
-        const isALegacy = a.title.includes('(Legacy)');
-        // Check if b is a legacy post
-        const isBLegacy = b.title.includes('(Legacy)');
+    if (isALegacy && isBLegacy) {
+      return a.title.localeCompare(b.title);
+    } else if (isALegacy) {
+      return 1;
+    } else if (isBLegacy) {
+      return -1;
+    } else {
+      const hasExpirationDateA = a.expirationDate;
+      const hasExpirationDateB = b.expirationDate;
 
-        if (isALegacy && isBLegacy) {
-          // Sort alphabetically if both are legacy
-          return a.title.localeCompare(b.title);
-        } else if (isALegacy) {
-          return 1; // Move legacy post to the end
-        } else if (isBLegacy) {
-          return -1; // Move legacy post to the beginning
-        } else {
-          // Check if a and b have expiration dates
-          const hasExpirationDateA = a.expirationDate;
-          const hasExpirationDateB = b.expirationDate;
+      if (hasExpirationDateA && hasExpirationDateB) {
+        return a.expirationDate.localeCompare(b.expirationDate);
+      } else if (hasExpirationDateA) {
+        return -1;
+      } else if (hasExpirationDateB) {
+        return 1;
+      } else {
+        return b.isFeatured - a.isFeatured;
+      }
+    }
+  };
 
-          if (hasExpirationDateA && hasExpirationDateB) {
-            // Sort by expiration date
-            return a.expirationDate.localeCompare(b.expirationDate);
-          } else if (hasExpirationDateA) {
-            return -1; // Move post with an expiration date to the beginning
-          } else if (hasExpirationDateB) {
-            return 1; // Move post with an expiration date to the end
-          } else {
-            return b.isFeatured - a.isFeatured;
-          }
-        }
-      });
-  } else {
-    filteredPosts = posts
-      .filter((post) => post.tech.includes(filter))
-      .sort((a, b) => {
-        const isALegacy = a.title.includes('(Legacy)');
-        const isBLegacy = b.title.includes('(Legacy)');
-
-        if (isALegacy && isBLegacy) {
-          return a.title.localeCompare(b.title);
-        } else if (isALegacy) {
-          return 1;
-        } else if (isBLegacy) {
-          return -1;
-        } else {
-          const hasExpirationDateA = a.expirationDate;
-          const hasExpirationDateB = b.expirationDate;
-
-          if (hasExpirationDateA && hasExpirationDateB) {
-            return a.expirationDate.localeCompare(b.expirationDate);
-          } else if (hasExpirationDateA) {
-            return -1;
-          } else if (hasExpirationDateB) {
-            return 1;
-          } else {
-            return b.isFeatured - a.isFeatured;
-          }
-        }
-      });
-  }
+  const filteredPosts = filter === 'all'
+    ? posts.slice().sort(commonSortLogic)
+    : posts.filter((post) => post.tech.includes(filter)).sort(commonSortLogic);
 
   return (
     <section className={classes.blog}>
@@ -110,7 +73,7 @@ const AllPosts = (props) => {
               }>
               All
             </motion.button>
-            {selectedPosts.map((tech) => (
+            {sortedUniqueTechs.map((tech) => (
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.9 }}

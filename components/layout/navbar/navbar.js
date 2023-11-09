@@ -6,23 +6,20 @@ import { AnimatePresence, motion, useCycle } from 'framer-motion';
 import Modal from '../../layout/modal/modal';
 import ThemeToggle from './themeToggle';
 import MenuToggle from './menuToggle';
-import { useRouter } from 'next/router'; // Import useRouter from Next.js
+import { useRouter } from 'next/router';
 
 // Define the Navbar component
 const Navbar = (props) => {
   const { theme } = props;
-
-  // State variables
-  const [sticky, setSticky] = useState(false); // For sticky navbar effect
-  const [showModal, setShowModal] = useState(); // For controlling modal visibility
-
-  const [isOpen, toggleOpen] = useCycle(false, true); // For mobile menu toggle
-  const router = useRouter(); // Get the current route
+  const [sticky, setSticky] = useState(false);
+  const [showModal, setShowModal] = useState();
+  const [isOpen, toggleOpen] = useCycle(false, true);
+  const router = useRouter();
 
   // Toggle between light and dark themes
   function setThemeHandler() {
     const newTheme = theme === 'light' ? 'dark' : 'light';
-    props.newTheme(newTheme); // Call a function to change the theme
+    props.newTheme(newTheme);
   }
 
   // Toggle the visibility of the modal
@@ -52,7 +49,13 @@ const Navbar = (props) => {
 
   // Effect to apply the sticky navbar on scroll
   useEffect(() => {
-    window.onscroll = fixNavbar;
+    const debounceFixNavbar = debounce(fixNavbar, 100);
+    window.addEventListener('scroll', debounceFixNavbar);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener('scroll', debounceFixNavbar);
+    };
   }, []);
 
   // Function to check if a link is active
@@ -60,6 +63,16 @@ const Navbar = (props) => {
     // Check if the current route matches the link's href
     return router.pathname === href;
   }
+
+  // Debounce function for better performance
+  const debounce = (func, wait) => {
+    let timeout;
+    return function (...args) {
+      const context = this;
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(context, args), wait);
+    };
+  };
 
   // Render the Navbar component
   return (
@@ -88,7 +101,6 @@ const Navbar = (props) => {
             id='navMenu'
           >
             <div className={classes.linkWrapper}>
-              {/* Links to different sections with animations */}
               <Link href='/' legacyBehavior>
                 <motion.a
                   style={{ cursor: 'pointer' }}
@@ -98,7 +110,7 @@ const Navbar = (props) => {
                   onClick={toggleNav}
                   className={
                     isLinkActive('/') ? classes.activeLink : ''
-                  } // Check if Home link is active
+                  }
                 >
                   HOME
                 </motion.a>
@@ -113,7 +125,7 @@ const Navbar = (props) => {
                   onClick={toggleNav}
                   className={
                     isLinkActive('/projects') ? classes.activeLink : ''
-                  } // Check if Projects link is active
+                  }
                 >
                   PROJECTS
                 </motion.a>
@@ -128,7 +140,7 @@ const Navbar = (props) => {
                   onClick={toggleNav}
                   className={
                     isLinkActive('/certs') ? classes.activeLink : ''
-                  } // Check if Blog link is active
+                  }
                 >
                   CERTS
                 </motion.a>
@@ -143,7 +155,7 @@ const Navbar = (props) => {
                   onClick={toggleNav}
                   className={
                     isLinkActive('/#about') ? classes.activeLink : ''
-                  } // Check if About me link is active
+                  }
                 >
                   ABOUT
                 </motion.a>
@@ -158,10 +170,8 @@ const Navbar = (props) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               className={classes.icon}
-              onClick={() => {
-                toggleModal();
-              }}
-              aria-label='Toggle Contact Modal' // Accessible name for the button
+              onClick={toggleModal}
+              aria-label='Toggle Contact Modal'
             >
               {showModal ? (
                 <i className='fa fa-envelope-open'></i>
@@ -176,10 +186,8 @@ const Navbar = (props) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
               className={classes.icon}
-              onClick={() => {
-                setThemeHandler();
-              }}
-              aria-label='Toggle Theme' // Accessible name for the button
+              onClick={setThemeHandler}
+              aria-label='Toggle Theme'
             >
               <ThemeToggle theme={theme} />
             </motion.button>
@@ -189,7 +197,7 @@ const Navbar = (props) => {
               className={classes.iconMain}
               initial={false}
               animate={isOpen ? 'open' : 'closed'}
-              aria-label='Toggle Mobile Menu' // Accessible name for the button
+              aria-label='Toggle Mobile Menu'
             >
               <MenuToggle toggleNav={toggleNav} />
             </motion.div>

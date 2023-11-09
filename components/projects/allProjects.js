@@ -1,5 +1,5 @@
 import classes from './allProjects.module.scss';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ProjectItem from './projectItem';
 
@@ -8,48 +8,38 @@ const AllProjects = (props) => {
   const [filter, setFilter] = useState('all');
   const [activeButton, setActiveButton] = useState('all');
 
-  //Filter start
-  const selectedTechs = [];
-
-  //Map through all used techs and add them individually to selectedTechs array
-  projects.map((project) => {
-    //Complete array
-    const techs = project.tech;
-
-    if (Array.isArray(techs)) {
-      //Array item
-      for (const tech of techs) {
-        if (!selectedTechs.includes(tech)) selectedTechs.push(tech);
+  // Memoize selectedTechs
+  const selectedTechs = useMemo(() => {
+    const techs = [];
+    projects.forEach((project) => {
+      const projectTechs = project.tech;
+      if (Array.isArray(projectTechs)) {
+        projectTechs.forEach((tech) => {
+          if (!techs.includes(tech)) techs.push(tech);
+        });
       }
-    }
-  });
+    });
+    return techs.sort();
+  }, [projects]);
 
-  //Sort techs alphabetically
-  selectedTechs.sort();
-
-  //Set "filter" & current active button
   const handleClick = (tech) => {
     setFilter(tech);
     setActiveButton(tech);
   };
 
-  //Filter projects according to "filter"
-  let filteredProjects;
-
-  if (filter === 'all') {
-    filteredProjects = projects.sort((a, b) => b.isFeatured - a.isFeatured);
-  } else {
-    filteredProjects = projects.filter((project) =>
-      project.tech.includes(filter)
-    );
-  }
+  const filteredProjects =
+    filter === 'all'
+      ? projects.sort((a, b) => b.isFeatured - a.isFeatured)
+      : projects.filter((project) => project.tech.includes(filter));
 
   return (
     <div className={classes.projectsGallery}>
       <div className={classes.container}>
         <h1>PROJECTS</h1>
         <div className={classes.filter}>
-          <h3><p>Sort By Tech:</p></h3>
+          <h3>
+            <p>Sort By Tech:</p>
+          </h3>
           <div className={classes.filterButtons}>
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -59,7 +49,8 @@ const AllProjects = (props) => {
                 activeButton === 'all'
                   ? 'btn btn-outlined sm active'
                   : 'btn btn-outlined sm'
-              }>
+              }
+            >
               All
             </motion.button>
             {selectedTechs.map((tech) => (
@@ -72,7 +63,8 @@ const AllProjects = (props) => {
                     ? 'btn btn-outlined sm active'
                     : 'btn btn-outlined sm'
                 }
-                key={tech}>
+                key={tech}
+              >
                 {tech}
               </motion.button>
             ))}
@@ -82,8 +74,8 @@ const AllProjects = (props) => {
         <div className={classes.galleryWrap}>
           <div className={classes.gallery}>
             <AnimatePresence>
-              {filteredProjects.map((project, index) => (
-                <ProjectItem key={index} project={project} />
+              {filteredProjects.map((project) => (
+                <ProjectItem key={project.id} project={project} />
               ))}
             </AnimatePresence>
           </div>
