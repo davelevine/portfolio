@@ -1,3 +1,4 @@
+// Import statements
 import classes from './hero.module.scss';
 import Image from 'next/legacy/image';
 import { useState, useEffect } from 'react';
@@ -9,7 +10,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 // Define the Hero component
 const Hero = () => {
   // State for controlling the modal visibility
-  const [showModal, setShowModal] = useState();
+  const [showModal, setShowModal] = useState(false);
+  const [isMobile, setIsMobile] = useState(false); // State to determine mobile/desktop
 
   // Function to handle button click for redirecting to a resume file
   function buttonHandler() {
@@ -36,6 +38,30 @@ const Hero = () => {
   useEffect(() => {
     Aos.init({ duration: 500 }); // Initialize scroll animations
   }, []);
+
+  // Detect if it's a mobile device on the client side
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      function updateIsMobile() {
+        setIsMobile(window.innerWidth <= 767);
+      }
+
+      // Initial check
+      updateIsMobile();
+
+      // Update the state when the window is resized
+      window.addEventListener('resize', updateIsMobile);
+
+      // Cleanup the event listener
+      return () => {
+        window.removeEventListener('resize', updateIsMobile);
+      };
+    }
+  }, []);
+
+  const handleImageError = () => {
+    setIsMobile(!isMobile);
+  };
 
   return (
     <section className={classes.greetings}>
@@ -99,16 +125,30 @@ const Hero = () => {
           </div>
 
           <div className={`${classes.columnRight} ${classes.profilePic}`}>
-            {/* Remove the conditional rendering for mobile image */}
-            <Image
-              src="/images/profile-pic-1.webp"
-              width={460}
-              height={460}
-              alt="profile-pic"
-              data-aos="fade-left"
-              className="zoomed-out-image"
-              loading="eager"
-            />
+            {/* Conditionally render different images based on viewport width */}
+            {isMobile ? (
+              <Image
+                src="/images/profile-pic-1-mobile.webp"
+                width={230}
+                height={230}
+                alt="profile-pic"
+                data-aos="fade-left"
+                className="zoomed-out-image"
+                loading="eager"
+                onError={handleImageError}
+              />
+            ) : (
+              <Image
+                src="/images/profile-pic-1-desktop.webp"
+                width={460}
+                height={460}
+                alt="profile-pic"
+                data-aos="fade-left"
+                className="zoomed-out-image"
+                loading="eager"
+                onError={handleImageError}
+              />
+            )}
           </div>
         </div>
         <div className='iconScrollContainer'>
