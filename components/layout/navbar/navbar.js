@@ -34,7 +34,7 @@ const Navbar = (props) => {
 
   // Function to apply a sticky effect to the navbar
   function fixNavbar() {
-    if (window.pageYOffset >= 100) {
+    if (window.scrollY >= 100) {
       setSticky(true);
     } else {
       setSticky(false);

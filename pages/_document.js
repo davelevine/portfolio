@@ -1,10 +1,10 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { fontawesomeSubset } from "fontawesome-subset";
+// import { fontawesomeSubset } from "fontawesome-subset";
 
 class MyDocument extends Document {
   render() {
     // Font Awesome Subset
-    fontawesomeSubset(
+    {/* fontawesomeSubset(
       {
         brands: ["github", "linkedin"],
         solid: ["globe", "moon", "sun", "envelope", "envelope-open", "xmark", "link", "circle-info"],
@@ -12,11 +12,9 @@ class MyDocument extends Document {
       "public/fonts/webfonts",
       {
         package: "free",
-      },
-      {
-        targetFormats: "woff2",
       }
     );
+    */}
 
     return (
       <Html lang='en'>
