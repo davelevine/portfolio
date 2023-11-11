@@ -4,6 +4,7 @@
     - React
     - Service worker
     - Tailwind CSS
+    - Progressive Web App (PWA)
     - API
     - Static Site
   description: A progressive web app for browsing Hacker News, built with React. Makes use of a self-hosted API for fetching content. Focuses on small touches missing from similar projects.

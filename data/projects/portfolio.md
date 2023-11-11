@@ -3,6 +3,7 @@
   tech:
     - Next.js
     - React
+    - Service worker
     - Markdown
     - Progressive Web App (PWA)
     - Static Site
