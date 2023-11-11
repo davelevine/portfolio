@@ -73,11 +73,12 @@ const AllProjects = (props) => {
 
         <div className={classes.galleryWrap}>
           <div className={classes.gallery}>
-            <AnimatePresence>
-              {filteredProjects.map((project) => (
-                <ProjectItem key={project.id} project={project} />
-              ))}
-            </AnimatePresence>
+          <AnimatePresence>
+  {filteredProjects.map((project) => (
+    <ProjectItem key={`project-${project.id}`} project={project} />
+  ))}
+</AnimatePresence>
+
           </div>
         </div>
       </div>

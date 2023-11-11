@@ -126,20 +126,26 @@
       }
     }
 
-    /* Styles for call-to-action buttons */
-    .ctaButtons {
-      margin-top: 40px;
-      display: flex;
+/* Styles for call-to-action buttons */
+.ctaButtons {
+  margin-top: 40px;
+  display: flex;
 
-      &:first-child {
-        margin-right: 15px;
-      }
+  &:first-child {
+    margin-right: 15px;
+  }
 
-      /* Adjust the margin between buttons */
-      button + button {
-        margin-left: 15px;
-      }
-    }
+  /* Adjust the margin between buttons */
+  button + button {
+    margin-left: 15px;
+  }
+
+  /* Mobile-specific styles */
+  @media only screen and (max-width: 767px) {
+    margin-bottom: 120px; /* Adjust the margin below buttons for mobile */
+  }
+}
+
   }
 
   /* Mobile-specific styles for "greetings" container */
