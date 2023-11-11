@@ -85,7 +85,7 @@ const Navbar = (props) => {
         }
       >
         <div className={classes.container}>
-          <Link href='/' legacyBehavior>
+          <Link href='/' passHref legacyBehavior>
             <a className={classes.logo}>
               <span className={classes.name}>&lt;</span>/DAVE LEVINE
               <span className={classes.name}>&gt;</span>
@@ -101,7 +101,7 @@ const Navbar = (props) => {
             id='navMenu'
           >
             <div className={classes.linkWrapper}>
-              <Link href='/' legacyBehavior>
+              <Link href='/' passHref legacyBehavior>
                 <motion.a
                   style={{ cursor: 'pointer' }}
                   initial={{ opacity: 0, y: -30 }}
@@ -116,7 +116,7 @@ const Navbar = (props) => {
                 </motion.a>
               </Link>
 
-              <Link href='/projects' legacyBehavior>
+              <Link href='/projects' passHref legacyBehavior>
                 <motion.a
                   style={{ cursor: 'pointer' }}
                   initial={{ opacity: 0, y: -30 }}
@@ -131,7 +131,7 @@ const Navbar = (props) => {
                 </motion.a>
               </Link>
 
-              <Link href='/certs' legacyBehavior>
+              <Link href='/certs' passHref legacyBehavior>
                 <motion.a
                   style={{ cursor: 'pointer' }}
                   initial={{ opacity: 0, y: -30 }}
@@ -146,7 +146,7 @@ const Navbar = (props) => {
                 </motion.a>
               </Link>
 
-              <Link href='/about' legacyBehavior>
+              <Link href='/about' passHref legacyBehavior>
                 <motion.a
                   style={{ cursor: 'pointer' }}
                   initial={{ opacity: 0, y: -30 }}
