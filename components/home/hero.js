@@ -152,7 +152,7 @@ const Hero = () => {
           </div>
         </div>
         <div className='iconScrollContainer'>
-          <a href='#about' aria-label="Jump to About Section">
+          <a href='/about' aria-label="Jump to About Section">
             {/* Scroll-to section link with data-aos animation */}
             <div
               className='iconScroll'

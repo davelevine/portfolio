@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import Hero from '../components/home/hero';
-import About from '../components/about/about';
 import { getFeaturedPosts } from '../util/certs-util';
 import { getFeaturedProjects } from '../util/projects-util';
 
@@ -15,7 +14,6 @@ export default function Home(props) {
         />
       </Head>
       <Hero />
-      <About />
     </>
   );
 }

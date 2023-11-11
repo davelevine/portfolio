@@ -146,7 +146,7 @@ const Navbar = (props) => {
                 </motion.a>
               </Link>
 
-              <Link href='/#about' legacyBehavior>
+              <Link href='/about' legacyBehavior>
                 <motion.a
                   style={{ cursor: 'pointer' }}
                   initial={{ opacity: 0, y: -30 }}
@@ -154,7 +154,7 @@ const Navbar = (props) => {
                   transition={{ duration: 0.7 }}
                   onClick={toggleNav}
                   className={
-                    isLinkActive('/#about') ? classes.activeLink : ''
+                    isLinkActive('/about') ? classes.activeLink : ''
                   }
                 >
                   ABOUT

@@ -12,16 +12,6 @@ const Footer = () => {
         </a>
       </div>
       <div>© Dave Levine</div>
-      <small>
-        Icons by{' '}
-        <a href='https://www.flaticon.com/' target='_blank' rel='noreferrer'>
-          Flaticon
-        </a>{' '}
-        &{' '}
-        <a href='https://fontawesome.com/' target='_blank' rel='noreferrer'>
-          Font Awesome
-        </a>
-      </small>
     </footer>
   );
 };

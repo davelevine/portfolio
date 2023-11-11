@@ -1,5 +1,5 @@
 // Import required modules and components
-import classes from './about.module.scss';
+import classes from '../about/about.module.scss';
 import { useEffect } from 'react';
 import Image from "next/legacy/image";
 import Aos from 'aos'; // Library for scroll animations
