@@ -68,13 +68,23 @@ const ProjectContent = ({ project, currentTheme }) => {
 
           {image && (
             <div className={classes.projectImage}>
-              <Image
-                src={`/images/projects/${image}`}
-                width={700}
-                height={480}
-                alt=''
-                loading='eager'
-              />
+              {image === 'portfolio.webp' ? (
+                <Image
+                  src={`/images/projects/${image}`}
+                  width={850}
+                  height={500}
+                  alt=''
+                  loading='eager'
+                />
+              ) : (
+                <Image
+                  src={`/images/projects/${image}`}
+                  width={700}
+                  height={480}
+                  alt=''
+                  loading='eager'
+                />
+              )}
             </div>
           )}
 
