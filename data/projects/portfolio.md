@@ -7,7 +7,7 @@
     - Markdown
     - Progressive Web App (PWA)
     - Static Site
-  description: My personal portfolio developed with Next.js and React. Certs and projects are written in markdown and rendered with react-markdown and react-syntax-highlighter.
+  description: My personal portfolio developed with Next.js and React. Certs and Projects sections are written in markdown and rendered with react-markdown and react-syntax-highlighter.
 
   liveLink: https://www.davelevine.io
   githubLink: https://github.com/davelevine/portfolio
@@ -17,13 +17,13 @@
     - screenshot: 01-home.webp
     - screenshot: 02-home.webp
       description: >-
-              My personal portfolio developed with Next.js and React. Certs and projects are written in markdown and rendered with react-markdown and react-syntax-highlighter.
+              My personal portfolio developed with Next.js and React. Certs and Projects sections are written in markdown and rendered with react-markdown and react-syntax-highlighter.
 
 ---
 
 ## Description
 
-My personal portfolio developed with Next.js and React. Certs and projects are written in markdown and rendered with react-markdown and react-syntax-highlighter.
+My personal portfolio developed with Next.js and React. Certs and Projects sections are written in markdown and rendered with react-markdown and react-syntax-highlighter.
 
 ## Key takeaways
 
