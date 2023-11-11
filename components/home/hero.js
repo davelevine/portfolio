@@ -1,6 +1,7 @@
 // Import statements
 import classes from './hero.module.scss';
 import Image from 'next/legacy/image';
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import Modal from '../layout/modal/modal';
 import Aos from 'aos'; // Library for scroll animations
@@ -152,13 +153,13 @@ const Hero = () => {
           </div>
         </div>
         <div className='iconScrollContainer'>
-          <a href='/about' aria-label="Jump to About Section">
+          <Link href='/about' aria-label="Jump to About Section">
             {/* Scroll-to section link with data-aos animation */}
             <div
               className='iconScroll'
               data-aos='fade-down'
               data-aos-offset='50'></div>
-          </a>
+          </Link>
         </div>
       </div>
       <AnimatePresence>
