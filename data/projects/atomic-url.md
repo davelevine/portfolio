@@ -5,7 +5,6 @@
     - CF Workers
     - Wrangler
     - Workers KV
-    - Static Site
   description: A URL shortener proof of concept built using Cloudflare Workers to show how one builds an actual URL shortener service using serverless computing.
 
   liveLink: https://dl.is

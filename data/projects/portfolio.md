@@ -3,10 +3,7 @@
   tech:
     - Next.js
     - React
-    - Service worker
     - Markdown
-    - Progressive Web App (PWA)
-    - Static Site
   description: My personal portfolio developed with Next.js and React. Certs and Projects sections are written in markdown and rendered with react-markdown and react-syntax-highlighter.
 
   liveLink: https://www.davelevine.io

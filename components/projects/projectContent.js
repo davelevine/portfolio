@@ -34,6 +34,10 @@ const ProjectContent = ({ project, currentTheme }) => {
     },
   };
 
+  // Set common width and height for 'portfolio.webp' and 'start-page.webp'
+  const commonWidth = 850;
+  const commonHeight = 500;
+
   return (
     <div className={classes.projectDetail}>
       <div className='container section mvh-100 projectDetail'>
@@ -68,15 +72,16 @@ const ProjectContent = ({ project, currentTheme }) => {
 
           {image && (
             <div className={classes.projectImage}>
-              {image === 'portfolio.webp' ? (
+              {(image === 'portfolio.webp' || image === 'start-page.webp') && (
                 <Image
                   src={`/images/projects/${image}`}
-                  width={850}
-                  height={500}
+                  width={commonWidth}
+                  height={commonHeight}
                   alt=''
                   loading='eager'
                 />
-              ) : (
+              )}
+              {image !== 'portfolio.webp' && image !== 'start-page.webp' && (
                 <Image
                   src={`/images/projects/${image}`}
                   width={700}
@@ -126,3 +131,4 @@ const ProjectContent = ({ project, currentTheme }) => {
 };
 
 export default ProjectContent;
+
