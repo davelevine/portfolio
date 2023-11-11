@@ -23,9 +23,12 @@ Terminal-inspired, clean and customizable browser start page for geeks. Has buil
 
 ## Key takeaways
 
-- Built with Next.js and React
-- Progressive Web App (PWA)
-  - App manifest
-  - Service worker
-  - 100/100 Lighthouse score
-- Static Site
+- Efficient Link Management
+  - Quickly filter and open links.
+  - Default search for unmatched filters.
+- Use custom commands for specific searches.
+- Visual and UI Customization
+- Intuitive Interface
+  - Customizable Fetch UI.
+  - Autosuggest, autocomplete, and link cycling.
+- Built-in editor
