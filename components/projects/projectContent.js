@@ -118,6 +118,7 @@ const ProjectContent = ({ project, currentTheme }) => {
                       height={700}
                       alt={screenshot.description}
                       loading='eager'
+                      objectFit='contain'
                     />
                   </SwiperSlide>
                 ))}
