@@ -111,6 +111,10 @@
     }
   }
 
+@media only screen and (min-width: 768px) {
+  margin-bottom: -70vh;
+}
+
   // Code collapse
   details > summary span {
     transition: all 0.3s;
