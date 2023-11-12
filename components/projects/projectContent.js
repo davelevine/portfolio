@@ -2,11 +2,8 @@ import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark, solarizedlight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
-
 import Image from "next/legacy/image";
-import classes from './projectContent.module.scss';
 import Link from 'next/link';
-
 import { motion } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
@@ -14,8 +11,19 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
+import classes from './projectContent.module.scss';
+
 const ProjectContent = ({ project, currentTheme }) => {
-  const { content, githubLink, liveLink, title, tech, image, screenshots, slug } = project;
+  const {
+    content,
+    githubLink,
+    liveLink,
+    title,
+    tech,
+    image,
+    screenshots,
+    slug,
+  } = project;
 
   const customRenderers = {
     code(code) {
@@ -33,10 +41,6 @@ const ProjectContent = ({ project, currentTheme }) => {
       );
     },
   };
-
-  // Set common width and height for 'portfolio.webp' and 'start-page.webp'
-  const commonWidth = 850;
-  const commonHeight = 500;
 
   return (
     <div className={classes.projectDetail}>
@@ -75,8 +79,8 @@ const ProjectContent = ({ project, currentTheme }) => {
               {(image === 'portfolio.webp' || image === 'start-page.webp') && (
                 <Image
                   src={`/images/projects/${image}`}
-                  width={commonWidth}
-                  height={commonHeight}
+                  width={850}
+                  height={500}
                   alt=''
                   loading='eager'
                 />
@@ -101,7 +105,7 @@ const ProjectContent = ({ project, currentTheme }) => {
           </ReactMarkdown>
 
           {screenshots && (
-            <div className='mb-50'>
+            <div className={screenshots ? 'mb-50' : ''}>
               <h2>Screenshots</h2>
               <Swiper
                 rewind={true}
@@ -132,4 +136,3 @@ const ProjectContent = ({ project, currentTheme }) => {
 };
 
 export default ProjectContent;
-

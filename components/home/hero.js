@@ -8,7 +8,11 @@ import Aos from 'aos'; // Library for scroll animations
 import 'aos/dist/aos.css'; // Styles for AOS animations
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Define the Hero component
+// Constants
+const RESUME_FILE_PATH = '/assets/davelevine-resume.pdf';
+const MOBILE_PROFILE_IMAGE_PATH = '/images/profile-pic-1-mobile.webp';
+const DESKTOP_PROFILE_IMAGE_PATH = '/images/profile-pic-1-desktop.webp';
+
 const Hero = () => {
   // State for controlling the modal visibility
   const [showModal, setShowModal] = useState(false);
@@ -16,7 +20,7 @@ const Hero = () => {
 
   // Function to handle button click for redirecting to a resume file
   function buttonHandler() {
-    window.location.href = '/assets/davelevine-resume.pdf';
+    window.location.href = RESUME_FILE_PATH;
   }
 
   // Function to open the modal
@@ -64,6 +68,11 @@ const Hero = () => {
     setIsMobile(!isMobile);
   };
 
+  const buttonVariants = {
+    whileHover: { scale: 1.1 },
+    whileTap: { scale: 0.9 },
+  };
+
   return (
     <section className={classes.greetings}>
       <div className={classes.container}>
@@ -103,8 +112,7 @@ const Hero = () => {
             <div className={classes.ctaButtons}>
               {/* Call-to-action buttons with framer-motion animations */}
               <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+                variants={buttonVariants}
                 className='btn btn-filled'
                 data-aos='fade-up'
                 onClick={buttonHandler}
@@ -113,8 +121,7 @@ const Hero = () => {
                 MY RESUME
               </motion.button>
               <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+                variants={buttonVariants}
                 className='btn btn-outlined'
                 data-aos='fade-down'
                 onClick={showModalHandler}
@@ -127,9 +134,9 @@ const Hero = () => {
 
           <div className={`${classes.columnRight} ${classes.profilePic}`}>
             {/* Conditionally render different images based on viewport width */}
-            {isMobile ? (
+            {isMobile && (
               <Image
-                src="/images/profile-pic-1-mobile.webp"
+                src={MOBILE_PROFILE_IMAGE_PATH}
                 width={230}
                 height={230}
                 alt="profile-pic"
@@ -138,9 +145,10 @@ const Hero = () => {
                 loading="eager"
                 onError={handleImageError}
               />
-            ) : (
+            )}
+            {!isMobile && (
               <Image
-                src="/images/profile-pic-1-desktop.webp"
+                src={DESKTOP_PROFILE_IMAGE_PATH}
                 width={460}
                 height={460}
                 alt="profile-pic"
