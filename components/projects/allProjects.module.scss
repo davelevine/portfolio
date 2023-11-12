@@ -1,59 +1,87 @@
+/* Styles for the projectsGallery class */
 .projectsGallery {
-  padding: 50px 15px;
+  padding: 50px 15px; /* Set padding for the projectsGallery container */
 
+  /* Styles for the h1 element inside projectsGallery */
   h1 {
     text-align: center;
     font-size: 3rem;
     background: var(--text-gradient);
     -webkit-background-clip: text;
     background-clip: text;
-    color: transparent;
+    color: transparent; /* Apply gradient text effect */
   }
 
+  /* Styles for the filter section inside projectsGallery */
   .filter {
+    /* Styles for the p element inside filter */
     p {
       text-align: center;
     }
 
+    /* Styles for the filterButtons section inside filter */
     .filterButtons {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
 
+      /* Styles for the button elements inside filterButtons */
       button {
         margin: 2px;
       }
     }
   }
 
+  /* Styles for the galleryWrap section inside projectsGallery */
   .galleryWrap {
-    margin-top: 50px;
+    margin-top: 50px; /* Set top margin for galleryWrap */
   }
 
+  /* Media query for screens with a minimum width of 768px */
   @media only screen and (min-width: 768px) {
-    padding: 150px 25px;
-    min-height: 100vh;
-    margin-bottom: -70vh;
+    padding: 150px 25px; /* Adjust padding for larger screens */
+    min-height: 100vh; /* Set minimum height to 100% of the viewport height */
+    margin-bottom: 0; /* Remove bottom margin */
 
+    /* Styles for the container element inside projectsGallery */
     .container {
       max-width: 1200px;
-      margin: auto;
+      margin: auto; /* Center the container horizontally */
     }
 
+    /* Styles for the h1 element inside the media query */
     h1 {
-      font-size: 4.6rem;
+      font-size: 4.6rem; /* Increase font size for larger screens */
     }
 
+    /* Styles for the gallery section inside the media query */
     .gallery {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-gap: 25px;
+
+      /* Styles for the img elements inside the gallery section */
+      img {
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 
+  /* Media query for screens with a minimum width of 1080px */
   @media only screen and (min-width: 1080px) {
+    /* Styles for the gallery section inside the larger media query */
     .gallery {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, 1fr); /* Adjust grid columns for larger screens */
+    }
+  }
+
+  /* Media query for screens with a maximum width of 767px */
+  @media only screen and (max-width: 767px) {
+    /* Styles for the img elements inside the gallery section for smaller screens */
+    .gallery img {
+      object-fit: cover; /* Adjust object-fit for smaller screens */
     }
   }
 }
