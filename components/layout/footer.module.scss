@@ -5,6 +5,18 @@
   text-align: center;
   padding: 25px;
 
+  /* Apply only on mobile devices in portrait orientation */
+  @media only screen and (max-width: 767px) and (orientation: portrait) {
+    margin-top: 10vh;
+    margin-bottom: 0; /* Reset margin-bottom */
+  }
+
+  /* Apply a different margin-top value for mobile devices in landscape orientation */
+  @media only screen and (orientation: landscape) {
+    margin-top: 40%;
+    margin-bottom: 0; /* Reset margin-bottom */
+  }
+
   .socialMedia {
     margin-bottom: 5px;
     i {

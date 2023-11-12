@@ -181,6 +181,7 @@
   @media only screen and (min-width: 768px) {
     padding: 120px 25px; /* Padding for larger screens */
     height: 100vh; /* Occupy the full viewport height */
+    margin-bottom: -40vh;
 
     /* Styles for the element with the class "container" */
     .container {
