@@ -36,13 +36,19 @@ const PostItem = (props) => {
   return (
     <div className={classes.card} data-aos='zoom-in-up'>
       <div className={classes.cardContent}>
-        <h4>{title}</h4>
+        <Link href={linkPath} passHref legacyBehavior>
+          <a>
+            <h4>{title}</h4>
+          </a>
+        </Link>
         <time>{expiresDate}</time>
         <p>{excerpt}</p>
       </div>
       <div className={classes.cardAction}>
-        <Link href={linkPath}>
-          Read more
+        <Link href={linkPath} legacyBehavior>
+          <a>
+            Read more
+          </a>
         </Link>
       </div>
     </div>
