@@ -1,6 +1,6 @@
 ---
 title: 'Microsoft Certified IT Professional (MCITP) - Enterprise Desktop Administrator (Legacy)'
-date: 'Never'
+date: '2016-10'
 image: mcitp.webp
 excerpt: 'The Enterprise Desktop Administrator on Windows 7 certification is for IT Pros that have experience installing, configuring, and administering clients in a Windows networked environment and also have experience deploying operating systems and applications.'
 isFeatured: true
