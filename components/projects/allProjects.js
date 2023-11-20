@@ -1,5 +1,5 @@
 import classes from './allProjects.module.scss';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ProjectItem from './projectItem';
 
@@ -21,6 +21,10 @@ const AllProjects = (props) => {
     });
     return techs.sort();
   }, [projects]);
+
+  useEffect(() => {
+    document.title = 'Dave Levine - Projects';
+  }, [filter, projects]);
 
   const handleClick = (tech) => {
     setFilter(tech);
@@ -73,16 +77,16 @@ const AllProjects = (props) => {
 
         <div className={classes.galleryWrap}>
           <div className={classes.gallery}>
-          <AnimatePresence>
-  {filteredProjects.map((project) => (
-    <ProjectItem key={`project-${project.id}`} project={project} />
-  ))}
-</AnimatePresence>
-
+            <AnimatePresence>
+              {filteredProjects.map((project) => (
+                <ProjectItem key={`project-${project.id}`} project={project} />
+              ))}
+            </AnimatePresence>
           </div>
         </div>
       </div>
     </div>
   );
 };
+
 export default AllProjects;

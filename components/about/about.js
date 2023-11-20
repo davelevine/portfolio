@@ -10,6 +10,9 @@ const About = () => {
   // Initialize AOS (Animate on Scroll) with a duration of 500 milliseconds
   useEffect(() => {
     Aos.init({ duration: 500 }); // Initialize scroll animations
+
+    // Update document title
+    document.title = 'Dave Levine - About Me';
   }, []);
 
   return (

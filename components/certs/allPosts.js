@@ -1,5 +1,5 @@
 import classes from './allPosts.module.scss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import PostItem from './postItem';
 
@@ -19,6 +19,10 @@ const AllPosts = ({ posts }) => {
   });
 
   const sortedUniqueTechs = [...selectedPosts].sort();
+
+    useEffect(() => {
+    document.title = 'Dave Levine - Certs';
+  }, [filter, posts]);
 
   const handleClick = (tech) => {
     setFilter(tech);
