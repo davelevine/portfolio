@@ -1,9 +1,9 @@
 import Head from 'next/head';
-import { getAllPosts } from '../../util/certs-util';
-import AllPosts from '../../components/certs/allPosts';
+import { getAllCerts } from '../../util/certs-util';
+import AllCerts from '../../components/certs/allCerts';
 
-const Posts = (props) => {
-  const { posts } = props;
+const Certs = (props) => {
+  const { certs } = props;
 
   return (
     <>
@@ -14,18 +14,18 @@ const Posts = (props) => {
           content='List of all my certifications.'
         />
       </Head>
-      <AllPosts posts={posts} />
+      <AllCerts certs={certs} />
     </>
   );
 };
-export default Posts;
+export default Certs;
 
 export const getStaticProps = (context) => {
-  const allPosts = getAllPosts();
+  const allCerts = getAllCerts();
 
   return {
     props: {
-      posts: allPosts,
+      certs: allCerts,
     },
   };
 };

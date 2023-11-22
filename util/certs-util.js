@@ -2,45 +2,45 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
-const postsDirectory = path.join(process.cwd(), 'data/certs');
+const certsDirectory = path.join(process.cwd(), 'data/certs');
 
-export const getPostsFiles = () => {
-  return fs.readdirSync(postsDirectory);
+export const getCertsFiles = () => {
+  return fs.readdirSync(certsDirectory);
 };
 
-export const getPostData = (postIdentifier) => {
-  const postSlug = postIdentifier.replace(/\.md$/, ''); // removes the file extension
-  const filePath = path.join(postsDirectory, `${postSlug}.md`);
+export const getCertData = (certIdentifier) => {
+  const certSlug = certIdentifier.replace(/\.md$/, ''); // removes the file extension
+  const filePath = path.join(certsDirectory, `${certSlug}.md`);
   const fileContent = fs.readFileSync(filePath, 'utf-8');
   const { data, content } = matter(fileContent);
 
-  const postData = {
-    slug: postSlug,
+  const certData = {
+    slug: certSlug,
     ...data,
     content,
   };
 
-  return postData;
+  return certData;
 };
 
-export const getAllPosts = () => {
-  const postFiles = getPostsFiles();
+export const getAllCerts = () => {
+  const certFiles = getCertsFiles();
 
-  const allPosts = postFiles.map((postFile) => {
-    return getPostData(postFile);
+  const allCerts = certFiles.map((certFile) => {
+    return getCertData(certFile);
   });
 
-  const sortedPosts = allPosts.sort((postA, postB) =>
-    postA.date > postB.date ? -1 : 1
+  const sortedCerts = allCerts.sort((certA, certB) =>
+    certA.date > certB.date ? -1 : 1
   );
 
-  return sortedPosts;
+  return sortedCerts;
 };
 
-export const getFeaturedPosts = () => {
-  const allPosts = getAllPosts();
+export const getFeaturedCerts = () => {
+  const allCerts = getAllCerts();
 
-  const featuredPosts = allPosts.filter((post) => post.isFeatured);
+  const featuredCerts = allCerts.filter((cert) => cert.isFeatured);
 
-  return featuredPosts;
+  return featuredCerts;
 };

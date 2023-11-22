@@ -7,7 +7,7 @@ isFeatured: true
 tech: ['System Architecture', 'Risk Management']
 ---
 
-![eCornell](/images/posts/eCornell.jpg)
+![eCornell](/images/certs/eCornell.jpg)
 
 ## Certificate
 

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import classes from './postItem.module.scss';
+import classes from './certItem.module.scss';
 import { useEffect } from 'react';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
@@ -18,8 +18,8 @@ const formatDate = (date, status) => {
   return <span className={status === 'Expired' ? classes.expired : classes.expires}><strong>{status}:</strong> {formattedDate}</span>;
 };
 
-const PostItem = (props) => {
-  const { title, excerpt, date, slug } = props.post;
+const CertItem = (props) => {
+  const { title, excerpt, date, slug } = props.cert;
 
   const currentDate = new Date();
   const expirationDate = new Date(date);
@@ -55,4 +55,4 @@ const PostItem = (props) => {
   );
 };
 
-export default PostItem;
+export default CertItem;

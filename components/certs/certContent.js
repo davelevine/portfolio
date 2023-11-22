@@ -1,5 +1,5 @@
 import ReactMarkdown from 'react-markdown';
-import classes from './postContent.module.scss';
+import classes from './certContent.module.scss';
 import Image from "next/image";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import {
@@ -7,9 +7,9 @@ import {
   solarizedlight,
 } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
-const PostContent = ({ post, currentTheme }) => {
-  const { title, content, slug, image } = post;
-  const imagePath = `/images/posts/${slug}/${image}`;
+const CertContent = ({ cert, currentTheme }) => {
+  const { title, content, slug, image } = cert;
+  const imagePath = `/images/certs/${slug}/${image}`;
 
   const renderCode = (code) => {
     const { className, children } = code;
@@ -30,7 +30,7 @@ const PostContent = ({ post, currentTheme }) => {
   };
 
   return (
-    <div className={classes.postContent}>
+    <div className={classes.certContent}>
       <div className={classes.container}>
         <article>
           <ReactMarkdown components={{ code: renderCode }}>{content}</ReactMarkdown>
@@ -40,4 +40,4 @@ const PostContent = ({ post, currentTheme }) => {
   );
 };
 
-export default PostContent;
+export default CertContent;

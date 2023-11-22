@@ -7,7 +7,7 @@ isFeatured: true
 tech: ['AWS', 'Security', 'Compliance', 'Migration', 'Serverless']
 ---
 
-![AWS](/images/posts/aws.webp)
+![AWS](/images/certs/aws.webp)
 
 ## My AWS Journey: From Cloud Enthusiast to AWS Certified
 

@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Hero from '../components/home/hero';
-import { getFeaturedPosts } from '../util/certs-util';
+import { getFeaturedCerts } from '../util/certs-util';
 import { getFeaturedProjects } from '../util/projects-util';
 
 export default function Home(props) {
@@ -19,12 +19,12 @@ export default function Home(props) {
 }
 
 export const getStaticProps = () => {
-  const featuredPosts = getFeaturedPosts(); // Fetch featured posts
+  const featuredCerts = getFeaturedCerts(); // Fetch featured certs
   const featuredProjects = getFeaturedProjects(); // Fetch featured projects
 
   return {
     props: {
-      posts: featuredPosts, // Pass the featured posts to the component
+      certs: featuredCerts, // Pass the featured certs to the component
       featuredProjects: featuredProjects, // Pass the featured projects to the component
     },
   };

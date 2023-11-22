@@ -1,28 +1,28 @@
-import classes from './allPosts.module.scss';
+import classes from './allCerts.module.scss';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import PostItem from './postItem';
+import CertItem from './certItem';
 
-const AllPosts = ({ posts }) => {
+const AllCerts = ({ certs }) => {
   const [filter, setFilter] = useState('all');
   const [activeButton, setActiveButton] = useState('all');
 
-  const selectedPosts = new Set();
+  const selectedCerts = new Set();
 
-  posts.forEach((post) => {
-    const techs = post.tech;
+  certs.forEach((Cert) => {
+    const techs = Cert.tech;
     if (Array.isArray(techs)) {
       techs.forEach((tech) => {
-        selectedPosts.add(tech);
+        selectedCerts.add(tech);
       });
     }
   });
 
-  const sortedUniqueTechs = [...selectedPosts].sort();
+  const sortedUniqueTechs = [...selectedCerts].sort();
 
     useEffect(() => {
     document.title = 'Dave Levine - Certs';
-  }, [filter, posts]);
+  }, [filter, certs]);
 
   const handleClick = (tech) => {
     setFilter(tech);
@@ -55,9 +55,9 @@ const AllPosts = ({ posts }) => {
     }
   };
 
-  const filteredPosts = filter === 'all'
-    ? posts.slice().sort(commonSortLogic)
-    : posts.filter((post) => post.tech.includes(filter)).sort(commonSortLogic);
+  const filteredCerts = filter === 'all'
+    ? certs.slice().sort(commonSortLogic)
+    : certs.filter((cert) => cert.tech.includes(filter)).sort(commonSortLogic);
 
   return (
     <section className={classes.blog}>
@@ -97,8 +97,8 @@ const AllPosts = ({ posts }) => {
         <div className={classes.galleryWrap}>
           <div className={classes.gallery}>
             <AnimatePresence>
-              {filteredPosts.map((post) => (
-                <PostItem post={post} key={post.slug} />
+              {filteredCerts.map((cert) => (
+                <CertItem cert={cert} key={cert.slug} />
               ))}
             </AnimatePresence>
           </div>
@@ -108,4 +108,4 @@ const AllPosts = ({ posts }) => {
   );
 };
 
-export default AllPosts;
+export default AllCerts;

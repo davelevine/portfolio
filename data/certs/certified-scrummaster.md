@@ -7,7 +7,7 @@ isFeatured: true
 tech: ['Scrum', 'Agile', 'Leadership']
 ---
 
-![CSM](/images/posts/csm.webp)
+![CSM](/images/certs/csm.webp)
 
 ## Becoming a Certified ScrumMaster
 

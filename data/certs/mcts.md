@@ -7,7 +7,7 @@ isFeatured: true
 tech: ['System Administration', 'Troubleshooting']
 ---
 
-![MCITP](/images/posts/mcitp.webp)
+![MCITP](/images/certs/mcitp.webp)
 
 ## Certificate
 
