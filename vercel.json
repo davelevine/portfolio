@@ -9,12 +9,6 @@
       "destination": "https://plausible.io/api/event"
     }
   ],
-  "routes": [
-    {
-      "src": "/robots.txt",
-      "dest": "/robots.txt"
-    }
-  ],
   "headers": [
     {
       "source": "/(.+\\.js|.+\\.css|.+\\.woff2)",
