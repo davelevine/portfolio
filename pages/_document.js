@@ -26,7 +26,7 @@ class MyDocument extends Document {
           <link rel="icon" type="image/x-icon" href="/images/favicon/favicon.ico" />
           
           {/* Plausible tracking script */}
-          <script defer data-domain="www.davelevine.io" data-api="/data/api/event" src="/data/js/script.js"></script>
+          <script defer data-domain="www.davelevine.io" data-api="/api/event" src="/js/script.js"></script>
 
           {/* Dynamically load CSS asynchronously */}
           <script
