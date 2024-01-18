@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/data/js/script.js",
-      "destination": "https://plausible.io/js/script.js"
+      "destination": "https://technicality.com/js/script.js"
     },
     {
       "source": "/data/api/event",
-      "destination": "https://plausible.io/api/event"
+      "destination": "https://technicality.com/api/event"
     }
   ],
   "headers": [
