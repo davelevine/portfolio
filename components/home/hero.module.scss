@@ -142,7 +142,7 @@
 
   /* Mobile-specific styles */
   @media only screen and (max-width: 767px) {
-    margin-bottom: 120px; /* Adjust the margin below buttons for mobile */
+    margin-bottom: 5%; /* Adjust the margin below buttons for mobile */
   }
 }
 
@@ -181,7 +181,7 @@
   @media only screen and (min-width: 768px) {
     padding: 100px 25px; /* Padding for larger screens */
     height: 100vh; /* Occupy the full viewport height */
-    margin-bottom: 14%;
+    margin-bottom: 5%;
 
     /* Styles for the element with the class "container" */
     .container {
