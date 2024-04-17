@@ -15,11 +15,14 @@ function ContactModal(props) {
             <p>
               Just a sec...
               <br />
-              Also feel free to contact me via Linkedin:
+              Also feel free to contact me via Linkedin or use my PGP Key:
             </p>
-            <div className={classes.linkedinLink}>
+            <div className={classes.contactLinks}>
               <a href='https://www.linkedin.com/in/iamdavelevine' target='_blank' rel='noreferrer'>
                 <i className='fab fa-linkedin'></i>
+              </a>
+              <a href='/assets/dave.levine.io-pub.asc' target='_blank' rel='noreferrer'>
+                <i className='fa fa-key'></i>
               </a>
             </div>
           </div>
@@ -40,11 +43,14 @@ function ContactModal(props) {
             <p>
               Your message was sent!
               <br />
-              Also feel free to contact me via Linkedin:
+              Also feel free to contact me via Linkedin or PGP Key:
             </p>
-            <div className={classes.linkedinLink}>
+            <div className={classes.contactLinks}>
               <a href='https://www.linkedin.com/in/iamdavelevine' target='_blank' rel='noreferrer'>
                 <i className='fab fa-linkedin'></i>
+              </a>
+              <a href='/assets/dave.levine.io-pub.asc' target='_blank' rel='noreferrer'>
+                <i className='fa fa-key'></i>
               </a>
             </div>
           </div>
@@ -78,11 +84,14 @@ function ContactModal(props) {
               {state.errors[0].message}
               <br />
               <br />
-              Also feel free to contact me via Linkedin:
+              Also feel free to contact me via Linkedin or PGP Key:
             </p>
-            <div className={classes.linkedinLink}>
+            <div className={classes.contactLinks}>
               <a href='https://www.linkedin.com/in/iamdavelevine' target='_blank' rel='noreferrer'>
                 <i className='fab fa-linkedin'></i>
+              </a>
+              <a href='/assets/dave.levine.io-pgp-key-pub.asc' target='_blank' rel='noreferrer'>
+                <i className='fa fa-key'></i>
               </a>
             </div>
           </div>
@@ -127,9 +136,12 @@ function ContactModal(props) {
           </div>
 
           <div className={classes.action}>
-            <div className={classes.linkedinLink}>
+            <div className={classes.contactLinks}>
               <a href='https://www.linkedin.com/in/iamdavelevine' target='_blank' rel='noreferrer'>
                 <i className='fab fa-linkedin'></i>
+              </a>
+              <a href='/assets/dave.levine.io-pgp-key-pub.asc' target='_blank' rel='noreferrer'>
+                <i className='fa fa-key' style={{fontSize: '3.2em'}}></i>
               </a>
             </div>
             <div className={classes.sendLink}>

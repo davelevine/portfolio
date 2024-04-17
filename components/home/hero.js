@@ -12,6 +12,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const RESUME_FILE_PATH = '/assets/davelevine-resume.pdf';
 const MOBILE_PROFILE_IMAGE_PATH = '/images/profile-pic-1-mobile.webp';
 const DESKTOP_PROFILE_IMAGE_PATH = '/images/profile-pic-1-desktop.webp';
+const PGP_KEY_PATH = '/assets/dave.levine.io-pgp-key-pub.asc'; // Path to the PGP key
 
 const Hero = () => {
   // State for controlling the modal visibility
@@ -21,6 +22,11 @@ const Hero = () => {
   // Function to handle button click for redirecting to a resume file
   function buttonHandler() {
     window.location.href = RESUME_FILE_PATH;
+  }
+
+  // Function to handle button click for redirecting to a PGP key file
+  function pgpKeyHandler() {
+    window.location.href = PGP_KEY_PATH;
   }
 
   // Function to open the modal
@@ -108,6 +114,12 @@ const Hero = () => {
                   data-aos='flip-up'
                   data-aos-delay='150'></i>
               </a>
+              <a href={PGP_KEY_PATH} target='_blank' rel='noreferrer' aria-label="PGP Key">
+                <i
+                  className='fa fa-key'
+                  data-aos='flip-up'
+                  data-aos-delay='200'></i>
+              </a>
             </div>
             <div className={classes.ctaButtons}>
               {/* Call-to-action buttons with framer-motion animations */}
@@ -180,3 +192,4 @@ const Hero = () => {
 
 // Export the Hero component
 export default Hero;
+
