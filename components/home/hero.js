@@ -108,7 +108,7 @@ const Hero = () => {
                   data-aos='flip-up'
                   data-aos-delay='50'></i>
               </a>{' '}
-              <a href='https://kb.levine.org' target='_blank' rel='noreferrer' aria-label="Knowledge Base">
+              <a href='https://kb.levine.io' target='_blank' rel='noreferrer' aria-label="Knowledge Base">
                 <i
                   className='fas fa-globe'
                   data-aos='flip-up'

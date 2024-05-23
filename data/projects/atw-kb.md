@@ -5,7 +5,7 @@
     - MkDocs Material
     - Git
   description: A knowledge base I started in 2016. It has since amassed to hundreds of articles, guides and documents that serve as a source of truth, second brain and a labor of love.
-  liveLink: https://kb.levine.org
+  liveLink: https://kb.levine.io
   githubLink: https://github.com/davelevine/docs-public
   image: atw.png
   isFeatured: true
