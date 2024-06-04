@@ -19,7 +19,7 @@ const formatDate = (date, status) => {
 };
 
 const CertItem = (props) => {
-  const { title, excerpt, date, slug } = props.cert;
+  const { title, excerpt, date, slug, image } = props.cert;
 
   const currentDate = new Date();
   const expirationDate = new Date(date);
@@ -27,7 +27,7 @@ const CertItem = (props) => {
   const dateStatus = expirationDate < currentDate ? 'Expired' : 'Expires';
   const expiresDate = formatDate(date, dateStatus);
 
-  const linkPath = `/certs/${slug}`;
+  const linkPath = `/images/certs/${image}`;
 
   useEffect(() => {
     Aos.init({ duration: 500 });
@@ -36,20 +36,14 @@ const CertItem = (props) => {
   return (
     <div className={classes.card} data-aos='zoom-in-up'>
       <div className={classes.cardContent}>
-        <Link href={linkPath} passHref legacyBehavior>
-          <a>
-            <h4>{title}</h4>
-          </a>
-        </Link>
+        <h4>{title}</h4>
         <time>{expiresDate}</time>
         <p>{excerpt}</p>
       </div>
       <div className={classes.cardAction}>
-        <Link href={linkPath} legacyBehavior>
-          <a>
-            Read more
-          </a>
-        </Link>
+        <a href={linkPath} target="_blank" rel="noopener noreferrer">
+          View certificate
+        </a>
       </div>
     </div>
   );

@@ -1,13 +1,13 @@
 ---
 title: 'CompTIA Security+ (Legacy)'
 date: '2019-11'
-image: comptia-security.jpg
+image: comptia-securityplus.png
 excerpt: 'My journey to achieve the AWS Certified Solutions Architect – Associate certification has been a humbling experience. It has allowed me to deepen my understanding of AWS services and their application in creating robust and secure cloud solutions.'
 isFeatured: true
 tech: ['Cybersecurity', 'Network Security', 'Risk Management']
 ---
 
-![comptia-sec-plus](/images/certs/comptia-security.jpg)
+![comptia-sec-plus](/images/certs/comptia-securityplus.png)
 
 ## Certificate
 

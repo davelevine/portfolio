@@ -1,13 +1,13 @@
 ---
 title: 'ISC2 Certified in Cybersecurity (CC)'
 date: '2027-01'
-image: isc2-cc.jpeg
+image: isc2-cc.png
 excerpt: 'The Certified in Cybersecurity (CC) certification validates fundamental knowledge in areas like security concepts, tools, and best practices.  It proves to organizations that newly certified team members understand fundamental security principles and operations, network security and access controls'
 isFeatured: true
 tech: ['Cybersecurity', 'Network Security', 'Risk Management']
 ---
 
-![isc2-cc](/images/certs/isc2-cc.jpg)
+![isc2-cc](/images/certs/isc2-cc.png)
 
 ## Certificate
 

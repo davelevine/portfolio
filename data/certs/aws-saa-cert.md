@@ -1,13 +1,13 @@
 ---
 title: 'AWS Certified Solutions Architect - Associate'
 date: '2026-08'
-image: aws.webp
+image: aws-saa.png
 excerpt: 'My journey to achieve the AWS Certified Solutions Architect – Associate certification has been a humbling experience. It has allowed me to deepen my understanding of AWS services and their application in creating robust and secure cloud solutions.'
 isFeatured: true
 tech: ['AWS', 'Security', 'Compliance', 'Migration', 'Serverless']
 ---
 
-![AWS](/images/certs/aws.webp)
+![AWS](/images/certs/aws-saa.png)
 
 ## My AWS Journey: From Cloud Enthusiast to AWS Certified
 
