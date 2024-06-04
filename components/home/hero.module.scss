@@ -21,18 +21,18 @@
       max-width: 350px;
       max-height: 350px;
       margin: 0 auto 20px; /* Adjust the margin for mobile */
+    }
 
-      /* Media query for landscape orientation */
-      @media (orientation: landscape) {
-        .columnLeft {
-          margin-top: 0; /* Reset margin to avoid overlapping */
-        }
+    /* Media query for landscape orientation */
+    @media (orientation: landscape) {
+      .columnLeft {
+        margin-top: 0; /* Reset margin to avoid overlapping */
+      }
 
-        .columnRight.profilePic {
-          max-width: 350px;
-          max-height: 350px;
-          margin: 0 auto 20px; /* Adjust the margin for mobile landscape orientation */
-        }
+      .columnRight.profilePic {
+        max-width: 350px;
+        max-height: 350px;
+        margin: 0 auto 20px; /* Adjust the margin for mobile landscape orientation */
       }
     }
   }
@@ -45,7 +45,6 @@
     h1 {
       color: var(--navbar-primary);
       font-size: 2.5rem;
-      /* filter: drop-shadow(0px 3px 2px rgba(0, 0, 0, 0.15));*/
       margin: 0;
 
       /* Mobile-specific styles */
@@ -65,24 +64,19 @@
     h2 {
       color: var(--navbar-primary);
       font-size: 1.8rem;
-      /* filter: drop-shadow(0px 3px 2px rgba(0, 0, 0, 0.15));*/
       margin: 0;
       margin-bottom: 6px;
     }
 
     h3 {
-      margin: 0;
-      /* filter: drop-shadow(0px 3px 2px rgba(0, 0, 0, 0.15));*/
-    }
-
-    h3 {
       color: var(--text-secondary);
-      /* filter: drop-shadow(0px 3px 2px rgba(0, 0, 0, 0.15));*/
       margin: 0;
       font-weight: 400;
+
       @media only screen and (max-width: 1601px) {
         line-height: 2.8;
       }
+
       @media only screen and (max-width: 767px) {
         line-height: 2.8;
         margin-bottom: -11px;
@@ -118,7 +112,6 @@
         font-size: 2rem;
         margin: 0 5px;
         color: var(--navbar-primary);
-        /* filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.14));*/
 
         &:hover {
           color: var(--background-secondary);
@@ -126,26 +119,25 @@
       }
     }
 
-/* Styles for call-to-action buttons */
-.ctaButtons {
-  margin-top: 40px;
-  display: flex;
+    /* Styles for call-to-action buttons */
+    .ctaButtons {
+      margin-top: 40px;
+      display: flex;
 
-  &:first-child {
-    margin-right: 15px;
-  }
+      &:first-child {
+        margin-right: 15px;
+      }
 
-  /* Adjust the margin between buttons */
-  button + button {
-    margin-left: 15px;
-  }
+      /* Adjust the margin between buttons */
+      button + button {
+        margin-left: 15px;
+      }
 
-  /* Mobile-specific styles */
-  @media only screen and (max-width: 767px) {
-    margin-bottom: 5%; /* Adjust the margin below buttons for mobile */
-  }
-}
-
+      /* Mobile-specific styles */
+      @media only screen and (max-width: 767px) {
+        margin-bottom: 5%; /* Adjust the margin below buttons for mobile */
+      }
+    }
   }
 
   /* Mobile-specific styles for "greetings" container */

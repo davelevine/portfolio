@@ -19,14 +19,9 @@ const Hero = () => {
   const [showModal, setShowModal] = useState(false);
   const [isMobile, setIsMobile] = useState(false); // State to determine mobile/desktop
 
-  // Function to handle button click for redirecting to a resume file
-  const buttonHandler = useCallback(() => {
-    window.location.href = RESUME_FILE_PATH;
-  }, []);
-
-  // Function to handle button click for redirecting to a PGP key file
-  const pgpKeyHandler = useCallback(() => {
-    window.location.href = PGP_KEY_PATH;
+  // Refactored button handlers into a single function
+  const handleButtonClick = useCallback((path) => {
+    window.location.href = path;
   }, []);
 
   // Function to open the modal
@@ -126,7 +121,7 @@ const Hero = () => {
                 variants={buttonVariants}
                 className='btn btn-filled'
                 data-aos='fade-up'
-                onClick={buttonHandler}
+                onClick={() => handleButtonClick(RESUME_FILE_PATH)}
                 aria-label="My Resume"
               >
                 MY RESUME
