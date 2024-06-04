@@ -3,13 +3,14 @@ import Hero from '../components/home/hero';
 import { getFeaturedCerts } from '../util/certs-util';
 import { getFeaturedProjects } from '../util/projects-util';
 
-export default function Home(props) {
+// Refactored Home component to use destructuring directly in the function parameter for cleaner code
+export default function Home({ certs, featuredProjects }) {
   return (
     <>
       <Head>
         <title>Dave Levine - Solutions Engineer</title>
         <meta
-          name='description' // Change 'name' to 'description'
+          name='description' // Changed 'name' to 'description' for better semantics
           content='My personal portfolio including various projects and certifications.'
         />
       </Head>
@@ -18,9 +19,10 @@ export default function Home(props) {
   );
 }
 
-export const getStaticProps = () => {
-  const featuredCerts = getFeaturedCerts(); // Fetch featured certs
-  const featuredProjects = getFeaturedProjects(); // Fetch featured projects
+// Refactored getStaticProps to use async/await for better readability and handling of asynchronous operations
+export const getStaticProps = async () => {
+  const featuredCerts = await getFeaturedCerts(); // Fetch featured certs
+  const featuredProjects = await getFeaturedProjects(); // Fetch featured projects
 
   return {
     props: {

@@ -4,15 +4,16 @@ import Navbar from '../components/layout/navbar/navbar';
 import Footer from '../components/layout/footer';
 import '../styles/globals.scss';
 
+// Refactored to extract the theme initialization logic into a separate function for better readability and reusability
+const initializeTheme = () => {
+  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+};
+
 function MyApp({ Component, pageProps }) {
   const [theme, setTheme] = useState('dark');
 
   useEffect(() => {
-    setTheme((prevTheme) =>
-      window.matchMedia('(prefers-color-scheme: light)').matches
-        ? 'light'
-        : 'dark'
-    );
+    setTheme(initializeTheme);
   }, []);
 
   return (
@@ -22,7 +23,7 @@ function MyApp({ Component, pageProps }) {
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <div className="app" data-theme={theme === 'light' ? 'light' : 'dark'}>
+      <div className="app" data-theme={theme}>
         <Navbar theme={theme} newTheme={setTheme} />
         <Component {...pageProps} currentTheme={theme} />
         <Footer />

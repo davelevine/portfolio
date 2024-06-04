@@ -2,9 +2,8 @@ import Head from 'next/head';
 import { getAllProjects } from '../../util/projects-util';
 import AllProjects from '../../components/projects/allProjects';
 
-const Projects = (props) => {
-  const { projects } = props;
-
+// Refactored Projects component to use destructuring directly in the function parameter
+const Projects = ({ projects }) => {
   return (
     <>
       <Head>
@@ -20,8 +19,9 @@ const Projects = (props) => {
 };
 export default Projects;
 
-export const getStaticProps = (context) => {
-  const allProjects = getAllProjects();
+// Refactored getStaticProps to use async/await for better readability and handling of asynchronous operations
+export const getStaticProps = async () => {
+  const allProjects = await getAllProjects();
 
   return {
     props: {

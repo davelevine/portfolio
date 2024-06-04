@@ -56,3 +56,4 @@ const About = () => {
 
 // Export the About component
 export default About;
+

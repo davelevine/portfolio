@@ -1,21 +1,7 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-// import { fontawesomeSubset } from "fontawesome-subset";
 
 class MyDocument extends Document {
   render() {
-    // Font Awesome Subset
-    {/* fontawesomeSubset(
-      {
-        brands: ["github", "linkedin"],
-        solid: ["globe", "moon", "sun", "envelope", "envelope-open", "xmark", "link", "circle-info"],
-      },
-      "public/fonts/webfonts",
-      {
-        package: "free",
-      }
-    );
-    */}
-
     return (
       <Html lang='en'>
         <Head>
@@ -54,7 +40,6 @@ class MyDocument extends Document {
               `,
             }}
           />
-
         </Head>
         <body>
           <Main />
@@ -66,3 +51,5 @@ class MyDocument extends Document {
 }
 
 export default MyDocument;
+
+// Refactored to remove commented-out code for better readability and maintainability

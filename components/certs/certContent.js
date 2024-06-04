@@ -7,25 +7,25 @@ import {
   solarizedlight,
 } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
+// Refactored CertContent component
 const CertContent = ({ cert, currentTheme }) => {
-  const { title, content, slug, image } = cert;
+  const { content, slug, image } = cert;
   const imagePath = `/images/certs/${slug}/${image}`;
 
-  const renderCode = (code) => {
-    const { className, children } = code;
+  // Refactored renderCode function to be more concise
+  // Removed unnecessary destructuring and commonProps object
+  const renderCode = ({ className, children }) => {
     const language = className.split('-')[1];
-
-    const commonProps = {
-      showLineNumbers: true,
-      language,
-      children,
-    };
+    const style = currentTheme === 'dark' ? atomDark : solarizedlight;
 
     return (
       <SyntaxHighlighter
-        style={currentTheme === 'dark' ? atomDark : solarizedlight}
-        {...commonProps}
-      />
+        style={style}
+        language={language}
+        showLineNumbers
+      >
+        {children}
+      </SyntaxHighlighter>
     );
   };
 

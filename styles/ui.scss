@@ -1,10 +1,16 @@
-.app {
+// Refactored .app styles into a mixin for reusability
+@mixin app-styles {
   color: var(--text-primary);
   background-color: var(--background);
   transition: background 1s;
   min-height: 100vh;
 }
 
+.app {
+  @include app-styles;
+}
+
+// Grouped media queries for better organization and readability
 @media only screen and (min-width: 768px) {
   .section {
     padding: 100px 25px;

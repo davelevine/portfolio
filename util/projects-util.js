@@ -4,43 +4,32 @@ import matter from 'gray-matter';
 
 const projectsDirectory = path.join(process.cwd(), 'data/projects');
 
-export const getProjectsFiles = () => {
-  return fs.readdirSync(projectsDirectory);
-};
+// Refactored to use arrow function with implicit return for brevity
+export const getProjectsFiles = () => fs.readdirSync(projectsDirectory);
+
+// Refactored to extract common logic into a helper function
+const getFilePath = (projectSlug) => path.join(projectsDirectory, `${projectSlug}.md`);
 
 export const getProjectData = (projectIdentifier) => {
   const projectSlug = projectIdentifier.replace(/\.md$/, ''); // removes the file extension
-  const filePath = path.join(projectsDirectory, `${projectSlug}.md`);
+  const filePath = getFilePath(projectSlug); // Reused helper function
   const fileContent = fs.readFileSync(filePath, 'utf-8');
   const { data, content } = matter(fileContent);
 
-  const projectData = {
+  return {
     slug: projectSlug,
     ...data,
     content,
   };
-
-  return projectData;
 };
 
+// Refactored to use array destructuring and implicit return
 export const getAllProjects = () => {
   const projectsFiles = getProjectsFiles();
-
-  const allProjects = projectsFiles.map((projectFile) => {
-    return getProjectData(projectFile);
-  });
-
-  const sortedProjects = allProjects.sort((projectA, projectB) =>
-    projectA.date > projectB.date ? -1 : 1
-  );
-
-  return sortedProjects;
+  return projectsFiles
+    .map(getProjectData)
+    .sort((projectA, projectB) => (projectA.date > projectB.date ? -1 : 1));
 };
 
-export const getFeaturedProjects = () => {
-  const allProjects = getAllProjects();
-
-  const featuredProjects = allProjects.filter((project) => project.isFeatured);
-
-  return featuredProjects;
-};
+// Refactored to use implicit return and arrow function
+export const getFeaturedProjects = () => getAllProjects().filter(project => project.isFeatured);

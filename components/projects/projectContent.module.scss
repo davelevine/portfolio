@@ -1,18 +1,26 @@
 .projectDetail {
+  // Refactored common text styles into a mixin for reusability
+  @mixin text-styles($color, $margin-bottom: null, $font-size: null) {
+    color: $color;
+    @if $margin-bottom {
+      margin-bottom: $margin-bottom;
+    }
+    @if $font-size {
+      font-size: $font-size;
+    }
+  }
+
   h1 {
-    margin-bottom: 0;
-    color: var(--text-secondary);
+    @include text-styles(var(--text-secondary), 0);
   }
 
   h2 {
-    font-size: 1.3rem;
-    color: var(--text-secondary);
+    @include text-styles(var(--text-secondary), null, 1.3rem);
   }
 
   small {
-    color: var(--text-primary);
+    @include text-styles(var(--text-primary), 25px);
     display: block;
-    margin-bottom: 25px;
   }
 
   a {
@@ -28,7 +36,7 @@
     font-size: 0.8rem;
   }
 
-  .card {
+  .card, .description {
     border-radius: 5px;
     padding: 25px;
     background-color: var(--background-card);
@@ -37,10 +45,11 @@
     margin: 25px 0;
     display: flex;
     flex-direction: column;
+  }
 
+  .card {
     h4 {
-      margin: 0;
-      color: var(--text-secondary);
+      @include text-styles(var(--text-secondary), 0);
     }
 
     time {
@@ -56,18 +65,6 @@
         color: var(--accent);
       }
     }
-  }
-
-  .description {
-    max-width: 1000px;
-    border-radius: 5px;
-    padding: 25px;
-    background-color: var(--background-card);
-    transition: background 1s;
-    border: 1px solid var(--border-card);
-    margin: 25px 0;
-    display: flex;
-    flex-direction: column;
   }
 
   .projectImage {
@@ -111,9 +108,9 @@
     }
   }
 
-@media only screen and (min-width: 768px) {
-  margin-bottom: 0;
-}
+  @media only screen and (min-width: 768px) {
+    margin-bottom: 0;
+  }
 
   // Code collapse
   details > summary span {

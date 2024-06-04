@@ -1,6 +1,6 @@
 // Import required modules and components
 import classes from './navbar.module.scss';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import { AnimatePresence, motion, useCycle } from 'framer-motion';
 import Modal from '../../layout/modal/modal';
@@ -9,42 +9,44 @@ import MenuToggle from './menuToggle';
 import { useRouter } from 'next/router';
 
 // Define the Navbar component
-const Navbar = (props) => {
-  const { theme } = props;
+const Navbar = ({ theme, newTheme, children }) => {
   const [sticky, setSticky] = useState(false);
-  const [showModal, setShowModal] = useState();
+  const [showModal, setShowModal] = useState(false);
   const [isOpen, toggleOpen] = useCycle(false, true);
   const router = useRouter();
 
   // Toggle between light and dark themes
-  function setThemeHandler() {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    props.newTheme(newTheme);
-  }
+  const setThemeHandler = useCallback(() => {
+    newTheme(theme === 'light' ? 'dark' : 'light');
+  }, [theme, newTheme]);
 
   // Toggle the visibility of the modal
-  function toggleModal() {
-    setShowModal(!showModal);
-  }
+  const toggleModal = useCallback(() => {
+    setShowModal(prev => !prev);
+  }, []);
 
   // Toggle the mobile navigation menu
-  function toggleNav() {
+  const toggleNav = useCallback(() => {
     toggleOpen();
-  }
+  }, [toggleOpen]);
 
   // Function to apply a sticky effect to the navbar
-  function fixNavbar() {
-    if (window.scrollY >= 100) {
-      setSticky(true);
-    } else {
-      setSticky(false);
-    }
-  }
+  const fixNavbar = useCallback(() => {
+    setSticky(window.scrollY >= 100);
+  }, []);
+
+  // Debounce function for better performance
+  const debounce = useCallback((func, wait) => {
+    let timeout;
+    return (...args) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func(...args), wait);
+    };
+  }, []);
 
   // Effect to control body overflow when the modal is shown or hidden
   useEffect(() => {
-    if (showModal) document.body.style.overflow = 'hidden';
-    if (!showModal) document.body.style.overflow = 'unset';
+    document.body.style.overflow = showModal ? 'hidden' : 'unset';
   }, [showModal]);
 
   // Effect to apply the sticky navbar on scroll
@@ -56,34 +58,17 @@ const Navbar = (props) => {
     return () => {
       window.removeEventListener('scroll', debounceFixNavbar);
     };
-  }, []);
+  }, [debounce, fixNavbar]);
 
   // Function to check if a link is active
-  function isLinkActive(href) {
-    // Check if the current route matches the link's href
+  const isLinkActive = useCallback((href) => {
     return router.pathname === href;
-  }
-
-  // Debounce function for better performance
-  const debounce = (func, wait) => {
-    let timeout;
-    return function (...args) {
-      const context = this;
-      clearTimeout(timeout);
-      timeout = setTimeout(() => func.apply(context, args), wait);
-    };
-  };
+  }, [router.pathname]);
 
   // Render the Navbar component
   return (
     <>
-      <div
-        className={
-          sticky
-            ? `${classes.navbar}  ${classes.sticky}`
-            : `${classes.navbar}`
-        }
-      >
+      <div className={sticky ? `${classes.navbar} ${classes.sticky}` : classes.navbar}>
         <div className={classes.container}>
           <Link href='/' passHref legacyBehavior>
             <a className={classes.logo}>
@@ -92,74 +77,22 @@ const Navbar = (props) => {
             </a>
           </Link>
 
-          <nav
-            className={
-              isOpen
-                ? `${classes.navMenu} ${classes.responsive}`
-                : `${classes.navMenu}`
-            }
-            id='navMenu'
-          >
+          <nav className={isOpen ? `${classes.navMenu} ${classes.responsive}` : classes.navMenu} id='navMenu'>
             <div className={classes.linkWrapper}>
-              <Link href='/' passHref legacyBehavior>
-                <motion.a
-                  style={{ cursor: 'pointer' }}
-                  initial={{ opacity: 0, y: -30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4 }}
-                  onClick={toggleNav}
-                  className={
-                    isLinkActive('/') ? classes.activeLink : ''
-                  }
-                >
-                  HOME
-                </motion.a>
-              </Link>
-
-              <Link href='/projects' passHref legacyBehavior>
-                <motion.a
-                  style={{ cursor: 'pointer' }}
-                  initial={{ opacity: 0, y: -30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  onClick={toggleNav}
-                  className={
-                    isLinkActive('/projects') ? classes.activeLink : ''
-                  }
-                >
-                  PROJECTS
-                </motion.a>
-              </Link>
-
-              <Link href='/certs' passHref legacyBehavior>
-                <motion.a
-                  style={{ cursor: 'pointer' }}
-                  initial={{ opacity: 0, y: -30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
-                  onClick={toggleNav}
-                  className={
-                    isLinkActive('/certs') ? classes.activeLink : ''
-                  }
-                >
-                  CERTS
-                </motion.a>
-              </Link>
-
-              <Link href='/about' passHref legacyBehavior>
-                <motion.a
-                  style={{ cursor: 'pointer' }}
-                  initial={{ opacity: 0, y: -30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7 }}
-                  onClick={toggleNav}
-                  className={
-                    isLinkActive('/about') ? classes.activeLink : ''
-                  }
-                >
-                  ABOUT
-                </motion.a>
-              </Link>
+              {['/', '/projects', '/certs', '/about'].map((path, index) => (
+                <Link href={path} passHref legacyBehavior key={path}>
+                  <motion.a
+                    style={{ cursor: 'pointer' }}
+                    initial={{ opacity: 0, y: -30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4 + index * 0.1 }}
+                    onClick={toggleNav}
+                    className={isLinkActive(path) ? classes.activeLink : ''}
+                  >
+                    {path.toUpperCase().replace('/', '') || 'HOME'}
+                  </motion.a>
+                </Link>
+              ))}
             </div>
           </nav>
 
@@ -173,11 +106,7 @@ const Navbar = (props) => {
               onClick={toggleModal}
               aria-label='Toggle Contact Modal'
             >
-              {showModal ? (
-                <i className='fa fa-envelope-open'></i>
-              ) : (
-                <i className='fa fa-envelope'></i>
-              )}
+              <i className={`fa ${showModal ? 'fa-envelope-open' : 'fa-envelope'}`}></i>
             </motion.button>
 
             {/* Button to toggle between light and dark themes */}
@@ -208,7 +137,7 @@ const Navbar = (props) => {
       <AnimatePresence>
         {showModal && <Modal contact onClose={toggleModal} />}
       </AnimatePresence>
-      <main>{props.children}</main>
+      <main>{children}</main>
     </>
   );
 };

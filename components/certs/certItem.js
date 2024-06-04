@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import classes from './certItem.module.scss';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 
+// Helper function to format the date
 const formatDate = (date, status) => {
   if (date === 'Never') {
     return <span className={classes.expires}><strong>{status}:</strong> Never</span>;
@@ -18,17 +19,21 @@ const formatDate = (date, status) => {
   return <span className={status === 'Expired' ? classes.expired : classes.expires}><strong>{status}:</strong> {formattedDate}</span>;
 };
 
-const CertItem = (props) => {
-  const { title, excerpt, date, slug, image } = props.cert;
+const CertItem = ({ cert: { title, excerpt, date, image } }) => {
+  // Memoize current date to avoid recalculating on each render
+  const currentDate = useMemo(() => new Date(), []);
+  // Memoize expiration date to avoid recalculating on each render
+  const expirationDate = useMemo(() => new Date(date), [date]);
 
-  const currentDate = new Date();
-  const expirationDate = new Date(date);
-
+  // Determine the status of the date
   const dateStatus = expirationDate < currentDate ? 'Expired' : 'Expires';
-  const expiresDate = formatDate(date, dateStatus);
+  // Memoize the formatted date to avoid recalculating on each render
+  const expiresDate = useMemo(() => formatDate(date, dateStatus), [date, dateStatus]);
 
-  const linkPath = `/images/certs/${image}`;
+  // Memoize the link path to avoid recalculating on each render
+  const linkPath = useMemo(() => `/images/certs/${image}`, [image]);
 
+  // Initialize AOS library on component mount
   useEffect(() => {
     Aos.init({ duration: 500 });
   }, []);

@@ -2,9 +2,8 @@ import Head from 'next/head';
 import { getAllCerts } from '../../util/certs-util';
 import AllCerts from '../../components/certs/allCerts';
 
-const Certs = (props) => {
-  const { certs } = props;
-
+// Refactored Certs component to use destructuring directly in the function parameter
+const Certs = ({ certs }) => {
   return (
     <>
       <Head>
@@ -20,8 +19,9 @@ const Certs = (props) => {
 };
 export default Certs;
 
-export const getStaticProps = (context) => {
-  const allCerts = getAllCerts();
+// Refactored getStaticProps to use async/await for better readability and handling of asynchronous operations
+export const getStaticProps = async () => {
+  const allCerts = await getAllCerts();
 
   return {
     props: {

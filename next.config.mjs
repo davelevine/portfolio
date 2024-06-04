@@ -7,8 +7,8 @@ import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-// Define runtime caching strategies here
-const runtimeCaching = [
+// Refactored runtime caching strategies into a separate function for better readability and maintainability
+const getRuntimeCaching = () => [
   {
     // Cache JavaScript files
     urlPattern: /\.(js)$/,
@@ -81,7 +81,7 @@ const pwaOptions = {
   register: true,
   skipWaiting: true,
   disable: !isProduction,
-  runtimeCaching,
+  runtimeCaching: getRuntimeCaching(), // Refactored to use the new function
   scope: '/',
   dynamicStartUrl: true,
   reloadOnOnline: false,

@@ -4,43 +4,32 @@ import matter from 'gray-matter';
 
 const certsDirectory = path.join(process.cwd(), 'data/certs');
 
-export const getCertsFiles = () => {
-  return fs.readdirSync(certsDirectory);
-};
+// Refactored to use arrow function with implicit return for brevity
+export const getCertsFiles = () => fs.readdirSync(certsDirectory);
+
+// Refactored to extract common logic into a helper function
+const getFilePath = (certSlug) => path.join(certsDirectory, `${certSlug}.md`);
 
 export const getCertData = (certIdentifier) => {
   const certSlug = certIdentifier.replace(/\.md$/, ''); // removes the file extension
-  const filePath = path.join(certsDirectory, `${certSlug}.md`);
+  const filePath = getFilePath(certSlug); // Reused helper function
   const fileContent = fs.readFileSync(filePath, 'utf-8');
   const { data, content } = matter(fileContent);
 
-  const certData = {
+  return {
     slug: certSlug,
     ...data,
     content,
   };
-
-  return certData;
 };
 
+// Refactored to use array destructuring and implicit return
 export const getAllCerts = () => {
   const certFiles = getCertsFiles();
-
-  const allCerts = certFiles.map((certFile) => {
-    return getCertData(certFile);
-  });
-
-  const sortedCerts = allCerts.sort((certA, certB) =>
-    certA.date > certB.date ? -1 : 1
-  );
-
-  return sortedCerts;
+  return certFiles
+    .map(getCertData)
+    .sort((certA, certB) => (certA.date > certB.date ? -1 : 1));
 };
 
-export const getFeaturedCerts = () => {
-  const allCerts = getAllCerts();
-
-  const featuredCerts = allCerts.filter((cert) => cert.isFeatured);
-
-  return featuredCerts;
-};
+// Refactored to use implicit return and arrow function
+export const getFeaturedCerts = () => getAllCerts().filter(cert => cert.isFeatured);

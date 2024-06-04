@@ -1,7 +1,12 @@
-button {
+// Refactored to use a mixin for button styles to avoid repetition
+@mixin button-styles {
   cursor: pointer;
   outline: none;
   border: none;
+}
+
+button {
+  @include button-styles;
 }
 
 .btn {
@@ -23,12 +28,16 @@ button {
   }
 }
 
+.btn-outlined, .btn-filled, .btn-filled-project {
+  border: 1px solid var(--background-secondary);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
 .btn-outlined {
   color: var(--background);
   background-color: var(--navbar-primary);
-  border: 1px solid var(--button-border);
-  font-size: 1rem;
-  font-weight: 700;
+  border-color: var(--button-border); // Refactored to use border-color for consistency
 
   &:hover {
     background-color: var(--background-secondary);
@@ -38,9 +47,6 @@ button {
 .btn-filled {
   color: var(--navbar-primary);
   background-color: transparent;
-  border: 1px solid var(--background-secondary);
-  font-size: 1rem;
-  font-weight: 700;
 
   &:hover {
     background-color: var(--background-secondary);
@@ -57,9 +63,6 @@ button {
 .btn-filled-project {
   color: var(--navbar-primary);
   background-color: transparent;
-  border: 1px solid var(--background-secondary);
-  font-size: 1rem;
-  font-weight: 700;
   margin-top: 10px; /* Default margin */
 
   &:hover {

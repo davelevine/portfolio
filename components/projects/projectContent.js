@@ -13,6 +13,22 @@ import 'swiper/css/navigation';
 
 import classes from './projectContent.module.scss';
 
+// Refactored to extract the custom renderers outside the component to avoid re-creating the object on each render
+const getCustomRenderers = (currentTheme) => ({
+  code({ className, children }) {
+    const language = className.split('-')[1];
+    return (
+      <SyntaxHighlighter
+        showLineNumbers
+        language={language}
+        style={currentTheme === 'dark' ? atomDark : solarizedlight}
+      >
+        {children}
+      </SyntaxHighlighter>
+    );
+  },
+});
+
 const ProjectContent = ({ project, currentTheme }) => {
   const {
     content,
@@ -25,21 +41,23 @@ const ProjectContent = ({ project, currentTheme }) => {
     slug,
   } = project;
 
-  const customRenderers = {
-    code(code) {
-      const { className, children } = code;
-      const language = className.split('-')[1];
+  const customRenderers = getCustomRenderers(currentTheme);
 
-      return (
-        <SyntaxHighlighter
-          showLineNumbers
-          language={language}
-          style={currentTheme === 'dark' ? atomDark : solarizedlight}
-        >
-          {children}
-        </SyntaxHighlighter>
-      );
-    },
+  // Refactored to extract the image rendering logic into a separate function
+  const renderImage = (image) => {
+    const isSpecialImage = image === 'portfolio.webp' || image === 'start-page.webp';
+    const width = isSpecialImage ? 850 : 700;
+    const height = isSpecialImage ? 500 : 480;
+
+    return (
+      <Image
+        src={`/images/projects/${image}`}
+        width={width}
+        height={height}
+        alt=''
+        loading='eager'
+      />
+    );
   };
 
   return (
@@ -76,24 +94,7 @@ const ProjectContent = ({ project, currentTheme }) => {
 
           {image && (
             <div className={classes.projectImage}>
-              {(image === 'portfolio.webp' || image === 'start-page.webp') && (
-                <Image
-                  src={`/images/projects/${image}`}
-                  width={850}
-                  height={500}
-                  alt=''
-                  loading='eager'
-                />
-              )}
-              {image !== 'portfolio.webp' && image !== 'start-page.webp' && (
-                <Image
-                  src={`/images/projects/${image}`}
-                  width={700}
-                  height={480}
-                  alt=''
-                  loading='eager'
-                />
-              )}
+              {renderImage(image)}
             </div>
           )}
 

@@ -6,17 +6,25 @@ function ContactModal(props) {
   const [state, handleSubmit] = useForm('xzbloaed'); // TODO: replaceWithYourOwn
   console.log(state);
 
-  if (state && state.submitting) {
-    return (
-      <div className={classes.modal}>
-        <div className={`${classes.contactModal} ${classes.contactModalConfirmation}`}>
-          <div>
-            <h2>Sending Message</h2>
-            <p>
-              Just a sec...
-              <br />
-              Also feel free to contact me via Linkedin or use my PGP Key:
-            </p>
+  // Refactored common modal content into a separate function for reusability and clarity
+  const renderModalContent = (title, message, showLinks = true) => (
+    <div className={classes.modal}>
+      <div className={`${classes.contactModal} ${classes.contactModalConfirmation}`}>
+        <a href='#!' className={classes.close} onClick={props.onClose}>
+          <i className='fa fa-xmark'></i>
+        </a>
+        <div>
+          <h2>{title}</h2>
+          <p>
+            {message}
+            {showLinks && (
+              <>
+                <br />
+                Also feel free to contact me via Linkedin or PGP Key:
+              </>
+            )}
+          </p>
+          {showLinks && (
             <div className={classes.contactLinks}>
               <a href='https://www.linkedin.com/in/iamdavelevine' target='_blank' rel='noreferrer'>
                 <i className='fab fa-linkedin'></i>
@@ -25,10 +33,14 @@ function ContactModal(props) {
                 <i className='fa fa-key'></i>
               </a>
             </div>
-          </div>
+          )}
         </div>
       </div>
-    );
+    </div>
+  );
+
+  if (state && state.submitting) {
+    return renderModalContent('Sending Message', 'Just a sec...');
   }
 
   if (state && state.succeeded) {
@@ -72,44 +84,7 @@ function ContactModal(props) {
   }
 
   if (state && state.errors && state.errors.length > 0) {
-    return (
-      <div className={classes.modal}>
-        <div className={`${classes.contactModal} ${classes.contactModalConfirmation}`}>
-          <a href='#!' className={classes.close} onClick={props.onClose}>
-            <i className='fa fa-xmark'></i>
-          </a>
-          <div>
-            <h2>Error!</h2>
-            <p>
-              {state.errors[0].message}
-              <br />
-              <br />
-              Also feel free to contact me via Linkedin or PGP Key:
-            </p>
-            <div className={classes.contactLinks}>
-              <a href='https://www.linkedin.com/in/iamdavelevine' target='_blank' rel='noreferrer'>
-                <i className='fab fa-linkedin'></i>
-              </a>
-              <a href='/assets/dave.levine.io-pgp-key-pub.asc' target='_blank' rel='noreferrer'>
-                <i className='fa fa-key'></i>
-              </a>
-            </div>
-          </div>
-
-          <div className={classes.confirmationButton}>
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className='btn btn-filled'
-              onClick={props.onClose}
-              aria-label="Close Error" // Accessible name for the button
-            >
-              OK
-            </motion.button>
-          </div>
-        </div>
-      </div>
-    );
+    return renderModalContent('Error!', state.errors[0].message);
   }
 
   return (

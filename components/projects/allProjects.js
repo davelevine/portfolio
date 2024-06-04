@@ -1,40 +1,40 @@
 import classes from './allProjects.module.scss';
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ProjectItem from './projectItem';
 
-const AllProjects = (props) => {
-  const { projects } = props;
+const AllProjects = ({ projects }) => {
   const [filter, setFilter] = useState('all');
   const [activeButton, setActiveButton] = useState('all');
 
   // Memoize selectedTechs
   const selectedTechs = useMemo(() => {
-    const techs = [];
-    projects.forEach((project) => {
-      const projectTechs = project.tech;
-      if (Array.isArray(projectTechs)) {
-        projectTechs.forEach((tech) => {
-          if (!techs.includes(tech)) techs.push(tech);
-        });
+    const techs = new Set();
+    projects.forEach(({ tech }) => {
+      if (Array.isArray(tech)) {
+        tech.forEach((t) => techs.add(t));
       }
     });
-    return techs.sort();
+    return Array.from(techs).sort();
   }, [projects]);
 
+  // Update document title
   useEffect(() => {
     document.title = 'Dave Levine - Projects';
-  }, [filter, projects]);
+  }, []);
 
-  const handleClick = (tech) => {
+  // Handle button click
+  const handleClick = useCallback((tech) => {
     setFilter(tech);
     setActiveButton(tech);
-  };
+  }, []);
 
-  const filteredProjects =
-    filter === 'all'
+  // Filter projects based on selected tech
+  const filteredProjects = useMemo(() => {
+    return filter === 'all'
       ? projects.sort((a, b) => b.isFeatured - a.isFeatured)
-      : projects.filter((project) => project.tech.includes(filter));
+      : projects.filter(({ tech }) => tech.includes(filter));
+  }, [filter, projects]);
 
   return (
     <div className={classes.projectsGallery}>
@@ -49,11 +49,7 @@ const AllProjects = (props) => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => handleClick('all')}
-              className={
-                activeButton === 'all'
-                  ? 'btn btn-outlined sm active'
-                  : 'btn btn-outlined sm'
-              }
+              className={`btn btn-outlined sm ${activeButton === 'all' ? 'active' : ''}`}
             >
               All
             </motion.button>
@@ -62,11 +58,7 @@ const AllProjects = (props) => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => handleClick(tech)}
-                className={
-                  activeButton === tech
-                    ? 'btn btn-outlined sm active'
-                    : 'btn btn-outlined sm'
-                }
+                className={`btn btn-outlined sm ${activeButton === tech ? 'active' : ''}`}
                 key={tech}
               >
                 {tech}

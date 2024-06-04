@@ -1,5 +1,5 @@
 import classes from './allCerts.module.scss';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import CertItem from './certItem';
 
@@ -7,29 +7,33 @@ const AllCerts = ({ certs }) => {
   const [filter, setFilter] = useState('all');
   const [activeButton, setActiveButton] = useState('all');
 
-  const selectedCerts = new Set();
+  // Extract unique techs from certs and sort them
+  const sortedUniqueTechs = useMemo(() => {
+    const selectedCerts = new Set();
+    certs.forEach((cert) => {
+      const techs = cert.tech;
+      if (Array.isArray(techs)) {
+        techs.forEach((tech) => {
+          selectedCerts.add(tech);
+        });
+      }
+    });
+    return [...selectedCerts].sort();
+  }, [certs]);
 
-  certs.forEach((Cert) => {
-    const techs = Cert.tech;
-    if (Array.isArray(techs)) {
-      techs.forEach((tech) => {
-        selectedCerts.add(tech);
-      });
-    }
-  });
-
-  const sortedUniqueTechs = [...selectedCerts].sort();
-
-    useEffect(() => {
+  // Update document title on filter or certs change
+  useEffect(() => {
     document.title = 'Dave Levine - Certs';
   }, [filter, certs]);
 
-  const handleClick = (tech) => {
+  // Handle button click to set filter and active button
+  const handleClick = useCallback((tech) => {
     setFilter(tech);
     setActiveButton(tech);
-  };
+  }, []);
 
-  const commonSortLogic = (a, b) => {
+  // Common sorting logic for certs
+  const commonSortLogic = useCallback((a, b) => {
     const isALegacy = a.title.includes('(Legacy)');
     const isBLegacy = b.title.includes('(Legacy)');
 
@@ -53,11 +57,14 @@ const AllCerts = ({ certs }) => {
         return b.isFeatured - a.isFeatured;
       }
     }
-  };
+  }, []);
 
-  const filteredCerts = filter === 'all'
-    ? certs.slice().sort(commonSortLogic)
-    : certs.filter((cert) => cert.tech.includes(filter)).sort(commonSortLogic);
+  // Filter and sort certs based on the selected filter
+  const filteredCerts = useMemo(() => {
+    return filter === 'all'
+      ? certs.slice().sort(commonSortLogic)
+      : certs.filter((cert) => cert.tech.includes(filter)).sort(commonSortLogic);
+  }, [certs, filter, commonSortLogic]);
 
   return (
     <section className={classes.blog}>

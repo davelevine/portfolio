@@ -2,7 +2,7 @@
 import classes from './hero.module.scss';
 import Image from 'next/legacy/image';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Modal from '../layout/modal/modal';
 import Aos from 'aos'; // Library for scroll animations
 import 'aos/dist/aos.css'; // Styles for AOS animations
@@ -20,29 +20,28 @@ const Hero = () => {
   const [isMobile, setIsMobile] = useState(false); // State to determine mobile/desktop
 
   // Function to handle button click for redirecting to a resume file
-  function buttonHandler() {
+  const buttonHandler = useCallback(() => {
     window.location.href = RESUME_FILE_PATH;
-  }
+  }, []);
 
   // Function to handle button click for redirecting to a PGP key file
-  function pgpKeyHandler() {
+  const pgpKeyHandler = useCallback(() => {
     window.location.href = PGP_KEY_PATH;
-  }
+  }, []);
 
   // Function to open the modal
-  function showModalHandler() {
+  const showModalHandler = useCallback(() => {
     setShowModal(true);
-  }
+  }, []);
 
   // Function to close the modal
-  function closeModalHandler() {
+  const closeModalHandler = useCallback(() => {
     setShowModal(false);
-  }
+  }, []);
 
   // Effects for managing body overflow when the modal is open or closed
   useEffect(() => {
-    if (showModal) document.body.style.overflow = 'hidden';
-    if (!showModal) document.body.style.overflow = 'unset';
+    document.body.style.overflow = showModal ? 'hidden' : 'unset';
   }, [showModal]);
 
   // Initialize the AOS library with specified settings
@@ -53,9 +52,9 @@ const Hero = () => {
   // Detect if it's a mobile device on the client side
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      function updateIsMobile() {
+      const updateIsMobile = () => {
         setIsMobile(window.innerWidth <= 767);
-      }
+      };
 
       // Initial check
       updateIsMobile();
@@ -146,7 +145,7 @@ const Hero = () => {
 
           <div className={`${classes.columnRight} ${classes.profilePic}`}>
             {/* Conditionally render different images based on viewport width */}
-            {isMobile && (
+            {isMobile ? (
               <Image
                 src={MOBILE_PROFILE_IMAGE_PATH}
                 width={230}
@@ -157,8 +156,7 @@ const Hero = () => {
                 loading="eager"
                 onError={handleImageError}
               />
-            )}
-            {!isMobile && (
+            ) : (
               <Image
                 src={DESKTOP_PROFILE_IMAGE_PATH}
                 width={460}
@@ -192,4 +190,3 @@ const Hero = () => {
 
 // Export the Hero component
 export default Hero;
-
