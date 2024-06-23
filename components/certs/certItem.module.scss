@@ -18,15 +18,15 @@
     color: var(--navbar-primary);
   }
 
-  .expires { /* New class for "Expires" */
+  .expires {
     strong {
-      color: var(--accent); /* Make "Expires" red */
+      color: var(--accent);
     }
   }
 
-  .expired { /* New class for "Expires" */
+  .expired {
     strong {
-      color: var(--accent); /* Make "Expires" red */
+      color: var(--accent);
     }
   }
 
@@ -35,8 +35,14 @@
     flex-direction: row;
     margin-top: auto;
 
-    a {
+    button {
       color: var(--accent);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: inherit;
+      text-decoration: none;
+      padding: 0;
     }
   }
 }
@@ -44,5 +50,93 @@
 @media only screen and (min-width: 768px) {
   .card {
     margin-bottom: unset;
+  }
+}
+
+/* Modal Styles */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--background-card);
+  padding: 0;
+  z-index: 1000;
+  width: 90%;
+  height: auto;
+  max-height: 95%;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  animation: fadeIn 0.5s ease-in-out;
+
+  @media (min-width: 768px) {
+    width: 70%;
+    max-height: 85%;
+  }
+
+  @media (min-width: 1024px) {
+    width: 60%;
+    max-height: 80%;
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 999;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.closeButton {
+  background: var(--background-card);
+  border: none;
+  font-size: 1.5rem;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    background-color: var(--background-secondary-hover);
+    transform: scale(1.1);
+  }
+
+  &:before {
+    content: '✕';
+    color: var(--text-primary);
+    font-weight: bold;
+  }
+}
+
+.certImage {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

@@ -1,8 +1,9 @@
-import Link from 'next/link';
+import { useState } from 'react';
 import classes from './certItem.module.scss';
 import { useEffect, useMemo } from 'react';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
+import Modal from 'react-modal';
 
 // Helper function to format the date
 const formatDate = (date, status) => {
@@ -20,6 +21,9 @@ const formatDate = (date, status) => {
 };
 
 const CertItem = ({ cert: { title, excerpt, date, image } }) => {
+  // State to manage lightbox visibility
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
   // Memoize current date to avoid recalculating on each render
   const currentDate = useMemo(() => new Date(), []);
   // Memoize expiration date to avoid recalculating on each render
@@ -38,6 +42,14 @@ const CertItem = ({ cert: { title, excerpt, date, image } }) => {
     Aos.init({ duration: 500 });
   }, []);
 
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
   return (
     <div className={classes.card} data-aos='zoom-in-up'>
       <div className={classes.cardContent}>
@@ -46,10 +58,20 @@ const CertItem = ({ cert: { title, excerpt, date, image } }) => {
         <p>{excerpt}</p>
       </div>
       <div className={classes.cardAction}>
-        <a href={linkPath} target="_blank" rel="noopener noreferrer">
+        <button onClick={openModal}>
           View certificate
-        </a>
+        </button>
       </div>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Certificate Image"
+        className={classes.modal}
+        overlayClassName={classes.overlay}
+      >
+        <button onClick={closeModal} className={classes.closeButton}></button>
+        <img src={linkPath} alt={`Certificate for ${title}`} className={classes.certImage} />
+      </Modal>
     </div>
   );
 };
