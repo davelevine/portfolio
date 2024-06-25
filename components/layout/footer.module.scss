@@ -22,6 +22,11 @@
       font-size: 2rem;
       margin: 0 5px;
       color: var(--text-secondary);
+      transition: color 0.3s; /* Smooth color transition */
+    }
+
+    i:hover {
+      color: var(--navbar-primary); /* Change color on hover */
     }
   }
 
