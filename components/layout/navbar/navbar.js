@@ -89,7 +89,9 @@ const Navbar = ({ theme, newTheme, children }) => {
                     initial={{ opacity: 0, y: -30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4 + index * 0.1 }}
-                    onClick={toggleNav}
+                    onClick={() => {
+                      if (window.innerWidth <= 768) toggleNav();
+                    }}
                     className={isLinkActive(path) ? classes.activeLink : ''}
                   >
                     {path.toUpperCase().replace('/', '') || 'HOME'}
@@ -104,7 +106,7 @@ const Navbar = ({ theme, newTheme, children }) => {
             <motion.button
               initial={{ opacity: 0, y: -30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.8 }}
               className={classes.icon}
               onClick={toggleModal}
               aria-label='Toggle Contact Modal'
@@ -149,5 +151,3 @@ const Navbar = ({ theme, newTheme, children }) => {
 
 // Export the Navbar component
 export default Navbar;
-
-

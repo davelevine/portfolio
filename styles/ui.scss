@@ -4,6 +4,7 @@
   background-color: var(--background);
   transition: background 1s;
   min-height: 100vh;
+  overflow: hidden; // Ensure content does not overflow the viewport
 }
 
 .app {
@@ -40,6 +41,7 @@
       height: 40px;
       border: 2px solid var(--border-card);
       border-radius: 25px;
+      overflow: hidden; // Ensure content does not overflow the icon
     }
 
     .iconScroll:before {
