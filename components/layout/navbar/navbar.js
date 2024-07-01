@@ -109,17 +109,19 @@ const Navbar = ({ theme, newTheme, children }) => {
               <i className={`fa ${showModal ? 'fa-envelope-open' : 'fa-envelope'}`}></i>
             </motion.button>
 
-            {/* Button to toggle between light and dark themes */}
-            <motion.button
-              initial={{ opacity: 0, y: -30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-              className={classes.icon}
-              onClick={setThemeHandler}
-              aria-label='Toggle Theme'
-            >
-              <ThemeToggle theme={theme} />
-            </motion.button>
+            {/* Container with fixed width for ThemeToggle */}
+            <div className={classes.themeToggleContainer}>
+              <motion.button
+                initial={{ opacity: 0, y: -30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7 }}
+                className={classes.icon}
+                onClick={setThemeHandler}
+                aria-label='Toggle Theme'
+              >
+                <ThemeToggle theme={theme} />
+              </motion.button>
+            </div>
 
             {/* Button to toggle the mobile menu */}
             <motion.div

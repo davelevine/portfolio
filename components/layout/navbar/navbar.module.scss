@@ -123,6 +123,13 @@
         height: 40px; /* Adjust the height for mobile devices */
       }
     }
+
+    .themeToggleContainer {
+      width: 40px; /* Fixed width for theme toggle */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }
 

@@ -8,9 +8,9 @@ const ThemeToggle = ({ theme }) => {
 
   // Define motion properties for the icon
   const motionProps = {
-    initial: { x: -25, y: 5, opacity: 1 },
-    animate: { x: 0, y: 0, opacity: 1 },
-    exit: { x: 25, y: 5, opacity: 0 },
+    initial: { opacity: 0, scale: 0.5 },
+    animate: { opacity: 1, scale: 1 },
+    exit: { opacity: 0, scale: 0.5 },
     transition: { ease: 'easeOut', duration: 0.4 },
   };
 
@@ -26,4 +26,3 @@ const ThemeToggle = ({ theme }) => {
 };
 
 export default ThemeToggle;
-
