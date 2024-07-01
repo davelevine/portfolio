@@ -1,4 +1,3 @@
-// Import statements
 import classes from './hero.module.scss';
 import Image from 'next/legacy/image';
 import Link from 'next/link';
@@ -36,7 +35,28 @@ const Hero = () => {
 
   // Effects for managing body overflow when the modal is open or closed
   useEffect(() => {
-    document.body.style.overflow = showModal ? 'hidden' : 'unset';
+    const calculateScrollbarWidth = () => {
+      const scrollDiv = document.createElement('div');
+      scrollDiv.style.width = '100px';
+      scrollDiv.style.height = '100px';
+      scrollDiv.style.overflow = 'scroll';
+      scrollDiv.style.position = 'absolute';
+      scrollDiv.style.top = '-9999px';
+      document.body.appendChild(scrollDiv);
+      const scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+      document.body.removeChild(scrollDiv);
+      return scrollbarWidth;
+    };
+
+    const scrollbarWidth = calculateScrollbarWidth();
+
+    if (showModal) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    } else {
+      document.body.style.overflow = 'unset';
+      document.body.style.paddingRight = '0px';
+    }
   }, [showModal]);
 
   // Initialize the AOS library with specified settings

@@ -1,4 +1,3 @@
-// Import required modules and components
 import classes from './navbar.module.scss';
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import Link from 'next/link';
@@ -44,9 +43,30 @@ const Navbar = ({ theme, newTheme, children }) => {
     };
   }, []);
 
-  // Effect to control body overflow when the modal is shown or hidden
+  // Effect to control body overflow and padding when the modal is shown or hidden
   useEffect(() => {
-    document.body.style.overflow = showModal ? 'hidden' : 'unset';
+    const calculateScrollbarWidth = () => {
+      const scrollDiv = document.createElement('div');
+      scrollDiv.style.width = '100px';
+      scrollDiv.style.height = '100px';
+      scrollDiv.style.overflow = 'scroll';
+      scrollDiv.style.position = 'absolute';
+      scrollDiv.style.top = '-9999px';
+      document.body.appendChild(scrollDiv);
+      const scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+      document.body.removeChild(scrollDiv);
+      return scrollbarWidth;
+    };
+
+    const scrollbarWidth = calculateScrollbarWidth();
+
+    if (showModal) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    } else {
+      document.body.style.overflow = 'unset';
+      document.body.style.paddingRight = '0px';
+    }
   }, [showModal]);
 
   // Effect to apply the sticky navbar on scroll
