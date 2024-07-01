@@ -1,5 +1,5 @@
 import classes from './navbar.module.scss';
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { AnimatePresence, motion, useCycle } from 'framer-motion';
 import Modal from '../../layout/modal/modal';
@@ -45,27 +45,10 @@ const Navbar = ({ theme, newTheme, children }) => {
 
   // Effect to control body overflow and padding when the modal is shown or hidden
   useEffect(() => {
-    const calculateScrollbarWidth = () => {
-      const scrollDiv = document.createElement('div');
-      scrollDiv.style.width = '100px';
-      scrollDiv.style.height = '100px';
-      scrollDiv.style.overflow = 'scroll';
-      scrollDiv.style.position = 'absolute';
-      scrollDiv.style.top = '-9999px';
-      document.body.appendChild(scrollDiv);
-      const scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
-      document.body.removeChild(scrollDiv);
-      return scrollbarWidth;
-    };
-
-    const scrollbarWidth = calculateScrollbarWidth();
-
     if (showModal) {
-      document.body.style.overflow = 'hidden';
-      document.body.style.paddingRight = `${scrollbarWidth}px`;
+      document.body.classList.add('modal-open');
     } else {
-      document.body.style.overflow = 'unset';
-      document.body.style.paddingRight = '0px';
+      document.body.classList.remove('modal-open');
     }
   }, [showModal]);
 

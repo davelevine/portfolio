@@ -44,3 +44,9 @@ h3,
 h4 {
   color: var(--text-secondary);
 }
+
+/* Adding modal-open class for body to manage scrollbar width */
+body.modal-open {
+  overflow: hidden;
+  padding-right: 15px; /* Adjust this value to match your scrollbar width */
+}
