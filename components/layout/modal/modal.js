@@ -1,3 +1,5 @@
+// modal.js
+
 import classes from './modal.module.scss';
 import { motion } from 'framer-motion';
 import React, { lazy, Suspense } from 'react';
@@ -10,10 +12,8 @@ const getDropInAnimation = () => ({
   visible: {
     y: '50vh',
     transition: {
-      duration: 0.1,
-      type: 'spring',
-      damping: 25,
-      stiffness: 500,
+      duration: 0.2, // Increased duration to slow down the animation
+      type: 'tween', // Changed to 'tween' to ensure smoother and slower animation
     },
   },
   exit: {
