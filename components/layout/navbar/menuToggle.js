@@ -14,10 +14,13 @@ const Path = ({ ...props }) => (
 
 // Refactored MenuToggle component for the mobile menu button
 const MenuToggle = ({ toggleNav }) => (
-  <button
+  <motion.button
     className={`${classes.icon} ${classes.iconMain}`}
     onClick={toggleNav}
     aria-label="Toggle Mobile Menu"
+    initial={{ opacity: 0, y: -30 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.4 }}
   >
     <svg width='45' height='45' viewBox='0 0 23 23'>
       {/* Path components for the SVG paths */}
@@ -42,7 +45,7 @@ const MenuToggle = ({ toggleNav }) => (
         }}
       />
     </svg>
-  </button>
+  </motion.button>
 );
 
 export default MenuToggle;

@@ -149,3 +149,5 @@ const Navbar = ({ theme, newTheme, children }) => {
 
 // Export the Navbar component
 export default Navbar;
+
+
