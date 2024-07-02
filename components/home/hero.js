@@ -61,7 +61,7 @@ const Hero = () => {
 
   // Initialize the AOS library with specified settings
   useEffect(() => {
-    Aos.init({ duration: 500 }); // Initialize scroll animations
+    Aos.init({ duration: 800 }); // Adjusted scroll animations speed
   }, []);
 
   // Detect if it's a mobile device on the client side
@@ -105,7 +105,7 @@ const Hero = () => {
               </span>!{' '}
             </h2>
             <h1 data-aos='fade-right'>Solutions Engineer</h1>
-            <h3 data-aos='fade-left' data-aos-delay='150'>
+            <h3 data-aos='fade-left' data-aos-delay='200'>
               I design and implement systems
               <span className={classes.punctuation}><b>.</b></span>
               <span>
@@ -120,19 +120,19 @@ const Hero = () => {
                 <i
                   className='fab fa-linkedin'
                   data-aos='flip-up'
-                  data-aos-delay='50'></i>
+                  data-aos-delay='100'></i>
               </a>{' '}
               <a href='https://kb.levine.io' target='_blank' rel='noreferrer' aria-label="Knowledge Base">
                 <i
                   className='fas fa-globe'
                   data-aos='flip-up'
-                  data-aos-delay='150'></i>
+                  data-aos-delay='200'></i>
               </a>
               <a href={PGP_KEY_PATH} target='_blank' rel='noreferrer' aria-label="PGP Key">
                 <i
                   className='fa fa-key'
                   data-aos='flip-up'
-                  data-aos-delay='200'></i>
+                  data-aos-delay='300'></i>
               </a>
             </div>
             <div className={classes.ctaButtons}>
@@ -143,6 +143,7 @@ const Hero = () => {
                 data-aos='fade-up'
                 onClick={() => handleButtonClick(RESUME_FILE_PATH)}
                 aria-label="My Resume"
+                transition={{ duration: 1 }} // Adjusted transition speed
               >
                 MY RESUME
               </motion.button>
@@ -152,6 +153,7 @@ const Hero = () => {
                 data-aos='fade-down'
                 onClick={showModalHandler}
                 aria-label="Contact Me"
+                transition={{ duration: 1 }} // Adjusted transition speed
               >
                 CONTACT
               </motion.button>

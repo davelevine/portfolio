@@ -119,7 +119,7 @@ const Navbar = ({ theme, newTheme, children }) => {
               <motion.button
                 initial={{ opacity: 0, y: -30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7 }}
+                transition={{ duration: 0.9 }}
                 className={classes.icon}
                 onClick={setThemeHandler}
                 aria-label='Toggle Theme'
