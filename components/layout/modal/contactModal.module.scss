@@ -13,7 +13,8 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-
+  padding-bottom: 3rem; /* Added more empty space at the bottom */
+  
   .close {
     position: absolute;
     right: 20px;
@@ -97,6 +98,12 @@
       margin-bottom: unset;
     }
   }
+
+  @media only screen and (max-width: 767px) {
+    min-height: 500px;
+    top: 45%;
+    transform: translate(-50%, -55%);
+  }
 }
 
 .contactLinks {
@@ -121,4 +128,3 @@
     }
   }
 }
-
