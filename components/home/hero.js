@@ -61,7 +61,7 @@ const Hero = () => {
 
   // Initialize the AOS library with specified settings
   useEffect(() => {
-    Aos.init({ duration: 800 }); // Adjusted scroll animations speed
+    Aos.init({ duration: 550 }); // Adjusted scroll animations speed to match about.js
   }, []);
 
   // Detect if it's a mobile device on the client side
@@ -143,7 +143,7 @@ const Hero = () => {
                 data-aos='fade-up'
                 onClick={() => handleButtonClick(RESUME_FILE_PATH)}
                 aria-label="My Resume"
-                transition={{ duration: 1 }} // Adjusted transition speed
+                transition={{ duration: 0.55 }} // Adjusted transition speed to match about.js
               >
                 MY RESUME
               </motion.button>
@@ -153,7 +153,7 @@ const Hero = () => {
                 data-aos='fade-down'
                 onClick={showModalHandler}
                 aria-label="Contact Me"
-                transition={{ duration: 1 }} // Adjusted transition speed
+                transition={{ duration: 0.55 }} // Adjusted transition speed to match about.js
               >
                 CONTACT
               </motion.button>

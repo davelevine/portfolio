@@ -7,9 +7,9 @@ import 'aos/dist/aos.css'; // Styles for AOS animations
 
 // Define the About component
 const About = () => {
-  // Initialize AOS (Animate on Scroll) with a duration of 500 milliseconds
+  // Initialize AOS (Animate on Scroll) with a duration of 700 milliseconds
   useEffect(() => {
-    Aos.init({ duration: 800 }); // Initialize scroll animations
+    Aos.init({ duration: 550 }); // Initialize scroll animations
 
     // Update document title
     document.title = 'Dave Levine - About Me';
@@ -56,5 +56,3 @@ const About = () => {
 
 // Export the About component
 export default About;
-
-
