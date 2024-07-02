@@ -20,7 +20,7 @@ const MenuToggle = ({ toggleNav }) => (
     aria-label="Toggle Mobile Menu"
     initial={{ opacity: 0, y: -30 }}
     animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.4 }}
+    transition={{ duration: 0.7 }}
   >
     <svg width='45' height='45' viewBox='0 0 23 23'>
       {/* Path components for the SVG paths */}
