@@ -12,8 +12,8 @@ const getDropInAnimation = () => ({
   visible: {
     y: '50vh',
     transition: {
-      duration: 0.2, // Increased duration to slow down the animation
-      type: 'tween', // Changed to 'tween' to ensure smoother and slower animation
+      duration: 0.3, // Increased duration to slow down the animation
+      type: 'circInOut', // Changed to 'circInOut' to ensure smoother and slower animation
     },
   },
   exit: {
