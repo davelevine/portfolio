@@ -16,9 +16,3 @@ Third party static contact form (formspree):
 ```js
 
 const [state, handleSubmit] = useForm('123xyz'); // replaceWithYourOwn
-
-```
-
-## License
-
-MIT
