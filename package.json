@@ -14,7 +14,7 @@
     "aos": "^3.0.0-beta.6",
     "compression-webpack-plugin": "^11.0.0",
     "css-minimizer-webpack-plugin": "^7.0.0",
-    "framer-motion": "^6.4.3",
+    "framer-motion": "^11.0.0",
     "gray-matter": "^4.0.3",
     "next": "^14.0.1",
     "next-compose-plugins": "^2.2.1",

@@ -15,7 +15,7 @@ const ThemeToggle = ({ theme }) => {
   };
 
   return (
-    <AnimatePresence exitBeforeEnter initial={false}>
+    <AnimatePresence mode="wait">
       <motion.i
         className={`fa ${iconClass}`}
         key={iconKey}
