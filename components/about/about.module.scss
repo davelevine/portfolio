@@ -1,6 +1,10 @@
 /* Styles for the .about section */
 .about {
   padding: 90px 15px; /* Add padding to the section */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh; /* Ensure the section takes up the full viewport height */
 
   /* Styles for links within the section */
   a {
@@ -10,7 +14,6 @@
 
   h2 {
     font-size: 2.5rem; /* Default font size for mobile */
-
     background: var(--text-gradient);
     -webkit-background-clip: text;
     background-clip: text;
@@ -131,3 +134,7 @@
     }
   }
 }
+
+
+
+
