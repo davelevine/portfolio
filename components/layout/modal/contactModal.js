@@ -1,8 +1,10 @@
+// contactModal.js
+
 import classes from './contactModal.module.scss';
 import { useForm, ValidationError } from '@formspree/react';
 import { motion } from 'framer-motion';
 
-function ContactModal(props) {
+function ContactModal({ onClose, ...props }) {
   const [state, handleSubmit] = useForm('xzbloaed'); // TODO: replaceWithYourOwn
   console.log(state);
 
@@ -10,7 +12,7 @@ function ContactModal(props) {
   const renderModalContent = (title, message, showLinks = true) => (
     <div className={classes.modal}>
       <div className={`${classes.contactModal} ${classes.contactModalConfirmation}`}>
-        <a href='#!' className={classes.close} onClick={props.onClose}>
+        <a href='#!' className={classes.close} onClick={onClose}>
           <i className='fa fa-xmark'></i>
         </a>
         <div>
@@ -47,7 +49,7 @@ function ContactModal(props) {
     return (
       <div className={classes.modal}>
         <div className={`${classes.contactModal} ${classes.contactModalConfirmation}`}>
-          <a href='#!' className={classes.close} onClick={props.onClose}>
+          <a href='#!' className={classes.close} onClick={onClose}>
             <i className='fa fa-xmark'></i>
           </a>
           <div>
@@ -72,7 +74,7 @@ function ContactModal(props) {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               className='btn btn-filled'
-              onClick={props.onClose}
+              onClick={onClose}
               aria-label="Close Confirmation" // Accessible name for the button
             >
               OK
@@ -90,7 +92,7 @@ function ContactModal(props) {
   return (
     <div className={classes.modal}>
       <div className={classes.contactModal}>
-        <a href='#!' className={classes.close} onClick={props.onClose}>
+        <a href='#!' className={classes.close} onClick={onClose}>
           <i className='fa fa-xmark'></i>
         </a>
 
@@ -139,5 +141,3 @@ function ContactModal(props) {
 }
 
 export default ContactModal;
-
-
