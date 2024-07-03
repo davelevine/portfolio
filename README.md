@@ -16,3 +16,11 @@ Third party static contact form (formspree):
 ```js
 
 const [state, handleSubmit] = useForm('123xyz'); // replaceWithYourOwn
+
+````
+
+## Attribution and Disclaimer
+
+This project is a modified version of the [portfolio](https://github.com/renebitter/portfolio) repository, originally created and owned by [Rene Bitter](https://github.com/renebitter). The original project does not have an explicit license.
+
+While the appearance of this site resembles the original, the code has been extensively altered and customized for my personal, non-commercial use as a portfolio website. I do not claim any ownership or rights over the original project - those remain with the original copyright holder.
