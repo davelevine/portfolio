@@ -18,7 +18,7 @@ const MenuToggle = ({ toggleNav }) => (
     className={`${classes.icon} ${classes.iconMain}`}
     onClick={toggleNav}
     aria-label="Toggle Mobile Menu"
-    initial={{ opacity: 0, y: -30 }}
+    initial={{ opacity: 0, y: -100 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.7 }}
   >

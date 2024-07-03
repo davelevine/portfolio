@@ -86,9 +86,9 @@ const Navbar = ({ theme, newTheme, children }) => {
                 <Link href={path} passHref legacyBehavior key={path}>
                   <motion.a
                     style={{ cursor: 'pointer' }}
-                    initial={{ opacity: 0, y: -30 }}
+                    initial={{ opacity: 0, y: -100 }} // Start even higher up
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4 + index * 0.1 }}
+                    transition={{ duration: 0.5 + index * 0.075 }}
                     onClick={() => {
                       if (window.innerWidth <= 768) toggleNav();
                     }}
@@ -104,9 +104,9 @@ const Navbar = ({ theme, newTheme, children }) => {
           <div className={classes.navContainer}>
             {/* Button to toggle the contact modal */}
             <motion.button
-              initial={{ opacity: 0, y: -30 }}
+              initial={{ opacity: 0, y: -100 }} // Start even higher up
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.7 }} // Adjusted duration to sync with hero.js
               className={classes.icon}
               onClick={toggleModal}
               aria-label='Toggle Contact Modal'
@@ -117,9 +117,9 @@ const Navbar = ({ theme, newTheme, children }) => {
             {/* Container with fixed width for ThemeToggle */}
             <div className={classes.themeToggleContainer}>
               <motion.button
-                initial={{ opacity: 0, y: -30 }}
+                initial={{ opacity: 0, y: -100 }} // Start even higher up
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9 }}
+                transition={{ duration: 0.75 }} // Adjusted duration to sync with hero.js
                 className={classes.icon}
                 onClick={setThemeHandler}
                 aria-label='Toggle Theme'
@@ -151,3 +151,4 @@ const Navbar = ({ theme, newTheme, children }) => {
 
 // Export the Navbar component
 export default Navbar;
+

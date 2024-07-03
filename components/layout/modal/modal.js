@@ -5,19 +5,19 @@ import { motion } from 'framer-motion';
 import React, { lazy, Suspense } from 'react';
 
 // Refactored animation settings into a separate function for reusability and clarity
-const getDropInAnimation = () => ({
+const getFadeInAnimation = () => ({
   hidden: {
-    y: '-100vh',
+    opacity: 0,
   },
   visible: {
-    y: '50vh',
+    opacity: 1,
     transition: {
-      duration: 0.3, // Increased duration to slow down the animation
-      type: 'circInOut', // Changed to 'circInOut' to ensure smoother and slower animation
+      duration: 0.3, // Duration for the fade-in animation
+      type: 'easeInOut', // Smooth easing for the fade-in animation
     },
   },
   exit: {
-    y: '150vh',
+    opacity: 0,
   },
 });
 
@@ -26,7 +26,7 @@ const ContactModalDynamic = lazy(() => import('./contactModal'));
 
 const Modal = ({ contact, onClose, ...props }) => {
   // Destructured props for better readability
-  const dropIn = getDropInAnimation();
+  const fadeIn = getFadeInAnimation();
 
   return (
     <>
@@ -39,7 +39,7 @@ const Modal = ({ contact, onClose, ...props }) => {
           onClick={onClose}>
           <motion.div
             onClick={(e) => e.stopPropagation()}
-            variants={dropIn}
+            variants={fadeIn}
             initial='hidden'
             animate='visible'
             exit='exit'>
@@ -55,3 +55,4 @@ const Modal = ({ contact, onClose, ...props }) => {
 };
 
 export default Modal;
+

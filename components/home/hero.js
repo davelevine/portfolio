@@ -187,15 +187,6 @@ const Hero = () => {
             )}
           </div>
         </div>
-        <div className='iconScrollContainer'>
-          <Link href='/about' aria-label="Jump to About Section">
-            {/* Scroll-to section link with data-aos animation */}
-            <div
-              className='iconScroll'
-              data-aos='fade-down'
-              data-aos-offset='50'></div>
-          </Link>
-        </div>
       </div>
       <AnimatePresence>
         {/* Display the modal when showModal is true */}
