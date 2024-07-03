@@ -1,6 +1,6 @@
 /* Define styles for elements with the "greetings" class */
 .greetings {
-  padding: 25px 15px 50px; /* Padding for the entire container */
+  padding: 25px 15px 25px; /* Reduced bottom padding to account for removed footer */
 
   /* Define styles for elements with the "row" class inside the "greetings" container */
   .row {
@@ -172,12 +172,12 @@
   /* Styles for screens with a minimum width of 768px */
   @media only screen and (min-width: 768px) {
     padding: 100px 25px; /* Padding for larger screens */
-    height: 100vh; /* Occupy the full viewport height */
-    margin-bottom: 5%;
+    height: calc(100vh - 50px); /* Reduced height to account for removed footer */
+    margin-bottom: 0; /* Remove bottom margin */
 
     /* Styles for the element with the class "container" */
     .container {
-      height: 105%; /* Slightly taller than the parent container */
+      height: 100%; /* Adjusted height to fit within the new hero size */
       max-width: 1200px;
       margin: auto;
       display: flex;
@@ -246,3 +246,5 @@
     }
   }
 }
+
+
