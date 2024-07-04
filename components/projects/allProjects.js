@@ -4,6 +4,26 @@ import { motion, AnimatePresence } from 'framer-motion';
 import ProjectItem from './projectItem';
 import { useInView } from 'react-intersection-observer';
 
+const ProjectItemWithAnimation = ({ project }) => {
+  const [ref, inView] = useInView({
+    triggerOnce: false,
+    threshold: 0.1, // Trigger when 10% of the item is visible
+  });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 100, scale: 0.5 }}
+      animate={inView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 100, scale: 0.5 }}
+      exit={{ opacity: 0, y: -100, scale: 0.5 }}
+      transition={{ duration: 0.4, ease: "easeInOut" }}
+      style={{ display: 'grid' }}
+    >
+      <ProjectItem project={project} />
+    </motion.div>
+  );
+};
+
 const AllProjects = ({ projects }) => {
   const [filter, setFilter] = useState('all');
   const [activeButton, setActiveButton] = useState('all');
@@ -42,6 +62,11 @@ const AllProjects = ({ projects }) => {
     threshold: 0.1, // Trigger when 10% of the item is visible
   });
 
+  console.log(`Page inView:`, inView);
+
+  // Check if the screen width is greater than 768px (desktop)
+  const isDesktop = typeof window !== 'undefined' && window.innerWidth > 768;
+
   return (
     <div ref={ref} className={classes.projectsGallery}>
       <div className={classes.container}>
@@ -52,7 +77,7 @@ const AllProjects = ({ projects }) => {
           </h3>
           <motion.div
             className={classes.filterButtons}
-            initial="hidden"
+            initial={isDesktop ? "hidden" : "visible"}
             animate="visible"
             variants={{
               hidden: { opacity: 0, x: 100 },
@@ -70,7 +95,7 @@ const AllProjects = ({ projects }) => {
               whileTap={{ scale: 0.9 }}
               onClick={() => handleClick('all')}
               className={`btn btn-outlined sm ${activeButton === 'all' ? 'active' : ''}`}
-              variants={{ hidden: { opacity: 0, x: 100 }, visible: { opacity: 1, x: 0 } }}
+              variants={isDesktop ? { hidden: { opacity: 0, x: 100 }, visible: { opacity: 1, x: 0 } } : {}}
             >
               All
             </motion.button>
@@ -81,7 +106,7 @@ const AllProjects = ({ projects }) => {
                 onClick={() => handleClick(tech)}
                 className={`btn btn-outlined sm ${activeButton === tech ? 'active' : ''}`}
                 key={tech}
-                variants={{ hidden: { opacity: 0, x: 100 }, visible: { opacity: 1, x: 0 } }}
+                variants={isDesktop ? { hidden: { opacity: 0, x: 100 }, visible: { opacity: 1, x: 0 } } : {}}
               >
                 {tech}
               </motion.button>
@@ -93,16 +118,7 @@ const AllProjects = ({ projects }) => {
           <div className={classes.gallery}>
             <AnimatePresence>
               {filteredProjects.map((project) => (
-                <motion.div
-                  key={`project-${project.id}`}
-                  initial={{ opacity: 0, y: 100, scale: 0.5 }}
-                  animate={inView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 100, scale: 0.5 }}
-                  exit={{ opacity: 0, y: -100, scale: 0.5 }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                  style={{ display: 'grid' }}
-                >
-                  <ProjectItem project={project} />
-                </motion.div>
+                <ProjectItemWithAnimation key={project.id} project={project} />
               ))}
             </AnimatePresence>
           </div>

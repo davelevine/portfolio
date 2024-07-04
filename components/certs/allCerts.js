@@ -2,6 +2,27 @@ import classes from './allCerts.module.scss';
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import CertItem from './certItem';
+import { useInView } from 'react-intersection-observer';
+
+const CertItemWithAnimation = ({ cert }) => {
+  const [ref, inView] = useInView({
+    triggerOnce: false,
+    threshold: 0.1, // Trigger when 10% of the item is visible
+  });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 100, scale: 0.5 }}
+      animate={inView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 100, scale: 0.5 }}
+      exit={{ opacity: 0, y: -100, scale: 0.5 }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+      style={{ display: 'grid' }}
+    >
+      <CertItem cert={cert} />
+    </motion.div>
+  );
+};
 
 const AllCerts = ({ certs }) => {
   const [filter, setFilter] = useState('all');
@@ -72,38 +93,19 @@ const AllCerts = ({ certs }) => {
         <h1>CERTIFICATIONS</h1>
         <div className={classes.filter}>
           <h3><p>Sort By Topic:</p></h3>
-          <motion.div
-            className={classes.filterButtons}
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: { opacity: 0, x: 100 },
-              visible: {
-                opacity: 1,
-                x: 0,
-                transition: {
-                  staggerChildren: 0.1,
-                },
-              },
-            }}
-          >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.9 }}
+          <div className={classes.filterButtons}>
+            <button
               onClick={() => handleClick('all')}
               className={
                 activeButton === 'all'
                   ? 'btn btn-outlined sm active'
                   : 'btn btn-outlined sm'
               }
-              variants={{ hidden: { opacity: 0, x: 100 }, visible: { opacity: 1, x: 0 } }}
             >
               All
-            </motion.button>
+            </button>
             {sortedUniqueTechs.map((tech) => (
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.9 }}
+              <button
                 onClick={() => handleClick(tech)}
                 className={
                   activeButton === tech
@@ -111,19 +113,18 @@ const AllCerts = ({ certs }) => {
                     : 'btn btn-outlined sm'
                 }
                 key={tech}
-                variants={{ hidden: { opacity: 0, x: 100 }, visible: { opacity: 1, x: 0 } }}
               >
                 {tech}
-              </motion.button>
+              </button>
             ))}
-          </motion.div>
+          </div>
         </div>
 
         <div className={classes.galleryWrap}>
           <div className={classes.gallery}>
             <AnimatePresence>
               {filteredCerts.map((cert) => (
-                <CertItem cert={cert} key={cert.slug} />
+                <CertItemWithAnimation key={cert.slug} cert={cert} />
               ))}
             </AnimatePresence>
           </div>
