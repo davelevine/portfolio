@@ -59,6 +59,9 @@
   .projectLinks {
     margin-top: auto;
     font-size: 0.9rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     a {
       margin-right: 15px;
       color: var(--accent);
@@ -79,10 +82,5 @@
 
   @media only screen and (min-width: 768px) {
     margin-bottom: unset;
-    .projectLinks {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-    }
   }
 }
