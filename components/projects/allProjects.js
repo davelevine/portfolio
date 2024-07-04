@@ -42,8 +42,6 @@ const AllProjects = ({ projects }) => {
     threshold: 0.1, // Trigger when 10% of the item is visible
   });
 
-  console.log(`Page inView:`, inView);
-
   return (
     <div ref={ref} className={classes.projectsGallery}>
       <div className={classes.container}>
@@ -94,26 +92,18 @@ const AllProjects = ({ projects }) => {
         <div className={classes.galleryWrap}>
           <div className={classes.gallery}>
             <AnimatePresence>
-              {filteredProjects.map((project) => {
-                const [projectRef, projectInView] = useInView({
-                  triggerOnce: false,
-                  threshold: 0.1, // Trigger when 10% of the item is visible
-                });
-
-                return (
-                  <motion.div
-                    ref={projectRef}
-                    key={`project-${project.id}`}
-                    initial={{ opacity: 0, y: 100, scale: 0.5 }}
-                    animate={projectInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 100, scale: 0.5 }}
-                    exit={{ opacity: 0, y: -100, scale: 0.5 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                    style={{ display: 'grid' }}
-                  >
-                    <ProjectItem project={project} />
-                  </motion.div>
-                );
-              })}
+              {filteredProjects.map((project) => (
+                <motion.div
+                  key={`project-${project.id}`}
+                  initial={{ opacity: 0, y: 100, scale: 0.5 }}
+                  animate={inView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 100, scale: 0.5 }}
+                  exit={{ opacity: 0, y: -100, scale: 0.5 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  style={{ display: 'grid' }}
+                >
+                  <ProjectItem project={project} />
+                </motion.div>
+              ))}
             </AnimatePresence>
           </div>
         </div>
