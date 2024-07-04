@@ -72,7 +72,21 @@ const AllCerts = ({ certs }) => {
         <h1>CERTIFICATIONS</h1>
         <div className={classes.filter}>
           <h3><p>Sort By Topic:</p></h3>
-          <div className={classes.filterButtons}>
+          <motion.div
+            className={classes.filterButtons}
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: { opacity: 0, x: 100 },
+              visible: {
+                opacity: 1,
+                x: 0,
+                transition: {
+                  staggerChildren: 0.1,
+                },
+              },
+            }}
+          >
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.9 }}
@@ -81,7 +95,9 @@ const AllCerts = ({ certs }) => {
                 activeButton === 'all'
                   ? 'btn btn-outlined sm active'
                   : 'btn btn-outlined sm'
-              }>
+              }
+              variants={{ hidden: { opacity: 0, x: 100 }, visible: { opacity: 1, x: 0 } }}
+            >
               All
             </motion.button>
             {sortedUniqueTechs.map((tech) => (
@@ -94,11 +110,13 @@ const AllCerts = ({ certs }) => {
                     ? 'btn btn-outlined sm active'
                     : 'btn btn-outlined sm'
                 }
-                key={tech}>
+                key={tech}
+                variants={{ hidden: { opacity: 0, x: 100 }, visible: { opacity: 1, x: 0 } }}
+              >
                 {tech}
               </motion.button>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         <div className={classes.galleryWrap}>
