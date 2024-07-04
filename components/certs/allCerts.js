@@ -87,25 +87,47 @@ const AllCerts = ({ certs }) => {
       : certs.filter((cert) => cert.tech.includes(filter)).sort(commonSortLogic);
   }, [certs, filter, commonSortLogic]);
 
+  // Check if the screen width is greater than 768px (desktop)
+  const isDesktop = typeof window !== 'undefined' && window.innerWidth > 768;
+
   return (
     <section className={classes.blog}>
       <div className={classes.container}>
         <h1>CERTIFICATIONS</h1>
         <div className={classes.filter}>
           <h3><p>Sort By Topic:</p></h3>
-          <div className={classes.filterButtons}>
-            <button
+          <motion.div
+            className={classes.filterButtons}
+            initial={isDesktop ? "hidden" : "visible"}
+            animate="visible"
+            variants={{
+              hidden: { opacity: 0, x: 100 },
+              visible: {
+                opacity: 1,
+                x: 0,
+                transition: {
+                  staggerChildren: 0.1,
+                },
+              },
+            }}
+          >
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.9 }}
               onClick={() => handleClick('all')}
               className={
                 activeButton === 'all'
                   ? 'btn btn-outlined sm active'
                   : 'btn btn-outlined sm'
               }
+              variants={isDesktop ? { hidden: { opacity: 0, x: 100 }, visible: { opacity: 1, x: 0 } } : {}}
             >
               All
-            </button>
+            </motion.button>
             {sortedUniqueTechs.map((tech) => (
-              <button
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.9 }}
                 onClick={() => handleClick(tech)}
                 className={
                   activeButton === tech
@@ -113,11 +135,12 @@ const AllCerts = ({ certs }) => {
                     : 'btn btn-outlined sm'
                 }
                 key={tech}
+                variants={isDesktop ? { hidden: { opacity: 0, x: 100 }, visible: { opacity: 1, x: 0 } } : {}}
               >
                 {tech}
-              </button>
+              </motion.button>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         <div className={classes.galleryWrap}>
