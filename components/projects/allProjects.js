@@ -71,7 +71,16 @@ const AllProjects = ({ projects }) => {
           <div className={classes.gallery}>
             <AnimatePresence>
               {filteredProjects.map((project) => (
-                <ProjectItem key={`project-${project.id}`} project={project} />
+                <motion.div
+                  key={`project-${project.id}`}
+                  initial={{ opacity: 0, y: 100, scale: 0.5 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -100, scale: 0.5 }}
+                  transition={{ duration: 0.8, ease: "easeInOut" }}
+                  style={{ display: 'grid' }}
+                >
+                  <ProjectItem project={project} />
+                </motion.div>
               ))}
             </AnimatePresence>
           </div>
