@@ -1,10 +1,10 @@
 /* Styles for the .about section */
 .about {
-  padding: 90px 15px; /* Add padding to the section */
+  padding: 60px 15px; /* Reduced padding to remove some blank space from the top */
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 100vh; /* Ensure the section takes up the full viewport height */
+  min-height: 90vh; /* Reduced min-height to decrease blank space */
 
   /* Styles for links within the section */
   a {
@@ -50,7 +50,7 @@
     .imageContainer {
       display: flex;
       justify-content: center;
-      margin-bottom: 80px;
+      margin-bottom: 60px; /* Reduced margin to decrease blank space */
 
       img {
         border-radius: 50%;
@@ -92,8 +92,8 @@
   }
 
   @media only screen and (min-width: 768px) {
-    padding: 100px 25px; /* Adjust padding for desktop view */
-    min-height: 90vh;
+    padding: 70px 25px 10px; /* Reduced padding on top for desktop view */
+    min-height: 80vh; /* Further reduced min-height to decrease blank space */
     margin-bottom: 0;
 
     .container {
