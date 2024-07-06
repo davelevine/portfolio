@@ -46,6 +46,7 @@
       color: var(--navbar-primary);
       font-size: 2.5rem;
       margin: 0;
+      text-align: left; /* Left align the heading */
 
       /* Mobile-specific styles */
       @media only screen and (max-width: 767px) {
@@ -66,12 +67,14 @@
       font-size: 1.8rem;
       margin: 0 2px;
       margin-bottom: 6px;
+      text-align: left; /* Left align the heading */
     }
 
     h3 {
       color: var(--text-secondary);
       margin: 0 5px;
       font-weight: 400;
+      text-align: left; /* Left align the heading */
 
       @media only screen and (max-width: 1601px) {
         line-height: 2.8;
@@ -88,6 +91,7 @@
       color: var(--text-secondary);
       font-size: 2.2rem;
       margin: 0;
+      text-align: left; /* Left align the heading */
     }
 
     /* Styles for specific classes within the "columnLeft" container */
@@ -106,7 +110,7 @@
 
     /* Styles for social media icons */
     .socialMedia {
-      margin-top: 15px;
+      margin-top: 30px;
 
       i {
         font-size: 2rem;
@@ -205,21 +209,24 @@
       /* Heading styles */
       h1 {
         font-size: 4rem;
-        margin: 0 -5px; /* Adjust the distance between h1 and h2 and move slightly left */
+        margin: -10px -5px 0 -5px; /* Reduced top margin and adjusted the distance between h1 and h2 */
+        text-align: left; /* Left align the heading */
       }
 
       h2 {
         font-size: 2.3rem;
         margin: 0;
+        text-align: left; /* Left align the heading */
       }
 
       h3 {
         font-size: 1.5rem;
+        text-align: left; /* Left align the heading */
       }
 
       /* Additional styles for paragraphs and text */
       h3, p {
-        margin: -5px 5px;
+        margin: -10px 2px;
         font-size: 1.2rem;
       }
     }
@@ -246,5 +253,3 @@
     }
   }
 }
-
-
