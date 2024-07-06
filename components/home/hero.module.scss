@@ -171,13 +171,13 @@
 
   /* Styles for screens with a minimum width of 768px */
   @media only screen and (min-width: 768px) {
-    padding: 150px 25px 20px; /* Increased padding-top and reduced padding-bottom for larger screens */
-    height: 80vh; /* Reduced height to occupy less of the viewport */
+    padding: 80px 25px 20px; /* Increased padding-top and reduced padding-bottom for larger screens */
+    height: 90vh; /* Reduced height to occupy less of the viewport */
     margin-bottom: 2%; /* Reduced bottom margin */
 
     /* Styles for the element with the class "container" */
     .container {
-      height: 100%; /* Adjusted height to fit within the new hero size */
+      height: 105%; /* Adjusted height to fit within the new hero size */
       max-width: 1200px;
       margin: auto;
       display: flex;
@@ -246,3 +246,5 @@
     }
   }
 }
+
+
