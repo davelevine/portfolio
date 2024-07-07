@@ -8,12 +8,13 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    margin-top: 40px; /* Lower the title heading on mobile to match @allProjects.module.scss */
   }
 
   .filter {
     p {
       text-align: center;
-      margin-top: -20px;
+      margin-top: -5px; /* Ensure the distance between the heading and filter text is identical to @allProjects.module.scss */
 
       &::after {
         content: ':';
@@ -66,5 +67,3 @@
     }
   }
 }
-
-
