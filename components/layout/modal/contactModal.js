@@ -41,101 +41,108 @@ function ContactModal({ onClose, ...props }) {
     </div>
   );
 
-  if (state && state.submitting) {
-    return renderModalContent('Sending Message', 'Just a sec...');
-  }
+  // Render different modal content based on the state
+  const renderBasedOnState = () => {
+    if (state.submitting) {
+      return renderModalContent('Sending Message', 'Just a sec...');
+    }
 
-  if (state && state.succeeded) {
-    return (
-      <div className={classes.modal}>
-        <div className={`${classes.contactModal} ${classes.contactModalConfirmation}`}>
-          <a href='#!' className={classes.close} onClick={onClose}>
-            <i className='fa fa-xmark'></i>
-          </a>
-          <div>
-            <h2>Thanks for reaching out!</h2>
-            <p>
-              Your message was sent!
-              <br />
-              Also feel free to contact me via Linkedin or PGP Key:
-            </p>
-            <div className={classes.contactLinks}>
-              <a href='https://www.linkedin.com/in/iamdavelevine' target='_blank' rel='noreferrer'>
-                <i className='fab fa-linkedin'></i>
-              </a>
-              <a href='/assets/dave.levine.io-pub.asc' target='_blank' rel='noreferrer'>
-                <i className='fa fa-key'></i>
-              </a>
+    if (state.succeeded) {
+      return (
+        <div className={classes.modal}>
+          <div className={`${classes.contactModal} ${classes.contactModalConfirmation}`}>
+            <a href='#!' className={classes.close} onClick={onClose}>
+              <i className='fa fa-xmark'></i>
+            </a>
+            <div>
+              <h2>Thanks for reaching out!</h2>
+              <p>
+                Your message was sent!
+                <br />
+                Also feel free to contact me via Linkedin or PGP Key:
+              </p>
+              <div className={classes.contactLinks}>
+                <a href='https://www.linkedin.com/in/iamdavelevine' target='_blank' rel='noreferrer'>
+                  <i className='fab fa-linkedin'></i>
+                </a>
+                <a href='/assets/dave.levine.io-pub.asc' target='_blank' rel='noreferrer'>
+                  <i className='fa fa-key'></i>
+                </a>
+              </div>
             </div>
-          </div>
 
-          <div className={classes.confirmationButton}>
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className='btn btn-filled'
-              onClick={onClose}
-              aria-label="Close Confirmation" // Accessible name for the button
-            >
-              OK
-            </motion.button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (state && state.errors && state.errors.length > 0) {
-    return renderModalContent('Error!', state.errors[0].message);
-  }
-
-  return (
-    <div className={classes.modal}>
-      <div className={classes.contactModal}>
-        <a href='#!' className={classes.close} onClick={onClose}>
-          <i className='fa fa-xmark'></i>
-        </a>
-
-        <h2>Contact me</h2>
-
-        <form id='contactForm' className={classes.contactForm} onSubmit={handleSubmit}>
-          <div className={classes.row}>
-            <div className={classes.inputField}>
-              <label htmlFor='email'>Email Address</label>
-              <input id='email' type='email' name='email' required />
-
-              <ValidationError prefix='Email' field='email' errors={state.errors} />
-            </div>
-          </div>
-          <div className={classes.inputField}>
-            <textarea id='message' name='message' required />
-            <ValidationError prefix='Message' field='message' errors={state.errors} />
-          </div>
-
-          <div className={classes.action}>
-            <div className={classes.contactLinks}>
-              <a href='https://www.linkedin.com/in/iamdavelevine' target='_blank' rel='noreferrer'>
-                <i className='fab fa-linkedin'></i>
-              </a>
-              <a href='/assets/dave.levine.io-pgp-key-pub.asc' target='_blank' rel='noreferrer'>
-                <i className='fa fa-key' style={{fontSize: '3.2em'}}></i>
-              </a>
-            </div>
-            <div className={classes.sendLink}>
+            <div className={classes.confirmationButton}>
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                type='submit'
-                disabled={state.submitting}
                 className='btn btn-filled'
-                aria-label="Send Message" // Accessible name for the button
+                onClick={onClose}
+                aria-label="Close Confirmation" // Accessible name for the button
               >
-                Send Message
+                OK
               </motion.button>
             </div>
           </div>
-        </form>
-      </div>
+        </div>
+      );
+    }
+
+    if (state.errors && state.errors.length > 0) {
+      return renderModalContent('Error!', state.errors[0].message);
+    }
+
+    return null;
+  };
+
+  return (
+    <div className={classes.modal}>
+      {renderBasedOnState() || (
+        <div className={classes.contactModal}>
+          <a href='#!' className={classes.close} onClick={onClose}>
+            <i className='fa fa-xmark'></i>
+          </a>
+
+          <h2>Contact me</h2>
+
+          <form id='contactForm' className={classes.contactForm} onSubmit={handleSubmit}>
+            <div className={classes.row}>
+              <div className={classes.inputField}>
+                <label htmlFor='email'>Email Address</label>
+                <input id='email' type='email' name='email' required />
+
+                <ValidationError prefix='Email' field='email' errors={state.errors} />
+              </div>
+            </div>
+            <div className={classes.inputField}>
+              <textarea id='message' name='message' required />
+              <ValidationError prefix='Message' field='message' errors={state.errors} />
+            </div>
+
+            <div className={classes.action}>
+              <div className={classes.contactLinks}>
+                <a href='https://www.linkedin.com/in/iamdavelevine' target='_blank' rel='noreferrer'>
+                  <i className='fab fa-linkedin'></i>
+                </a>
+                <a href='/assets/dave.levine.io-pgp-key-pub.asc' target='_blank' rel='noreferrer'>
+                  <i className='fa fa-key' style={{fontSize: '3.2em'}}></i>
+                </a>
+              </div>
+              <div className={classes.sendLink}>
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  type='submit'
+                  disabled={state.submitting}
+                  className='btn btn-filled'
+                  aria-label="Send Message" // Accessible name for the button
+                >
+                  Send Message
+                </motion.button>
+              </div>
+            </div>
+          </form>
+        </div>
+      )}
     </div>
   );
 }

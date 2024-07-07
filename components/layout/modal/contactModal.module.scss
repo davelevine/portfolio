@@ -109,6 +109,9 @@
 .contactLinks {
   a {
     margin-right: 20px; // adjust this value as needed
+    i {
+      font-size: 3rem; // Increase the size of the contact links
+    }
   }
 }
 
@@ -126,5 +129,9 @@
     button {
       width: 100%;
     }
+  }
+
+  .contactLinks {
+    margin-top: 40px; // Add additional space before contact links
   }
 }

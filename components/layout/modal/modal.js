@@ -76,4 +76,3 @@ const Modal = ({ contact, resume, onClose, ...props }) => {
 };
 
 export default Modal;
-
