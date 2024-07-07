@@ -127,6 +127,11 @@
       width: 40%;
       margin: auto;
 
+      .imageContainer {
+        margin-top: -90px; /* Move the image up on desktop view */
+        margin-bottom: 0; /* Ensure the image container margin is centered */
+      }
+
       img {
         max-width: 100%;
         height: auto;
@@ -134,7 +139,5 @@
     }
   }
 }
-
-
 
 
