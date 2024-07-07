@@ -1,29 +1,21 @@
+import React from 'react';
 import ReactMarkdown from 'react-markdown';
+import PropTypes from 'prop-types';
 import classes from './certContent.module.scss';
-import Image from "next/image";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import {
-  atomDark,
-  solarizedlight,
-} from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { atomDark, solarizedlight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
-// Refactored CertContent component
 const CertContent = ({ cert, currentTheme }) => {
-  const { content, slug, image } = cert;
+  const { content, slug, image } = cert || {};
   const imagePath = `/images/certs/${slug}/${image}`;
 
-  // Refactored renderCode function to be more concise
-  // Removed unnecessary destructuring and commonProps object
+  // Simplified renderCode function
   const renderCode = ({ className, children }) => {
-    const language = className.split('-')[1];
+    const language = className?.split('-')[1];
     const style = currentTheme === 'dark' ? atomDark : solarizedlight;
 
     return (
-      <SyntaxHighlighter
-        style={style}
-        language={language}
-        showLineNumbers
-      >
+      <SyntaxHighlighter style={style} language={language} showLineNumbers>
         {children}
       </SyntaxHighlighter>
     );
@@ -38,6 +30,15 @@ const CertContent = ({ cert, currentTheme }) => {
       </div>
     </div>
   );
+};
+
+CertContent.propTypes = {
+  cert: PropTypes.shape({
+    content: PropTypes.string.isRequired,
+    slug: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+  }).isRequired,
+  currentTheme: PropTypes.oneOf(['dark', 'light']).isRequired,
 };
 
 export default CertContent;

@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -13,7 +15,7 @@ import 'swiper/css/navigation';
 
 import classes from './projectContent.module.scss';
 
-// Refactored to extract the custom renderers outside the component to avoid re-creating the object on each render
+// Extract the custom renderers outside the component to avoid re-creating the object on each render
 const getCustomRenderers = (currentTheme) => ({
   code({ className, children }) {
     const language = className.split('-')[1];
@@ -29,6 +31,23 @@ const getCustomRenderers = (currentTheme) => ({
   },
 });
 
+// Extract image rendering logic into a separate function
+const renderImage = (image) => {
+  const isSpecialImage = image === 'portfolio.webp' || image === 'start-page.webp';
+  const width = isSpecialImage ? 850 : 700;
+  const height = isSpecialImage ? 500 : 450;
+
+  return (
+    <Image
+      src={`/images/projects/${image}`}
+      width={width}
+      height={height}
+      alt=''
+      loading='eager'
+    />
+  );
+};
+
 const ProjectContent = ({ project, currentTheme }) => {
   const {
     content,
@@ -41,24 +60,7 @@ const ProjectContent = ({ project, currentTheme }) => {
     slug,
   } = project;
 
-  const customRenderers = getCustomRenderers(currentTheme);
-
-  // Refactored to extract the image rendering logic into a separate function
-  const renderImage = (image) => {
-    const isSpecialImage = image === 'portfolio.webp' || image === 'start-page.webp';
-    const width = isSpecialImage ? 850 : 700;
-    const height = isSpecialImage ? 500 : 450;
-
-    return (
-      <Image
-        src={`/images/projects/${image}`}
-        width={width}
-        height={height}
-        alt=''
-        loading='eager'
-      />
-    );
-  };
+  const customRenderers = useMemo(() => getCustomRenderers(currentTheme), [currentTheme]);
 
   return (
     <div className={classes.projectDetail}>
@@ -136,5 +138,21 @@ const ProjectContent = ({ project, currentTheme }) => {
   );
 };
 
-export default ProjectContent;
+ProjectContent.propTypes = {
+  project: PropTypes.shape({
+    content: PropTypes.string.isRequired,
+    githubLink: PropTypes.string,
+    liveLink: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    tech: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]).isRequired,
+    image: PropTypes.string,
+    screenshots: PropTypes.arrayOf(PropTypes.shape({
+      screenshot: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+    })),
+    slug: PropTypes.string.isRequired,
+  }).isRequired,
+  currentTheme: PropTypes.oneOf(['dark', 'light']).isRequired,
+};
 
+export default ProjectContent;

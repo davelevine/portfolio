@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import classes from './certItem.module.scss';
-import { useEffect, useMemo } from 'react';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import Modal from 'react-modal';
@@ -21,34 +21,25 @@ const formatDate = (date, status) => {
 };
 
 const CertItem = ({ cert: { title, excerpt, date, image } }) => {
-  // State to manage lightbox visibility
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  // Memoize current date to avoid recalculating on each render
-  const currentDate = useMemo(() => new Date(), []);
-  // Memoize expiration date to avoid recalculating on each render
-  const expirationDate = useMemo(() => new Date(date), [date]);
-
-  // Determine the status of the date
+  const currentDate = new Date();
+  const expirationDate = new Date(date);
   const dateStatus = expirationDate < currentDate ? 'Expired' : 'Expires';
-  // Memoize the formatted date to avoid recalculating on each render
-  const expiresDate = useMemo(() => formatDate(date, dateStatus), [date, dateStatus]);
+  const expiresDate = formatDate(date, dateStatus);
+  const linkPath = `/images/certs/${image}`;
 
-  // Memoize the link path to avoid recalculating on each render
-  const linkPath = useMemo(() => `/images/certs/${image}`, [image]);
-
-  // Initialize AOS library on component mount
   useEffect(() => {
     Aos.init({ duration: 500 });
   }, []);
 
-  const openModal = () => {
+  const openModal = useCallback(() => {
     setModalIsOpen(true);
-  };
+  }, []);
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     setModalIsOpen(false);
-  };
+  }, []);
 
   return (
     <div className={classes.card} data-aos='zoom-in-up'>
@@ -74,6 +65,15 @@ const CertItem = ({ cert: { title, excerpt, date, image } }) => {
       </Modal>
     </div>
   );
+};
+
+CertItem.propTypes = {
+  cert: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    excerpt: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default CertItem;

@@ -1,5 +1,6 @@
+import { useState, useEffect, useMemo, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import classes from './allProjects.module.scss';
-import { useState, useMemo, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ProjectItem from './projectItem';
 import { useInView } from 'react-intersection-observer';
@@ -25,6 +26,12 @@ const ProjectItemWithAnimation = ({ project }) => {
   );
 };
 
+ProjectItemWithAnimation.propTypes = {
+  project: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
 const AllProjects = ({ projects }) => {
   const [filter, setFilter] = useState('all');
   const [activeButton, setActiveButton] = useState('all');
@@ -42,7 +49,7 @@ const AllProjects = ({ projects }) => {
     return Array.from(techs).sort();
   }, [projects]);
 
-  // Update document title
+  // Set document title once on mount
   useEffect(() => {
     document.title = 'Dave Levine - Projects';
   }, []);
@@ -92,6 +99,11 @@ const AllProjects = ({ projects }) => {
   // Check if the screen width is greater than 768px (desktop)
   const isDesktop = typeof window !== 'undefined' && window.innerWidth > 768;
 
+  // Motion variants for buttons
+  const buttonVariants = isDesktop
+    ? { hidden: { opacity: 0, x: 100 }, visible: { opacity: 1, x: 0 } }
+    : {};
+
   return (
     <div ref={ref} className={classes.projectsGallery}>
       <div className={classes.container}>
@@ -130,7 +142,7 @@ const AllProjects = ({ projects }) => {
               whileTap={{ scale: 0.9 }}
               onClick={() => handleClick('all')}
               className={`btn btn-outlined sm ${activeButton === 'all' ? 'active' : ''}`}
-              variants={isDesktop ? { hidden: { opacity: 0, x: 100 }, visible: { opacity: 1, x: 0 } } : {}}
+              variants={buttonVariants}
             >
               All
             </motion.button>
@@ -141,7 +153,7 @@ const AllProjects = ({ projects }) => {
                 onClick={() => handleClick(tech)}
                 className={`btn btn-outlined sm ${activeButton === tech ? 'active' : ''}`}
                 key={tech}
-                variants={isDesktop ? { hidden: { opacity: 0, x: 100 }, visible: { opacity: 1, x: 0 } } : {}}
+                variants={buttonVariants}
               >
                 {tech}
               </motion.button>
@@ -167,5 +179,12 @@ const AllProjects = ({ projects }) => {
   );
 };
 
-export default AllProjects;
+AllProjects.propTypes = {
+  projects: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    tech: PropTypes.arrayOf(PropTypes.string).isRequired,
+    isFeatured: PropTypes.bool.isRequired,
+  })).isRequired,
+};
 
+export default AllProjects;

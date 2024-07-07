@@ -3,12 +3,15 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import CertItem from './certItem';
 import Modal from '../layout/modal/contactModal'; // Import the contact modal
+import useModal from '../layout/modal/useModal'; // Custom hook for modal logic
 
 const AllCerts = ({ certs }) => {
+  // State to control selected filter
   const [filter, setFilter] = useState('all');
+  // State to control the active button
   const [activeButton, setActiveButton] = useState('all');
-  const [showModal, setShowModal] = useState(false); // State to control modal visibility
-  const [modalType, setModalType] = useState(''); // State to determine modal type
+  // Custom hook for modal logic
+  const { showModal, modalType, showModalHandler, closeModalHandler } = useModal();
 
   // Extract unique techs from certs and sort them
   const sortedUniqueTechs = useMemo(() => {
@@ -24,27 +27,15 @@ const AllCerts = ({ certs }) => {
     return [...selectedCerts].sort();
   }, [certs]);
 
-  // Update document title on filter or certs change
+  // Set document title once on mount
   useEffect(() => {
     document.title = 'Dave Levine - Certs';
-  }, [filter, certs]);
+  }, []);
 
   // Handle button click to set filter and active button
   const handleClick = useCallback((tech) => {
     setFilter(tech);
     setActiveButton(tech);
-  }, []);
-
-  // Function to open the modal
-  const showModalHandler = useCallback((type) => {
-    setModalType(type);
-    setShowModal(true);
-  }, []);
-
-  // Function to close the modal
-  const closeModalHandler = useCallback(() => {
-    setShowModal(false);
-    setModalType('');
   }, []);
 
   // Effects for managing body overflow when the modal is open or closed
@@ -94,6 +85,11 @@ const AllCerts = ({ certs }) => {
   // Check if the screen width is greater than 768px (desktop)
   const isDesktop = typeof window !== 'undefined' && window.innerWidth > 768;
 
+  // Motion variants for buttons
+  const buttonVariants = isDesktop
+    ? { hidden: { opacity: 0, x: 100 }, visible: { opacity: 1, x: 0 } }
+    : {};
+
   return (
     <section className={classes.blog}>
       <div className={classes.container}>
@@ -132,7 +128,7 @@ const AllCerts = ({ certs }) => {
               whileTap={{ scale: 0.9 }}
               onClick={() => handleClick('all')}
               className={`btn btn-outlined sm ${activeButton === 'all' ? 'active' : ''}`}
-              variants={isDesktop ? { hidden: { opacity: 0, x: 100 }, visible: { opacity: 1, x: 0 } } : {}}
+              variants={buttonVariants}
             >
               All
             </motion.button>
@@ -143,7 +139,7 @@ const AllCerts = ({ certs }) => {
                 onClick={() => handleClick(tech)}
                 className={`btn btn-outlined sm ${activeButton === tech ? 'active' : ''}`}
                 key={tech}
-                variants={isDesktop ? { hidden: { opacity: 0, x: 100 }, visible: { opacity: 1, x: 0 } } : {}}
+                variants={buttonVariants}
               >
                 {tech}
               </motion.button>
