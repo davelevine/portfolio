@@ -2,10 +2,13 @@ import classes from './allCerts.module.scss';
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import CertItem from './certItem';
+import Modal from '../layout/modal/contactModal'; // Import the contact modal
 
 const AllCerts = ({ certs }) => {
   const [filter, setFilter] = useState('all');
   const [activeButton, setActiveButton] = useState('all');
+  const [showModal, setShowModal] = useState(false); // State to control modal visibility
+  const [modalType, setModalType] = useState(''); // State to determine modal type
 
   // Extract unique techs from certs and sort them
   const sortedUniqueTechs = useMemo(() => {
@@ -31,6 +34,28 @@ const AllCerts = ({ certs }) => {
     setFilter(tech);
     setActiveButton(tech);
   }, []);
+
+  // Function to open the modal
+  const showModalHandler = useCallback((type) => {
+    setModalType(type);
+    setShowModal(true);
+  }, []);
+
+  // Function to close the modal
+  const closeModalHandler = useCallback(() => {
+    setShowModal(false);
+    setModalType('');
+  }, []);
+
+  // Effects for managing body overflow when the modal is open or closed
+  useEffect(() => {
+    const hideScrollbar = () => {
+      document.body.style.overflow = showModal ? 'hidden' : 'auto';
+      document.body.style.paddingRight = showModal ? '15px' : '0px';
+    };
+
+    hideScrollbar();
+  }, [showModal]);
 
   // Common sorting logic for certs
   const commonSortLogic = useCallback((a, b) => {
@@ -136,6 +161,10 @@ const AllCerts = ({ certs }) => {
           </div>
         </div>
       </div>
+      <AnimatePresence>
+        {/* Display the modal when showModal is true */}
+        {showModal && <Modal contact={modalType === 'contact'} onClose={closeModalHandler} />}
+      </AnimatePresence>
     </section>
   );
 };

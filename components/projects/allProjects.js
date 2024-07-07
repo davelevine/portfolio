@@ -3,6 +3,7 @@ import { useState, useMemo, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ProjectItem from './projectItem';
 import { useInView } from 'react-intersection-observer';
+import Modal from '../layout/modal/contactModal'; // Import the contact modal
 
 const ProjectItemWithAnimation = ({ project }) => {
   const [ref, inView] = useInView({
@@ -27,6 +28,8 @@ const ProjectItemWithAnimation = ({ project }) => {
 const AllProjects = ({ projects }) => {
   const [filter, setFilter] = useState('all');
   const [activeButton, setActiveButton] = useState('all');
+  const [showModal, setShowModal] = useState(false); // State to control modal visibility
+  const [modalType, setModalType] = useState(''); // State to determine modal type
 
   // Memoize selectedTechs
   const selectedTechs = useMemo(() => {
@@ -49,6 +52,28 @@ const AllProjects = ({ projects }) => {
     setFilter(tech);
     setActiveButton(tech);
   }, []);
+
+  // Function to open the modal
+  const showModalHandler = useCallback((type) => {
+    setModalType(type);
+    setShowModal(true);
+  }, []);
+
+  // Function to close the modal
+  const closeModalHandler = useCallback(() => {
+    setShowModal(false);
+    setModalType('');
+  }, []);
+
+  // Effects for managing body overflow when the modal is open or closed
+  useEffect(() => {
+    const hideScrollbar = () => {
+      document.body.style.overflow = showModal ? 'hidden' : 'auto';
+      document.body.style.paddingRight = showModal ? '15px' : '0px';
+    };
+
+    hideScrollbar();
+  }, [showModal]);
 
   // Filter projects based on selected tech
   const filteredProjects = useMemo(() => {
@@ -134,8 +159,13 @@ const AllProjects = ({ projects }) => {
           </div>
         </div>
       </div>
+      <AnimatePresence>
+        {/* Display the modal when showModal is true */}
+        {showModal && <Modal contact={modalType === 'contact'} onClose={closeModalHandler} />}
+      </AnimatePresence>
     </div>
   );
 };
 
 export default AllProjects;
+

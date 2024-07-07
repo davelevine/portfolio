@@ -1,18 +1,45 @@
 // Import required modules and components
 import classes from '../about/about.module.scss';
-import { useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from "next/legacy/image";
 import Aos from 'aos'; // Library for scroll animations
 import 'aos/dist/aos.css'; // Styles for AOS animations
+import Modal from '../layout/modal/contactModal'; // Import the contact modal
+import { motion, AnimatePresence } from 'framer-motion'; // Import framer-motion for animations
 
 // Define the About component
 const About = () => {
+  const [showModal, setShowModal] = useState(false); // State to control modal visibility
+  const [modalType, setModalType] = useState(''); // State to determine modal type
+
   // Initialize AOS (Animate on Scroll) with a duration of 700 milliseconds
   useEffect(() => {
     Aos.init({ duration: 550 }); // Initialize scroll animations
 
     // Update document title
     document.title = 'Dave Levine - About Me';
+  }, []);
+
+  // Effects for managing body overflow when the modal is open or closed
+  useEffect(() => {
+    const hideScrollbar = () => {
+      document.body.style.overflow = showModal ? 'hidden' : 'auto';
+      document.body.style.paddingRight = showModal ? '15px' : '0px';
+    };
+
+    hideScrollbar();
+  }, [showModal]);
+
+  // Function to open the modal
+  const showModalHandler = useCallback((type) => {
+    setModalType(type);
+    setShowModal(true);
+  }, []);
+
+  // Function to close the modal
+  const closeModalHandler = useCallback(() => {
+    setShowModal(false);
+    setModalType('');
   }, []);
 
   return (
@@ -50,6 +77,10 @@ const About = () => {
           </div>
         </div>
       </div>
+      <AnimatePresence>
+        {/* Display the modal when showModal is true */}
+        {showModal && <Modal contact={modalType === 'contact'} onClose={closeModalHandler} />}
+      </AnimatePresence>
     </section>
   );
 };
