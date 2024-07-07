@@ -59,7 +59,7 @@ const CertItem = ({ cert: { title, excerpt, date, image } }) => {
       </div>
       <div className={classes.cardAction}>
         <button onClick={openModal}>
-          View certificate
+          <i className="fas fa-arrow-up-right-from-square"></i> View certificate
         </button>
       </div>
       <Modal

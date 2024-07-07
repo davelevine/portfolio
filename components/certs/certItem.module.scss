@@ -43,6 +43,15 @@
       font-size: inherit;
       text-decoration: none;
       padding: 0;
+
+      &:hover {
+        color: var(--text-secondary);
+      }
+
+      i {
+        color: var(--navbar-primary);
+        margin-right: 5px; /* Add spacing between the icon and the text */
+      }
     }
   }
 }
@@ -110,7 +119,7 @@
   transition: background-color 0.3s ease, transform 0.3s ease;
 
   &:hover {
-    background-color: var(--background-secondary-hover);
+    background-color: var(--background-secondary);
     transform: scale(1.1);
   }
 

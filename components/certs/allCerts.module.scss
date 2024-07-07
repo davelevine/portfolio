@@ -3,7 +3,7 @@
 
   h1 {
     text-align: center;
-    font-size: 3rem;
+    font-size: 2.3rem;
     background: var(--text-gradient);
     -webkit-background-clip: text;
     background-clip: text;
@@ -14,6 +14,11 @@
     p {
       text-align: center;
       margin-top: -20px;
+
+      &::after {
+        content: ':';
+        color: var(--navbar-primary);
+      }
     }
 
     .filterButtons {
@@ -61,3 +66,5 @@
     }
   }
 }
+
+

@@ -78,9 +78,13 @@ const AllProjects = ({ projects }) => {
           PROJECTS
         </motion.h1>
         <div className={classes.filter}>
-          <h3>
-            <p>Sort By Tech:</p>
-          </h3>
+          <motion.h3
+            initial={isDesktop ? { opacity: 0, x: 300 } : {}}
+            animate={isDesktop ? { opacity: 1, x: 0 } : {}}
+            transition={isDesktop ? { duration: 0.4, ease: "easeInOut" } : {}}
+          >
+            <p>Sort By Tech</p>
+          </motion.h3>
           <motion.div
             className={classes.filterButtons}
             initial={isDesktop ? "hidden" : "visible"}
