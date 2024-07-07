@@ -18,6 +18,7 @@
   --gradient-secondary: #8bb2c3;
   --navbar-primary: #4d5270;
   --text-gradient: linear-gradient(180deg,var(--accent),#8b3dff);
+  --link-hover: #8b3dff;
 }
 [data-theme='dark'] {
   --background: #1E2533;
@@ -39,4 +40,5 @@
   --gradient-secondary: #8bb2c3;
   --navbar-primary: #ffffff;
   --text-gradient: linear-gradient(180deg,var(--accent-secondary),#7ef5de);
+  --link-hover: #bcfe00;
 }
