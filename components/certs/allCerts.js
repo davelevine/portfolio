@@ -2,27 +2,6 @@ import classes from './allCerts.module.scss';
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import CertItem from './certItem';
-import { useInView } from 'react-intersection-observer';
-
-const CertItemWithAnimation = ({ cert }) => {
-  const [ref, inView] = useInView({
-    triggerOnce: false,
-    threshold: 0.1, // Trigger when 10% of the item is visible
-  });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 100, scale: 0.5 }}
-      animate={inView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 100, scale: 0.5 }}
-      exit={{ opacity: 0, y: -100, scale: 0.5 }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
-      style={{ display: 'grid' }}
-    >
-      <CertItem cert={cert} />
-    </motion.div>
-  );
-};
 
 const AllCerts = ({ certs }) => {
   const [filter, setFilter] = useState('all');
@@ -127,11 +106,7 @@ const AllCerts = ({ certs }) => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => handleClick('all')}
-              className={
-                activeButton === 'all'
-                  ? 'btn btn-outlined sm active'
-                  : 'btn btn-outlined sm'
-              }
+              className={`btn btn-outlined sm ${activeButton === 'all' ? 'active' : ''}`}
               variants={isDesktop ? { hidden: { opacity: 0, x: 100 }, visible: { opacity: 1, x: 0 } } : {}}
             >
               All
@@ -141,11 +116,7 @@ const AllCerts = ({ certs }) => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => handleClick(tech)}
-                className={
-                  activeButton === tech
-                    ? 'btn btn-outlined sm active'
-                    : 'btn btn-outlined sm'
-                }
+                className={`btn btn-outlined sm ${activeButton === tech ? 'active' : ''}`}
                 key={tech}
                 variants={isDesktop ? { hidden: { opacity: 0, x: 100 }, visible: { opacity: 1, x: 0 } } : {}}
               >
@@ -157,11 +128,11 @@ const AllCerts = ({ certs }) => {
 
         <div className={classes.galleryWrap}>
           <div className={classes.gallery}>
-            <AnimatePresence>
-              {filteredCerts.map((cert) => (
-                <CertItemWithAnimation key={cert.slug} cert={cert} />
-              ))}
-            </AnimatePresence>
+            {filteredCerts.map((cert) => (
+              <div key={cert.slug} style={{ display: 'grid' }}>
+                <CertItem cert={cert} />
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -170,6 +141,3 @@ const AllCerts = ({ certs }) => {
 };
 
 export default AllCerts;
-
-
-
