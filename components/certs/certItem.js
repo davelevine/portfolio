@@ -53,7 +53,7 @@ const CertItem = ({ cert: { title, excerpt, date, image } }) => {
   return (
     <div className={classes.card} data-aos='zoom-in-up'>
       <div className={classes.cardContent}>
-        <h4>{title}</h4>
+        <h4 onClick={openModal} style={{ cursor: 'pointer' }}>{title}</h4>
         <time>{expiresDate}</time>
         <p>{excerpt}</p>
       </div>

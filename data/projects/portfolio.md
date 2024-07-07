@@ -8,11 +8,11 @@
 
   liveLink: https://dave.levine.io
   githubLink: https://github.com/davelevine/portfolio
-  image: portfolio.webp
+  image: hero.webp
   isFeatured: true
   screenshots:
-    - screenshot: 01-home.webp
-    - screenshot: 02-home.webp
+    - screenshot: 01-certs.webp
+    - screenshot: 02-about.webp
       description: >-
               My personal portfolio developed with Next.js and React. Certs and Projects sections are written in markdown and rendered with react-markdown and react-syntax-highlighter.
 

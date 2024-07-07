@@ -47,7 +47,7 @@ const ProjectContent = ({ project, currentTheme }) => {
   const renderImage = (image) => {
     const isSpecialImage = image === 'portfolio.webp' || image === 'start-page.webp';
     const width = isSpecialImage ? 850 : 700;
-    const height = isSpecialImage ? 500 : 480;
+    const height = isSpecialImage ? 500 : 450;
 
     return (
       <Image
@@ -137,3 +137,4 @@ const ProjectContent = ({ project, currentTheme }) => {
 };
 
 export default ProjectContent;
+
