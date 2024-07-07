@@ -17,6 +17,7 @@
     /* Styles for the p element inside filter */
     p {
       text-align: center;
+      margin-top: -20px; /* Ensure the distance between the heading and filter text is identical to @allCerts.module.scss */
     }
 
     /* Styles for the filterButtons section inside filter */
@@ -51,7 +52,13 @@
 
     /* Styles for the h1 element inside the media query */
     h1 {
-      font-size: 4.6rem; /* Increase font size for larger screens */
+      font-size: 3.8rem; /* Increase font size for larger screens */
+      margin-top: -40px; /* Ensure the distance between the heading and filter is identical to @allCerts.module.scss */
+    }
+
+    /* Reduce the distance between the filter and the title heading on desktop */
+    .filter {
+      margin-top: -30px; /* Ensure the distance between the heading and filter is identical to @allCerts.module.scss */
     }
 
     /* Styles for the gallery section inside the media query */

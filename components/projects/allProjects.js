@@ -70,7 +70,13 @@ const AllProjects = ({ projects }) => {
   return (
     <div ref={ref} className={classes.projectsGallery}>
       <div className={classes.container}>
-        <h1>PROJECTS</h1>
+        <motion.h1
+          initial={isDesktop ? { opacity: 0, x: -600 } : {}}
+          animate={isDesktop ? { opacity: 1, x: 0 } : {}}
+          transition={isDesktop ? { duration: 0.4, ease: "easeInOut" } : {}}
+        >
+          PROJECTS
+        </motion.h1>
         <div className={classes.filter}>
           <h3>
             <p>Sort By Tech:</p>

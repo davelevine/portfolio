@@ -93,7 +93,13 @@ const AllCerts = ({ certs }) => {
   return (
     <section className={classes.blog}>
       <div className={classes.container}>
-        <h1>CERTIFICATIONS</h1>
+        <motion.h1
+          initial={isDesktop ? { opacity: 0, x: -600 } : {}}
+          animate={isDesktop ? { opacity: 1, x: 0 } : {}}
+          transition={isDesktop ? { duration: 0.4, ease: "easeInOut" } : {}}
+        >
+          CERTIFICATIONS
+        </motion.h1>
         <div className={classes.filter}>
           <h3><p>Sort By Topic:</p></h3>
           <motion.div
