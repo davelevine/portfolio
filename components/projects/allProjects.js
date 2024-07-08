@@ -107,9 +107,10 @@ const AllProjects = ({ projects }) => {
   console.log(`Page inView:`, inView);
 
   // Motion variants for buttons
-  const buttonVariants = isDesktop
-    ? { hidden: { opacity: 0, x: 100 }, visible: { opacity: 1, x: 0 } }
-    : {};
+  const buttonVariants = {
+    hidden: { opacity: 0, x: 100 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.3, ease: "easeInOut" } }
+  };
 
   // Handle scroll progress bar
   useEffect(() => {
@@ -131,27 +132,27 @@ const AllProjects = ({ projects }) => {
   }, [isDesktop]);
 
   return (
-    <div ref={ref} className={classes.projectsGallery}>
+    <section className={classes.projectsGallery}>
       {isDesktop && <div id="scroll-progress" className={classes.scrollProgress}></div>}
       <div className={classes.container}>
         <motion.h1
-          initial={isDesktop ? { opacity: 0, x: -600 } : {}}
-          animate={isDesktop ? { opacity: 1, x: 0 } : {}}
-          transition={isDesktop ? { duration: 0.4, ease: "easeInOut" } : {}}
+          initial={{ opacity: 0, x: -600 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
         >
           PROJECTS
         </motion.h1>
         <div className={classes.filter}>
           <motion.h3
-            initial={isDesktop ? { opacity: 0, x: 300 } : {}}
-            animate={isDesktop ? { opacity: 1, x: 0 } : {}}
-            transition={isDesktop ? { duration: 0.4, ease: "easeInOut" } : {}}
+            initial={{ opacity: 0, x: 300 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
           >
             <p>Sort By Tech</p>
           </motion.h3>
           <motion.div
             className={classes.filterButtons}
-            initial={isDesktop ? "hidden" : "visible"}
+            initial="hidden"
             animate="visible"
             variants={{
               hidden: { opacity: 0, x: 100 },
@@ -160,6 +161,8 @@ const AllProjects = ({ projects }) => {
                 x: 0,
                 transition: {
                   staggerChildren: 0.1,
+                  duration: 0.3,
+                  ease: "easeInOut"
                 },
               },
             }}
@@ -180,7 +183,10 @@ const AllProjects = ({ projects }) => {
                 onClick={() => handleClick(tech)}
                 className={`btn btn-outlined sm ${activeButton === tech ? 'active' : ''}`}
                 key={tech}
-                variants={buttonVariants}
+                variants={{
+                  hidden: { opacity: 0, x: 100 },
+                  visible: { opacity: 1, x: 0, transition: { duration: 0.3, ease: "easeInOut" } }
+                }}
               >
                 {tech}
               </motion.button>
@@ -202,7 +208,7 @@ const AllProjects = ({ projects }) => {
         {/* Display the modal when showModal is true */}
         {showModal && <Modal contact={modalType === 'contact'} onClose={closeModalHandler} />}
       </AnimatePresence>
-    </div>
+    </section>
   );
 };
 

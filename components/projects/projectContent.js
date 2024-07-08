@@ -107,8 +107,8 @@ const ProjectContent = ({ project, currentTheme }) => {
             {content}
           </ReactMarkdown>
 
-          {screenshots && (
-            <div className={screenshots ? 'mb-50' : ''}>
+          {screenshots && screenshots.length > 0 && (
+            <div className='mb-50'>
               <h2>Screenshots</h2>
               <Swiper
                 rewind={true}
@@ -123,7 +123,7 @@ const ProjectContent = ({ project, currentTheme }) => {
                       src={`/images/projects/${slug}/${screenshot.screenshot}`}
                       width={1000}
                       height={700}
-                      alt={screenshot.description}
+                      alt={screenshot.description || 'Screenshot'}
                       loading='eager'
                       objectFit='contain'
                     />
@@ -148,7 +148,7 @@ ProjectContent.propTypes = {
     image: PropTypes.string,
     screenshots: PropTypes.arrayOf(PropTypes.shape({
       screenshot: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
+      description: PropTypes.string,
     })),
     slug: PropTypes.string.isRequired,
   }).isRequired,

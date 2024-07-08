@@ -5,7 +5,7 @@ import Image from "next/legacy/image";
 import Aos from 'aos'; // Library for scroll animations
 import 'aos/dist/aos.css'; // Styles for AOS animations
 import Modal from '../layout/modal/contactModal'; // Import the contact modal
-import { motion, AnimatePresence } from 'framer-motion'; // Import framer-motion for animations
+import { AnimatePresence } from 'framer-motion'; // Import AnimatePresence for animations
 
 // Define the About component
 const About = () => {

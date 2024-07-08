@@ -4,6 +4,9 @@ import withPWA from 'next-pwa';
 import CompressionPlugin from 'compression-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import { PurgeCSSPlugin } from 'purgecss-webpack-plugin';
+import { sync } from 'glob';
+import path from 'path';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -69,6 +72,13 @@ const configureWebpack = (config, { isServer }) => {
   config.plugins.push(
     new CompressionPlugin({
       test: /\.(js|css|html|svg)$/,
+    })
+  );
+
+  // Configure PurgeCSS to remove unused CSS
+  config.plugins.push(
+    new PurgeCSSPlugin({
+      paths: sync(`${path.join(__dirname, 'src')}/**/*`, { nodir: true }),
     })
   );
 

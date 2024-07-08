@@ -32,16 +32,6 @@ const Hero = () => {
     setModalType('');
   }, []);
 
-  // Effects for managing body overflow when the modal is open or closed
-  useEffect(() => {
-    const hideScrollbar = () => {
-      document.body.style.overflow = 'auto';
-      document.body.style.paddingRight = '0px';
-    };
-
-    hideScrollbar();
-  }, [showModal]);
-
   // Initialize the AOS library with specified settings
   useEffect(() => {
     Aos.init({ duration: 550 }); // Adjusted scroll animations speed to match about.js
