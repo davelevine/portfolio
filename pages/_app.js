@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Navbar from '../components/layout/navbar/navbar';
-import Footer from '../components/layout/footer';
 import '../styles/globals.scss';
 
 // Refactored to extract the theme initialization logic into a separate function for better readability and reusability
@@ -26,7 +25,6 @@ function MyApp({ Component, pageProps }) {
       <div className="app" data-theme={theme}>
         <Navbar theme={theme} newTheme={setTheme} />
         <Component {...pageProps} currentTheme={theme} />
-        <Footer />
       </div>
     </>
   );

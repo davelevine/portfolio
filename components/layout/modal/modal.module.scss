@@ -29,10 +29,11 @@
   height: 90vh;
   max-width: 1200px;
   max-height: 90vh; /* Increased height for desktop */
-  background: transparent;
-  border-radius: 10px;
+  background: #2c2c2c; /* Slightly lighter background for contrast */
+  border: 1px solid #555; /* Subtle border for modern look */
+  border-radius: 12px; /* Slightly increased border radius for modern look */
   padding: 20px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Softer shadow for sleek appearance */
 }
 
 @media (max-width: 767px) {
@@ -43,24 +44,26 @@
 
 .resumeModal .close {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 40px; /* Set width for a square shape */
-  height: 40px; /* Set height for a square shape */
-  font-size: 24px;
+  top: 12px; /* Position it within the padding area */
+  right: 12px; /* Position it within the padding area */
+  width: 30px; /* Set width for a smaller shape */
+  height: 30px; /* Set height for a smaller shape */
+  font-size: 18px; /* Adjusted font size */
   color: #fff; /* Changed color to white for better visibility */
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%; /* Changed to circular shape */
+  border-radius: 50%; /* Circular shape */
   cursor: pointer;
-  transition: all 0.3s ease; /* Added transition for hover effect */
-  background: rgba(0, 0, 0, 0.6); /* Added background for modern look */
+  transition: background 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+  background: rgba(0, 0, 0, 0.7); /* Slightly darker background for button */
+  z-index: 1001; /* Ensured it appears above other elements */
 }
 
 .resumeModal .close:hover {
-  color: #ff0000; /* Change color on hover for better visibility */
+  color: #ff4d4d; /* Softer hover color for modern look */
   background: rgba(255, 255, 255, 0.2); /* Change background on hover for modern effect */
+  transform: scale(1.1); /* Slight scale-up on hover for a sleek effect */
 }
 
 .resumeModal .iframe {
