@@ -10,6 +10,8 @@ const AllCerts = ({ certs }) => {
   const [filter, setFilter] = useState('all');
   // State to control the active button
   const [activeButton, setActiveButton] = useState('all');
+  // State to determine if the screen is desktop
+  const [isDesktop, setIsDesktop] = useState(false);
   // Custom hook for modal logic
   const { showModal, modalType, showModalHandler, closeModalHandler } = useModal();
 
@@ -30,6 +32,15 @@ const AllCerts = ({ certs }) => {
   // Set document title once on mount
   useEffect(() => {
     document.title = 'Dave Levine - Certs';
+
+    // Check if the screen width is greater than 768px (desktop)
+    const updateIsDesktop = () => setIsDesktop(window.innerWidth > 768);
+    updateIsDesktop();
+    window.addEventListener('resize', updateIsDesktop);
+
+    return () => {
+      window.removeEventListener('resize', updateIsDesktop);
+    };
   }, []);
 
   // Handle button click to set filter and active button
@@ -82,8 +93,24 @@ const AllCerts = ({ certs }) => {
       : certs.filter((cert) => cert.tech.includes(filter)).sort(commonSortLogic);
   }, [certs, filter, commonSortLogic]);
 
-  // Check if the screen width is greater than 768px (desktop)
-  const isDesktop = typeof window !== 'undefined' && window.innerWidth > 768;
+  // Handle scroll progress bar
+  useEffect(() => {
+    if (isDesktop) {
+      const handleScroll = () => {
+        const scrollProgress = document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight) * 100;
+        const progressBar = document.getElementById('scroll-progress');
+        if (progressBar) {
+          progressBar.style.width = `${scrollProgress}%`;
+        }
+      };
+
+      window.addEventListener('scroll', handleScroll);
+
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }
+  }, [isDesktop]);
 
   // Motion variants for buttons
   const buttonVariants = isDesktop
@@ -92,6 +119,7 @@ const AllCerts = ({ certs }) => {
 
   return (
     <section className={classes.blog}>
+      {isDesktop && <div id="scroll-progress" className={classes.scrollProgress}></div>}
       <div className={classes.container}>
         <motion.h1
           initial={isDesktop ? { opacity: 0, x: -600 } : {}}

@@ -2,6 +2,22 @@
 .projectsGallery {
   padding: 50px 15px; /* Set padding for the projectsGallery container */
 
+  /* Styles for the progress bar */
+  .scrollProgress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 5px;
+    background: var(--navbar-primary);
+    z-index: 1000;
+    transition: width 0.25s ease-out;
+
+    @media (max-width: 768px) {
+      display: none; /* Hide progress bar on mobile */
+    }
+  }
+
   /* Styles for the h1 element inside projectsGallery */
   h1 {
     text-align: center;
@@ -96,6 +112,11 @@
     /* Styles for the img elements inside the gallery section for smaller screens */
     .gallery img {
       object-fit: cover; /* Adjust object-fit for smaller screens */
+    }
+
+    /* Hide the progress bar on mobile */
+    .scrollProgress {
+      display: none;
     }
   }
 }

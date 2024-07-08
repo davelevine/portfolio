@@ -37,6 +37,7 @@ const AllProjects = ({ projects }) => {
   const [activeButton, setActiveButton] = useState('all');
   const [showModal, setShowModal] = useState(false); // State to control modal visibility
   const [modalType, setModalType] = useState(''); // State to determine modal type
+  const [isDesktop, setIsDesktop] = useState(false);
 
   // Memoize selectedTechs
   const selectedTechs = useMemo(() => {
@@ -52,6 +53,15 @@ const AllProjects = ({ projects }) => {
   // Set document title once on mount
   useEffect(() => {
     document.title = 'Dave Levine - Projects';
+
+    // Check if the screen width is greater than 768px (desktop)
+    const updateIsDesktop = () => setIsDesktop(window.innerWidth > 768);
+    updateIsDesktop();
+    window.addEventListener('resize', updateIsDesktop);
+
+    return () => {
+      window.removeEventListener('resize', updateIsDesktop);
+    };
   }, []);
 
   // Handle button click
@@ -96,16 +106,33 @@ const AllProjects = ({ projects }) => {
 
   console.log(`Page inView:`, inView);
 
-  // Check if the screen width is greater than 768px (desktop)
-  const isDesktop = typeof window !== 'undefined' && window.innerWidth > 768;
-
   // Motion variants for buttons
   const buttonVariants = isDesktop
     ? { hidden: { opacity: 0, x: 100 }, visible: { opacity: 1, x: 0 } }
     : {};
 
+  // Handle scroll progress bar
+  useEffect(() => {
+    if (isDesktop) {
+      const handleScroll = () => {
+        const scrollProgress = document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight) * 100;
+        const progressBar = document.getElementById('scroll-progress');
+        if (progressBar) {
+          progressBar.style.width = `${scrollProgress}%`;
+        }
+      };
+
+      window.addEventListener('scroll', handleScroll);
+
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }
+  }, [isDesktop]);
+
   return (
     <div ref={ref} className={classes.projectsGallery}>
+      {isDesktop && <div id="scroll-progress" className={classes.scrollProgress}></div>}
       <div className={classes.container}>
         <motion.h1
           initial={isDesktop ? { opacity: 0, x: -600 } : {}}

@@ -1,6 +1,22 @@
 .blog {
   padding: 50px 15px;
 
+  /* Styles for the progress bar */
+  .scrollProgress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 5px;
+    background: var(--navbar-primary);
+    z-index: 1000;
+    transition: width 0.25s ease-out;
+
+    @media (max-width: 768px) {
+      display: none; /* Hide progress bar on mobile */
+    }
+  }
+
   h1 {
     text-align: center;
     font-size: 2.3rem;
