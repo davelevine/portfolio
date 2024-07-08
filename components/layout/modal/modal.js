@@ -1,10 +1,12 @@
-// modal.js
 import React, { lazy, Suspense, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import classes from './modal.module.scss';
 
 // Lazy load the ContactModal component
 const ContactModalDynamic = lazy(() => import('./contactModal'));
+
+// Constants
+const RESUME_FILE_PATH = '/assets/davelevine-resume.pdf'; // Define RESUME_FILE_PATH here
 
 const Modal = ({ contact, resume, onClose, ...props }) => {
   // Define animation variants for the modal
@@ -27,7 +29,7 @@ const Modal = ({ contact, resume, onClose, ...props }) => {
       <a href='#!' className={classes.close} onClick={onClose}>
         <i className='fa fa-xmark'></i>
       </a>
-      <iframe src='/assets/davelevine-resume.pdf' className={classes.iframe} />
+      <iframe src={RESUME_FILE_PATH} className={classes.iframe} />
     </div>
   );
 

@@ -1,13 +1,15 @@
 import classes from './hero.module.scss';
 import Image from 'next/legacy/image';
 import { useState, useEffect, useCallback } from 'react';
-import Modal from '../layout/modal/modal';
+import dynamic from 'next/dynamic'; // Dynamically import Modal
 import Aos from 'aos'; // Library for scroll animations
 import 'aos/dist/aos.css'; // Styles for AOS animations
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion'; // Import AnimatePresence
+
+// Dynamically import Modal to reduce initial load
+const Modal = dynamic(() => import('../layout/modal/modal'));
 
 // Constants
-const RESUME_FILE_PATH = '/assets/davelevine-resume.pdf';
 const MOBILE_PROFILE_IMAGE_PATH = '/images/profile-pic-1-mobile.webp';
 const DESKTOP_PROFILE_IMAGE_PATH = '/images/profile-pic-1-desktop.webp';
 const PGP_KEY_PATH = '/assets/dave.levine.io-pgp-key-pub.asc'; // Path to the PGP key
@@ -17,11 +19,6 @@ const Hero = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState(''); // State to determine modal type (contact or resume)
   const [isMobile, setIsMobile] = useState(false); // State to determine mobile/desktop
-
-  // Refactored button handlers into a single function
-  const handleButtonClick = useCallback((path) => {
-    window.location.href = path;
-  }, []);
 
   // Function to open the modal
   const showModalHandler = useCallback((type) => {
