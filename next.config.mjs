@@ -78,7 +78,7 @@ const configureWebpack = (config, { isServer }) => {
   // Configure PurgeCSS to remove unused CSS
   config.plugins.push(
     new PurgeCSSPlugin({
-      paths: sync(`${path.join(__dirname, 'src')}/**/*`, { nodir: true }),
+      paths: sync(`${path.join(process.cwd(), 'src')}/**/*`, { nodir: true }),
     })
   );
 
