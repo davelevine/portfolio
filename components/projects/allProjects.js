@@ -197,18 +197,14 @@ const AllProjects = ({ projects }) => {
 
         <div className={classes.galleryWrap}>
           <div className={classes.gallery}>
-            <AnimatePresence>
-              {filteredProjects.map((project) => (
-                <ProjectItemWithAnimation key={project.id} project={project} />
-              ))}
-            </AnimatePresence>
+            {filteredProjects.map((project) => (
+              <ProjectItemWithAnimation key={project.id} project={project} />
+            ))}
           </div>
         </div>
       </div>
-      <AnimatePresence>
-        {/* Display the modal when showModal is true */}
-        {showModal && <Modal contact={modalType === 'contact'} onClose={closeModalHandler} />}
-      </AnimatePresence>
+      {/* Display the modal when showModal is true */}
+      {showModal && <Modal contact={modalType === 'contact'} onClose={closeModalHandler} />}
     </section>
   );
 };
