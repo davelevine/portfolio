@@ -145,6 +145,7 @@ const Hero = () => {
                 className="zoomed-out-image"
                 loading="eager"
                 onError={handleImageError}
+                priority
               />
             ) : (
               <Image
@@ -156,6 +157,7 @@ const Hero = () => {
                 className="zoomed-out-image"
                 loading="eager"
                 onError={handleImageError}
+                priority
               />
             )}
           </div>

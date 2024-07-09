@@ -12,7 +12,7 @@ const About = () => {
   const [showModal, setShowModal] = useState(false); // State to control modal visibility
   const [modalType, setModalType] = useState(''); // State to determine modal type
 
-  // Initialize AOS (Animate on Scroll) with a duration of 700 milliseconds
+  // Initialize AOS (Animate on Scroll) with a duration of 550 milliseconds
   useEffect(() => {
     Aos.init({ duration: 550 }); // Initialize scroll animations
 
@@ -71,6 +71,7 @@ const About = () => {
                 alt='profile-pic'
                 data-aos='fade-left'
                 loading='eager' // Set loading attribute to 'eager' to indicate preload
+                priority
               />
             </div>
             <div className={classes.quote} data-aos='fade-right'></div>

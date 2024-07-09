@@ -5,6 +5,9 @@ import Aos from 'aos';
 import 'aos/dist/aos.css';
 import Modal from 'react-modal';
 
+// Set the app element for react-modal to ensure accessibility
+Modal.setAppElement('#__next');
+
 // Helper function to format the date
 const formatDate = (date, status) => {
   if (date === 'Never') {
