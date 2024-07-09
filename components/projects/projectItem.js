@@ -13,6 +13,7 @@ const renderImage = (image) => (
       height={220}
       alt=''
       loading='eager'
+      priority // Added priority attribute for LCP
     />
   </div>
 );
@@ -39,7 +40,12 @@ const renderProjectLinks = (githubLink, liveLink, slug) => (
 );
 
 const ProjectItem = ({ project }) => {
-  const { title, tech, image, description, githubLink, liveLink, slug } = project;
+  const { id, title, tech, image, description, githubLink, liveLink, slug } = project;
+
+  // Ensure the project has a valid id before rendering
+  if (!id) {
+    return null;
+  }
 
   return (
     <motion.div
@@ -75,6 +81,7 @@ const ProjectItem = ({ project }) => {
 
 ProjectItem.propTypes = {
   project: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     tech: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]).isRequired,
     image: PropTypes.string,

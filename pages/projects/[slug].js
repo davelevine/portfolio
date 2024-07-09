@@ -20,9 +20,15 @@ export const getStaticProps = async ({ params }) => {
   const { slug } = params;
   const projectData = await getProjectData(slug);
 
+  // Ensure the project has an id
+  const validProjectData = {
+    ...projectData,
+    id: projectData.id || 'default-id',
+  };
+
   return {
     props: {
-      project: projectData,
+      project: validProjectData,
     },
     revalidate: 600,
   };

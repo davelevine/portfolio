@@ -4,6 +4,12 @@ import AllProjects from '../../components/projects/allProjects';
 
 // Refactored Projects component to use destructuring directly in the function parameter
 const Projects = ({ projects }) => {
+  // Ensure that each project has an id before passing to AllProjects
+  const validProjects = projects.map(project => ({
+    ...project,
+    id: project.id || 'default-id', // Ensure each project has an id
+  }));
+
   return (
     <>
       <Head>
@@ -13,7 +19,7 @@ const Projects = ({ projects }) => {
           content='List of all of my projects. Tech-Stack: React, Next.js, Redux, Typescript, Node.js, Express, MongoDB, Bootstrap, Shopware.'
         />
       </Head>
-      <AllProjects projects={projects} />
+      <AllProjects projects={validProjects} />
     </>
   );
 };
@@ -23,9 +29,15 @@ export default Projects;
 export const getStaticProps = async () => {
   const allProjects = await getAllProjects();
 
+  // Ensure that each project has an id before passing to the component
+  const validProjects = allProjects.map(project => ({
+    ...project,
+    id: project.id || 'default-id', // Ensure each project has an id
+  }));
+
   return {
     props: {
-      projects: allProjects,
+      projects: validProjects,
     },
   };
 };

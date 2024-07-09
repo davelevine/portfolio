@@ -39,16 +39,19 @@ const AllProjects = ({ projects }) => {
   const [modalType, setModalType] = useState(''); // State to determine modal type
   const [isDesktop, setIsDesktop] = useState(false);
 
+  // Ensure that each project has an id before proceeding
+  const validProjects = useMemo(() => projects.filter(project => project.id), [projects]);
+
   // Memoize selectedTechs
   const selectedTechs = useMemo(() => {
     const techs = new Set();
-    projects.forEach(({ tech }) => {
+    validProjects.forEach(({ tech }) => {
       if (Array.isArray(tech)) {
         tech.forEach((t) => techs.add(t));
       }
     });
     return Array.from(techs).sort();
-  }, [projects]);
+  }, [validProjects]);
 
   // Set document title once on mount
   useEffect(() => {
@@ -95,16 +98,14 @@ const AllProjects = ({ projects }) => {
   // Filter projects based on selected tech
   const filteredProjects = useMemo(() => {
     return filter === 'all'
-      ? projects.sort((a, b) => b.isFeatured - a.isFeatured)
-      : projects.filter(({ tech }) => tech.includes(filter));
-  }, [filter, projects]);
+      ? validProjects.sort((a, b) => b.isFeatured - a.isFeatured)
+      : validProjects.filter(({ tech }) => tech.includes(filter));
+  }, [filter, validProjects]);
 
   const [ref, inView] = useInView({
     triggerOnce: false,
     threshold: 0.1, // Trigger when 10% of the item is visible
   });
-
-  console.log(`Page inView:`, inView);
 
   // Motion variants for buttons
   const buttonVariants = {

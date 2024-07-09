@@ -18,6 +18,7 @@ export const getProjectData = (projectIdentifier) => {
 
   return {
     slug: projectSlug,
+    id: data.id || projectSlug, // Ensure each project has an id
     ...data,
     content,
   };
