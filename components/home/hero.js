@@ -26,6 +26,17 @@ const Hero = () => {
     setShowModal(true);
   }, []);
 
+    // Effects for managing body overflow when the modal is open or closed
+    useEffect(() => {
+      const hideScrollbar = () => {
+        document.body.style.overflow = 'auto';
+        document.body.style.paddingRight = '0px';
+      };
+  
+      hideScrollbar();
+    }, [showModal]);
+  
+
   // Function to close the modal
   const closeModalHandler = useCallback(() => {
     setShowModal(false);
