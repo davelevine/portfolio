@@ -16,7 +16,7 @@ const Projects = ({ projects }) => {
         <title>Projects</title>
         <meta
           name='description'
-          content='List of all of my projects. Tech-Stack: React, Next.js, Redux, Typescript, Node.js, Express, MongoDB, Bootstrap, Shopware.'
+          content='List of all of my projects.'
         />
       </Head>
       <AllProjects projects={validProjects} />

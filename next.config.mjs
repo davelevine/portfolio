@@ -101,6 +101,7 @@ const nextConfig = {
     webpackBuildWorker: true,
   },
   webpack: configureWebpack,
+  pwa: pwaOptions, // Ensure PWA options are included in the Next.js configuration
 };
 
 export default pkg([withPWA(pwaOptions), brotliOptions], nextConfig);
