@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic'; // Dynamically import Modal
 import Aos from 'aos'; // Library for scroll animations
 import 'aos/dist/aos.css'; // Styles for AOS animations
 import { motion, AnimatePresence } from 'framer-motion'; // Import AnimatePresence
+import Footer from '../layout/footer'; // Import Footer
 
 // Dynamically import Modal to reduce initial load
 const Modal = dynamic(() => import('../layout/modal/modal'));
@@ -26,16 +27,15 @@ const Hero = () => {
     setShowModal(true);
   }, []);
 
-    // Effects for managing body overflow when the modal is open or closed
-    useEffect(() => {
-      const hideScrollbar = () => {
-        document.body.style.overflow = 'auto';
-        document.body.style.paddingRight = '0px';
-      };
-  
-      hideScrollbar();
-    }, [showModal]);
-  
+  // Effects for managing body overflow when the modal is open or closed
+  useEffect(() => {
+    const hideScrollbar = () => {
+      document.body.style.overflow = 'auto';
+      document.body.style.paddingRight = '0px';
+    };
+
+    hideScrollbar();
+  }, [showModal]);
 
   // Function to close the modal
   const closeModalHandler = useCallback(() => {
@@ -78,107 +78,112 @@ const Hero = () => {
   };
 
   return (
-    <section className={classes.greetings}>
-      <div className={classes.container}>
-        <div className={classes.row}>
-          <div className={classes.columnLeft}>
-            {/* Introduction section with data-aos animation attributes */}
-            <h2 data-aos='fade-left'>Hey, I&apos;m{' '}
-              <span className={classes.name}>
-                Dave
-              </span>!{' '}
-            </h2>
-            <h1 data-aos='fade-right'>Solutions Engineer</h1>
-            <h3 data-aos='fade-left' data-aos-delay='200'>
-              I design and implement systems
-              <span className={classes.punctuation}><b>.</b></span>
-              <span>
-              </span>{' '}
-            </h3>
-            <div className={classes.socialMedia}>
-              {/* Links to social media profiles with data-aos animations */}
-              <a href='https://github.com/davelevine' target='_blank' rel='noreferrer' aria-label="GitHub Profile">
-                <i className='fab fa-github' data-aos='flip-up'></i>
-              </a>
-              <a href='https://www.linkedin.com/in/iamdavelevine' target='_blank' rel='noreferrer' aria-label="LinkedIn Profile">
-                <i
-                  className='fab fa-linkedin'
-                  data-aos='flip-up'
-                  data-aos-delay='100'></i>
-              </a>{' '}
-              <a href='https://kb.levine.io' target='_blank' rel='noreferrer' aria-label="Knowledge Base">
-                <i
-                  className='fas fa-globe'
-                  data-aos='flip-up'
-                  data-aos-delay='200'></i>
-              </a>
-              <a href={PGP_KEY_PATH} target='_blank' rel='noreferrer' aria-label="PGP Key">
-                <i
-                  className='fa fa-key'
-                  data-aos='flip-up'
-                  data-aos-delay='300'></i>
-              </a>
+    <>
+      <section className={classes.greetings}>
+        <div className={classes.container}>
+          <div className={classes.row}>
+            <div className={classes.columnLeft}>
+              {/* Introduction section with data-aos animation attributes */}
+              <h2 data-aos='fade-left'>Hey, I&apos;m{' '}
+                <span className={classes.name}>
+                  Dave
+                </span>!{' '}
+              </h2>
+              <h1 data-aos='fade-right'>Solutions Engineer</h1>
+              <h3 data-aos='fade-left' data-aos-delay='200'>
+                I design and implement systems
+                <span className={classes.punctuation}><b>.</b></span>
+                <span>
+                </span>{' '}
+              </h3>
+              <div className={classes.socialMedia}>
+                {/* Links to social media profiles with data-aos animations */}
+                <a href='https://github.com/davelevine' target='_blank' rel='noreferrer' aria-label="GitHub Profile">
+                  <i className='fab fa-github' data-aos='flip-up'></i>
+                </a>
+                <a href='https://www.linkedin.com/in/iamdavelevine' target='_blank' rel='noreferrer' aria-label="LinkedIn Profile">
+                  <i
+                    className='fab fa-linkedin'
+                    data-aos='flip-up'
+                    data-aos-delay='100'></i>
+                </a>{' '}
+                <a href='https://kb.levine.io' target='_blank' rel='noreferrer' aria-label="Knowledge Base">
+                  <i
+                    className='fas fa-globe'
+                    data-aos='flip-up'
+                    data-aos-delay='200'></i>
+                </a>
+                <a href={PGP_KEY_PATH} target='_blank' rel='noreferrer' aria-label="PGP Key">
+                  <i
+                    className='fa fa-key'
+                    data-aos='flip-up'
+                    data-aos-delay='300'></i>
+                </a>
+              </div>
+              <div className={classes.ctaButtons}>
+                {/* Call-to-action buttons with framer-motion animations */}
+                <motion.button
+                  variants={buttonVariants}
+                  className='btn btn-filled'
+                  data-aos='fade-up'
+                  onClick={() => showModalHandler('resume')}
+                  aria-label="My Resume"
+                  transition={{ duration: 0.55 }} // Adjusted transition speed to match about.js
+                >
+                  MY RESUME
+                </motion.button>
+                <motion.button
+                  variants={buttonVariants}
+                  className='btn btn-outlined'
+                  data-aos='fade-down'
+                  onClick={() => showModalHandler('contact')}
+                  aria-label="Contact Me"
+                  transition={{ duration: 0.55 }} // Adjusted transition speed to match about.js
+                >
+                  CONTACT
+                </motion.button>
+              </div>
             </div>
-            <div className={classes.ctaButtons}>
-              {/* Call-to-action buttons with framer-motion animations */}
-              <motion.button
-                variants={buttonVariants}
-                className='btn btn-filled'
-                data-aos='fade-up'
-                onClick={() => showModalHandler('resume')}
-                aria-label="My Resume"
-                transition={{ duration: 0.55 }} // Adjusted transition speed to match about.js
-              >
-                MY RESUME
-              </motion.button>
-              <motion.button
-                variants={buttonVariants}
-                className='btn btn-outlined'
-                data-aos='fade-down'
-                onClick={() => showModalHandler('contact')}
-                aria-label="Contact Me"
-                transition={{ duration: 0.55 }} // Adjusted transition speed to match about.js
-              >
-                CONTACT
-              </motion.button>
-            </div>
-          </div>
 
-          <div className={`${classes.columnRight} ${classes.profilePic}`}>
-            {/* Conditionally render different images based on viewport width */}
-            {isMobile ? (
-              <Image
-                src={MOBILE_PROFILE_IMAGE_PATH}
-                width={230}
-                height={230}
-                alt="profile-pic"
-                data-aos="fade-left"
-                className="zoomed-out-image"
-                loading="eager"
-                onError={handleImageError}
-                priority
-              />
-            ) : (
-              <Image
-                src={DESKTOP_PROFILE_IMAGE_PATH}
-                width={460}
-                height={460}
-                alt="profile-pic"
-                data-aos="fade-left"
-                className="zoomed-out-image"
-                loading="eager"
-                onError={handleImageError}
-                priority
-              />
-            )}
+            <div className={`${classes.columnRight} ${classes.profilePic}`}>
+              {/* Conditionally render different images based on viewport width */}
+              {isMobile ? (
+                <Image
+                  src={MOBILE_PROFILE_IMAGE_PATH}
+                  width={230}
+                  height={230}
+                  alt="profile-pic"
+                  data-aos="fade-left"
+                  className="zoomed-out-image"
+                  loading="eager"
+                  onError={handleImageError}
+                  priority
+                  as="image"
+                />
+              ) : (
+                <Image
+                  src={DESKTOP_PROFILE_IMAGE_PATH}
+                  width={460}
+                  height={460}
+                  alt="profile-pic"
+                  data-aos="fade-left"
+                  className="zoomed-out-image"
+                  loading="eager"
+                  onError={handleImageError}
+                  priority
+                  as="image"
+                />
+              )}
+            </div>
           </div>
         </div>
-      </div>
-      <AnimatePresence>
-        {/* Display the modal when showModal is true */}
-        {showModal && <Modal contact={modalType === 'contact'} resume={modalType === 'resume'} onClose={closeModalHandler} />}
-      </AnimatePresence>
-    </section>
+        <AnimatePresence>
+          {/* Display the modal when showModal is true */}
+          {showModal && <Modal contact={modalType === 'contact'} resume={modalType === 'resume'} onClose={closeModalHandler} />}
+        </AnimatePresence>
+      </section>
+      <Footer />
+    </>
   );
 };
 
