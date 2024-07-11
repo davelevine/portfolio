@@ -119,7 +119,7 @@ const Hero = () => {
           </div>
 
           <div className={`${classes.columnRight} ${classes.profilePic}`}>
-            {/* Image container with profile picture using Next.js Image component with preload */}
+            {/* Image container with profile picture using Next.js Image component */}
             <div className={classes.imageContainer}>
               <Image
                 src='/images/profile-pic-1.webp'
@@ -127,9 +127,9 @@ const Hero = () => {
                 height={600}
                 alt='profile-pic'
                 data-aos='fade-left'
-                // Set loading attribute to 'eager' to indicate preload
-                loading='eager'
+                // Remove loading attribute to avoid preload issues
                 priority
+                as="image"
                 style={{
                   maxWidth: "100%",
                   height: "auto",
