@@ -18,8 +18,8 @@
 
     /* Styles for the element with the class "columnRight" and "profilePic" on mobile */
     .columnRight.profilePic {
-      max-width: 350px;
-      max-height: 350px;
+      max-width: 230px; /* Reduced max-width for mobile */
+      max-height: 230px; /* Reduced max-height for mobile */
       margin: 0 auto 10px; /* Adjusted the margin for mobile */
     }
 
@@ -30,8 +30,8 @@
       }
 
       .columnRight.profilePic {
-        max-width: 350px;
-        max-height: 350px;
+        max-width: 200px; /* Reduced max-width for mobile landscape orientation */
+        max-height: 200px; /* Reduced max-height for mobile landscape orientation */
         margin: 0 auto 10px; /* Adjusted the margin for mobile landscape orientation */
       }
     }
@@ -155,20 +155,34 @@
 
     /* Styles for the element with the class "profilePic" inside "columnRight" */
     &.profilePic {
-      max-width: 225px;
-      max-height: 200px;
       text-align: center;
       margin: 20px auto 0; /* Reduced margin-top */
 
       /* Styles for images within the "profilePic" container */
-      img {
+      .imageWrapper {
+        position: relative;
         border-radius: 50%;
-        object-fit: cover;
+        overflow: hidden;
+        width: 100%;
+        max-width: 250px;
+        max-height: 250px;
+        aspect-ratio: 1 / 1; /* Ensure the wrapper maintains a square aspect ratio */
+        margin: 0 auto;
+
+        @media (min-width: 768px) {
+          max-width: 350px;
+          max-height: 350px;
+        }
+
+        img {
+          border-radius: 50%;
+          object-fit: cover;
+        }
       }
 
       /* Mobile-specific styles for "profilePic" */
       @media only screen and (max-width: 767px) {
-        margin: 40px auto 20px; /* Reduced margin-top for mobile */
+        margin: 40px auto -10px; /* Reduced margin-top for mobile */
       }
     }
   }
@@ -239,15 +253,24 @@
 
       /* Styles for the element with the class "profilePic" inside "columnRight" */
       &.profilePic {
-        max-width: 460px;
-        max-height: 460px;
         margin: auto;
         margin-right: 5%;
 
         /* Styles for images within the "profilePic" container */
-        img {
-          max-width: 100%;
-          height: auto;
+        .imageWrapper {
+          position: relative;
+          border-radius: 50%;
+          overflow: hidden;
+          width: 100%;
+          max-width: 460px;
+          max-height: 460px;
+          aspect-ratio: 1 / 1; /* Ensure the wrapper maintains a square aspect ratio */
+          margin: 0 auto;
+
+          img {
+            border-radius: 50%;
+            object-fit: cover;
+          }
         }
       }
     }

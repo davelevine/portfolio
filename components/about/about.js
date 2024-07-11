@@ -1,7 +1,7 @@
 // Import required modules and components
 import classes from '../about/about.module.scss';
 import { useState, useEffect, useCallback } from 'react';
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Aos from 'aos'; // Library for scroll animations
 import 'aos/dist/aos.css'; // Styles for AOS animations
 import Modal from '../layout/modal/contactModal'; // Import the contact modal
@@ -70,9 +70,13 @@ const About = () => {
                 height={600}
                 alt='profile-pic'
                 data-aos='fade-left'
-                loading='eager' // Set loading attribute to 'eager' to indicate preload
+                // Set loading attribute to 'eager' to indicate preload
+                loading='eager'
                 priority
-              />
+                style={{
+                  maxWidth: "100%",
+                  height: "auto"
+                }} />
             </div>
             <div className={classes.quote} data-aos='fade-right'></div>
           </div>

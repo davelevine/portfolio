@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import classes from './projectItem.module.scss';
 import Link from 'next/link';
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { motion } from 'framer-motion';
 
 // Extracted image rendering logic into a separate function
@@ -13,8 +13,13 @@ const renderImage = (image) => (
       height={220}
       alt=''
       loading='eager'
-      priority // Added priority attribute for LCP
-    />
+      // Added priority attribute for LCP
+      priority
+      style={{
+        width: "310px", // Set fixed width
+        height: "210px", // Set fixed height
+        objectFit: "contain" // Ensure the image covers the container
+      }} />
   </div>
 );
 

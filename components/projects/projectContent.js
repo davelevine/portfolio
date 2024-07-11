@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark, solarizedlight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -44,7 +44,10 @@ const renderImage = (image) => {
       height={height}
       alt=''
       loading='eager'
-    />
+      style={{
+        maxWidth: "100%",
+        height: "auto"
+      }} />
   );
 };
 
@@ -125,8 +128,11 @@ const ProjectContent = ({ project, currentTheme }) => {
                       height={700}
                       alt={screenshot.description || 'Screenshot'}
                       loading='eager'
-                      objectFit='contain'
-                    />
+                      style={{
+                        maxWidth: "100%",
+                        height: "auto",
+                        objectFit: "contain"
+                      }} />
                   </SwiperSlide>
                 ))}
               </Swiper>
