@@ -17,11 +17,29 @@ class MyDocument extends Document {
           {/* Ackee tracking script */}
           <script async src="https://stats.levine.io/script2.js" data-ackee-server="https://stats.levine.io" data-ackee-domain-id="bd604f8b-c80a-42d7-8d7c-ab14e34208ce"></script>
 
-          {/* Preload and load CSS asynchronously */}
-          <link rel="preload" href="/fonts/googlefonts/google-fonts.css" as="style" />
-          <link rel="stylesheet" href="/fonts/googlefonts/google-fonts.css" />
-          <link rel="preload" href="/fonts/all.min.css" as="style" />
-          <link rel="stylesheet" href="/fonts/all.min.css" />
+          {/* Dynamically load CSS asynchronously */}
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                function loadCSS(href, integrity) {
+                  var link = document.createElement('link');
+                  link.rel = 'stylesheet';
+                  link.href = href;
+                  link.type = 'text/css';
+                  link.media = 'all';
+                  link.crossOrigin = 'anonymous';
+                  link.referrerPolicy = 'no-referrer';
+                  if (integrity) {
+                    link.integrity = integrity;
+                  }
+                  document.head.appendChild(link);
+                }
+
+                loadCSS('/fonts/googlefonts/google-fonts.css');
+                loadCSS('/fonts/all.min.css')
+              `,
+            }}
+          />
         </Head>
         <body>
           <Main />

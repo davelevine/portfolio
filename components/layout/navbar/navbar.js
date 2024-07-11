@@ -32,7 +32,7 @@ const useStickyNavbar = () => {
     return () => {
       window.removeEventListener('scroll', debounceFixNavbar);
     };
-  }, [debounce, fixNavbar]);
+  }, [fixNavbar]);
 
   return sticky;
 };

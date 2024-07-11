@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
 import classes from './certContent.module.scss';
@@ -7,10 +7,10 @@ import { atomDark, solarizedlight } from 'react-syntax-highlighter/dist/cjs/styl
 
 const CertContent = ({ cert, currentTheme }) => {
   const { content, slug, image } = cert || {};
-  const imagePath = useMemo(() => `/images/certs/${slug}/${image}`, [slug, image]);
+  const imagePath = `/images/certs/${slug}/${image}`;
 
-  // Memoized renderCode function
-  const renderCode = useMemo(() => ({ className, children }) => {
+  // Simplified renderCode function
+  const renderCode = ({ className, children }) => {
     const language = className?.split('-')[1];
     const style = currentTheme === 'dark' ? atomDark : solarizedlight;
 
@@ -19,7 +19,7 @@ const CertContent = ({ cert, currentTheme }) => {
         {children}
       </SyntaxHighlighter>
     );
-  }, [currentTheme]);
+  };
 
   return (
     <div className={classes.certContent}>

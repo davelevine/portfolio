@@ -4,6 +4,7 @@ import classes from './certItem.module.scss';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import Modal from 'react-modal';
+import Image from 'next/image';
 
 // Set the app element for react-modal to ensure accessibility
 Modal.setAppElement('#__next');
@@ -60,7 +61,7 @@ const CertItem = ({ cert: { title, excerpt, date, image } }) => {
         overlayClassName={classes.overlay}
       >
         <button onClick={() => toggleModal(false)} className={classes.closeButton}></button>
-        <img src={linkPath} alt={`Certificate for ${title}`} className={classes.certImage} />
+        <Image src={linkPath} alt={`Certificate for ${title}`} className={classes.certImage} layout="responsive" width={700} height={475} />
       </Modal>
     </div>
   );

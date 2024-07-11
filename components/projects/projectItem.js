@@ -5,46 +5,53 @@ import Image from "next/image";
 import { motion } from 'framer-motion';
 import { useMemo } from 'react';
 
-// Memoized image rendering logic
-const renderImage = (image) => useMemo(() => (
-  <div className={classes.image}>
-    <Image
-      src={`/images/projects/${image}`}
-      width={320}
-      height={220}
-      alt=''
-      priority
-      style={{
-        width: "310px", // Set fixed width
-        height: "210px", // Set fixed height
-        objectFit: "contain" // Ensure the image covers the container
-      }} />
-  </div>
-), [image]);
+// Custom hook for memoized image rendering logic
+const useRenderImage = (image) => {
+  return useMemo(() => (
+    <div className={classes.image}>
+      <Image
+        src={`/images/projects/${image}`}
+        width={320}
+        height={220}
+        alt=''
+        priority
+        style={{
+          width: "310px", // Set fixed width
+          height: "210px", // Set fixed height
+          objectFit: "contain" // Ensure the image covers the container
+        }} />
+    </div>
+  ), [image]);
+};
 
-// Memoized project link rendering logic
-const renderProjectLinks = (githubLink, liveLink, slug) => useMemo(() => (
-  <div className={classes.projectLinks}>
-    {githubLink && (
-      <a href={githubLink} target='_blank' rel='noreferrer'>
-        <i className='fab fa-github'></i>
-        Github
-      </a>
-    )}
-    {liveLink && (
-      <a href={liveLink} target='_blank' rel='noreferrer'>
-        <i className='fas fa-link'></i>
-        Website
-      </a>
-    )}
-    <Link href={`/projects/${slug}`}>
-      <i className='fa fa-circle-info'></i>Details
-    </Link>
-  </div>
-), [githubLink, liveLink, slug]);
+// Custom hook for memoized project link rendering logic
+const useRenderProjectLinks = (githubLink, liveLink, slug) => {
+  return useMemo(() => (
+    <div className={classes.projectLinks}>
+      {githubLink && (
+        <a href={githubLink} target='_blank' rel='noreferrer'>
+          <i className='fab fa-github'></i>
+          Github
+        </a>
+      )}
+      {liveLink && (
+        <a href={liveLink} target='_blank' rel='noreferrer'>
+          <i className='fas fa-link'></i>
+          Website
+        </a>
+      )}
+      <Link href={`/projects/${slug}`}>
+        <i className='fa fa-circle-info'></i>Details
+      </Link>
+    </div>
+  ), [githubLink, liveLink, slug]);
+};
 
 const ProjectItem = ({ project }) => {
   const { id, title, tech, image, description, githubLink, liveLink, slug } = project;
+
+  const renderImage = useRenderImage(image);
+  const renderProjectLinks = useRenderProjectLinks(githubLink, liveLink, slug);
 
   // Ensure the project has a valid id before rendering
   if (!id) {
@@ -67,7 +74,7 @@ const ProjectItem = ({ project }) => {
           </small>
 
           {image ? (
-            renderImage(image)
+            renderImage
           ) : (
             <div className={classes.placeholderContainer}>
               <div className={classes.placeholder}>.</div>
@@ -78,7 +85,7 @@ const ProjectItem = ({ project }) => {
 
       <p>{description}</p>
 
-      {renderProjectLinks(githubLink, liveLink, slug)}
+      {renderProjectLinks}
     </motion.div>
   );
 };
