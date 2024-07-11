@@ -70,8 +70,6 @@ const About = () => {
                 height={600}
                 alt='profile-pic'
                 data-aos='fade-left'
-                // Set loading attribute to 'eager' to indicate preload
-                loading='eager'
                 priority
                 style={{
                   maxWidth: "100%",

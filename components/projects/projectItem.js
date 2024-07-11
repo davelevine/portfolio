@@ -12,8 +12,6 @@ const renderImage = (image) => (
       width={320}
       height={220}
       alt=''
-      loading='eager'
-      // Added priority attribute for LCP
       priority
       style={{
         width: "310px", // Set fixed width

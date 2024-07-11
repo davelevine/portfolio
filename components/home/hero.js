@@ -127,8 +127,6 @@ const Hero = () => {
                 height={600}
                 alt='profile-pic'
                 data-aos='fade-left'
-                // Remove loading attribute to avoid preload issues
-                priority
                 as="image"
                 style={{
                   maxWidth: "100%",
@@ -136,7 +134,9 @@ const Hero = () => {
                   maxHeight: "100%", // Ensure the image is not too large on mobile
                   borderRadius: "50%", // Make the image circular
                   objectFit: "contain" // Ensure the image covers the container
-                }} />
+                }} 
+                priority
+              />
             </div>
             <div className={classes.quote} data-aos='fade-right'></div>
           </div>

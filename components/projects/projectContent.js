@@ -43,7 +43,7 @@ const renderImage = (image) => {
       width={width}
       height={height}
       alt=''
-      loading='eager'
+      priority
       style={{
         maxWidth: "100%",
         height: "auto"
@@ -127,7 +127,7 @@ const ProjectContent = ({ project, currentTheme }) => {
                       width={1000}
                       height={700}
                       alt={screenshot.description || 'Screenshot'}
-                      loading='eager'
+                      priority
                       style={{
                         maxWidth: "100%",
                         height: "auto",
