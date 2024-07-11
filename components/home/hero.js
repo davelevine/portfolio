@@ -15,7 +15,7 @@ const Modal = dynamic(() => import('../layout/modal/modal'), {
 
 // Constants for image paths and PGP key path
 const PGP_KEY_PATH = '/assets/dave.levine.io-pgp-key-pub.asc'; // Path to the PGP key
-const PROFILE_PIC_PATH = '/images/profile-pic-2.webp'; // Path to the profile picture
+const PROFILE_PIC_PATH = '/images/profile-pic-1.webp'; // Path to the profile picture
 
 const Hero = () => {
   // State for controlling the modal visibility
