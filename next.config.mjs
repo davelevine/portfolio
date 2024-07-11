@@ -82,6 +82,7 @@ const pwaOptions = {
   skipWaiting: true,
   disable: !isProduction,
   runtimeCaching: getRuntimeCaching(), // Refactored to use the new function
+  buildExcludes: [/middleware-manifest.\json$/],
   scope: '/',
   dynamicStartUrl: true,
   reloadOnOnline: false,
