@@ -46,7 +46,8 @@ const renderImage = (image) => {
       priority
       style={{
         maxWidth: "100%",
-        height: "auto"
+        height: "auto",
+        aspectRatio: `${width} / ${height}`
       }} />
   );
 };
@@ -131,7 +132,8 @@ const ProjectContent = ({ project, currentTheme }) => {
                       style={{
                         maxWidth: "100%",
                         height: "auto",
-                        objectFit: "contain"
+                        objectFit: "contain",
+                        aspectRatio: "1000 / 700"
                       }} />
                   </SwiperSlide>
                 ))}

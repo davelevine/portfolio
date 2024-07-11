@@ -140,4 +140,36 @@
       }
     }
   }
+
+  @media only screen and (min-width: 1600px) {
+    padding: 100px 30px 25px; /* Increased padding for very large screens */
+    min-height: 95vh; /* Adjusted min-height for very large screens */
+
+    .container {
+      max-width: 1400px; /* Increased max-width for very large screens */
+    }
+
+    h2 {
+      font-size: 4rem; /* Increased font size for very large screens */
+      margin-top: 4%; /* Adjusted margin-top for very large screens */
+    }
+
+    .columnLeft {
+      width: 55%; /* Adjusted width for very large screens */
+      padding-right: 120px; /* Increased padding-right for very large screens */
+    }
+
+    .columnRight {
+      width: 45%; /* Adjusted width for very large screens */
+
+      .imageContainer {
+        margin-top: -100px; /* Adjusted margin-top for very large screens */
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+  }
 }

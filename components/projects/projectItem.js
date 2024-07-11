@@ -3,9 +3,10 @@ import classes from './projectItem.module.scss';
 import Link from 'next/link';
 import Image from "next/image";
 import { motion } from 'framer-motion';
+import { useMemo } from 'react';
 
-// Extracted image rendering logic into a separate function
-const renderImage = (image) => (
+// Memoized image rendering logic
+const renderImage = (image) => useMemo(() => (
   <div className={classes.image}>
     <Image
       src={`/images/projects/${image}`}
@@ -19,10 +20,10 @@ const renderImage = (image) => (
         objectFit: "contain" // Ensure the image covers the container
       }} />
   </div>
-);
+), [image]);
 
-// Extracted project link rendering logic into a separate function
-const renderProjectLinks = (githubLink, liveLink, slug) => (
+// Memoized project link rendering logic
+const renderProjectLinks = (githubLink, liveLink, slug) => useMemo(() => (
   <div className={classes.projectLinks}>
     {githubLink && (
       <a href={githubLink} target='_blank' rel='noreferrer'>
@@ -40,7 +41,7 @@ const renderProjectLinks = (githubLink, liveLink, slug) => (
       <i className='fa fa-circle-info'></i>Details
     </Link>
   </div>
-);
+), [githubLink, liveLink, slug]);
 
 const ProjectItem = ({ project }) => {
   const { id, title, tech, image, description, githubLink, liveLink, slug } = project;

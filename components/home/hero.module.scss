@@ -275,4 +275,71 @@
       }
     }
   }
+
+  /* Styles for screens with a minimum width of 1600px */
+  @media only screen and (min-width: 1600px) {
+    padding: 100px 30px 25px; /* Increased padding for very large screens */
+    height: 95vh; /* Adjusted height for very large screens */
+    margin-bottom: 3%; /* Adjusted bottom margin for very large screens */
+
+    /* Styles for the element with the class "container" */
+    .container {
+      height: 110%; /* Adjusted height to fit within the new hero size */
+      max-width: 1400px; /* Increased max-width for very large screens */
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Styles for the "row" container */
+    .row {
+      display: flex;
+      flex-flow: row;
+    }
+
+    /* Styles for the element with the class "columnLeft" within the "row" container */
+    .columnLeft {
+      width: 60%; /* Adjust the size of the desktop profile image for very large screens */
+      margin-top: 35%; /* Decreased top margin for very large screens */
+      margin-left: 5%; /* Ensure the column retains its location */
+
+      /* Heading styles */
+      h1 {
+        font-size: 4.5rem; /* Increased font size for very large screens */
+      }
+
+      h2 {
+        font-size: 2.5rem; /* Increased font size for very large screens */
+      }
+
+      h3 {
+        font-size: 1.7rem; /* Increased font size for very large screens */
+      }
+
+      h3, p {
+        font-size: 1.4rem; /* Increased font size for paragraphs and text */
+      }
+    }
+
+    /* Styles for the element with the class "columnRight" */
+    .columnRight {
+      width: 40%; /* Adjust the width of the column for very large screens */
+      margin: auto; /* Ensure the column is centered */
+      position: relative; /* Add relative positioning */
+      top: -8%; /* Move the column up on very large screens */
+
+      /* Styles for the element with the class "profilePic" inside "columnRight" */
+      &.profilePic {
+        margin: auto;
+        margin-right: 5%; /* Ensure the profile picture retains its location */
+
+        /* Styles for images within the "profilePic" container */
+        .imageWrapper {
+          max-width: 500px; /* Increased max-width for very large screens */
+          max-height: 500px; /* Increased max-height for very large screens */
+        }
+      }
+    }
+  }
 }

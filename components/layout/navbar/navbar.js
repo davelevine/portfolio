@@ -7,12 +7,42 @@ import ThemeToggle from './themeToggle';
 import MenuToggle from './menuToggle';
 import { useRouter } from 'next/router';
 
+// Debounce function for better performance
+const debounce = (func, wait) => {
+  let timeout;
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func(...args), wait);
+  };
+};
+
+// Custom hook for sticky navbar logic
+const useStickyNavbar = () => {
+  const [sticky, setSticky] = useState(false);
+
+  const fixNavbar = useCallback(() => {
+    setSticky(window.scrollY >= 100);
+  }, []);
+
+  useEffect(() => {
+    const debounceFixNavbar = debounce(fixNavbar, 100);
+    window.addEventListener('scroll', debounceFixNavbar);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener('scroll', debounceFixNavbar);
+    };
+  }, [debounce, fixNavbar]);
+
+  return sticky;
+};
+
 // Define the Navbar component
 const Navbar = ({ theme, newTheme, children }) => {
-  const [sticky, setSticky] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [isOpen, toggleOpen] = useCycle(false, true);
   const router = useRouter();
+  const sticky = useStickyNavbar();
 
   // Toggle between light and dark themes
   const setThemeHandler = useCallback(() => {
@@ -29,20 +59,6 @@ const Navbar = ({ theme, newTheme, children }) => {
     toggleOpen();
   }, [toggleOpen]);
 
-  // Function to apply a sticky effect to the navbar
-  const fixNavbar = useCallback(() => {
-    setSticky(window.scrollY >= 100);
-  }, []);
-
-  // Debounce function for better performance
-  const debounce = useCallback((func, wait) => {
-    let timeout;
-    return (...args) => {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => func(...args), wait);
-    };
-  }, []);
-
   // Effect to control body overflow and padding when the modal is shown or hidden
   useEffect(() => {
     if (showModal) {
@@ -51,17 +67,6 @@ const Navbar = ({ theme, newTheme, children }) => {
       document.body.classList.remove('modal-open');
     }
   }, [showModal]);
-
-  // Effect to apply the sticky navbar on scroll
-  useEffect(() => {
-    const debounceFixNavbar = debounce(fixNavbar, 100);
-    window.addEventListener('scroll', debounceFixNavbar);
-
-    // Cleanup the event listener on component unmount
-    return () => {
-      window.removeEventListener('scroll', debounceFixNavbar);
-    };
-  }, [debounce, fixNavbar]);
 
   // Function to check if a link is active
   const isLinkActive = useCallback((href) => {

@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }) {
   const [theme, setTheme] = useState('dark');
 
   useEffect(() => {
-    setTheme(initializeTheme);
+    setTheme(initializeTheme());
   }, []);
 
   return (

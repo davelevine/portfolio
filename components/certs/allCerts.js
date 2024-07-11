@@ -57,6 +57,11 @@ const AllCerts = ({ certs }) => {
     };
 
     hideScrollbar();
+
+    return () => {
+      document.body.style.overflow = 'auto';
+      document.body.style.paddingRight = '0px';
+    };
   }, [showModal]);
 
   // Common sorting logic for certs

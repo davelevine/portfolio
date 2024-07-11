@@ -6,12 +6,16 @@ import Aos from 'aos'; // Library for scroll animations
 import 'aos/dist/aos.css'; // Styles for AOS animations
 import { motion, AnimatePresence } from 'framer-motion'; // Import AnimatePresence
 import Footer from '../layout/footer'; // Import Footer
+import Head from 'next/head'; // Import Head for preloading
 
 // Dynamically import Modal to reduce initial load
-const Modal = dynamic(() => import('../layout/modal/modal'));
+const Modal = dynamic(() => import('../layout/modal/modal'), {
+  loading: () => <p>Loading...</p>, // Add a loading component
+});
 
 // Constants for image paths and PGP key path
 const PGP_KEY_PATH = '/assets/dave.levine.io-pgp-key-pub.asc'; // Path to the PGP key
+const PROFILE_PIC_PATH = '/images/profile-pic-2.webp'; // Path to the profile picture
 
 const Hero = () => {
   // State for controlling the modal visibility
@@ -52,6 +56,9 @@ const Hero = () => {
   };
 
   return <>
+    <Head>
+      <link rel="preload" href={PROFILE_PIC_PATH} as="image" />
+    </Head>
     <section className={classes.greetings}>
       <div className={classes.container}>
         <div className={classes.row}>
@@ -122,7 +129,7 @@ const Hero = () => {
             {/* Image container with profile picture using Next.js Image component */}
             <div className={classes.imageContainer}>
               <Image
-                src='/images/profile-pic-1.webp'
+                src={PROFILE_PIC_PATH}
                 width={600}
                 height={600}
                 alt='profile-pic'

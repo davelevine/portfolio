@@ -194,3 +194,24 @@
     }
   }
 }
+
+/* Media query for very large screens */
+@media only screen and (min-width: 1600px) {
+  .navbar {
+    .container {
+      max-width: 1400px; /* Adjust max-width for very large screens */
+    }
+
+    .navMenu {
+      .linkWrapper {
+        a {
+          font-size: 1.2rem; /* Increase font size for very large screens */
+        }
+      }
+    }
+
+    .logo {
+      font-size: 1.2rem; /* Increase logo font size for very large screens */
+    }
+  }
+}

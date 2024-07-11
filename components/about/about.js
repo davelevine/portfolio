@@ -1,6 +1,6 @@
 // Import required modules and components
 import classes from '../about/about.module.scss';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import Image from "next/image";
 import Aos from 'aos'; // Library for scroll animations
 import 'aos/dist/aos.css'; // Styles for AOS animations
@@ -20,15 +20,18 @@ const About = () => {
     document.title = 'Dave Levine - About Me';
   }, []);
 
-  // Effects for managing body overflow when the modal is open or closed
-  useEffect(() => {
-    const hideScrollbar = () => {
+  // Memoized function to hide scrollbar
+  const hideScrollbar = useMemo(() => {
+    return () => {
       document.body.style.overflow = showModal ? 'hidden' : 'auto';
       document.body.style.paddingRight = showModal ? '15px' : '0px';
     };
-
-    hideScrollbar();
   }, [showModal]);
+
+  // Effects for managing body overflow when the modal is open or closed
+  useEffect(() => {
+    hideScrollbar();
+  }, [showModal, hideScrollbar]);
 
   // Function to open the modal
   const showModalHandler = useCallback((type) => {

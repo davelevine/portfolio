@@ -42,7 +42,7 @@ const AllProjects = ({ projects }) => {
   // Ensure that each project has an id before proceeding
   const validProjects = useMemo(() => projects.filter(project => project.id), [projects]);
 
-  // Memoize selectedTechs
+  // Memoize selectedTechs using Set directly
   const selectedTechs = useMemo(() => {
     const techs = new Set();
     validProjects.forEach(({ tech }) => {
@@ -113,7 +113,7 @@ const AllProjects = ({ projects }) => {
     visible: { opacity: 1, x: 0, transition: { duration: 0.3, ease: "easeInOut" } }
   };
 
-  // Handle scroll progress bar
+  // Handle scroll progress bar with debounce
   useEffect(() => {
     if (isDesktop) {
       const handleScroll = () => {
@@ -124,10 +124,12 @@ const AllProjects = ({ projects }) => {
         }
       };
 
-      window.addEventListener('scroll', handleScroll);
+      const debounceHandleScroll = debounce(handleScroll, 100);
+
+      window.addEventListener('scroll', debounceHandleScroll);
 
       return () => {
-        window.removeEventListener('scroll', handleScroll);
+        window.removeEventListener('scroll', debounceHandleScroll);
       };
     }
   }, [isDesktop]);
@@ -216,5 +218,18 @@ AllProjects.propTypes = {
     isFeatured: PropTypes.bool.isRequired,
   })).isRequired,
 };
+
+// Debounce function to limit the rate at which a function can fire.
+function debounce(func, wait) {
+  let timeout;
+  return function (...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
 
 export default AllProjects;

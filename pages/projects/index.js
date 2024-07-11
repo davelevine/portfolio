@@ -4,12 +4,6 @@ import AllProjects from '../../components/projects/allProjects';
 
 // Refactored Projects component to use destructuring directly in the function parameter
 const Projects = ({ projects }) => {
-  // Ensure that each project has an id before passing to AllProjects
-  const validProjects = projects.map(project => ({
-    ...project,
-    id: project.id || 'default-id', // Ensure each project has an id
-  }));
-
   return (
     <>
       <Head>
@@ -19,7 +13,7 @@ const Projects = ({ projects }) => {
           content='List of all of my projects.'
         />
       </Head>
-      <AllProjects projects={validProjects} />
+      <AllProjects projects={projects} />
     </>
   );
 };

@@ -3,8 +3,8 @@ import Hero from '../components/home/hero';
 import { getFeaturedCerts } from '../util/certs-util';
 import { getFeaturedProjects } from '../util/projects-util';
 
-// Refactored Home component to use destructuring directly in the function parameter for cleaner code
-export default function Home({ certs, featuredProjects }) {
+// Refactored Home component to remove unused destructured elements
+export default function Home() {
   return (
     <>
       <Head>
@@ -19,15 +19,11 @@ export default function Home({ certs, featuredProjects }) {
   );
 }
 
-// Refactored getStaticProps to use async/await for better readability and handling of asynchronous operations
+// Refactored getStaticProps to remove unused props and optimize fetch with Promise.all
 export const getStaticProps = async () => {
-  const featuredCerts = await getFeaturedCerts(); // Fetch featured certs
-  const featuredProjects = await getFeaturedProjects(); // Fetch featured projects
+  await Promise.all([getFeaturedCerts(), getFeaturedProjects()]); // Fetch featured certs and projects concurrently
 
   return {
-    props: {
-      certs: featuredCerts, // Pass the featured certs to the component
-      featuredProjects: featuredProjects, // Pass the featured projects to the component
-    },
+    props: {}, // No props are passed to the component
   };
 }
