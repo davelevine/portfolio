@@ -16,6 +16,9 @@ const Modal = dynamic(() => import('../layout/modal/modal'), {
 const PGP_KEY_PATH = '/assets/dave.levine.io-pgp-key-pub.asc'; // Path to the PGP key
 const PROFILE_PIC_PATH = '/images/profile-pic-1.webp'; // Path to the profile picture
 
+// Base64-encoded Data URL for a small blurred version of the profile picture
+const PROFILE_PIC_BLUR_DATA_URL = '/images/profile-pic-1-low-res.webp'; // Example placeholder, replace with actual data URL
+
 const Hero = () => {
   // State for controlling the modal visibility
   const [showModal, setShowModal] = useState(false);
@@ -130,7 +133,6 @@ const Hero = () => {
                 height={600}
                 alt='profile-pic'
                 data-aos='fade-left'
-                as="image"
                 style={{
                   maxWidth: "100%",
                   height: "auto",
@@ -138,7 +140,9 @@ const Hero = () => {
                   borderRadius: "50%", // Make the image circular
                   objectFit: "contain" // Ensure the image covers the container
                 }} 
-                priority
+                priority // Ensure the image is prioritized for loading
+                placeholder="blur" // Add a placeholder for LCP optimization
+                blurDataURL={PROFILE_PIC_BLUR_DATA_URL} // Provide a base64-encoded Data URL for blur effect
               />
             </div>
             <div className={classes.quote} data-aos='fade-right'></div>
