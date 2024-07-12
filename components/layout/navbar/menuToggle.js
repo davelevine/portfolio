@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 import classes from './navbar.module.scss';
 
-// Refactored Path component for the SVG paths
-const Path = ({ ...props }) => (
+// Path component for the SVG paths with motion properties
+const Path = (props) => (
   <motion.path
     fill='transparent'
     strokeWidth='3'
@@ -12,7 +12,7 @@ const Path = ({ ...props }) => (
   />
 );
 
-// Refactored MenuToggle component for the mobile menu button
+// MenuToggle component for the mobile menu button
 const MenuToggle = ({ toggleNav }) => (
   <motion.button
     className={`${classes.icon} ${classes.iconMain}`}
@@ -23,13 +23,14 @@ const MenuToggle = ({ toggleNav }) => (
     transition={{ duration: 0.7 }}
   >
     <svg width='45' height='45' viewBox='0 0 23 23'>
-      {/* Path components for the SVG paths */}
+      {/* Top Path */}
       <Path
         variants={{
           closed: { d: 'M 2 2.5 L 20 2.5' },
           open: { d: 'M 3 16.5 L 17 2.5' },
         }}
       />
+      {/* Middle Path */}
       <Path
         d='M 2 9.423 L 20 9.423'
         variants={{
@@ -38,6 +39,7 @@ const MenuToggle = ({ toggleNav }) => (
         }}
         transition={{ duration: 0.1 }}
       />
+      {/* Bottom Path */}
       <Path
         variants={{
           closed: { d: 'M 2 16.346 L 20 16.346' },

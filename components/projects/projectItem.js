@@ -5,7 +5,11 @@ import Image from "next/image";
 import { motion } from 'framer-motion';
 import { useMemo } from 'react';
 
-// Custom hook for memoized image rendering logic
+/**
+ * Custom hook for memoized image rendering logic.
+ * @param {string} image - The image filename.
+ * @returns {JSX.Element} - The rendered image component.
+ */
 const useRenderImage = (image) => {
   return useMemo(() => (
     <div className={classes.image}>
@@ -24,7 +28,13 @@ const useRenderImage = (image) => {
   ), [image]);
 };
 
-// Custom hook for memoized project link rendering logic
+/**
+ * Custom hook for memoized project link rendering logic.
+ * @param {string} githubLink - The GitHub link.
+ * @param {string} liveLink - The live project link.
+ * @param {string} slug - The project slug.
+ * @returns {JSX.Element} - The rendered project links component.
+ */
 const useRenderProjectLinks = (githubLink, liveLink, slug) => {
   return useMemo(() => (
     <div className={classes.projectLinks}>
@@ -47,6 +57,12 @@ const useRenderProjectLinks = (githubLink, liveLink, slug) => {
   ), [githubLink, liveLink, slug]);
 };
 
+/**
+ * ProjectItem component to display individual project details.
+ * @param {object} props - The component props.
+ * @param {object} props.project - The project data.
+ * @returns {JSX.Element|null} - The rendered project item component or null if no valid id.
+ */
 const ProjectItem = ({ project }) => {
   const { id, title, tech, image, description, githubLink, liveLink, slug } = project;
 

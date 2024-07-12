@@ -1,13 +1,13 @@
-import classes from './navbar.module.scss';
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { AnimatePresence, motion, useCycle } from 'framer-motion';
+import { useRouter } from 'next/router';
+import classes from './navbar.module.scss';
 import Modal from '../../layout/modal/modal';
 import ThemeToggle from './themeToggle';
 import MenuToggle from './menuToggle';
-import { useRouter } from 'next/router';
 
-// Debounce function for better performance
+// Debounce function to limit the rate at which a function can fire
 const debounce = (func, wait) => {
   let timeout;
   return (...args) => {
@@ -16,7 +16,7 @@ const debounce = (func, wait) => {
   };
 };
 
-// Custom hook for sticky navbar logic
+// Custom hook to manage sticky navbar state
 const useStickyNavbar = () => {
   const [sticky, setSticky] = useState(false);
 
@@ -37,7 +37,7 @@ const useStickyNavbar = () => {
   return sticky;
 };
 
-// Define the Navbar component
+// Navbar component
 const Navbar = ({ theme, newTheme, children }) => {
   const [showModal, setShowModal] = useState(false);
   const [isOpen, toggleOpen] = useCycle(false, true);
@@ -59,21 +59,14 @@ const Navbar = ({ theme, newTheme, children }) => {
     toggleOpen();
   }, [toggleOpen]);
 
-  // Effect to control body overflow and padding when the modal is shown or hidden
+  // Effect to control body overflow when the modal is shown or hidden
   useEffect(() => {
-    if (showModal) {
-      document.body.classList.add('modal-open');
-    } else {
-      document.body.classList.remove('modal-open');
-    }
+    document.body.classList.toggle('modal-open', showModal);
   }, [showModal]);
 
   // Function to check if a link is active
-  const isLinkActive = useCallback((href) => {
-    return router.pathname === href;
-  }, [router.pathname]);
+  const isLinkActive = useCallback((href) => router.pathname === href, [router.pathname]);
 
-  // Render the Navbar component
   return (
     <>
       <div className={sticky ? `${classes.navbar} ${classes.sticky}` : classes.navbar}>
@@ -91,12 +84,10 @@ const Navbar = ({ theme, newTheme, children }) => {
                 <Link href={path} passHref legacyBehavior key={path}>
                   <motion.a
                     style={{ cursor: 'pointer' }}
-                    initial={{ opacity: 0, y: -100 }} // Start even higher up
+                    initial={{ opacity: 0, y: -100 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 + index * 0.075 }}
-                    onClick={() => {
-                      if (window.innerWidth <= 768) toggleNav();
-                    }}
+                    onClick={() => window.innerWidth <= 768 && toggleNav()}
                     className={isLinkActive(path) ? classes.activeLink : ''}
                   >
                     {path.toUpperCase().replace('/', '') || 'HOME'}
@@ -109,9 +100,9 @@ const Navbar = ({ theme, newTheme, children }) => {
           <div className={classes.navContainer}>
             {/* Button to toggle the contact modal */}
             <motion.button
-              initial={{ opacity: 0, y: -100 }} // Start even higher up
+              initial={{ opacity: 0, y: -100 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }} // Adjusted duration to sync with hero.js
+              transition={{ duration: 0.7 }}
               className={classes.icon}
               onClick={toggleModal}
               aria-label='Toggle Contact Modal'
@@ -122,9 +113,9 @@ const Navbar = ({ theme, newTheme, children }) => {
             {/* Container with fixed width for ThemeToggle */}
             <div className={classes.themeToggleContainer}>
               <motion.button
-                initial={{ opacity: 0, y: -100 }} // Start even higher up
+                initial={{ opacity: 0, y: -100 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.75 }} // Adjusted duration to sync with hero.js
+                transition={{ duration: 0.75 }}
                 className={classes.icon}
                 onClick={setThemeHandler}
                 aria-label='Toggle Theme'
@@ -154,5 +145,4 @@ const Navbar = ({ theme, newTheme, children }) => {
   );
 };
 
-// Export the Navbar component
 export default Navbar;

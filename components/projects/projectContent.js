@@ -15,7 +15,11 @@ import 'swiper/css/navigation';
 
 import classes from './projectContent.module.scss';
 
-// Extract the custom renderers outside the component to avoid re-creating the object on each render
+/**
+ * Get custom renderers for ReactMarkdown based on the current theme.
+ * @param {string} currentTheme - The current theme ('dark' or 'light').
+ * @returns {object} Custom renderers for ReactMarkdown.
+ */
 const getCustomRenderers = (currentTheme) => ({
   code({ className, children }) {
     const language = className.split('-')[1];
@@ -31,7 +35,11 @@ const getCustomRenderers = (currentTheme) => ({
   },
 });
 
-// Extract image rendering logic into a separate function
+/**
+ * Render an image with specific dimensions based on the image name.
+ * @param {string} image - The image file name.
+ * @returns {JSX.Element} The rendered Image component.
+ */
 const renderImage = (image) => {
   const isSpecialImage = image === 'portfolio.webp' || image === 'start-page.webp';
   const width = isSpecialImage ? 850 : 700;
@@ -52,6 +60,13 @@ const renderImage = (image) => {
   );
 };
 
+/**
+ * ProjectContent component to display project details.
+ * @param {object} props - The component props.
+ * @param {object} props.project - The project data.
+ * @param {string} props.currentTheme - The current theme ('dark' or 'light').
+ * @returns {JSX.Element} The rendered ProjectContent component.
+ */
 const ProjectContent = ({ project, currentTheme }) => {
   const {
     content,

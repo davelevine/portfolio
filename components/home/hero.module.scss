@@ -284,7 +284,7 @@
 
     /* Styles for the element with the class "container" */
     .container {
-      height: 110%; /* Adjusted height to fit within the new hero size */
+      height: 100%; /* Adjusted height to fit within the new hero size */
       max-width: 1400px; /* Increased max-width for very large screens */
       margin: auto;
       display: flex;
@@ -301,7 +301,7 @@
     /* Styles for the element with the class "columnLeft" within the "row" container */
     .columnLeft {
       width: 60%; /* Adjust the size of the desktop profile image for very large screens */
-      margin-top: 35%; /* Decreased top margin for very large screens */
+      margin-top: auto; /* Reset top margin for very large screens */
       margin-left: 5%; /* Ensure the column retains its location */
 
       /* Heading styles */
@@ -325,9 +325,8 @@
     /* Styles for the element with the class "columnRight" */
     .columnRight {
       width: 40%; /* Adjust the width of the column for very large screens */
-      margin: auto; /* Ensure the column is centered */
       position: relative; /* Add relative positioning */
-      top: -8%; /* Move the column up on very large screens */
+      margin-top: auto; /* Reset top position for very large screens */
 
       /* Styles for the element with the class "profilePic" inside "columnRight" */
       &.profilePic {

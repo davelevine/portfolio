@@ -9,7 +9,12 @@ import Image from 'next/image';
 // Set the app element for react-modal to ensure accessibility
 Modal.setAppElement('#__next');
 
-// Helper function to format the date
+/**
+ * Helper function to format the date.
+ * @param {string} date - The date string to format.
+ * @param {string} status - The status of the date (e.g., 'Expired', 'Expires').
+ * @returns {JSX.Element} The formatted date element.
+ */
 const formatDate = (date, status) => {
   if (date === 'Never') {
     return <span className={classes.expires}><strong>{status}:</strong> Never</span>;
@@ -24,6 +29,16 @@ const formatDate = (date, status) => {
   return <span className={status === 'Expired' ? classes.expired : classes.expires}><strong>{status}:</strong> {formattedDate}</span>;
 };
 
+/**
+ * CertItem component renders a certification item with a modal to view the certificate image.
+ * @param {Object} props - Component properties.
+ * @param {Object} props.cert - Certification data.
+ * @param {string} props.cert.title - Title of the certification.
+ * @param {string} props.cert.excerpt - Excerpt of the certification.
+ * @param {string} props.cert.date - Expiration date of the certification.
+ * @param {string} props.cert.image - Image filename for the certification.
+ * @returns {JSX.Element} The rendered component.
+ */
 const CertItem = ({ cert: { title, excerpt, date, image } }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -61,7 +76,7 @@ const CertItem = ({ cert: { title, excerpt, date, image } }) => {
         overlayClassName={classes.overlay}
       >
         <button onClick={() => toggleModal(false)} className={classes.closeButton}></button>
-        <Image src={linkPath} alt={`Certificate for ${title}`} className={classes.certImage} layout="responsive" width={700} height={475} />
+        <Image src={linkPath} alt={`Certificate for ${title}`} className={classes.certImage} width={700} height={475} />
       </Modal>
     </div>
   );

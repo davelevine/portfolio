@@ -1,11 +1,12 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classes from './allProjects.module.scss';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import ProjectItem from './projectItem';
 import { useInView } from 'react-intersection-observer';
 import Modal from '../layout/modal/contactModal'; // Import the contact modal
 
+// Component to animate project items when they come into view
 const ProjectItemWithAnimation = ({ project }) => {
   const [ref, inView] = useInView({
     triggerOnce: false,
@@ -53,11 +54,10 @@ const AllProjects = ({ projects }) => {
     return Array.from(techs).sort();
   }, [validProjects]);
 
-  // Set document title once on mount
+  // Set document title and update isDesktop state on mount
   useEffect(() => {
     document.title = 'Dave Levine - Projects';
 
-    // Check if the screen width is greater than 768px (desktop)
     const updateIsDesktop = () => setIsDesktop(window.innerWidth > 768);
     updateIsDesktop();
     window.addEventListener('resize', updateIsDesktop);
@@ -67,7 +67,7 @@ const AllProjects = ({ projects }) => {
     };
   }, []);
 
-  // Handle button click
+  // Handle button click to set filter and active button
   const handleClick = useCallback((tech) => {
     setFilter(tech);
     setActiveButton(tech);
@@ -85,7 +85,7 @@ const AllProjects = ({ projects }) => {
     setModalType('');
   }, []);
 
-  // Effects for managing body overflow when the modal is open or closed
+  // Manage body overflow when the modal is open or closed
   useEffect(() => {
     const hideScrollbar = () => {
       document.body.style.overflow = showModal ? 'hidden' : 'auto';
@@ -101,11 +101,6 @@ const AllProjects = ({ projects }) => {
       ? validProjects.sort((a, b) => b.isFeatured - a.isFeatured)
       : validProjects.filter(({ tech }) => tech.includes(filter));
   }, [filter, validProjects]);
-
-  const [ref, inView] = useInView({
-    triggerOnce: false,
-    threshold: 0.1, // Trigger when 10% of the item is visible
-  });
 
   // Motion variants for buttons
   const buttonVariants = {

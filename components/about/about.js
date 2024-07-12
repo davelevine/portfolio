@@ -1,11 +1,12 @@
 // Import required modules and components
-import classes from '../about/about.module.scss';
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import Image from "next/image";
 import Aos from 'aos'; // Library for scroll animations
 import 'aos/dist/aos.css'; // Styles for AOS animations
-import Modal from '../layout/modal/contactModal'; // Import the contact modal
 import { AnimatePresence } from 'framer-motion'; // Import AnimatePresence for animations
+
+import classes from '../about/about.module.scss';
+import Modal from '../layout/modal/contactModal'; // Import the contact modal
 
 // Define the About component
 const About = () => {
@@ -32,12 +33,6 @@ const About = () => {
   useEffect(() => {
     hideScrollbar();
   }, [showModal, hideScrollbar]);
-
-  // Function to open the modal
-  const showModalHandler = useCallback((type) => {
-    setModalType(type);
-    setShowModal(true);
-  }, []);
 
   // Function to close the modal
   const closeModalHandler = useCallback(() => {
@@ -69,8 +64,8 @@ const About = () => {
             <div className={classes.imageContainer}>
               <Image
                 src='/images/avatar.webp'
-                width={600}
-                height={600}
+                width={500} // Reduced width for desktop
+                height={500} // Reduced height for desktop
                 alt='profile-pic'
                 data-aos='fade-left'
                 priority

@@ -1,46 +1,39 @@
-import classes from './allCerts.module.scss';
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import classes from './allCerts.module.scss';
 import CertItem from './certItem';
-import Modal from '../layout/modal/contactModal'; // Import the contact modal
-import useModal from '../layout/modal/useModal'; // Custom hook for modal logic
+import Modal from '../layout/modal/contactModal';
+import useModal from '../layout/modal/useModal';
 
 const AllCerts = ({ certs }) => {
-  // State to control selected filter
+  // State to control selected filter and active button
   const [filter, setFilter] = useState('all');
-  // State to control the active button
   const [activeButton, setActiveButton] = useState('all');
-  // State to determine if the screen is desktop
   const [isDesktop, setIsDesktop] = useState(false);
+
   // Custom hook for modal logic
   const { showModal, modalType, showModalHandler, closeModalHandler } = useModal();
 
   // Extract unique techs from certs and sort them
   const sortedUniqueTechs = useMemo(() => {
-    const selectedCerts = new Set();
-    certs.forEach((cert) => {
-      const techs = cert.tech;
-      if (Array.isArray(techs)) {
-        techs.forEach((tech) => {
-          selectedCerts.add(tech);
-        });
+    const techSet = new Set();
+    certs.forEach(cert => {
+      if (Array.isArray(cert.tech)) {
+        cert.tech.forEach(tech => techSet.add(tech));
       }
     });
-    return [...selectedCerts].sort();
+    return [...techSet].sort();
   }, [certs]);
 
-  // Set document title once on mount
+  // Set document title and update isDesktop state on mount
   useEffect(() => {
     document.title = 'Dave Levine - Certs';
 
-    // Check if the screen width is greater than 768px (desktop)
     const updateIsDesktop = () => setIsDesktop(window.innerWidth > 768);
     updateIsDesktop();
     window.addEventListener('resize', updateIsDesktop);
 
-    return () => {
-      window.removeEventListener('resize', updateIsDesktop);
-    };
+    return () => window.removeEventListener('resize', updateIsDesktop);
   }, []);
 
   // Handle button click to set filter and active button
@@ -49,7 +42,7 @@ const AllCerts = ({ certs }) => {
     setActiveButton(tech);
   }, []);
 
-  // Effects for managing body overflow when the modal is open or closed
+  // Manage body overflow when the modal is open or closed
   useEffect(() => {
     const hideScrollbar = () => {
       document.body.style.overflow = showModal ? 'hidden' : 'auto';
@@ -69,51 +62,36 @@ const AllCerts = ({ certs }) => {
     const isALegacy = a.title.includes('(Legacy)');
     const isBLegacy = b.title.includes('(Legacy)');
 
-    if (isALegacy && isBLegacy) {
-      return a.title.localeCompare(b.title);
-    } else if (isALegacy) {
-      return 1;
-    } else if (isBLegacy) {
-      return -1;
-    } else {
-      const hasExpirationDateA = a.expirationDate;
-      const hasExpirationDateB = b.expirationDate;
+    if (isALegacy && isBLegacy) return a.title.localeCompare(b.title);
+    if (isALegacy) return 1;
+    if (isBLegacy) return -1;
 
-      if (hasExpirationDateA && hasExpirationDateB) {
-        return a.expirationDate.localeCompare(b.expirationDate);
-      } else if (hasExpirationDateA) {
-        return -1;
-      } else if (hasExpirationDateB) {
-        return 1;
-      } else {
-        return b.isFeatured - a.isFeatured;
-      }
-    }
+    if (a.expirationDate && b.expirationDate) return a.expirationDate.localeCompare(b.expirationDate);
+    if (a.expirationDate) return -1;
+    if (b.expirationDate) return 1;
+
+    return b.isFeatured - a.isFeatured;
   }, []);
 
   // Filter and sort certs based on the selected filter
   const filteredCerts = useMemo(() => {
     return filter === 'all'
       ? certs.slice().sort(commonSortLogic)
-      : certs.filter((cert) => cert.tech.includes(filter)).sort(commonSortLogic);
+      : certs.filter(cert => cert.tech.includes(filter)).sort(commonSortLogic);
   }, [certs, filter, commonSortLogic]);
 
   // Handle scroll progress bar
   useEffect(() => {
     if (isDesktop) {
       const handleScroll = () => {
-        const scrollProgress = document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight) * 100;
+        const scrollProgress = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight)) * 100;
         const progressBar = document.getElementById('scroll-progress');
-        if (progressBar) {
-          progressBar.style.width = `${scrollProgress}%`;
-        }
+        if (progressBar) progressBar.style.width = `${scrollProgress}%`;
       };
 
       window.addEventListener('scroll', handleScroll);
 
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
-      };
+      return () => window.removeEventListener('scroll', handleScroll);
     }
   }, [isDesktop]);
 
@@ -175,10 +153,7 @@ const AllCerts = ({ certs }) => {
                 onClick={() => handleClick(tech)}
                 className={`btn btn-outlined sm ${activeButton === tech ? 'active' : ''}`}
                 key={tech}
-                variants={{
-                  hidden: { opacity: 0, x: 100 },
-                  visible: { opacity: 1, x: 0, transition: { duration: 0.3, ease: "easeInOut" } }
-                }}
+                variants={buttonVariants}
               >
                 {tech}
               </motion.button>
@@ -197,7 +172,6 @@ const AllCerts = ({ certs }) => {
         </div>
       </div>
       <AnimatePresence>
-        {/* Display the modal when showModal is true */}
         {showModal && <Modal contact={modalType === 'contact'} onClose={closeModalHandler} />}
       </AnimatePresence>
     </section>

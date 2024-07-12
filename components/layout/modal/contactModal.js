@@ -4,7 +4,7 @@ import classes from './contactModal.module.scss';
 import { useForm, ValidationError } from '@formspree/react';
 import { motion } from 'framer-motion';
 
-function ContactModal({ onClose, ...props }) {
+function ContactModal({ onClose }) {
   const [state, handleSubmit] = useForm('xzbloaed'); // TODO: replaceWithYourOwn
 
   // Refactored common modal content into a separate function for reusability and clarity
