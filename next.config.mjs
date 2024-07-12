@@ -1,6 +1,6 @@
 // Import necessary packages
 import pkg from 'next-compose-plugins';
-import withPWA from 'next-pwa';
+import withPWA from '@ducanh2912/next-pwa';
 import CompressionPlugin from 'compression-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';

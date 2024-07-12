@@ -6,7 +6,6 @@ import Aos from 'aos'; // Library for scroll animations
 import 'aos/dist/aos.css'; // Styles for AOS animations
 import { motion, AnimatePresence } from 'framer-motion'; // Import AnimatePresence
 import Footer from '../layout/footer'; // Import Footer
-import Head from 'next/head'; // Import Head for preloading
 
 // Dynamically import Modal to reduce initial load
 const Modal = dynamic(() => import('../layout/modal/modal'), {
@@ -56,9 +55,6 @@ const Hero = () => {
   };
 
   return <>
-    <Head>
-      <link rel="preload" href={PROFILE_PIC_PATH} as="image" />
-    </Head>
     <section className={classes.greetings}>
       <div className={classes.container}>
         <div className={classes.row}>

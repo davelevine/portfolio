@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ducanh2912/next-pwa": "^10.2.7",
     "@formspree/react": "^2.5.1",
     "aos": "^3.0.0-beta.6",
     "compression-webpack-plugin": "^11.1.0",
@@ -37,8 +38,7 @@
     "@fortawesome/fontawesome-free": "^6.5.2",
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.2.4",
-    "fontawesome-subset": "^4.4.0",
-    "next-pwa": "^5.6.0"
+    "fontawesome-subset": "^4.4.0"
   },
   "license": "MIT",
   "author": "Dave Levine",
