@@ -89,7 +89,7 @@ const Hero = () => {
               </a>{' '}
               <a href='https://kb.levine.io' target='_blank' rel='noreferrer' aria-label="Knowledge Base">
                 <i
-                  className='fas fa-globe'
+                  className='fa fa-globe'
                   data-aos='flip-up'
                   data-aos-delay='200'></i>
               </a>

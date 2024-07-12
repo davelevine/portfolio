@@ -36,7 +36,7 @@ const useRenderProjectLinks = (githubLink, liveLink, slug) => {
       )}
       {liveLink && (
         <a href={liveLink} target='_blank' rel='noreferrer'>
-          <i className='fas fa-link'></i>
+          <i className='fa fa-link'></i>
           Website
         </a>
       )}

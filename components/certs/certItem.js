@@ -50,7 +50,7 @@ const CertItem = ({ cert: { title, excerpt, date, image } }) => {
       </div>
       <div className={classes.cardAction}>
         <button onClick={() => toggleModal(true)}>
-          <i className="fas fa-arrow-up-right-from-square"></i> View certificate
+          <i className="fa fa-arrow-up-right-from-square"></i> View certificate
         </button>
       </div>
       <Modal

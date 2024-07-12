@@ -36,7 +36,7 @@ class MyDocument extends Document {
                 }
 
                 loadCSS('/fonts/googlefonts/google-fonts.css');
-                loadCSS('https://cdn.levine.io/uploads/files/all.min.css')
+                loadCSS('/fonts/custom-fontawesome.css')
               `,
             }}
           />
