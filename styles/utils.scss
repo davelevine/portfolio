@@ -1,39 +1,49 @@
+// Utility class for center-aligning text
 .text-center {
   text-align: center;
 }
 
+// Utility class for setting minimum height to 100vh
 .mvh-100 {
   min-height: 100vh;
 }
 
+// Utility class for setting top margin to 50px
 .mt-50 {
   margin-top: 50px;
 }
 
+// Utility class for setting bottom margin to 10px
 .mb-10 {
   margin-bottom: 10px;
 }
 
+// Utility class for setting bottom margin to 50px
 .mb-50 {
   margin-bottom: 50px;
 }
 
+// Utility class for setting bottom margin to 100px
 .mb-100 {
   margin-bottom: 100px;
 }
 
+// Utility class for setting right margin to 25px
 .mr-25 {
   margin-right: 25px;
 }
 
+// Utility class for applying flexbox layout
 .d-flex {
   display: flex;
 }
 
+// Utility class for setting display to block
 .d-block {
   display: block;
 }
 
+// Utility class for section padding
 .section {
   padding: 50px 15px;
 }

@@ -1,14 +1,16 @@
-// Refactored to use a mixin for button styles to avoid repetition
+// Mixin for common button styles to avoid repetition
 @mixin button-styles {
   cursor: pointer;
   outline: none;
   border: none;
 }
 
+// Apply the button-styles mixin to all button elements
 button {
   @include button-styles;
 }
 
+// General button styles
 .btn {
   width: 100%;
   text-align: center;
@@ -17,61 +19,71 @@ button {
   box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%),
     0 1px 5px 0 rgb(0 0 0 / 20%);
 
+  // Styles for active buttons
   &.active {
     color: black;
     background-color: var(--background-secondary);
   }
 
+  // Styles for small buttons
   &.sm {
-    width: unset;
+    width: auto; // Use auto instead of unset for better clarity
     padding: 5px 10px;
   }
 }
 
+// Common styles for outlined, filled, and project buttons
 .btn-outlined, .btn-filled, .btn-filled-project {
   border: 1px solid var(--background-secondary);
   font-size: 1rem;
   font-weight: 700;
 }
 
+// Styles for outlined buttons
 .btn-outlined {
   color: var(--background);
   background-color: var(--navbar-primary);
-  border-color: var(--button-border); // Refactored to use border-color for consistency
+  border-color: var(--button-border); // Use border-color for consistency
 
+  // Hover effect for outlined buttons
   &:hover {
     background-color: var(--background-secondary);
   }
 }
 
+// Styles for filled buttons
 .btn-filled {
   color: var(--navbar-primary);
   background-color: transparent;
 
+  // Hover effect for filled buttons
   &:hover {
     background-color: var(--background-secondary);
     color: #22272e;
   }
 }
 
+// Media query for screens with a minimum width of 480px
 @media only screen and (min-width: 480px) {
   .btn {
-    width: unset;
+    width: auto; // Use auto instead of unset for better clarity
   }
 }
 
+// Styles for project-specific filled buttons
 .btn-filled-project {
   color: var(--navbar-primary);
   background-color: transparent;
-  margin-top: 10px; /* Default margin */
+  margin-top: 10px; // Default margin
 
+  // Hover effect for project-specific filled buttons
   &:hover {
     background-color: var(--background-secondary);
     color: #22272e;
   }
 
-  /* Media query for screens with a maximum width of 768px (typical for mobile devices) */
+  // Media query for screens with a maximum width of 768px (typical for mobile devices)
   @media (max-width: 768px) {
-    margin-top: 45px; /* Adjust margin for mobile screens */
+    margin-top: 45px; // Adjust margin for mobile screens
   }
 }

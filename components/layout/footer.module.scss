@@ -1,36 +1,37 @@
 .footer {
-  background-color: var(--background);
-  transition: background 1s;
-  color: var(--navbar-primary);
-  text-align: center;
-  padding: 25px;
+  background-color: var(--background); /* Set background color using CSS variable */
+  transition: background 1s; /* Smooth background transition */
+  color: var(--navbar-primary); /* Set text color using CSS variable */
+  text-align: center; /* Center-align text */
+  padding: 25px; /* Padding around the footer content */
 
-  /* Apply only on mobile devices in portrait orientation */
+  /* Apply styles for mobile devices in portrait orientation */
   @media only screen and (max-width: 767px) and (orientation: portrait) {
-    margin-top: 10vh;
-    margin-bottom: 0; /* Reset margin-bottom */
+    margin-top: 10vh; /* Add top margin to push footer down */
+    margin-bottom: 0; /* Reset bottom margin */
   }
 
-  /* Apply a different margin-top value for mobile devices in landscape orientation */
+  /* Apply styles for mobile devices in landscape orientation */
   @media only screen and (orientation: landscape) {
-    margin-bottom: 0; /* Reset margin-bottom */
+    margin-bottom: 0; /* Reset bottom margin */
   }
 
   .socialMedia {
-    margin-bottom: 5px;
+    margin-bottom: 5px; /* Space below social media icons */
+
     i {
-      font-size: 2rem;
-      margin: 0 5px;
-      color: var(--text-secondary);
-      transition: color 0.3s; /* Smooth color transition */
+      font-size: 2rem; /* Icon size */
+      margin: 0 5px; /* Space between icons */
+      color: var(--text-secondary); /* Icon color using CSS variable */
+      transition: color 0.3s; /* Smooth color transition on hover */
     }
 
     i:hover {
-      color: var(--navbar-primary); /* Change color on hover */
+      color: var(--navbar-primary); /* Change icon color on hover */
     }
   }
 
   small {
-    font-size: 0.7rem;
+    font-size: 0.7rem; /* Small text size */
   }
 }

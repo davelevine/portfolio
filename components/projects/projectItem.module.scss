@@ -1,86 +1,89 @@
 .card {
-  border-radius: 5px;
-  padding: 25px;
-  background-color: var(--background-card);
-  border: 1px solid var(--border-card); //rgb(93, 101, 105) #cecece
-  transition: background 1s;
-  margin-bottom: 25px;
-  display: flex;
-  flex-direction: column;
-  min-height: 260px;
+  border-radius: 5px; /* Rounded corners for the card */
+  padding: 25px; /* Padding inside the card */
+  background-color: var(--background-card); /* Background color from CSS variable */
+  border: 1px solid var(--border-card); /* Border color from CSS variable */
+  transition: background 1s; /* Smooth background transition */
+  margin-bottom: 25px; /* Space below each card */
+  display: flex; /* Flexbox layout */
+  flex-direction: column; /* Column layout */
+  min-height: 260px; /* Minimum height for the card */
 
   .image {
-    display: flex;
-    justify-content: center;
+    display: flex; /* Flexbox layout */
+    justify-content: center; /* Center the image horizontally */
+    
     img {
-      border-radius: 4px;
+      border-radius: 4px; /* Rounded corners for the image */
     }
   }
 
   .placeholderContainer {
-    margin: 20px 0;
-    width: 100%;
-    max-height: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: 20px 0; /* Vertical margin */
+    width: 100%; /* Full width */
+    max-height: 200px; /* Maximum height */
+    display: flex; /* Flexbox layout */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    
     .placeholder {
-      text-align: center;
-      margin: 100% 0;
-      color: #ffffff;
-      font-weight: bold;
-      background-color: #8bb2c3;
-      border-radius: 50%;
-      padding: 5px;
-      font-size: 1.5rem;
+      text-align: center; /* Center text */
+      margin: 100% 0; /* Vertical margin */
+      color: #ffffff; /* Text color */
+      font-weight: bold; /* Bold text */
+      background-color: #8bb2c3; /* Background color */
+      border-radius: 50%; /* Rounded corners */
+      padding: 5px; /* Padding inside the placeholder */
+      font-size: 1.5rem; /* Font size */
       background-image: linear-gradient(
         -45deg,
         rgba(255, 255, 220, 0.2) 0%,
         transparent 100%
-      );
-      width: 200px;
-      height: 200px;
+      ); /* Gradient background */
+      width: 200px; /* Width of the placeholder */
+      height: 200px; /* Height of the placeholder */
       box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%),
-        0 1px 5px 0 rgb(0 0 0 / 20%);
+        0 1px 5px 0 rgb(0 0 0 / 20%); /* Box shadow for the placeholder */
     }
   }
 
   h4 {
-    margin: 0;
-    color: var(--text-secondary);
-    text-align: center;
+    margin: 0; /* Remove default margin */
+    color: var(--text-secondary); /* Text color from CSS variable */
+    text-align: center; /* Center text */
   }
 
   small {
-    color: var(--text-primary);
-    text-align: center;
+    color: var(--text-primary); /* Text color from CSS variable */
+    text-align: center; /* Center text */
   }
 
   .projectLinks {
-    margin-top: auto;
-    font-size: 0.9rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    margin-top: auto; /* Push to the bottom of the card */
+    font-size: 0.9rem; /* Font size */
+    display: flex; /* Flexbox layout */
+    flex-direction: row; /* Row layout */
+    justify-content: center; /* Center content horizontally */
+    
     a {
-      margin-right: 15px;
-      color: var(--accent);
-      display: block;
-      margin-bottom: 10px;
+      margin-right: 15px; /* Space between links */
+      color: var(--accent); /* Link color from CSS variable */
+      display: block; /* Block display */
+      margin-bottom: 10px; /* Space below each link */
     }
 
     a:hover {
-      color: var(--link-hover);
+      color: var(--link-hover); /* Change color on hover */
     }
 
     i {
-      width: 20px;
-      margin-right: 5px;
-      color: var(--navbar-primary);
+      width: 20px; /* Icon width */
+      margin-right: 5px; /* Space between icon and text */
+      color: var(--navbar-primary); /* Icon color from CSS variable */
     }
   }
 
   @media only screen and (min-width: 768px) {
-    margin-bottom: unset;
+    margin-bottom: unset; /* Remove bottom margin on larger screens */
   }
 }

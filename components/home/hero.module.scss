@@ -5,7 +5,7 @@
   /* Define styles for elements with the "row" class inside the "greetings" container */
   .row {
     display: flex;
-    flex-flow: column;
+    flex-direction: column; /* Use flex-direction instead of flex-flow for clarity */
     height: 100%;
   }
 
@@ -206,7 +206,7 @@
     /* Styles for the "row" container */
     .row {
       display: flex;
-      flex-flow: row;
+      flex-direction: row; /* Use flex-direction instead of flex-flow for clarity */
     }
 
     /* Styles for the element with the class "columnLeft" within the "row" container */
@@ -295,7 +295,7 @@
     /* Styles for the "row" container */
     .row {
       display: flex;
-      flex-flow: row;
+      flex-direction: row; /* Use flex-direction instead of flex-flow for clarity */
     }
 
     /* Styles for the element with the class "columnLeft" within the "row" container */

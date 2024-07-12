@@ -1,84 +1,68 @@
-// Swiper fix
+// Swiper fix for projectDetail section
 .projectDetail {
+  // Style for swiper pagination bullets
   .swiper-horizontal > .swiper-pagination-bullets,
   .swiper-pagination-bullets.swiper-pagination-horizontal,
   .swiper-pagination-custom,
   .swiper-pagination-fraction {
-    // bottom: -30px !important;
-    background-color: var(--transparent-primary);
-    padding: 5px;
-    border-radius: 6px;
-    border: 1px solid var(--border-card);
+    background-color: var(--transparent-primary); // Set background color
+    padding: 5px; // Add padding
+    border-radius: 6px; // Round the corners
+    border: 1px solid var(--border-card); // Add border
   }
 
+  // Style for swiper navigation buttons
   .swiper-button-next,
   .swiper-button-prev {
-    top: calc(65% - 100px);
+    top: calc(65% - 100px); // Position the buttons
   }
-
-  // .swiper-button-next,
-  // .swiper-rtl .swiper-button-prev {
-  //   background-color: var(--transparent-primary);
-  //   padding: 25px;
-  //   border-radius: 6px;
-  //   border: 1px solid var(--border-card);
-  // }
-
-  // .swiper-button-prev,
-  // .swiper-rtl .swiper-button-next {
-  //   background-color: var(--transparent-primary);
-  //   padding: 25px;
-  //   border-radius: 6px;
-  //   border: 1px solid var(--border-card);
-  // }
 }
 
-// .swiper-pagination-bullet {
-//   padding: 5px;
-// }
-
+// Style for individual swiper pagination bullet
 .swiper-pagination-bullet {
-  background-color: var(--background-secondary) !important;
+  background-color: var(--background-secondary) !important; // Set background color
 }
 
+// Style for swiper navigation buttons
 .swiper-button-next,
 .swiper-button-prev {
-  color: var(--background-secondary) !important;
+  color: var(--background-secondary) !important; // Set color
 }
 
+// Swiper fix for featuredProjects section
 .featuredProjects {
+  // Style for swiper slide shadows
   .swiper-3d .swiper-slide-shadow,
   .swiper-3d .swiper-slide-shadow-bottom,
   .swiper-3d .swiper-slide-shadow-left,
   .swiper-3d .swiper-slide-shadow-right,
   .swiper-3d .swiper-slide-shadow-top {
-    border-radius: 5px;
+    border-radius: 5px; // Round the corners
   }
 
+  // Positioning for swiper navigation buttons
   .swiper-button-next,
   .swiper-rtl .swiper-button-prev {
-    right: -15px !important;
+    right: -15px !important; // Adjust right position
   }
 
   .swiper-button-prev,
   .swiper-rtl .swiper-button-next {
-    left: -15px !important;
+    left: -15px !important; // Adjust left position
   }
 }
 
+// Additional styles for projectDetail section
 .projectDetail {
-  // .swiper {
-  //   margin: 50px;
-  // }
-
+  // Style for swiper slides
   .swiper-slide {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: flex; // Use flexbox
+    flex-direction: column; // Column layout
+    align-items: center; // Center align items
   }
 }
 
-// Added a media query for smaller screens
+// Media query for smaller screens
 @media (max-width: 768px) {
   .projectDetail .swiper-button-next,
   .projectDetail .swiper-button-prev {

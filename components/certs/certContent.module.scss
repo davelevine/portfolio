@@ -1,36 +1,40 @@
 .certContent {
-  padding: 50px 15px;
+  padding: 50px 15px; /* General padding for the certContent container */
 
+  /* Styles for h1 elements */
   h1 {
     font-size: 2.7rem;
     text-align: center;
   }
+
+  /* Styles for h2 elements */
   h2 {
     font-size: 2.7rem;
     text-align: center;
   }
+
+  /* Styles for h3 and h4 elements */
   h3,
   h4 {
     color: var(--text-secondary);
   }
 
+  /* Styles for anchor elements */
   a {
     color: var(--accent);
   }
 
+  /* Styles for paragraph elements */
   p {
     font-size: 1.5rem;
   }
 
+  /* Styles for image elements */
   img {
     max-width: 100%;
-    // &:first-child {
-    //   display: block;
-    //   margin: auto;
-    //   height: 400px;
-    // }
   }
 
+  /* Styles for strong elements */
   strong {
     background: #cecece;
     padding: 0 4px;
@@ -40,50 +44,61 @@
     font-size: 1.5rem;
   }
 
+  /* Styles for ordered list elements */
   ol {
     margin-bottom: 50px;
     font-size: 1.5rem;
   }
 
+  /* Styles for preformatted text elements */
   pre {
     font-size: 0.8rem;
   }
 
+  /* Styles for screens with a minimum width of 768px */
   @media only screen and (min-width: 768px) {
-    padding: 100px 25px;
+    padding: 100px 25px; /* Increased padding for larger screens */
     margin-bottom: 0;
+
+    /* Container styles for larger screens */
     .container {
       max-width: 1200px;
       margin: auto;
     }
 
+    /* Adjusted font size for h1 elements on larger screens */
     h1 {
-      font-size: 3.0rem; /* Desktop h1 font size */
+      font-size: 3.0rem;
       text-align: center;
     }
 
+    /* Adjusted font size for h2 elements on larger screens */
     h2 {
-      font-size: 2.7rem; /* Desktop h2 font size */
+      font-size: 2.7rem;
       text-align: center;
     }
 
+    /* Styles for list items on larger screens */
     li {
       margin-bottom: 35px;
     }
   }
 
-  /* Mobile styles within media query */
+  /* Mobile-specific styles within media query */
   @media only screen and (max-width: 767px) {
+    /* Adjusted font size for h1 elements on mobile */
     h1 {
-      font-size: 2.7rem; /* Mobile h1 font size */
+      font-size: 2.7rem;
       text-align: center;
     }
 
+    /* Adjusted font size for h2 elements on mobile */
     h2 {
-      font-size: 2.0rem; /* Mobile h2 font size */
+      font-size: 2.0rem;
       text-align: center;
     }
 
+    /* Adjusted font size for paragraph elements on mobile */
     p {
       font-size: 1.3rem;
     }

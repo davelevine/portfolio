@@ -1,3 +1,4 @@
+/* Styles for the contact modal */
 .contactModal {
   text-align: center;
   border-radius: 5px;
@@ -15,12 +16,14 @@
   transform: translate(-50%, -50%);
   padding-bottom: 3rem; /* Added more empty space at the bottom */
   
+  /* Close button styles */
   .close {
     position: absolute;
     right: 20px;
     top: 20px;
   }
 
+  /* Input field styles */
   .inputField {
     margin: 25px 0;
 
@@ -44,19 +47,16 @@
       width: 100%;
       border: 1px solid var(--text-secondary);
       border-radius: 5px;
+      height: 175px;
     }
 
     input:focus,
     textarea:focus {
       outline: none;
     }
-
-    textarea {
-      width: 100%;
-      height: 175px;
-    }
   }
 
+  /* Action button styles */
   .action {
     margin-bottom: 20px;
     display: flex;
@@ -73,6 +73,7 @@
     }
   }
 
+  /* Styles for screens with a minimum width of 768px */
   @media only screen and (min-width: 768px) {
     min-width: 600px;
     overflow: hidden;
@@ -99,6 +100,7 @@
     }
   }
 
+  /* Styles for screens with a maximum width of 767px */
   @media only screen and (max-width: 767px) {
     min-height: 500px;
     top: 45%; /* Adjusted to move the modal lower on mobile */
@@ -106,19 +108,22 @@
   }
 }
 
+/* Styles for contact links */
 .contactLinks {
   a {
-    margin-right: 20px; // adjust this value as needed
+    margin-right: 20px; /* Adjust this value as needed */
     i {
-      font-size: 3rem; // Increase the size of the contact links
+      font-size: 3rem; /* Increase the size of the contact links */
     }
   }
 }
 
+/* Styles for the contact modal confirmation */
 .contactModalConfirmation {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
   .linkedinLink {
     i {
       font-size: 4rem;
@@ -132,6 +137,6 @@
   }
 
   .contactLinks {
-    margin-top: 40px; // Add additional space before contact links
+    margin-top: 40px; /* Add additional space before contact links */
   }
 }

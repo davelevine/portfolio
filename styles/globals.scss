@@ -4,57 +4,65 @@
 @import './utils';
 @import './ui';
 
+// Reset default padding and margin for html and body
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   overflow: -moz-scrollbars-none; /* Hide scrollbar in Firefox */
   -ms-overflow-style: none; /* Hide scrollbar in IE and Edge */
   scrollbar-width: none; /* Hide scrollbar in Firefox */
 }
 
+// Set default font-family for all elements
 * {
   font-family: 'Poppins', sans-serif;
 }
 
+// Set specific font-family for code blocks
 pre {
   span {
     font-family: 'Fira Code', monospace;
   }
 }
 
+// Remove default link styling
 a {
   color: inherit;
   text-decoration: none;
 }
 
+// Ensure consistent box-sizing model
 * {
   box-sizing: border-box;
 }
 
+// Enable smooth scrolling
 html {
   scroll-behavior: smooth;
 }
 
+// Style for h2 elements
 h2 {
   font-size: 2rem;
   color: var(--text-secondary);
 }
 
+// Style for h3 and h4 elements
 h3,
 h4 {
   color: var(--text-secondary);
 }
 
-/* Adding modal-open class for body to manage scrollbar width */
+// Manage scrollbar width when modal is open
 body.modal-open {
   overflow: hidden;
   padding-right: 15px; /* Adjust this value to match your scrollbar width */
 }
 
-/* Hide scrollbar in WebKit browsers (Chrome, Safari) */
+// Hide scrollbar in WebKit browsers (Chrome, Safari)
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
   display: none;

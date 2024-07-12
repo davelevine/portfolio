@@ -1,5 +1,5 @@
 .projectDetail {
-  // Refactored common text styles into a mixin for reusability
+  // Mixin for common text styles to ensure reusability
   @mixin text-styles($color, $margin-bottom: null, $font-size: null) {
     color: $color;
     @if $margin-bottom {
@@ -10,23 +10,28 @@
     }
   }
 
+  // Styles for h1 elements
   h1 {
     @include text-styles(var(--text-secondary), 0);
   }
 
+  // Styles for h2 elements
   h2 {
     @include text-styles(var(--text-secondary), null, 1.3rem);
   }
 
+  // Styles for small elements
   small {
     @include text-styles(var(--text-primary), 25px);
     display: block;
   }
 
+  // Styles for anchor elements
   a {
     color: var(--text-tertiary);
   }
 
+  // Styles for strong elements
   strong {
     background: #cecece;
     padding: 0 4px;
@@ -36,6 +41,7 @@
     font-size: 0.8rem;
   }
 
+  // Common styles for card and description classes
   .card, .description {
     border-radius: 5px;
     padding: 25px;
@@ -47,87 +53,102 @@
     flex-direction: column;
   }
 
+  // Specific styles for card class
   .card {
+    // Styles for h4 elements inside card
     h4 {
       @include text-styles(var(--text-secondary), 0);
     }
 
+    // Styles for time elements inside card
     time {
       color: var(--text-tertiary);
     }
 
+    // Styles for cardAction class inside card
     .cardAction {
       display: flex;
       flex-direction: row;
       margin-top: auto;
 
+      // Styles for anchor elements inside cardAction
       a {
         color: var(--accent);
       }
     }
   }
 
+  // Styles for projectImage class
   .projectImage {
     display: flex;
     justify-content: center;  // Center horizontally
-    align-items: center;     // Center vertically
+    align-items: center;      // Center vertically
 
-    // For mobile screens (up to 768px)
+    // Media query for mobile screens (up to 768px)
     @media only screen and (max-width: 768px) {
       height: 360px;  // Adjust the height as needed
     }
 
-    // For desktop screens (greater than 768px)
+    // Media query for desktop screens (greater than 768px)
     @media only screen and (min-width: 768px) {
       height: 500px;  // Adjust the height as needed
     }
 
+    // Styles for img elements inside projectImage
     img {
       max-width: 100%;
       max-height: 100%;
     }
   }
 
+  // Styles for projectLinks class
   .projectLinks {
     display: flex;
     flex-direction: row;
     margin-top: auto;
 
+    // Styles for anchor elements inside projectLinks
     a {
       margin-right: 15px;
       color: var(--accent);
     }
 
+    // Hover effect for anchor elements inside projectLinks
     a:hover {
       color: var(--link-hover);
     }
 
+    // Styles for i elements inside projectLinks
     i {
       margin-right: 5px;
       color: var(--text-primary);
     }
   }
 
+  // Media query for screens with a minimum width of 768px
   @media only screen and (min-width: 768px) {
     margin-bottom: 0;
   }
 
-  // Code collapse
+  // Styles for code collapse functionality
   details > summary span {
     transition: all 0.3s;
     margin-left: 5px;
   }
 
+  // Rotate span inside summary when details is open
   details[open] summary span {
     transform: rotate(90deg);
   }
 
+  // Styles for summary elements
   summary {
     display: flex;
     width: 100px;
     cursor: pointer;
   }
 
+  // Hide default marker for summary elements
   summary::-webkit-details-marker {
     display: none;
   }

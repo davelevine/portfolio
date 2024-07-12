@@ -6,7 +6,6 @@ import { motion } from 'framer-motion';
 
 function ContactModal({ onClose, ...props }) {
   const [state, handleSubmit] = useForm('xzbloaed'); // TODO: replaceWithYourOwn
-  console.log(state);
 
   // Refactored common modal content into a separate function for reusability and clarity
   const renderModalContent = (title, message, showLinks = true) => (
