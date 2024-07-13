@@ -12,7 +12,7 @@ const AllCerts = ({ certs }) => {
   const [isDesktop, setIsDesktop] = useState(false);
 
   // Custom hook for modal logic
-  const { showModal, modalType, showModalHandler, closeModalHandler } = useModal();
+  const { showModal, modalType, closeModalHandler } = useModal();
 
   // Extract unique techs from certs and sort them
   const sortedUniqueTechs = useMemo(() => {
@@ -82,17 +82,19 @@ const AllCerts = ({ certs }) => {
 
   // Handle scroll progress bar
   useEffect(() => {
+    const handleScroll = () => {
+      const scrollProgress = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight)) * 100;
+      const progressBar = document.getElementById('scroll-progress');
+      if (progressBar) progressBar.style.width = `${scrollProgress}%`;
+    };
+
     if (isDesktop) {
-      const handleScroll = () => {
-        const scrollProgress = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight)) * 100;
-        const progressBar = document.getElementById('scroll-progress');
-        if (progressBar) progressBar.style.width = `${scrollProgress}%`;
-      };
-
       window.addEventListener('scroll', handleScroll);
-
-      return () => window.removeEventListener('scroll', handleScroll);
     }
+
+    handleScroll(); // Initial call to set the progress bar width
+
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [isDesktop]);
 
   // Motion variants for buttons

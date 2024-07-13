@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classes from './allProjects.module.scss';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import ProjectItem from './projectItem';
 import { useInView } from 'react-intersection-observer';
 import Modal from '../layout/modal/contactModal'; // Import the contact modal
@@ -73,12 +73,6 @@ const AllProjects = ({ projects }) => {
     setActiveButton(tech);
   }, []);
 
-  // Function to open the modal
-  const showModalHandler = useCallback((type) => {
-    setModalType(type);
-    setShowModal(true);
-  }, []);
-
   // Function to close the modal
   const closeModalHandler = useCallback(() => {
     setShowModal(false);
@@ -93,6 +87,11 @@ const AllProjects = ({ projects }) => {
     };
 
     hideScrollbar();
+
+    return () => {
+      document.body.style.overflow = 'auto';
+      document.body.style.paddingRight = '0px';
+    };
   }, [showModal]);
 
   // Filter projects based on selected tech
@@ -110,23 +109,19 @@ const AllProjects = ({ projects }) => {
 
   // Handle scroll progress bar with debounce
   useEffect(() => {
+    const handleScroll = () => {
+      const scrollProgress = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight)) * 100;
+      const progressBar = document.getElementById('scroll-progress');
+      if (progressBar) progressBar.style.width = `${scrollProgress}%`;
+    };
+
     if (isDesktop) {
-      const handleScroll = () => {
-        const scrollProgress = document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight) * 100;
-        const progressBar = document.getElementById('scroll-progress');
-        if (progressBar) {
-          progressBar.style.width = `${scrollProgress}%`;
-        }
-      };
-
-      const debounceHandleScroll = debounce(handleScroll, 100);
-
-      window.addEventListener('scroll', debounceHandleScroll);
-
-      return () => {
-        window.removeEventListener('scroll', debounceHandleScroll);
-      };
+      window.addEventListener('scroll', handleScroll);
     }
+
+    handleScroll(); // Initial call to set the progress bar width
+
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [isDesktop]);
 
   return (
@@ -181,10 +176,7 @@ const AllProjects = ({ projects }) => {
                 onClick={() => handleClick(tech)}
                 className={`btn btn-outlined sm ${activeButton === tech ? 'active' : ''}`}
                 key={tech}
-                variants={{
-                  hidden: { opacity: 0, x: 100 },
-                  visible: { opacity: 1, x: 0, transition: { duration: 0.3, ease: "easeInOut" } }
-                }}
+                variants={buttonVariants}
               >
                 {tech}
               </motion.button>
@@ -200,8 +192,9 @@ const AllProjects = ({ projects }) => {
           </div>
         </div>
       </div>
-      {/* Display the modal when showModal is true */}
-      {showModal && <Modal contact={modalType === 'contact'} onClose={closeModalHandler} />}
+      <AnimatePresence>
+        {showModal && <Modal contact={modalType === 'contact'} onClose={closeModalHandler} />}
+      </AnimatePresence>
     </section>
   );
 };
@@ -213,18 +206,5 @@ AllProjects.propTypes = {
     isFeatured: PropTypes.bool.isRequired,
   })).isRequired,
 };
-
-// Debounce function to limit the rate at which a function can fire.
-function debounce(func, wait) {
-  let timeout;
-  return function (...args) {
-    const later = () => {
-      clearTimeout(timeout);
-      func(...args);
-    };
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  };
-}
 
 export default AllProjects;

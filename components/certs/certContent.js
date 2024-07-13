@@ -18,8 +18,7 @@ import { atomDark, solarizedlight } from 'react-syntax-highlighter/dist/cjs/styl
  * @returns {JSX.Element} The rendered component.
  */
 const CertContent = ({ cert, currentTheme }) => {
-  const { content, slug, image } = cert || {};
-  const imagePath = `/images/certs/${slug}/${image}`;
+  const { content } = cert || {};
 
   /**
    * Renders code blocks with syntax highlighting.
