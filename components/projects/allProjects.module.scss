@@ -12,9 +12,10 @@
     background: var(--navbar-primary);
     z-index: 1000;
     transition: width 0.25s ease-out;
+    overflow-x: auto; /* Enable horizontal scrolling */
 
     @media (max-width: 768px) {
-      display: none; /* Hide progress bar on mobile */
+      display: block; /* Ensure progress bar is visible on mobile */
     }
   }
 
@@ -114,9 +115,9 @@
       object-fit: cover; /* Adjust object-fit for smaller screens */
     }
 
-    /* Hide the progress bar on mobile */
+    /* Ensure the progress bar is visible on mobile */
     .scrollProgress {
-      display: none;
+      display: block;
     }
   }
 }

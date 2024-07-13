@@ -11,10 +11,6 @@
     background: var(--navbar-primary);
     z-index: 1000;
     transition: width 0.25s ease-out;
-
-    @media (max-width: 768px) {
-      display: none; /* Hide progress bar on mobile */
-    }
   }
 
   h1 {

@@ -88,14 +88,12 @@ const AllCerts = ({ certs }) => {
       if (progressBar) progressBar.style.width = `${scrollProgress}%`;
     };
 
-    if (isDesktop) {
-      window.addEventListener('scroll', handleScroll);
-    }
+    window.addEventListener('scroll', handleScroll);
 
     handleScroll(); // Initial call to set the progress bar width
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isDesktop]);
+  }, []);
 
   // Motion variants for buttons
   const buttonVariants = {
@@ -105,7 +103,7 @@ const AllCerts = ({ certs }) => {
 
   return (
     <section className={classes.blog}>
-      {isDesktop && <div id="scroll-progress" className={classes.scrollProgress}></div>}
+      <div id="scroll-progress" className={classes.scrollProgress}></div>
       <div className={classes.container}>
         <motion.h1
           initial={{ opacity: 0, x: -600 }}

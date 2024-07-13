@@ -115,18 +115,16 @@ const AllProjects = ({ projects }) => {
       if (progressBar) progressBar.style.width = `${scrollProgress}%`;
     };
 
-    if (isDesktop) {
-      window.addEventListener('scroll', handleScroll);
-    }
+    window.addEventListener('scroll', handleScroll);
 
     handleScroll(); // Initial call to set the progress bar width
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isDesktop]);
+  }, []);
 
   return (
     <section className={classes.projectsGallery}>
-      {isDesktop && <div id="scroll-progress" className={classes.scrollProgress}></div>}
+      <div id="scroll-progress" className={classes.scrollProgress}></div>
       <div className={classes.container}>
         <motion.h1
           initial={{ opacity: 0, x: -600 }}
