@@ -4,7 +4,7 @@ import classes from './allProjects.module.scss';
 import { motion, AnimatePresence } from 'framer-motion';
 import ProjectItem from './projectItem';
 import { useInView } from 'react-intersection-observer';
-import Modal from '../layout/modal/contactModal'; // Import the contact modal
+import Modal from '../layout/modal/contactModal';
 
 // Component to animate project items when they come into view
 const ProjectItemWithAnimation = ({ project }) => {
@@ -38,7 +38,6 @@ const AllProjects = ({ projects }) => {
   const [activeButton, setActiveButton] = useState('all');
   const [showModal, setShowModal] = useState(false); // State to control modal visibility
   const [modalType, setModalType] = useState(''); // State to determine modal type
-  const [isDesktop, setIsDesktop] = useState(false);
 
   // Ensure that each project has an id before proceeding
   const validProjects = useMemo(() => projects.filter(project => project.id), [projects]);
@@ -54,17 +53,9 @@ const AllProjects = ({ projects }) => {
     return Array.from(techs).sort();
   }, [validProjects]);
 
-  // Set document title and update isDesktop state on mount
+  // Set document title on mount
   useEffect(() => {
     document.title = 'Dave Levine - Projects';
-
-    const updateIsDesktop = () => setIsDesktop(window.innerWidth > 768);
-    updateIsDesktop();
-    window.addEventListener('resize', updateIsDesktop);
-
-    return () => {
-      window.removeEventListener('resize', updateIsDesktop);
-    };
   }, []);
 
   // Handle button click to set filter and active button

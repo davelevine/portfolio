@@ -66,7 +66,9 @@ button {
 // Media query for screens with a minimum width of 480px
 @media only screen and (min-width: 480px) {
   .btn {
-    width: auto; // Use auto instead of unset for better clarity
+    & {
+      width: auto; // Use auto instead of unset for better clarity
+    }
   }
 }
 
@@ -84,6 +86,8 @@ button {
 
   // Media query for screens with a maximum width of 768px (typical for mobile devices)
   @media (max-width: 768px) {
-    margin-top: 45px; // Adjust margin for mobile screens
+    & {
+      margin-top: 45px; // Adjust margin for mobile screens
+    }
   }
 }

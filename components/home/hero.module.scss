@@ -1,61 +1,52 @@
 /* Define styles for elements with the "greetings" class */
 .greetings {
-  padding: 50px 15px 20px; /* Increased padding-top and reduced padding-bottom for the entire container */
+  padding: 50px 15px 20px;
 
-  /* Define styles for elements with the "row" class inside the "greetings" container */
   .row {
     display: flex;
-    flex-direction: column; /* Use flex-direction instead of flex-flow for clarity */
+    flex-direction: column;
     height: 100%;
   }
 
-  /* Define mobile-specific styles using media queries */
   @media only screen and (max-width: 767px) {
-    /* Styles for the element with the class "columnLeft" on mobile */
     .columnLeft {
-      margin-top: 40px; /* Move the entire content down on mobile */
+      margin-top: 40px;
     }
-
-    /* Styles for the element with the class "columnRight" and "profilePic" on mobile */
+  
     .columnRight.profilePic {
-      max-width: 230px; /* Reduced max-width for mobile */
-      max-height: 230px; /* Reduced max-height for mobile */
-      margin: 0 auto 10px; /* Adjusted the margin for mobile */
+      max-width: 230px;
+      max-height: 230px;
+      margin: 0 auto 10px;
     }
 
-    /* Media query for landscape orientation */
     @media (orientation: landscape) {
       .columnLeft {
         margin-top: 20px; /* Increased margin-top to avoid overlapping */
       }
 
       .columnRight.profilePic {
-        max-width: 200px; /* Reduced max-width for mobile landscape orientation */
-        max-height: 200px; /* Reduced max-height for mobile landscape orientation */
-        margin: 0 auto 10px; /* Adjusted the margin for mobile landscape orientation */
+        max-width: 200px;
+        max-height: 200px;
+        margin: 0 auto 10px;
       }
     }
   }
 
-  /* Styles for the element with the class "columnLeft" in the "row" container */
   .columnLeft {
-    order: 2; /* Display order in flex layout */
+    order: 2;
 
-    /* Heading styles */
     h1 {
       color: var(--navbar-primary);
       font-size: 2.5rem;
       margin: 0;
-      text-align: left; /* Left align the heading */
+      text-align: left;
 
-      /* Mobile-specific styles */
       @media only screen and (max-width: 767px) {
-        font-size: 2.5rem; /* Reduce the font size for mobile */
-        margin: 0; /* Remove the top margin */
+        font-size: 2.5rem;
+        margin: 0;
         line-height: 1.2;
       }
 
-      /* Adjust the line height to prevent line breaks between words only on screens smaller than 1600px in width */
       @media only screen and (max-width: 1601px) {
         line-height: 1.2;
         margin: 0;
@@ -67,14 +58,14 @@
       font-size: 1.8rem;
       margin: 0 2px;
       margin-bottom: 6px;
-      text-align: left; /* Left align the heading */
+      text-align: left;
     }
 
     h3 {
       color: var(--text-secondary);
       margin: 0 5px;
       font-weight: 400;
-      text-align: left; /* Left align the heading */
+      text-align: left;
 
       @media only screen and (max-width: 1601px) {
         line-height: 2.8;
@@ -91,16 +82,15 @@
       color: var(--text-secondary);
       font-size: 2.2rem;
       margin: 0;
-      text-align: left; /* Left align the heading */
+      text-align: left;
     }
 
-    /* Styles for specific classes within the "columnLeft" container */
     .name {
-      color: var(--background-secondary); /* Set the color for the brackets */
+      color: var(--background-secondary); /* Set the color for the name */
     }
 
     .punctuation {
-      color: var(--navbar-primary); /* Set the color for the brackets */
+      color: var(--navbar-primary); /* Set the color for the punctuation */
     }
 
     span {
@@ -108,7 +98,6 @@
       top: 1px;
     }
 
-    /* Styles for social media icons */
     .socialMedia {
       margin-top: 20px;
 
@@ -123,7 +112,6 @@
       }
     }
 
-    /* Styles for call-to-action buttons */
     .ctaButtons {
       margin-top: 30px;
       display: flex;
@@ -132,33 +120,27 @@
         margin-right: 15px;
       }
 
-      /* Adjust the margin between buttons */
       button + button {
         margin-left: 15px;
       }
 
-      /* Mobile-specific styles */
       @media only screen and (max-width: 767px) {
         margin-bottom: 5%; /* Adjust the margin below buttons for mobile */
       }
     }
   }
 
-  /* Mobile-specific styles for "greetings" container */
   @media only screen and (max-width: 767px) {
     margin-top: 0; /* Reset margin for mobile */
   }
 
-  /* Styles for the element with the class "columnRight" */
   .columnRight {
     order: 1; /* Display order in flex layout */
 
-    /* Styles for the element with the class "profilePic" inside "columnRight" */
     &.profilePic {
       text-align: center;
       margin: 20px auto 0; /* Reduced margin-top */
 
-      /* Styles for images within the "profilePic" container */
       .imageWrapper {
         position: relative;
         border-radius: 50%;
@@ -180,20 +162,17 @@
         }
       }
 
-      /* Mobile-specific styles for "profilePic" */
       @media only screen and (max-width: 767px) {
         margin: 40px auto -10px; /* Reduced margin-top for mobile */
       }
     }
   }
 
-  /* Styles for screens with a minimum width of 768px */
   @media only screen and (min-width: 768px) {
     padding: 80px 25px 20px; /* Increased padding-top and reduced padding-bottom for larger screens */
     height: 90vh; /* Reduced height to occupy less of the viewport */
     margin-bottom: 2%; /* Reduced bottom margin */
 
-    /* Styles for the element with the class "container" */
     .container {
       height: 105%; /* Adjusted height to fit within the new hero size */
       max-width: 1200px;
@@ -203,13 +182,11 @@
       justify-content: center;
     }
 
-    /* Styles for the "row" container */
     .row {
       display: flex;
-      flex-direction: row; /* Use flex-direction instead of flex-flow for clarity */
+      flex-direction: row;
     }
 
-    /* Styles for the element with the class "columnLeft" within the "row" container */
     .columnLeft {
       order: 1; /* Display order in flex layout */
       align-self: center;
@@ -220,43 +197,38 @@
       margin-top: 60px; /* Increased top margin */
       margin: auto; /* Center horizontally */
 
-      /* Heading styles */
       h1 {
         font-size: 4rem;
         margin: -10px -5px 0 -5px; /* Reduced top margin and adjusted the distance between h1 and h2 */
-        text-align: left; /* Left align the heading */
+        text-align: left;
       }
 
       h2 {
         font-size: 2.3rem;
         margin: 0;
-        text-align: left; /* Left align the heading */
+        text-align: left;
       }
 
       h3 {
         font-size: 1.5rem;
-        text-align: left; /* Left align the heading */
+        text-align: left;
       }
 
-      /* Additional styles for paragraphs and text */
       h3, p {
         margin: -10px 2px;
         font-size: 1.2rem;
       }
     }
 
-    /* Styles for the element with the class "columnRight" */
     .columnRight {
-      order: 2; /* Display order in flex layout */
-      width: 38%; /* Width of the column */
+      order: 2;
+      width: 38%;
       margin: auto;
 
-      /* Styles for the element with the class "profilePic" inside "columnRight" */
       &.profilePic {
         margin: auto;
         margin-right: 5%;
 
-        /* Styles for images within the "profilePic" container */
         .imageWrapper {
           position: relative;
           border-radius: 50%;
@@ -276,69 +248,66 @@
     }
   }
 
-  /* Styles for screens with a minimum width of 1600px */
   @media only screen and (min-width: 1600px) {
-    padding: 100px 30px 25px; /* Increased padding for very large screens */
-    height: 95vh; /* Adjusted height for very large screens */
-    margin-bottom: 3%; /* Adjusted bottom margin for very large screens */
+    padding: 100px 30px 25px;
+    height: 95vh;
+    margin-bottom: 3%;
 
-    /* Styles for the element with the class "container" */
     .container {
-      height: 100%; /* Adjusted height to fit within the new hero size */
-      max-width: 1400px; /* Increased max-width for very large screens */
+      height: 100%;
+      max-width: 1400px;
       margin: auto;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
 
-    /* Styles for the "row" container */
     .row {
       display: flex;
-      flex-direction: row; /* Use flex-direction instead of flex-flow for clarity */
+      flex-direction: row;
     }
 
-    /* Styles for the element with the class "columnLeft" within the "row" container */
     .columnLeft {
-      width: 60%; /* Adjust the size of the desktop profile image for very large screens */
+      width: 60%;
       margin-top: auto; /* Reset top margin for very large screens */
       margin-left: 5%; /* Ensure the column retains its location */
 
-      /* Heading styles */
       h1 {
-        font-size: 4.5rem; /* Increased font size for very large screens */
+        font-size: 4.5rem;
       }
 
       h2 {
-        font-size: 2.5rem; /* Increased font size for very large screens */
+        font-size: 2.5rem;
       }
 
       h3 {
-        font-size: 1.7rem; /* Increased font size for very large screens */
+        font-size: 1.7rem;
       }
 
       h3, p {
-        font-size: 1.4rem; /* Increased font size for paragraphs and text */
+        font-size: 1.4rem;
       }
     }
 
-    /* Styles for the element with the class "columnRight" */
     .columnRight {
-      width: 40%; /* Adjust the width of the column for very large screens */
-      position: relative; /* Add relative positioning */
+      width: 40%;
+      position: relative;
       margin-top: auto; /* Reset top position for very large screens */
 
-      /* Styles for the element with the class "profilePic" inside "columnRight" */
       &.profilePic {
         margin: auto;
         margin-right: 5%; /* Ensure the profile picture retains its location */
 
-        /* Styles for images within the "profilePic" container */
         .imageWrapper {
-          max-width: 500px; /* Increased max-width for very large screens */
-          max-height: 500px; /* Increased max-height for very large screens */
+          max-width: 500px;
+          max-height: 500px;
         }
       }
     }
+  }
+
+  // Move the declaration inside &{} to opt into the new behavior
+  & {
+    margin-bottom: 0;
   }
 }

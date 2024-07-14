@@ -34,4 +34,9 @@
   small {
     font-size: 0.7rem; /* Small text size */
   }
+
+  // Move the declaration inside &{} to opt into the new behavior
+  & {
+    margin-bottom: 0;
+  }
 }

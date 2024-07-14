@@ -133,6 +133,11 @@
       align-items: center;
     }
   }
+
+  /* Move the declaration inside &{} to opt into the new behavior */
+  & {
+    margin-bottom: 0;
+  }
 }
 
 /* Media query for mobile screens */

@@ -79,3 +79,8 @@
   height: 100%; /* Full height */
   border: none; /* No border */
 }
+
+/* Move the declaration inside &{} to opt into the new behavior */
+.resumeModal {
+  margin-bottom: 0;
+}

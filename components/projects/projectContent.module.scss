@@ -152,4 +152,9 @@
   summary::-webkit-details-marker {
     display: none;
   }
+
+  // Move the declaration inside &{} to opt into the new behavior
+  & {
+    margin-bottom: 0;
+  }
 }

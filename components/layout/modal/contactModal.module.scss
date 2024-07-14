@@ -15,7 +15,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
   padding-bottom: 3rem; /* Added more empty space at the bottom */
-  
+
   /* Close button styles */
   .close {
     position: absolute;
@@ -106,6 +106,11 @@
     top: 45%; /* Adjusted to move the modal lower on mobile */
     transform: translate(-50%, -45%); /* Adjusted to move the modal lower on mobile */
   }
+
+  /* Move the declaration inside &{} to opt into the new behavior */
+  & {
+    margin-bottom: 0;
+  }
 }
 
 /* Styles for contact links */
@@ -138,5 +143,10 @@
 
   .contactLinks {
     margin-top: 40px; /* Add additional space before contact links */
+  }
+
+  /* Move the declaration inside &{} to opt into the new behavior */
+  & {
+    margin-bottom: 0;
   }
 }

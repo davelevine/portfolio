@@ -15,9 +15,7 @@ const Modal = dynamic(() => import('../layout/modal/modal'), {
 // Constants for image paths and PGP key path
 const PGP_KEY_PATH = '/assets/dave.levine.io-pgp-key-pub.asc'; // Path to the PGP key
 const PROFILE_PIC_PATH = '/images/profile-pic-1.webp'; // Path to the profile picture
-
-// Base64-encoded Data URL for a small blurred version of the profile picture
-const PROFILE_PIC_BLUR_DATA_URL = '/images/profile-pic-1-low-res.webp'; // Example placeholder, replace with actual data URL
+const PROFILE_PIC_BLUR_DATA_URL = '/images/profile-pic-1-low-res.webp'; // Base64-encoded Data URL for a small blurred version of the profile picture
 
 const Hero = () => {
   // State for controlling the modal visibility
@@ -48,7 +46,7 @@ const Hero = () => {
 
   // Initialize the AOS library with specified settings
   useEffect(() => {
-    Aos.init({ duration: 550 }); // Adjusted scroll animations speed to match about.js
+    Aos.init({ duration: 550 });
   }, []);
 
   // Variants for button animations using framer-motion
@@ -108,7 +106,7 @@ const Hero = () => {
                   data-aos='fade-up'
                   onClick={() => showModalHandler('resume')}
                   aria-label="My Resume"
-                  transition={{ duration: 0.55 }} // Adjusted transition speed to match about.js
+                  transition={{ duration: 0.55 }}
                 >
                   MY RESUME
                 </motion.button>
@@ -118,7 +116,7 @@ const Hero = () => {
                   data-aos='fade-down'
                   onClick={() => showModalHandler('contact')}
                   aria-label="Contact Me"
-                  transition={{ duration: 0.55 }} // Adjusted transition speed to match about.js
+                  transition={{ duration: 0.55 }}
                 >
                   CONTACT
                 </motion.button>
@@ -137,13 +135,13 @@ const Hero = () => {
                   style={{
                     maxWidth: "100%",
                     height: "auto",
-                    maxHeight: "100%", // Ensure the image is not too large on mobile
-                    borderRadius: "50%", // Make the image circular
-                    objectFit: "contain" // Ensure the image covers the container
+                    maxHeight: "100%",
+                    borderRadius: "50%",
+                    objectFit: "contain"
                   }} 
-                  priority // Ensure the image is prioritized for loading
-                  placeholder="blur" // Add a placeholder for LCP optimization
-                  blurDataURL={PROFILE_PIC_BLUR_DATA_URL} // Provide a base64-encoded Data URL for blur effect
+                  priority
+                  placeholder="blur"
+                  blurDataURL={PROFILE_PIC_BLUR_DATA_URL}
                 />
               </div>
               <div className={classes.quote} data-aos='fade-right'></div>
