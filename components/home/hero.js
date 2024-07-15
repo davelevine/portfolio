@@ -21,6 +21,7 @@ const Hero = () => {
   // State for controlling the modal visibility
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState(''); // State to determine modal type (contact or resume)
+  const [isHorizontal, setIsHorizontal] = useState(false); // State to track horizontal layout
 
   // Function to open the modal
   const showModalHandler = useCallback((type) => {
@@ -47,6 +48,24 @@ const Hero = () => {
   // Initialize the AOS library with specified settings
   useEffect(() => {
     Aos.init({ duration: 550 });
+  }, []);
+
+  // Check for horizontal layout
+  useEffect(() => {
+    const checkOrientation = () => {
+      if (window.innerWidth > window.innerHeight && window.innerWidth <= 1080) {
+        setIsHorizontal(true);
+      } else {
+        setIsHorizontal(false);
+      }
+    };
+
+    checkOrientation();
+    window.addEventListener('resize', checkOrientation);
+
+    return () => {
+      window.removeEventListener('resize', checkOrientation);
+    };
   }, []);
 
   // Variants for button animations using framer-motion
@@ -156,6 +175,7 @@ const Hero = () => {
         </AnimatePresence>
       </section>
       <Footer />
+      {isHorizontal && <Footer />} {/* Display the footer when isHorizontal is true */}
     </>
   );
 };
