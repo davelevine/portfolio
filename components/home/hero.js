@@ -147,8 +147,8 @@ const Hero = () => {
               <div className={classes.imageContainer}>
                 <Image
                   src={PROFILE_PIC_PATH}
-                  width={600}
-                  height={600}
+                  width={640}
+                  height={640}
                   alt='profile-pic'
                   data-aos='fade-left'
                   style={{
@@ -161,9 +161,9 @@ const Hero = () => {
                   priority={true}
                   placeholder="blur"
                   blurDataURL={PROFILE_PIC_BLUR_DATA_URL}
-                  sizes="(max-width: 767px) 300px, 600px" // Adjust size for mobile
+                  sizes="(max-width: 767px) 320px, 640px" // Adjust size for mobile
                 />
-                <link rel="preload" as="image" href={PROFILE_PIC_PATH} imageSrcSet="/images/profile-pic-1-low-res.webp 300w, /images/profile-pic-1.webp 600w" imageSizes="(max-width: 767px) 300px, 600px" />
+                <link rel="preload" as="image" href={PROFILE_PIC_PATH} imageSrcSet="/images/profile-pic-1-low-res.webp 300w, /images/profile-pic-1.webp 640w" imageSizes="(max-width: 767px) 320px, 640px" />
               </div>
               <div className={classes.quote} data-aos='fade-right'></div>
             </div>
