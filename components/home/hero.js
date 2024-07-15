@@ -14,12 +14,13 @@ const Modal = dynamic(() => import('../layout/modal/modal'), {
 
 const PGP_KEY_PATH = '/assets/dave.levine.io-pgp-key-pub.asc';
 const PROFILE_PIC_PATH = '/images/profile-pic-1.webp';
-const PROFILE_PIC_BLUR_DATA_URL = '/images/profile-pic-1-low-res.webp';
+const PROFILE_PIC_LOW_RES_PATH = '/images/profile-pic-1-low-res.webp';
 
 const Hero = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState('');
   const [isHorizontal, setIsHorizontal] = useState(false);
+  const [imageSrc, setImageSrc] = useState(PROFILE_PIC_LOW_RES_PATH);
 
   const showModalHandler = useCallback((type) => {
     setModalType(type);
@@ -61,6 +62,24 @@ const Hero = () => {
 
     return () => {
       window.removeEventListener('resize', debouncedCheckOrientation);
+    };
+  }, []);
+
+  // Update image source based on viewport size
+  useEffect(() => {
+    const updateImageSrc = () => {
+      if (window.matchMedia("(max-width: 767px)").matches) {
+        setImageSrc(PROFILE_PIC_LOW_RES_PATH);
+      } else {
+        setImageSrc(PROFILE_PIC_PATH);
+      }
+    };
+
+    updateImageSrc();
+    window.addEventListener('resize', updateImageSrc);
+
+    return () => {
+      window.removeEventListener('resize', updateImageSrc);
     };
   }, []);
 
@@ -139,7 +158,7 @@ const Hero = () => {
             <div className={`${classes.columnRight} ${classes.profilePic}`}>
               <div className={classes.imageContainer}>
                 <Image
-                  src={PROFILE_PIC_PATH}
+                  src={imageSrc}
                   width={640}
                   height={640}
                   alt='profile-pic'
@@ -153,7 +172,7 @@ const Hero = () => {
                   }} 
                   priority={true}
                   placeholder="blur"
-                  blurDataURL={PROFILE_PIC_BLUR_DATA_URL}
+                  blurDataURL={PROFILE_PIC_LOW_RES_PATH}
                   sizes="(max-width: 767px) 320px, 640px"
                 />
               </div>

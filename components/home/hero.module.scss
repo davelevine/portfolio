@@ -1,4 +1,3 @@
-/* Define styles for elements with the "greetings" class */
 .greetings {
   padding: 50px 15px 20px;
 
@@ -12,7 +11,7 @@
     .columnLeft {
       margin-top: 40px;
     }
-  
+
     .columnRight.profilePic {
       max-width: 230px;
       max-height: 230px;
@@ -21,7 +20,7 @@
 
     @media (orientation: landscape) {
       .columnLeft {
-        margin-top: 20px; /* Increased margin-top to avoid overlapping */
+        margin-top: 20px;
       }
 
       .columnRight.profilePic {
@@ -86,11 +85,11 @@
     }
 
     .name {
-      color: var(--background-secondary); /* Set the color for the name */
+      color: var(--background-secondary);
     }
 
     .punctuation {
-      color: var(--navbar-primary); /* Set the color for the punctuation */
+      color: var(--navbar-primary);
     }
 
     span {
@@ -125,21 +124,21 @@
       }
 
       @media only screen and (max-width: 767px) {
-        margin-bottom: 5%; /* Adjust the margin below buttons for mobile */
+        margin-bottom: 5%;
       }
     }
   }
 
   @media only screen and (max-width: 767px) {
-    margin-top: 0; /* Reset margin for mobile */
+    margin-top: 0;
   }
 
   .columnRight {
-    order: 1; /* Display order in flex layout */
+    order: 1;
 
     &.profilePic {
       text-align: center;
-      margin: 20px auto 0; /* Reduced margin-top */
+      margin: 20px auto 0;
 
       .imageWrapper {
         position: relative;
@@ -148,7 +147,7 @@
         width: 100%;
         max-width: 250px;
         max-height: 250px;
-        aspect-ratio: 1 / 1; /* Ensure the wrapper maintains a square aspect ratio */
+        aspect-ratio: 1 / 1;
         margin: 0 auto;
 
         @media (min-width: 768px) {
@@ -159,24 +158,24 @@
         img {
           border-radius: 50%;
           object-fit: contain;
-          width: 100%; /* Ensure the image takes the full width of the wrapper */
-          height: 100%; /* Ensure the image takes the full height of the wrapper */
+          width: 100%;
+          height: 100%;
         }
       }
 
       @media only screen and (max-width: 767px) {
-        margin: 40px auto -10px; /* Reduced margin-top for mobile */
+        margin: 40px auto -10px;
       }
     }
   }
 
   @media only screen and (min-width: 768px) {
-    padding: 80px 25px 20px; /* Increased padding-top and reduced padding-bottom for larger screens */
-    height: 90vh; /* Reduced height to occupy less of the viewport */
-    margin-bottom: 2%; /* Reduced bottom margin */
+    padding: 80px 25px 20px;
+    height: 90vh;
+    margin-bottom: 2%;
 
     .container {
-      height: 105%; /* Adjusted height to fit within the new hero size */
+      height: 105%;
       max-width: 1200px;
       margin: auto;
       display: flex;
@@ -190,18 +189,18 @@
     }
 
     .columnLeft {
-      order: 1; /* Display order in flex layout */
+      order: 1;
       align-self: center;
       display: flex;
       flex-direction: column;
-      width: 55%; /* Adjust the size of the desktop profile image */
-      margin-bottom: unset; /* Remove bottom margin */
-      margin-top: 60px; /* Increased top margin */
-      margin: auto; /* Center horizontally */
+      width: 55%;
+      margin-bottom: unset;
+      margin-top: 60px;
+      margin: auto;
 
       h1 {
         font-size: 4rem;
-        margin: -10px -5px 0 -5px; /* Reduced top margin and adjusted the distance between h1 and h2 */
+        margin: -10px -5px 0 -5px;
         text-align: left;
       }
 
@@ -238,14 +237,14 @@
           width: 100%;
           max-width: 460px;
           max-height: 460px;
-          aspect-ratio: 1 / 1; /* Ensure the wrapper maintains a square aspect ratio */
+          aspect-ratio: 1 / 1;
           margin: 0 auto;
 
           img {
             border-radius: 50%;
             object-fit: contain;
-            width: 100%; /* Ensure the image takes the full width of the wrapper */
-            height: 100%; /* Ensure the image takes the full height of the wrapper */
+            width: 100%;
+            height: 100%;
           }
         }
       }
@@ -273,8 +272,8 @@
 
     .columnLeft {
       width: 60%;
-      margin-top: auto; /* Reset top margin for very large screens */
-      margin-left: 5%; /* Ensure the column retains its location */
+      margin-top: auto;
+      margin-left: 5%;
 
       h1 {
         font-size: 4.5rem;
@@ -296,26 +295,25 @@
     .columnRight {
       width: 40%;
       position: relative;
-      margin-top: auto; /* Reset top position for very large screens */
+      margin-top: auto;
 
       &.profilePic {
         margin: auto;
-        margin-right: 5%; /* Ensure the profile picture retains its location */
+        margin-right: 5%;
 
         .imageWrapper {
           max-width: 500px;
           max-height: 500px;
 
           img {
-            width: 100%; /* Ensure the image takes the full width of the wrapper */
-            height: 100%; /* Ensure the image takes the full height of the wrapper */
+            width: 100%;
+            height: 100%;
           }
         }
       }
     }
   }
 
-  // Move the declaration inside &{} to opt into the new behavior
   & {
     margin-bottom: 0;
   }
