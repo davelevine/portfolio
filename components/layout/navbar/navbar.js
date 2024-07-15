@@ -69,20 +69,25 @@ const Navbar = ({ theme, newTheme, children }) => {
 
   return (
     <>
-      <div className={sticky ? `${classes.navbar} ${classes.sticky}` : classes.navbar}>
+      <motion.div
+        className={sticky ? `${classes.navbar} ${classes.sticky}` : classes.navbar}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <div className={classes.container}>
-          <Link href='/' passHref>
-            <span className={classes.logo}>
+          <Link href='/' passHref legacyBehavior>
+            <a className={classes.logo}>
               <span className={classes.name}>&lt;</span>/DAVE LEVINE
               <span className={classes.name}>&gt;</span>
-            </span>
+            </a>
           </Link>
 
           <nav className={isOpen ? `${classes.navMenu} ${classes.responsive}` : classes.navMenu} id='navMenu'>
             <div className={classes.linkWrapper}>
               {['/', '/projects', '/certs', '/about'].map((path, index) => (
-                <Link href={path} passHref key={path}>
-                  <motion.span
+                <Link href={path} passHref legacyBehavior key={path}>
+                  <motion.a
                     style={{ cursor: 'pointer' }}
                     initial={{ opacity: 0, y: -100 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -91,7 +96,7 @@ const Navbar = ({ theme, newTheme, children }) => {
                     className={isLinkActive(path) ? classes.activeLink : ''}
                   >
                     {path.toUpperCase().replace('/', '') || 'HOME'}
-                  </motion.span>
+                  </motion.a>
                 </Link>
               ))}
             </div>
@@ -135,7 +140,7 @@ const Navbar = ({ theme, newTheme, children }) => {
             </motion.div>
           </div>
         </div>
-      </div>
+      </motion.div>
       {/* Modal for contact information */}
       <AnimatePresence>
         {showModal && <Modal contact onClose={toggleModal} />}
