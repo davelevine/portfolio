@@ -159,6 +159,8 @@
         img {
           border-radius: 50%;
           object-fit: cover;
+          width: 100%; /* Ensure the image takes the full width of the wrapper */
+          height: 100%; /* Ensure the image takes the full height of the wrapper */
         }
       }
 
@@ -242,6 +244,8 @@
           img {
             border-radius: 50%;
             object-fit: cover;
+            width: 100%; /* Ensure the image takes the full width of the wrapper */
+            height: 100%; /* Ensure the image takes the full height of the wrapper */
           }
         }
       }
@@ -301,6 +305,11 @@
         .imageWrapper {
           max-width: 500px;
           max-height: 500px;
+
+          img {
+            width: 100%; /* Ensure the image takes the full width of the wrapper */
+            height: 100%; /* Ensure the image takes the full height of the wrapper */
+          }
         }
       }
     }

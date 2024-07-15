@@ -139,7 +139,7 @@ const Hero = () => {
                     borderRadius: "50%",
                     objectFit: "contain"
                   }} 
-                  priority
+                  priority={false} // Remove priority to avoid preloading issue
                   placeholder="blur"
                   blurDataURL={PROFILE_PIC_BLUR_DATA_URL}
                 />

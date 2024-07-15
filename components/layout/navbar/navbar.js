@@ -71,18 +71,18 @@ const Navbar = ({ theme, newTheme, children }) => {
     <>
       <div className={sticky ? `${classes.navbar} ${classes.sticky}` : classes.navbar}>
         <div className={classes.container}>
-          <Link href='/' passHref legacyBehavior>
-            <a className={classes.logo}>
+          <Link href='/' passHref>
+            <span className={classes.logo}>
               <span className={classes.name}>&lt;</span>/DAVE LEVINE
               <span className={classes.name}>&gt;</span>
-            </a>
+            </span>
           </Link>
 
           <nav className={isOpen ? `${classes.navMenu} ${classes.responsive}` : classes.navMenu} id='navMenu'>
             <div className={classes.linkWrapper}>
               {['/', '/projects', '/certs', '/about'].map((path, index) => (
-                <Link href={path} passHref legacyBehavior key={path}>
-                  <motion.a
+                <Link href={path} passHref key={path}>
+                  <motion.span
                     style={{ cursor: 'pointer' }}
                     initial={{ opacity: 0, y: -100 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -91,7 +91,7 @@ const Navbar = ({ theme, newTheme, children }) => {
                     className={isLinkActive(path) ? classes.activeLink : ''}
                   >
                     {path.toUpperCase().replace('/', '') || 'HOME'}
-                  </motion.a>
+                  </motion.span>
                 </Link>
               ))}
             </div>

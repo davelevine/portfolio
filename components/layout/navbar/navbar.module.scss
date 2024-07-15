@@ -5,6 +5,7 @@
   width: 100%;
   position: fixed; /* Fixed position at the top */
   transition: background 0.3s; /* Smooth background transition */
+  margin-bottom: 0; /* Move this declaration above nested rules */
 
   &.sticky {
     /* Styles for the sticky navigation bar */
@@ -37,12 +38,11 @@
     margin-right: auto; /* Adjust the logo's right margin */
     margin-left: 20px;
     white-space: nowrap; /* Prevent text wrapping */
+    transition: color 0.3s; /* Smooth color transition */
 
     .name {
       color: var(--background-secondary); /* Set the color for the brackets */
     }
-
-    transition: color 0.3s; /* Smooth color transition */
 
     &:hover {
       color: var(--text-secondary); /* Change color on hover */
@@ -132,11 +132,6 @@
       justify-content: center;
       align-items: center;
     }
-  }
-
-  /* Move the declaration inside &{} to opt into the new behavior */
-  & {
-    margin-bottom: 0;
   }
 }
 

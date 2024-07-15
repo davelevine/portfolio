@@ -22,7 +22,7 @@ import classes from './projectContent.module.scss';
  */
 const getCustomRenderers = (currentTheme) => ({
   code({ className, children }) {
-    const language = className.split('-')[1];
+    const language = className?.split('-')[1];
     return (
       <SyntaxHighlighter
         showLineNumbers
@@ -41,21 +41,20 @@ const getCustomRenderers = (currentTheme) => ({
  * @returns {JSX.Element} The rendered Image component.
  */
 const renderImage = (image) => {
-  const isSpecialImage = image === 'portfolio.webp' || image === 'start-page.webp';
-  const width = isSpecialImage ? 850 : 700;
-  const height = isSpecialImage ? 500 : 450;
+  const isSpecialImage = ['portfolio.webp', 'start-page.webp'].includes(image);
+  const dimensions = isSpecialImage ? { width: 850, height: 500 } : { width: 700, height: 450 };
 
   return (
     <Image
       src={`/images/projects/${image}`}
-      width={width}
-      height={height}
+      width={dimensions.width}
+      height={dimensions.height}
       alt=''
       priority
       style={{
         maxWidth: "100%",
         height: "auto",
-        aspectRatio: `${width} / ${height}`
+        aspectRatio: `${dimensions.width} / ${dimensions.height}`
       }} />
   );
 };
@@ -84,7 +83,7 @@ const ProjectContent = ({ project, currentTheme }) => {
   return (
     <div className={classes.projectDetail}>
       <div className='container section mvh-100 projectDetail'>
-        <Link href='/projects/' legacyBehavior>
+        <Link href='/projects/'>
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
