@@ -1,56 +1,50 @@
+import React, { useState, useEffect, useCallback } from 'react';
 import classes from './hero.module.scss';
 import Image from "next/image";
-import { useState, useEffect, useCallback } from 'react';
-import dynamic from 'next/dynamic'; // Dynamically import Modal
-import Aos from 'aos'; // Library for scroll animations
-import 'aos/dist/aos.css'; // Styles for AOS animations
-import { motion, AnimatePresence } from 'framer-motion'; // Import AnimatePresence
-import Footer from '../layout/footer'; // Import Footer
+import dynamic from 'next/dynamic';
+import Aos from 'aos';
+import 'aos/dist/aos.css';
+import { motion, AnimatePresence } from 'framer-motion';
+import Footer from '../layout/footer';
+import debounce from 'lodash/debounce';
 
-// Dynamically import Modal to reduce initial load
 const Modal = dynamic(() => import('../layout/modal/modal'), {
-  loading: () => <p>Loading...</p>, // Add a loading component
+  loading: () => <div className="skeleton-loader"></div>,
 });
 
-// Constants for image paths and PGP key path
-const PGP_KEY_PATH = '/assets/dave.levine.io-pgp-key-pub.asc'; // Path to the PGP key
-const PROFILE_PIC_PATH = '/images/profile-pic-1.webp'; // Path to the profile picture
-const PROFILE_PIC_BLUR_DATA_URL = '/images/profile-pic-1-low-res.webp'; // Base64-encoded Data URL for a small blurred version of the profile picture
+const PGP_KEY_PATH = '/assets/dave.levine.io-pgp-key-pub.asc';
+const PROFILE_PIC_PATH = '/images/profile-pic-1.webp';
+const PROFILE_PIC_BLUR_DATA_URL = '/images/profile-pic-1-low-res.webp';
 
 const Hero = () => {
-  // State for controlling the modal visibility
   const [showModal, setShowModal] = useState(false);
-  const [modalType, setModalType] = useState(''); // State to determine modal type (contact or resume)
-  const [isHorizontal, setIsHorizontal] = useState(false); // State to track horizontal layout
+  const [modalType, setModalType] = useState('');
+  const [isHorizontal, setIsHorizontal] = useState(false);
 
-  // Function to open the modal
   const showModalHandler = useCallback((type) => {
     setModalType(type);
     setShowModal(true);
   }, []);
 
-  // Function to close the modal
   const closeModalHandler = useCallback(() => {
     setShowModal(false);
     setModalType('');
   }, []);
 
-  // Effects for managing body overflow when the modal is open or closed
   useEffect(() => {
-    const hideScrollbar = () => {
-      document.body.style.overflow = 'auto';
-      document.body.style.paddingRight = '0px';
-    };
-
-    hideScrollbar();
+    document.body.style.overflow = 'auto';
+    document.body.style.paddingRight = '0px';
   }, [showModal]);
 
-  // Initialize the AOS library with specified settings
-  useEffect(() => {
+  const initializeAos = () => {
     Aos.init({ duration: 550 });
+  };
+
+  useEffect(() => {
+    initializeAos();
   }, []);
 
-  // Check for horizontal layout
+  // Check for horizontal layout with debounced resize event listener
   useEffect(() => {
     const checkOrientation = () => {
       if (window.innerWidth > window.innerHeight && window.innerWidth <= 1080) {
@@ -60,11 +54,13 @@ const Hero = () => {
       }
     };
 
+    const debouncedCheckOrientation = debounce(checkOrientation, 100);
+
     checkOrientation();
-    window.addEventListener('resize', checkOrientation);
+    window.addEventListener('resize', debouncedCheckOrientation);
 
     return () => {
-      window.removeEventListener('resize', checkOrientation);
+      window.removeEventListener('resize', debouncedCheckOrientation);
     };
   }, []);
 
@@ -94,7 +90,6 @@ const Hero = () => {
                 </span>{' '}
               </h3>
               <div className={classes.socialMedia}>
-                {/* Links to social media profiles with data-aos animations */}
                 <a href='https://github.com/davelevine' target='_blank' rel='noreferrer' aria-label="GitHub Profile">
                   <i className='fab fa-github' data-aos='flip-up'></i>
                 </a>
@@ -118,7 +113,6 @@ const Hero = () => {
                 </a>
               </div>
               <div className={classes.ctaButtons}>
-                {/* Call-to-action buttons with framer-motion animations */}
                 <motion.button
                   variants={buttonVariants}
                   className='btn btn-filled'
@@ -143,7 +137,6 @@ const Hero = () => {
             </div>
 
             <div className={`${classes.columnRight} ${classes.profilePic}`}>
-              {/* Image container with profile picture using Next.js Image component */}
               <div className={classes.imageContainer}>
                 <Image
                   src={PROFILE_PIC_PATH}
@@ -161,24 +154,21 @@ const Hero = () => {
                   priority={true}
                   placeholder="blur"
                   blurDataURL={PROFILE_PIC_BLUR_DATA_URL}
-                  sizes="(max-width: 767px) 320px, 640px" // Adjust size for mobile
+                  sizes="(max-width: 767px) 320px, 640px"
                 />
-                <link rel="preload" as="image" href={PROFILE_PIC_PATH} imageSrcSet="/images/profile-pic-1-low-res.webp 300w, /images/profile-pic-1.webp 640w" imageSizes="(max-width: 767px) 320px, 640px" />
               </div>
               <div className={classes.quote} data-aos='fade-right'></div>
             </div>
           </div>
         </div>
         <AnimatePresence>
-          {/* Display the modal when showModal is true */}
           {showModal && <Modal contact={modalType === 'contact'} resume={modalType === 'resume'} onClose={closeModalHandler} />}
         </AnimatePresence>
       </section>
       <Footer />
-      {isHorizontal && <Footer />} {/* Display the footer when isHorizontal is true */}
+      {isHorizontal && <Footer />}
     </>
   );
 };
 
-// Export the Hero component
-export default Hero;
+export default React.memo(Hero);
