@@ -142,6 +142,7 @@ const Hero = () => {
                   priority={false} // Remove priority to avoid preloading issue
                   placeholder="blur"
                   blurDataURL={PROFILE_PIC_BLUR_DATA_URL}
+                  sizes="(max-width: 767px) 300px, 600px" // Adjust size for mobile
                 />
               </div>
               <div className={classes.quote} data-aos='fade-right'></div>
