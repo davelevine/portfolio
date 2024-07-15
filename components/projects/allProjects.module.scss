@@ -112,7 +112,7 @@
   @media only screen and (max-width: 767px) {
     /* Styles for the img elements inside the gallery section for smaller screens */
     .gallery img {
-      object-fit: cover; /* Adjust object-fit for smaller screens */
+      object-fit: contain; /* Adjust object-fit for smaller screens */
     }
 
     /* Ensure the progress bar is visible on mobile */

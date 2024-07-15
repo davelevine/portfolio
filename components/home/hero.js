@@ -139,11 +139,12 @@ const Hero = () => {
                     borderRadius: "50%",
                     objectFit: "contain"
                   }} 
-                  priority={false} // Remove priority to avoid preloading issue
+                  priority={true}
                   placeholder="blur"
                   blurDataURL={PROFILE_PIC_BLUR_DATA_URL}
                   sizes="(max-width: 767px) 300px, 600px" // Adjust size for mobile
                 />
+                <link rel="preload" as="image" href={PROFILE_PIC_PATH} imageSrcSet="/images/profile-pic-1-low-res.webp 300w, /images/profile-pic-1.webp 600w" imageSizes="(max-width: 767px) 300px, 600px" />
               </div>
               <div className={classes.quote} data-aos='fade-right'></div>
             </div>

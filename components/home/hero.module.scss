@@ -158,7 +158,7 @@
 
         img {
           border-radius: 50%;
-          object-fit: cover;
+          object-fit: contain;
           width: 100%; /* Ensure the image takes the full width of the wrapper */
           height: 100%; /* Ensure the image takes the full height of the wrapper */
         }
@@ -243,7 +243,7 @@
 
           img {
             border-radius: 50%;
-            object-fit: cover;
+            object-fit: contain;
             width: 100%; /* Ensure the image takes the full width of the wrapper */
             height: 100%; /* Ensure the image takes the full height of the wrapper */
           }
