@@ -18,19 +18,23 @@ const Modal = ({ contact, resume, onClose, ...props }) => {
 
   // Function to render the contact modal
   const renderContactModal = useCallback(() => (
-    <Suspense fallback={<p>Loading...</p>}>
-      <ContactModalDynamic {...props} onClose={onClose} />
-    </Suspense>
+    <motion.div initial="hidden" animate="visible" exit="exit" variants={fadeIn}>
+      <Suspense fallback={<p>Loading...</p>}>
+        <ContactModalDynamic {...props} onClose={onClose} />
+      </Suspense>
+    </motion.div>
   ), [onClose, props]);
 
   // Function to render the resume modal
   const renderResumeModal = useCallback(() => (
-    <div className={classes.resumeModal}>
-      <a href='#!' className={classes.close} onClick={onClose}>
-        <i className='fa fa-xmark'></i>
-      </a>
-      <iframe src={RESUME_FILE_PATH} className={classes.iframe} title="Resume" />
-    </div>
+    <motion.div initial="hidden" animate="visible" exit="exit" variants={fadeIn}>
+      <div className={classes.resumeModal}>
+        <a href='#!' className={classes.close} onClick={onClose}>
+          <i className='fa fa-xmark'></i>
+        </a>
+        <iframe src={RESUME_FILE_PATH} className={classes.iframe} title="Resume" />
+      </div>
+    </motion.div>
   ), [onClose]);
 
   // Handle click on the backdrop to close the modal
