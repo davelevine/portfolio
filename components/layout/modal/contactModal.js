@@ -1,10 +1,9 @@
-// contactModal.js
-
+import dynamic from 'next/dynamic';
 import classes from './contactModal.module.scss';
 import { useForm, ValidationError } from '@formspree/react';
 import { motion } from 'framer-motion';
 
-function ContactModal({ onClose }) {
+const ContactModal = ({ onClose }) => {
   const [state, handleSubmit] = useForm('xzbloaed'); // TODO: replaceWithYourOwn
 
   // Refactored common modal content into a separate function for reusability and clarity
@@ -146,4 +145,4 @@ function ContactModal({ onClose }) {
   );
 }
 
-export default ContactModal;
+export default dynamic(() => Promise.resolve(ContactModal), { ssr: false });

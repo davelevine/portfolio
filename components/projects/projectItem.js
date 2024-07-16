@@ -1,9 +1,16 @@
 import PropTypes from 'prop-types';
 import classes from './projectItem.module.scss';
-import Link from 'next/link';
-import Image from "next/image";
+import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 import { useMemo } from 'react';
+
+// Dynamically import the Image and Link components for code splitting
+const Image = dynamic(() => import('next/image'), {
+  loading: () => <div className="skeleton-loader"></div>,
+});
+const Link = dynamic(() => import('next/link'), {
+  loading: () => <div className="skeleton-loader"></div>,
+});
 
 /**
  * Custom hook for memoized image rendering logic.

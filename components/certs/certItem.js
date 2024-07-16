@@ -1,13 +1,12 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, lazy, Suspense } from 'react';
 import PropTypes from 'prop-types';
 import classes from './certItem.module.scss';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
-import Modal from 'react-modal';
 import Image from 'next/image';
 
-// Set the app element for react-modal to ensure accessibility
-Modal.setAppElement('#__next');
+// Lazy load the Modal component for code splitting
+const Modal = lazy(() => import('react-modal'));
 
 /**
  * Helper function to format the date.
@@ -68,16 +67,21 @@ const CertItem = ({ cert: { title, excerpt, date, image } }) => {
           <i className="fa fa-arrow-up-right-from-square"></i> View certificate
         </button>
       </div>
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={() => toggleModal(false)}
-        contentLabel="Certificate Image"
-        className={classes.modal}
-        overlayClassName={classes.overlay}
-      >
-        <button onClick={() => toggleModal(false)} className={classes.closeButton}></button>
-        <Image src={linkPath} alt={`Certificate for ${title}`} className={classes.certImage} width={700} height={475} />
-      </Modal>
+      <Suspense fallback={<div>Loading...</div>}>
+        {modalIsOpen && (
+          <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={() => toggleModal(false)}
+            contentLabel="Certificate Image"
+            className={classes.modal}
+            overlayClassName={classes.overlay}
+            parentSelector={() => document.querySelector('#__next')}
+          >
+            <button onClick={() => toggleModal(false)} className={classes.closeButton}></button>
+            <Image src={linkPath} alt={`Certificate for ${title}`} className={classes.certImage} width={700} height={475} />
+          </Modal>
+        )}
+      </Suspense>
     </div>
   );
 };

@@ -4,7 +4,12 @@ import classes from './allProjects.module.scss';
 import { motion, AnimatePresence } from 'framer-motion';
 import ProjectItem from './projectItem';
 import { useInView } from 'react-intersection-observer';
-import Modal from '../layout/modal/contactModal';
+import dynamic from 'next/dynamic';
+
+// Dynamically import the Modal component for code splitting
+const Modal = dynamic(() => import('../layout/modal/contactModal'), {
+  loading: () => <div className="skeleton-loader"></div>,
+});
 
 // Component to animate project items when they come into view
 const ProjectItemWithAnimation = ({ project }) => {

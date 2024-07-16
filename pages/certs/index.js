@@ -1,6 +1,11 @@
 import Head from 'next/head';
+import dynamic from 'next/dynamic';
 import { getAllCerts } from '../../util/certs-util';
-import AllCerts from '../../components/certs/allCerts';
+
+// Dynamically import AllCerts for code splitting
+const AllCerts = dynamic(() => import('../../components/certs/allCerts'), {
+  loading: () => <div>Loading...</div>,
+});
 
 // Refactored Certs component to use destructuring directly in the function parameter
 const Certs = ({ certs }) => {

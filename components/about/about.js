@@ -6,7 +6,12 @@ import 'aos/dist/aos.css'; // Styles for AOS animations
 import { AnimatePresence } from 'framer-motion'; // Import AnimatePresence for animations
 
 import classes from '../about/about.module.scss';
-import Modal from '../layout/modal/contactModal'; // Import the contact modal
+import dynamic from 'next/dynamic'; // Import dynamic for code splitting
+
+// Dynamically import the contact modal for code splitting
+const Modal = dynamic(() => import('../layout/modal/contactModal'), {
+  loading: () => <div className="skeleton-loader"></div>,
+});
 
 // Define the About component
 const About = () => {

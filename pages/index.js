@@ -1,7 +1,12 @@
 import Head from 'next/head';
-import Hero from '../components/home/hero';
+import dynamic from 'next/dynamic';
 import { getFeaturedCerts } from '../util/certs-util';
 import { getFeaturedProjects } from '../util/projects-util';
+
+// Dynamically import the Hero component for code splitting
+const Hero = dynamic(() => import('../components/home/hero'), {
+  loading: () => <div className="skeleton-loader"></div>,
+});
 
 // Refactored Home component to remove unused destructured elements
 export default function Home() {

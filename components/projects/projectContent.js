@@ -1,9 +1,6 @@
-import { useMemo } from 'react';
+import { useMemo, lazy, Suspense } from 'react';
 import PropTypes from 'prop-types';
-import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { atomDark, solarizedlight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import Image from "next/image";
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -15,6 +12,12 @@ import 'swiper/css/navigation';
 
 import classes from './projectContent.module.scss';
 
+// Lazy load components for code splitting
+const ReactMarkdown = lazy(() => import('react-markdown'));
+const SyntaxHighlighter = lazy(() => import('react-syntax-highlighter').then(mod => mod.Prism));
+const atomDark = lazy(() => import('react-syntax-highlighter/dist/cjs/styles/prism').then(mod => mod.atomDark));
+const solarizedlight = lazy(() => import('react-syntax-highlighter/dist/cjs/styles/prism').then(mod => mod.solarizedlight));
+
 /**
  * Get custom renderers for ReactMarkdown based on the current theme.
  * @param {string} currentTheme - The current theme ('dark' or 'light').
@@ -24,13 +27,15 @@ const getCustomRenderers = (currentTheme) => ({
   code({ className, children }) {
     const language = className?.split('-')[1];
     return (
-      <SyntaxHighlighter
-        showLineNumbers
-        language={language}
-        style={currentTheme === 'dark' ? atomDark : solarizedlight}
-      >
-        {children}
-      </SyntaxHighlighter>
+      <Suspense fallback={<div>Loading...</div>}>
+        <SyntaxHighlighter
+          showLineNumbers
+          language={language}
+          style={currentTheme === 'dark' ? atomDark : solarizedlight}
+        >
+          {children}
+        </SyntaxHighlighter>
+      </Suspense>
     );
   },
 });
@@ -118,12 +123,14 @@ const ProjectContent = ({ project, currentTheme }) => {
             </div>
           )}
 
-          <ReactMarkdown
-            components={customRenderers}
-            rehypePlugins={[rehypeRaw]}
-          >
-            {content}
-          </ReactMarkdown>
+          <Suspense fallback={<div>Loading...</div>}>
+            <ReactMarkdown
+              components={customRenderers}
+              rehypePlugins={[rehypeRaw]}
+            >
+              {content}
+            </ReactMarkdown>
+          </Suspense>
 
           {screenshots && screenshots.length > 0 && (
             <div className='mb-50'>

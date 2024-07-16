@@ -1,6 +1,11 @@
 import Head from 'next/head';
-import ProjectContent from '../../components/projects/projectContent';
+import dynamic from 'next/dynamic';
 import { getProjectData, getProjectsFiles } from '../../util/projects-util';
+
+// Dynamically import ProjectContent for code splitting
+const ProjectContent = dynamic(() => import('../../components/projects/projectContent'), {
+  loading: () => <div>Loading...</div>,
+});
 
 // Refactored ProjectDetailPage to use destructuring directly in the function parameter for cleaner code
 const ProjectDetailPage = ({ project, currentTheme }) => {

@@ -1,9 +1,11 @@
-import React from 'react';
-import ReactMarkdown from 'react-markdown';
+import React, { lazy, Suspense } from 'react';
 import PropTypes from 'prop-types';
 import classes from './certContent.module.scss';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { atomDark, solarizedlight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+
+const ReactMarkdown = lazy(() => import('react-markdown'));
+const SyntaxHighlighter = lazy(() => import('react-syntax-highlighter').then(mod => mod.Prism));
+const atomDark = lazy(() => import('react-syntax-highlighter/dist/cjs/styles/prism').then(mod => mod.atomDark));
+const solarizedlight = lazy(() => import('react-syntax-highlighter/dist/cjs/styles/prism').then(mod => mod.solarizedlight));
 
 /**
  * CertContent component renders the content of a certification.
@@ -33,9 +35,11 @@ const CertContent = ({ cert, currentTheme }) => {
     const style = currentTheme === 'dark' ? atomDark : solarizedlight;
 
     return (
-      <SyntaxHighlighter style={style} language={language} showLineNumbers>
-        {children}
-      </SyntaxHighlighter>
+      <Suspense fallback={<div>Loading...</div>}>
+        <SyntaxHighlighter style={style} language={language} showLineNumbers>
+          {children}
+        </SyntaxHighlighter>
+      </Suspense>
     );
   };
 
@@ -43,7 +47,9 @@ const CertContent = ({ cert, currentTheme }) => {
     <div className={classes.certContent}>
       <div className={classes.container}>
         <article>
-          <ReactMarkdown components={{ code: renderCode }}>{content}</ReactMarkdown>
+          <Suspense fallback={<div>Loading...</div>}>
+            <ReactMarkdown components={{ code: renderCode }}>{content}</ReactMarkdown>
+          </Suspense>
         </article>
       </div>
     </div>

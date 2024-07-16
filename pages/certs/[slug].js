@@ -1,6 +1,11 @@
 import Head from 'next/head';
-import CertContent from '../../components/certs/certContent'; // Updated the import path
+import dynamic from 'next/dynamic';
 import { getCertData, getCertsFiles } from '../../util/certs-util'; // Updated the import path
+
+// Dynamically import CertContent for code splitting
+const CertContent = dynamic(() => import('../../components/certs/certContent'), {
+  loading: () => <div>Loading...</div>,
+});
 
 const CertDetailPage = ({ cert, currentTheme }) => {
   // Destructured props directly in the function parameter for cleaner code

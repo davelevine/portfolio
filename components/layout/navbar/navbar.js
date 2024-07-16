@@ -2,10 +2,15 @@ import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { AnimatePresence, motion, useCycle } from 'framer-motion';
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
 import classes from './navbar.module.scss';
-import Modal from '../../layout/modal/modal';
 import ThemeToggle from './themeToggle';
 import MenuToggle from './menuToggle';
+
+// Dynamically import the Modal component for code splitting
+const Modal = dynamic(() => import('../../layout/modal/modal'), {
+  loading: () => <div className="skeleton-loader"></div>,
+});
 
 // Debounce function to limit the rate at which a function can fire
 const debounce = (func, wait) => {

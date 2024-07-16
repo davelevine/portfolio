@@ -1,9 +1,14 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import dynamic from 'next/dynamic';
 import classes from './allCerts.module.scss';
 import CertItem from './certItem';
-import Modal from '../layout/modal/contactModal';
 import useModal from '../layout/modal/useModal';
+
+// Dynamically import the Modal component for code splitting
+const Modal = dynamic(() => import('../layout/modal/contactModal'), {
+  loading: () => <div className="skeleton-loader"></div>,
+});
 
 const AllCerts = ({ certs }) => {
   // State to control selected filter and active button

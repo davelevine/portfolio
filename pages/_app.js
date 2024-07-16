@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
-import Navbar from '../components/layout/navbar/navbar';
+import dynamic from 'next/dynamic';
 import '../styles/globals.scss';
+
+// Dynamically import the Navbar component for code splitting
+const Navbar = dynamic(() => import('../components/layout/navbar/navbar'), {
+  loading: () => <div className="skeleton-loader"></div>,
+});
 
 // Refactored to extract the theme initialization logic into a separate function for better readability and reusability
 const initializeTheme = () => {
