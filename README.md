@@ -8,7 +8,7 @@ Developed with Next.js and Sass. Certs and Projects sections are written in mark
 - Progressive Web App (PWA)
   - App manifest
   - Service worker
-  - 100/100 Lighthouse score
+  - Lighthouse score: 97/100 (Mobile), 99/100 (Desktop)
 - Static Site
 
 Third party static contact form (formspree):
