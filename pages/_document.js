@@ -14,9 +14,6 @@ class MyDocument extends Document {
           {/* Plausible tracking script */}
           <script defer data-domain="dave.levine.io" data-api="/data/api/event" src="/data/js/script.js"></script>
 
-          {/* Ackee tracking script
-          <script async src="https://stats.levine.io/script2.js" data-ackee-server="https://stats.levine.io" data-ackee-domain-id="bd604f8b-c80a-42d7-8d7c-ab14e34208ce"></script>*/}
-
           {/* Dynamically load CSS asynchronously */}
           <script
             dangerouslySetInnerHTML={{

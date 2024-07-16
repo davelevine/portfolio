@@ -151,8 +151,8 @@
         margin: 0 auto;
 
         @media (min-width: 768px) {
-          max-width: 350px;
-          max-height: 350px;
+          max-width: 640px;
+          max-height: 640px;
         }
 
         img {
@@ -235,8 +235,8 @@
           border-radius: 50%;
           overflow: hidden;
           width: 100%;
-          max-width: 460px;
-          max-height: 460px;
+          max-width: 640px;
+          max-height: 640px;
           aspect-ratio: 1 / 1;
           margin: 0 auto;
 
@@ -302,8 +302,8 @@
         margin-right: 5%;
 
         .imageWrapper {
-          max-width: 500px;
-          max-height: 500px;
+          max-width: 640px;
+          max-height: 640px;
 
           img {
             width: 100%;

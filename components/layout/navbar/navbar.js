@@ -76,28 +76,26 @@ const Navbar = ({ theme, newTheme, children }) => {
         transition={{ duration: 0.5 }}
       >
         <div className={classes.container}>
-          <Link href='/' passHref legacyBehavior>
-            <a className={classes.logo}>
-              <span className={classes.name}>&lt;</span>/DAVE LEVINE
-              <span className={classes.name}>&gt;</span>
-            </a>
+          <Link href='/' className={classes.logo}>
+            <span className={classes.name}>&lt;</span>/DAVE LEVINE
+            <span className={classes.name}>&gt;</span>
           </Link>
 
           <nav className={isOpen ? `${classes.navMenu} ${classes.responsive}` : classes.navMenu} id='navMenu'>
             <div className={classes.linkWrapper}>
               {['/', '/projects', '/certs', '/about'].map((path, index) => (
-                <Link href={path} passHref legacyBehavior key={path}>
-                  <motion.a
-                    style={{ cursor: 'pointer' }}
-                    initial={{ opacity: 0, y: -100 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 + index * 0.075 }}
-                    onClick={() => window.innerWidth <= 768 && toggleNav()}
-                    className={isLinkActive(path) ? classes.activeLink : ''}
-                  >
-                    {path.toUpperCase().replace('/', '') || 'HOME'}
-                  </motion.a>
-                </Link>
+                <motion.a
+                  key={path}
+                  href={path}
+                  style={{ cursor: 'pointer' }}
+                  initial={{ opacity: 0, y: -100 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 + index * 0.075 }}
+                  onClick={() => window.innerWidth <= 768 && toggleNav()}
+                  className={isLinkActive(path) ? classes.activeLink : ''}
+                >
+                  {path.toUpperCase().replace('/', '') || 'HOME'}
+                </motion.a>
               ))}
             </div>
           </nav>
