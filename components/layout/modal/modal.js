@@ -21,7 +21,7 @@ const Modal = ({ contact, resume, onClose, ...props }) => {
         <ContactModalDynamic {...props} onClose={onClose} />
       </Suspense>
     </motion.div>
-  ), [onClose, props]);
+  ), [onClose, props, fadeIn]);
 
   // Function to render the resume modal
   const renderResumeModal = useCallback(() => (
@@ -33,7 +33,7 @@ const Modal = ({ contact, resume, onClose, ...props }) => {
         <iframe src={RESUME_FILE_PATH} className={classes.iframe} title="Resume" />
       </div>
     </motion.div>
-  ), [onClose]);
+  ), [onClose, fadeIn]);
 
   // Handle click on the backdrop to close the modal
   const handleBackdropClick = useCallback((e) => {

@@ -12,10 +12,15 @@ class MyDocument extends Document {
           <link rel="icon" type="image/x-icon" href="https://cdn.levine.io/uploads/portfolio/public/images/favicon/favicon.ico" />
           
           {/* Plausible tracking script */}
-          <script defer data-domain="dave.levine.io" data-api="/data/api/event" src="/data/js/script.js"></script>
+          <script async data-domain="dave.levine.io" data-api="/data/api/event" src="/data/js/script.js"></script>
 
-          {/* Load CSS files directly */}
+          {/* Preconnect to external resources */}
+          <link rel="preconnect" href="https://cdn.levine.io" crossorigin />
+
+          {/* Preload and load CSS files */}
+          <link rel="preload" href="https://cdn.levine.io/uploads/portfolio/public/fonts/googlefonts/google-fonts.css" as="style" crossorigin />
           <link rel="stylesheet" href="https://cdn.levine.io/uploads/portfolio/public/fonts/googlefonts/google-fonts.css" />
+          <link rel="preload" href="https://cdn.levine.io/uploads/portfolio/public/fonts/webfonts/custom-fontawesome.css" as="style" crossorigin />
           <link rel="stylesheet" href="https://cdn.levine.io/uploads/portfolio/public/fonts/webfonts/custom-fontawesome.css" />
         </Head>
         <body>
