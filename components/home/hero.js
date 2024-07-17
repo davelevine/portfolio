@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import classes from './hero.module.scss';
 import Image from "next/image";
 import dynamic from 'next/dynamic';
@@ -37,57 +37,37 @@ const Hero = () => {
     document.body.style.paddingRight = '0px';
   }, [showModal]);
 
-  const initializeAos = () => {
-    Aos.init({ duration: 550 });
-  };
-
   useEffect(() => {
-    initializeAos();
+    Aos.init({ duration: 550 });
   }, []);
 
-  // Check for horizontal layout with debounced resize event listener
   useEffect(() => {
     const checkOrientation = () => {
-      if (window.innerWidth > window.innerHeight && window.innerWidth <= 1080) {
-        setIsHorizontal(true);
-      } else {
-        setIsHorizontal(false);
-      }
+      setIsHorizontal(window.innerWidth > window.innerHeight && window.innerWidth <= 1080);
+    };
+
+    const updateImageSrc = () => {
+      setImageSrc(window.matchMedia("(max-width: 767px)").matches ? PROFILE_PIC_LOW_RES_PATH : PROFILE_PIC_PATH);
     };
 
     const debouncedCheckOrientation = debounce(checkOrientation, 100);
+    const debouncedUpdateImageSrc = debounce(updateImageSrc, 100);
 
     checkOrientation();
+    updateImageSrc();
     window.addEventListener('resize', debouncedCheckOrientation);
+    window.addEventListener('resize', debouncedUpdateImageSrc);
 
     return () => {
       window.removeEventListener('resize', debouncedCheckOrientation);
+      window.removeEventListener('resize', debouncedUpdateImageSrc);
     };
   }, []);
 
-  // Update image source based on viewport size
-  useEffect(() => {
-    const updateImageSrc = () => {
-      if (window.matchMedia("(max-width: 767px)").matches) {
-        setImageSrc(PROFILE_PIC_LOW_RES_PATH);
-      } else {
-        setImageSrc(PROFILE_PIC_PATH);
-      }
-    };
-
-    updateImageSrc();
-    window.addEventListener('resize', updateImageSrc);
-
-    return () => {
-      window.removeEventListener('resize', updateImageSrc);
-    };
-  }, []);
-
-  // Variants for button animations using framer-motion
-  const buttonVariants = {
+  const buttonVariants = useMemo(() => ({
     whileHover: { scale: 1.1 },
     whileTap: { scale: 0.9 },
-  };
+  }), []);
 
   return (
     <>
@@ -95,7 +75,6 @@ const Hero = () => {
         <div className={classes.container}>
           <div className={classes.row}>
             <div className={classes.columnLeft}>
-              {/* Introduction section with data-aos animation attributes */}
               <h2 data-aos='fade-left'>Hey, I&apos;m{' '}
                 <span className={classes.name}>
                   Dave
