@@ -68,7 +68,7 @@ const About = () => {
             {/* Image container with profile picture using Next.js Image component with preload */}
             <div className={classes.imageContainer}>
               <Image
-                src='/images/avatar.webp'
+                src='https://cdn.levine.io/uploads/portfolio/public/images/avatar.webp'
                 width={500} // Reduced width for desktop
                 height={500} // Reduced height for desktop
                 alt='profile-pic'

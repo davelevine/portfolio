@@ -5,38 +5,18 @@ class MyDocument extends Document {
     return (
       <Html lang='en'>
         <Head>
-          {/* Reference to manifest.json */}
+          {/* Reference to manifest.json on the same origin */}
           <link rel="manifest" href="/manifest.json" />
 
           {/* Single favicon.ico with multiple sizes */}
-          <link rel="icon" type="image/x-icon" href="/images/favicon/favicon.ico" />
+          <link rel="icon" type="image/x-icon" href="https://cdn.levine.io/uploads/portfolio/public/images/favicon/favicon.ico" />
           
           {/* Plausible tracking script */}
           <script defer data-domain="dave.levine.io" data-api="/data/api/event" src="/data/js/script.js"></script>
 
-          {/* Dynamically load CSS asynchronously */}
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-                function loadCSS(href, integrity) {
-                  var link = document.createElement('link');
-                  link.rel = 'stylesheet';
-                  link.href = href;
-                  link.type = 'text/css';
-                  link.media = 'all';
-                  link.crossOrigin = 'anonymous';
-                  link.referrerPolicy = 'no-referrer';
-                  if (integrity) {
-                    link.integrity = integrity;
-                  }
-                  document.head.appendChild(link);
-                }
-
-                loadCSS('/fonts/googlefonts/google-fonts.css');
-                loadCSS('/fonts/custom-fontawesome.css')
-              `,
-            }}
-          />
+          {/* Load CSS files directly */}
+          <link rel="stylesheet" href="https://cdn.levine.io/uploads/portfolio/public/fonts/googlefonts/google-fonts.css" />
+          <link rel="stylesheet" href="https://cdn.levine.io/uploads/portfolio/public/fonts/webfonts/custom-fontawesome.css" />
         </Head>
         <body>
           <Main />

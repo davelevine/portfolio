@@ -2,11 +2,9 @@ import React, { lazy, Suspense, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import classes from './modal.module.scss';
 
-// Lazy load the ContactModal component
 const ContactModalDynamic = lazy(() => import('./contactModal'));
 
-// Constants
-const RESUME_FILE_PATH = '/assets/davelevine-resume.pdf'; // Path to the resume file
+const RESUME_FILE_PATH = 'https://cdn.levine.io/uploads/portfolio/public/assets/davelevine-resume.pdf';
 
 const Modal = ({ contact, resume, onClose, ...props }) => {
   // Define animation variants for the modal

@@ -12,9 +12,9 @@ const Modal = dynamic(() => import('../layout/modal/modal'), {
   loading: () => <div className="skeleton-loader"></div>,
 });
 
-const PGP_KEY_PATH = '/assets/dave.levine.io-pgp-key-pub.asc';
-const PROFILE_PIC_PATH = '/images/profile-pic-1.webp';
-const PROFILE_PIC_LOW_RES_PATH = '/images/profile-pic-1-low-res.webp';
+const PGP_KEY_PATH = 'https://cdn.levine.io/uploads/portfolio/public/assets/dave.levine.io-pgp-key-pub.asc';
+const PROFILE_PIC_PATH = 'https://cdn.levine.io/uploads/portfolio/public/images/profile-pic-1.webp';
+const PROFILE_PIC_LOW_RES_PATH = 'https://cdn.levine.io/uploads/portfolio/public/images/profile-pic-1-low-res.webp';
 
 const Hero = () => {
   const [showModal, setShowModal] = useState(false);

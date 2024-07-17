@@ -51,7 +51,7 @@ const renderImage = (image) => {
 
   return (
     <Image
-      src={`/images/projects/${image}`}
+      src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/${image}`}
       width={dimensions.width}
       height={dimensions.height}
       alt=''
@@ -145,7 +145,7 @@ const ProjectContent = ({ project, currentTheme }) => {
                 {screenshots.map((screenshot, index) => (
                   <SwiperSlide key={index}>
                     <Image
-                      src={`/images/projects/${slug}/${screenshot.screenshot}`}
+                      src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/${slug}/${screenshot.screenshot}`}
                       width={1000}
                       height={700}
                       alt={screenshot.description || 'Screenshot'}

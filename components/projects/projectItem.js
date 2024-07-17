@@ -21,7 +21,7 @@ const useRenderImage = (image) => {
   return useMemo(() => (
     <div className={classes.image}>
       <Image
-        src={`/images/projects/${image}`}
+        src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/${image}`}
         width={320}
         height={220}
         alt=''

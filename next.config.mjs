@@ -19,7 +19,7 @@ const getRuntimeCaching = () => [
   },
   {
     // Cache CSS files
-    urlPattern: /\.(css)$/,
+    urlPattern: /^https:\/\/cdn\.levine\.io\/.*\.(css)$/,
     handler: 'CacheFirst',
     options: {
       cacheName: 'css-cache',
@@ -27,7 +27,7 @@ const getRuntimeCaching = () => [
   },
   {
     // Cache image files (JPEG, PNG, WebP, GIF, SVG)
-    urlPattern: /\.(jpeg|jpg|ico|png|webp|gif|svg)$/,
+    urlPattern: /^https:\/\/cdn\.levine\.io\/.*\.(jpeg|jpg|ico|png|webp|gif|svg)$/,
     handler: 'CacheFirst',
     options: {
       cacheName: 'image-cache',
@@ -35,7 +35,7 @@ const getRuntimeCaching = () => [
   },
   {
     // Cache fonts
-    urlPattern: /\.(woff|woff2|ttf|otf)$/,
+    urlPattern: /^https:\/\/cdn\.levine\.io\/.*\.(woff|woff2|ttf|otf)$/,
     handler: 'CacheFirst',
     options: {
       cacheName: 'font-cache',
@@ -102,6 +102,9 @@ const nextConfig = {
     webpackBuildWorker: true,
   },
   webpack: configureWebpack,
+  images: {
+    domains: ['cdn.levine.io'],
+  },
 };
 
 export default pkg([withPWA(pwaOptions), brotliOptions], nextConfig);

@@ -45,7 +45,7 @@ const CertItem = ({ cert: { title, excerpt, date, image } }) => {
   const expirationDate = new Date(date);
   const dateStatus = expirationDate < currentDate ? 'Expired' : 'Expires';
   const expiresDate = formatDate(date, dateStatus);
-  const linkPath = `/images/certs/${image}`;
+  const linkPath = `https://cdn.levine.io/uploads/portfolio/public/images/certs/${image}`;
 
   useEffect(() => {
     Aos.init({ duration: 500 });
