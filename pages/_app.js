@@ -1,85 +1,80 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import '../styles/globals.scss';
 
-// Dynamically import the Navbar component for code splitting
 const Navbar = dynamic(() => import('../components/layout/navbar/navbar'), {
   loading: () => <div className="skeleton-loader"></div>,
 });
 
-// Refactored to extract the theme initialization logic into a separate function for better readability and reusability
-const initializeTheme = () => {
-  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-};
+const initializeTheme = () => (typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
 
-function MyApp({ Component, pageProps }) {
+const useTheme = () => {
   const [theme, setTheme] = useState('dark');
-  const router = useRouter();
-  const [isNavigating, setIsNavigating] = useState(false);
 
   useEffect(() => {
-    setTheme(initializeTheme());
+    if (typeof window !== 'undefined') {
+      setTheme(initializeTheme());
+      const themeListener = (e) => setTheme(e.matches ? 'light' : 'dark');
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: light)');
+      mediaQuery.addEventListener('change', themeListener);
+      return () => mediaQuery.removeEventListener('change', themeListener);
+    }
   }, []);
 
-  useEffect(() => {
-    const handleLinkClick = (event) => {
+  return [theme, setTheme];
+};
+
+const useNavigation = (router) => {
+  const [isNavigating, setIsNavigating] = useState(false);
+
+  const handleLinkClick = useCallback((event) => {
+    if (typeof window !== 'undefined') {
       const target = event.target.closest('a');
       if (target && target.href && target.origin === window.location.origin) {
         event.preventDefault();
-        
-        if (isNavigating) {
-          return; // Prevent multiple navigations at the same time
-        }
+
+        if (isNavigating) return;
 
         setIsNavigating(true);
-
         const url = target.getAttribute('href');
-        
-        if (url === window.location.pathname) {
-          router.replace(url).finally(() => setIsNavigating(false));
-        } else {
-          router.push(url).finally(() => setIsNavigating(false));
-        }
+
+        const navigate = url === window.location.pathname ? router.replace : router.push;
+        navigate(url).finally(() => setIsNavigating(false));
       }
-    };
-
-    document.addEventListener('click', handleLinkClick);
-
-    return () => {
-      document.removeEventListener('click', handleLinkClick);
-    };
-  }, [router, isNavigating]);
+    }
+  }, [isNavigating, router]);
 
   useEffect(() => {
-    const handleRouteChangeStart = () => {
-      setIsNavigating(true);
-    };
+    if (typeof window !== 'undefined') {
+      document.addEventListener('click', handleLinkClick);
+      return () => document.removeEventListener('click', handleLinkClick);
+    }
+  }, [handleLinkClick]);
 
-    const handleRouteChangeComplete = () => {
-      setIsNavigating(false);
-      rebindHandlers();
-    };
+  useEffect(() => {
+    const handleRouteChangeStart = () => setIsNavigating(true);
+    const handleRouteChangeEnd = () => setIsNavigating(false);
 
     router.events.on('routeChangeStart', handleRouteChangeStart);
-    router.events.on('routeChangeComplete', handleRouteChangeComplete);
-    router.events.on('routeChangeError', handleRouteChangeComplete);
+    router.events.on('routeChangeComplete', handleRouteChangeEnd);
+    router.events.on('routeChangeError', handleRouteChangeEnd);
 
     return () => {
       router.events.off('routeChangeStart', handleRouteChangeStart);
-      router.events.off('routeChangeComplete', handleRouteChangeComplete);
-      router.events.off('routeChangeError', handleRouteChangeComplete);
+      router.events.off('routeChangeComplete', handleRouteChangeEnd);
+      router.events.off('routeChangeError', handleRouteChangeEnd);
     };
   }, [router]);
 
-  const rebindHandlers = () => {
-    // Reinitialize any necessary components or event handlers here
-    // For example, if you're using a library like jQuery:
-    // $(document).ready(function() {
-    //   // Your jQuery code here
-    // });
-  };
+  return isNavigating;
+};
+
+function MyApp({ Component, pageProps }) {
+  const [theme, setTheme] = useTheme();
+  const router = useRouter();
+  const isNavigating = useNavigation(router);
 
   return (
     <>

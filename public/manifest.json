@@ -3,20 +3,41 @@
   "short_name": "Dave Levine",
   "icons": [
     {
+      "src": "https://cdn.levine.io/uploads/portfolio/public/images/favicon/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
       "src": "https://cdn.levine.io/uploads/portfolio/public/images/favicon/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "https://cdn.levine.io/uploads/portfolio/public/images/favicon/android-chrome-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
+      "src": "https://cdn.levine.io/uploads/portfolio/public/images/favicon/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://cdn.levine.io/uploads/portfolio/public/images/favicon/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://cdn.levine.io/uploads/portfolio/public/images/favicon/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
   "theme_color": "#f652a0",
   "background_color": "#f5f5f5",
   "start_url": "/",
   "display": "standalone",
-  "orientation": "portrait"
+  "orientation": "portrait",
+  "scope": "/",
+  "description": "Portfolio of Dave Levine, a Solutions Engineer specializing in innovative solutions."
 }
