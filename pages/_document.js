@@ -12,29 +12,25 @@ class MyDocument extends Document {
           <meta name="description" content="Dave Levine's portfolio website" />
           <meta name="author" content="Dave Levine" />
 
-          <link rel="preconnect" href="https://cdn.levine.io" crossOrigin="anonymous" />
+          <link rel="preconnect" href="https://cdn.levine.io" />
 
           <link
             rel="preload"
             href="https://cdn.levine.io/uploads/portfolio/public/fonts/googlefonts/google-fonts.css"
             as="style"
-            crossOrigin="anonymous"
           />
           <link
             rel="preload"
             href="https://cdn.levine.io/uploads/portfolio/public/fonts/webfonts/custom-fontawesome.css"
             as="style"
-            crossOrigin="anonymous"
           />
           <link
             rel="stylesheet"
             href="https://cdn.levine.io/uploads/portfolio/public/fonts/googlefonts/google-fonts.css"
-            crossOrigin="anonymous"
           />
           <link
             rel="stylesheet"
             href="https://cdn.levine.io/uploads/portfolio/public/fonts/webfonts/custom-fontawesome.css"
-            crossOrigin="anonymous"
           />
         </Head>
         <body>
