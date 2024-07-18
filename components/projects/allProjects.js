@@ -14,7 +14,7 @@ const Modal = dynamic(() => import('../layout/modal/contactModal'), {
 // Component to animate project items when they come into view
 const ProjectItemWithAnimation = ({ project }) => {
   const [ref, inView] = useInView({
-    triggerOnce: false,
+    triggerOnce: true,
     threshold: 0.1, // Trigger when 10% of the item is visible
   });
 

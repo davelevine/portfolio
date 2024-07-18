@@ -11,15 +11,12 @@ const Modal = dynamic(() => import('../layout/modal/contactModal'), {
 });
 
 const AllCerts = ({ certs }) => {
-  // State to control selected filter and active button
   const [filter, setFilter] = useState('all');
   const [activeButton, setActiveButton] = useState('all');
   const [isDesktop, setIsDesktop] = useState(false);
 
-  // Custom hook for modal logic
   const { showModal, modalType, closeModalHandler } = useModal();
 
-  // Extract unique techs from certs and sort them
   const sortedUniqueTechs = useMemo(() => {
     const techSet = new Set();
     certs.forEach(cert => {
@@ -30,7 +27,6 @@ const AllCerts = ({ certs }) => {
     return [...techSet].sort();
   }, [certs]);
 
-  // Set document title and update isDesktop state on mount
   useEffect(() => {
     document.title = 'Dave Levine - Certs';
 
@@ -41,13 +37,11 @@ const AllCerts = ({ certs }) => {
     return () => window.removeEventListener('resize', updateIsDesktop);
   }, []);
 
-  // Handle button click to set filter and active button
   const handleClick = useCallback((tech) => {
     setFilter(tech);
     setActiveButton(tech);
   }, []);
 
-  // Manage body overflow when the modal is open or closed
   useEffect(() => {
     const hideScrollbar = () => {
       document.body.style.overflow = showModal ? 'hidden' : 'auto';
@@ -62,7 +56,6 @@ const AllCerts = ({ certs }) => {
     };
   }, [showModal]);
 
-  // Common sorting logic for certs
   const commonSortLogic = useCallback((a, b) => {
     const isALegacy = a.title.includes('(Legacy)');
     const isBLegacy = b.title.includes('(Legacy)');
@@ -78,14 +71,12 @@ const AllCerts = ({ certs }) => {
     return b.isFeatured - a.isFeatured;
   }, []);
 
-  // Filter and sort certs based on the selected filter
   const filteredCerts = useMemo(() => {
     return filter === 'all'
       ? certs.slice().sort(commonSortLogic)
       : certs.filter(cert => cert.tech.includes(filter)).sort(commonSortLogic);
   }, [certs, filter, commonSortLogic]);
 
-  // Handle scroll progress bar
   useEffect(() => {
     const handleScroll = () => {
       const scrollProgress = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight)) * 100;
@@ -95,12 +86,11 @@ const AllCerts = ({ certs }) => {
 
     window.addEventListener('scroll', handleScroll);
 
-    handleScroll(); // Initial call to set the progress bar width
+    handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Motion variants for buttons
   const buttonVariants = {
     hidden: { opacity: 0, x: 100 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.3, ease: "easeInOut" } }

@@ -4,9 +4,7 @@ import classes from './certItem.module.scss';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import Image from 'next/image';
-
-// Lazy load the Modal component for code splitting
-const Modal = lazy(() => import('react-modal'));
+import Modal from 'react-modal';
 
 /**
  * Helper function to format the date.
@@ -38,7 +36,8 @@ const formatDate = (date, status) => {
  * @param {string} props.cert.image - Image filename for the certification.
  * @returns {JSX.Element} The rendered component.
  */
-const CertItem = ({ cert: { title, excerpt, date, image } }) => {
+const CertItem = ({ cert }) => {
+  const { title, excerpt, date, image } = cert;
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const currentDate = new Date();
@@ -49,38 +48,36 @@ const CertItem = ({ cert: { title, excerpt, date, image } }) => {
 
   useEffect(() => {
     Aos.init({ duration: 500 });
+    Modal.setAppElement('#__next');
   }, []);
 
-  const toggleModal = useCallback((isOpen) => {
-    setModalIsOpen(isOpen);
+  const toggleModal = useCallback(() => {
+    setModalIsOpen(prevState => !prevState);
   }, []);
 
   return (
     <div className={classes.card} data-aos='zoom-in-up'>
       <div className={classes.cardContent}>
-        <h4 onClick={() => toggleModal(true)} style={{ cursor: 'pointer' }}>{title}</h4>
+        <h4 onClick={toggleModal} style={{ cursor: 'pointer' }}>{title}</h4>
         <time>{expiresDate}</time>
         <p>{excerpt}</p>
       </div>
       <div className={classes.cardAction}>
-        <button onClick={() => toggleModal(true)}>
+        <button onClick={toggleModal}>
           <i className="fa fa-arrow-up-right-from-square"></i> View certificate
         </button>
       </div>
       <Suspense fallback={<div>Loading...</div>}>
-        {modalIsOpen && (
-          <Modal
-            isOpen={modalIsOpen}
-            onRequestClose={() => toggleModal(false)}
-            contentLabel="Certificate Image"
-            className={classes.modal}
-            overlayClassName={classes.overlay}
-            parentSelector={() => document.querySelector('#__next')}
-          >
-            <button onClick={() => toggleModal(false)} className={classes.closeButton}></button>
-            <Image src={linkPath} alt={`Certificate for ${title}`} className={classes.certImage} width={700} height={475} />
-          </Modal>
-        )}
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={toggleModal}
+          contentLabel="Certificate Image"
+          className={classes.modal}
+          overlayClassName={classes.overlay}
+        >
+          <button onClick={toggleModal} className={classes.closeButton}></button>
+          <Image src={linkPath} alt={`Certificate for ${title}`} className={classes.certImage} width={700} height={475} />
+        </Modal>
       </Suspense>
     </div>
   );

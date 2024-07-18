@@ -1,11 +1,11 @@
 // Import required modules and components
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from "next/image";
 import Aos from 'aos'; // Library for scroll animations
 import 'aos/dist/aos.css'; // Styles for AOS animations
 import { AnimatePresence } from 'framer-motion'; // Import AnimatePresence for animations
 
-import classes from '../about/about.module.scss';
+import classes from './about.module.scss';
 import dynamic from 'next/dynamic'; // Import dynamic for code splitting
 
 // Dynamically import the contact modal for code splitting
@@ -26,12 +26,10 @@ const About = () => {
     document.title = 'Dave Levine - About Me';
   }, []);
 
-  // Memoized function to hide scrollbar
-  const hideScrollbar = useMemo(() => {
-    return () => {
-      document.body.style.overflow = showModal ? 'hidden' : 'auto';
-      document.body.style.paddingRight = showModal ? '15px' : '0px';
-    };
+  // Function to hide scrollbar
+  const hideScrollbar = useCallback(() => {
+    document.body.style.overflow = showModal ? 'hidden' : 'auto';
+    document.body.style.paddingRight = showModal ? '15px' : '0px';
   }, [showModal]);
 
   // Effects for managing body overflow when the modal is open or closed
@@ -69,8 +67,8 @@ const About = () => {
             <div className={classes.imageContainer}>
               <Image
                 src='https://cdn.levine.io/uploads/portfolio/public/images/avatar.webp'
-                width={500} // Reduced width for desktop
-                height={500} // Reduced height for desktop
+                width={500}
+                height={500}
                 alt='profile-pic'
                 data-aos='fade-left'
                 priority
