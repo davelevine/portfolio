@@ -1,14 +1,12 @@
 .greetings {
   padding: 50px 15px 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   height: 100vh;
 
   .row {
     display: flex;
     flex-flow: column;
     height: 100%;
+    justify-content: center; /* Center content vertically */
   }
 
   @media only screen and (max-width: 767px) {
@@ -181,7 +179,10 @@
   }
 
   @media only screen and (min-width: 768px) {
-    padding: 120px 25px 55px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 25px;
     height: 100vh;
 
     .container {
@@ -197,6 +198,8 @@
       display: flex;
       flex-flow: row;
       align-items: center;
+      justify-content: center; /* Center content horizontally */
+      height: 100%;
     }
 
     .columnLeft {
@@ -206,7 +209,7 @@
       flex-direction: column;
       width: 55%;
       margin-bottom: unset;
-      margin-top: 60px;
+      margin-top: 0;
       margin: auto;
 
       h1 {
@@ -280,6 +283,8 @@
       display: flex;
       flex-flow: row;
       align-items: center;
+      justify-content: center; /* Center content horizontally */
+      height: 100%;
     }
 
     .columnLeft {
