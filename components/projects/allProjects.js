@@ -27,7 +27,7 @@ const ProjectItemWithAnimation = ({ project }) => {
       transition={{ duration: 0.4, ease: "easeInOut" }}
       style={{ display: 'grid' }}
     >
-      <ProjectItem project={project} />
+      <ProjectItem project={project} lazyLoad={inView} />
     </motion.div>
   );
 };
