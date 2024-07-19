@@ -5,7 +5,6 @@ import dynamic from 'next/dynamic';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import { motion, AnimatePresence } from 'framer-motion';
-import Footer from '../layout/footer';
 import debounce from 'lodash/debounce';
 
 const Modal = dynamic(() => import('../layout/modal/modal'), {
@@ -163,8 +162,6 @@ const Hero = () => {
           {showModal && <Modal contact={modalType === 'contact'} resume={modalType === 'resume'} onClose={closeModalHandler} />}
         </AnimatePresence>
       </section>
-      <Footer />
-      {isHorizontal && <Footer />}
     </>
   );
 };

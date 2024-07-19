@@ -8,7 +8,7 @@
   /* Apply styles for mobile devices in portrait orientation */
   @media only screen and (max-width: 767px) and (orientation: portrait) {
     margin-top: 10vh; /* Add top margin to push footer down */
-    margin-bottom: 0; /* Reset bottom margin */
+    margin-bottom: auto; /* Reset bottom margin */
   }
 
   /* Apply styles for mobile devices in landscape orientation */
