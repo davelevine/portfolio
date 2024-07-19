@@ -1,5 +1,9 @@
 .greetings {
   padding: 50px 15px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
 
   .row {
     display: flex;
@@ -206,7 +210,7 @@
       margin: auto;
 
       h1 {
-        font-size: 4.5rem;
+        font-size: 4.0rem;
         margin: -10px -5px 0 -5px;
         text-align: left;
       }
