@@ -8,84 +8,84 @@
   display: flex; /* Flexbox layout */
   flex-direction: column; /* Column layout */
   min-height: 260px; /* Minimum height for the card */
+}
 
-  .image {
-    display: flex; /* Flexbox layout */
-    justify-content: center; /* Center the image horizontally */
-    
-    img {
-      border-radius: 4px; /* Rounded corners for the image */
-    }
-  }
+.card .image {
+  display: flex; /* Flexbox layout */
+  justify-content: center; /* Center the image horizontally */
+}
 
-  .placeholderContainer {
-    margin: 20px 0; /* Vertical margin */
-    width: 100%; /* Full width */
-    max-height: 200px; /* Maximum height */
-    display: flex; /* Flexbox layout */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    
-    .placeholder {
-      text-align: center; /* Center text */
-      margin: 100% 0; /* Vertical margin */
-      color: #ffffff; /* Text color */
-      font-weight: bold; /* Bold text */
-      background-color: #8bb2c3; /* Background color */
-      border-radius: 50%; /* Rounded corners */
-      padding: 5px; /* Padding inside the placeholder */
-      font-size: 1.5rem; /* Font size */
-      background-image: linear-gradient(
-        -45deg,
-        rgba(255, 255, 220, 0.2) 0%,
-        transparent 100%
-      ); /* Gradient background */
-      width: 200px; /* Width of the placeholder */
-      height: 200px; /* Height of the placeholder */
-      box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%),
-        0 1px 5px 0 rgb(0 0 0 / 20%); /* Box shadow for the placeholder */
-    }
-  }
+.card .image img {
+  border-radius: 4px; /* Rounded corners for the image */
+}
 
-  h4 {
-    margin: 0; /* Remove default margin */
-    color: var(--text-secondary); /* Text color from CSS variable */
-    text-align: center; /* Center text */
-  }
+.card .placeholderContainer {
+  margin: 20px 0; /* Vertical margin */
+  width: 100%; /* Full width */
+  max-height: 200px; /* Maximum height */
+  display: flex; /* Flexbox layout */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+}
 
-  small {
-    color: var(--text-primary); /* Text color from CSS variable */
-    text-align: center; /* Center text */
-  }
+.card .placeholderContainer .placeholder {
+  text-align: center; /* Center text */
+  margin: 100% 0; /* Vertical margin */
+  color: #ffffff; /* Text color */
+  font-weight: bold; /* Bold text */
+  background-color: #8bb2c3; /* Background color */
+  border-radius: 50%; /* Rounded corners */
+  padding: 5px; /* Padding inside the placeholder */
+  font-size: 1.5rem; /* Font size */
+  background-image: linear-gradient(
+    -45deg,
+    rgba(255, 255, 220, 0.2) 0%,
+    transparent 100%
+  ); /* Gradient background */
+  width: 200px; /* Width of the placeholder */
+  height: 200px; /* Height of the placeholder */
+  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%),
+    0 1px 5px 0 rgb(0 0 0 / 20%); /* Box shadow for the placeholder */
+}
 
-  .projectLinks {
-    margin-top: auto; /* Push to the bottom of the card */
-    font-size: 0.9rem; /* Font size */
-    display: flex; /* Flexbox layout */
-    flex-direction: row; /* Row layout */
-    justify-content: center; /* Center content horizontally */
-    
-    a {
-      margin-right: 15px; /* Space between links */
-      color: var(--accent); /* Link color from CSS variable */
-      display: block; /* Block display */
-      margin-bottom: 10px; /* Space below each link */
-    }
+.card h4 {
+  margin: 0; /* Remove default margin */
+  color: var(--text-secondary); /* Text color from CSS variable */
+  text-align: center; /* Center text */
+}
 
-    a:hover {
-      color: var(--link-hover); /* Change color on hover */
-    }
+.card small {
+  color: var(--text-primary); /* Text color from CSS variable */
+  text-align: center; /* Center text */
+}
 
-    i {
-      width: 20px; /* Icon width */
-      margin-right: 5px; /* Space between icon and text */
-      color: var(--navbar-primary); /* Icon color from CSS variable */
-    }
-  }
+.card .projectLinks {
+  margin-top: auto; /* Push to the bottom of the card */
+  font-size: 0.9rem; /* Font size */
+  display: flex; /* Flexbox layout */
+  flex-direction: row; /* Row layout */
+  justify-content: center; /* Center content horizontally */
+}
 
-  @media only screen and (min-width: 768px) {
-    & {
-      margin-bottom: unset; /* Remove bottom margin on larger screens */
-    }
+.card .projectLinks a {
+  margin-right: 15px; /* Space between links */
+  color: var(--accent); /* Link color from CSS variable */
+  display: block; /* Block display */
+  margin-bottom: 10px; /* Space below each link */
+}
+
+.card .projectLinks a:hover {
+  color: var(--link-hover); /* Change color on hover */
+}
+
+.card .projectLinks i {
+  width: 20px; /* Icon width */
+  margin-right: 5px; /* Space between icon and text */
+  color: var(--navbar-primary); /* Icon color from CSS variable */
+}
+
+@media only screen and (min-width: 768px) {
+  .card {
+    margin-bottom: unset; /* Remove bottom margin on larger screens */
   }
 }

@@ -9,66 +9,51 @@
   display: flex; /* Flexbox layout */
   flex-direction: column; /* Column layout */
   min-height: 260px; /* Minimum height for the card */
-
-  /* Styles for h4 elements inside the card */
-  h4 {
-    margin: 0; /* Remove default margin */
-    color: var(--text-secondary); /* Text color from CSS variable */
-
-    &:hover {
-      color: var(--link-hover); /* Change color on hover */
-    }
-  }
-
-  /* Styles for time elements inside the card */
-  time {
-    color: var(--navbar-primary); /* Text color from CSS variable */
-  }
-
-  /* Styles for elements with the class "expires" inside the card */
-  .expires {
-    strong {
-      color: var(--accent); /* Text color from CSS variable */
-    }
-  }
-
-  /* Styles for elements with the class "expired" inside the card */
-  .expired {
-    strong {
-      color: var(--accent); /* Text color from CSS variable */
-    }
-  }
-
-  /* Styles for elements with the class "cardAction" inside the card */
-  .cardAction {
-    display: flex; /* Flexbox layout */
-    flex-direction: row; /* Row layout */
-    margin-top: auto; /* Push to the bottom of the card */
-
-    /* Styles for button elements inside "cardAction" */
-    button {
-      color: var(--accent); /* Text color from CSS variable */
-      background: none; /* No background */
-      border: none; /* No border */
-      cursor: pointer; /* Pointer cursor on hover */
-      font-size: inherit; /* Inherit font size */
-      text-decoration: none; /* No text decoration */
-      padding: 0; /* Remove default padding */
-
-      &:hover {
-        color: var(--link-hover); /* Change color on hover */
-      }
-
-      /* Styles for i elements inside button */
-      i {
-        color: var(--navbar-primary); /* Icon color from CSS variable */
-        margin-right: 5px; /* Spacing between the icon and the text */
-      }
-    }
-  }
 }
 
-/* Media query for screens with a minimum width of 768px */
+.card h4 {
+  margin: 0; /* Remove default margin */
+  color: var(--text-secondary); /* Text color from CSS variable */
+}
+
+.card h4:hover {
+  color: var(--link-hover); /* Change color on hover */
+}
+
+.card time {
+  color: var(--navbar-primary); /* Text color from CSS variable */
+}
+
+.card .expires strong,
+.card .expired strong {
+  color: var(--accent); /* Text color from CSS variable */
+}
+
+.card .cardAction {
+  display: flex; /* Flexbox layout */
+  flex-direction: row; /* Row layout */
+  margin-top: auto; /* Push to the bottom of the card */
+}
+
+.card .cardAction button {
+  color: var(--accent); /* Text color from CSS variable */
+  background: none; /* No background */
+  border: none; /* No border */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: inherit; /* Inherit font size */
+  text-decoration: none; /* No text decoration */
+  padding: 0; /* Remove default padding */
+}
+
+.card .cardAction button:hover {
+  color: var(--link-hover); /* Change color on hover */
+}
+
+.card .cardAction button i {
+  color: var(--navbar-primary); /* Icon color from CSS variable */
+  margin-right: 5px; /* Spacing between the icon and the text */
+}
+
 @media only screen and (min-width: 768px) {
   .card {
     margin-bottom: unset; /* Remove bottom margin */
@@ -91,15 +76,17 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
   border-radius: 10px; /* Rounded corners */
   animation: fadeIn 0.5s ease-in-out; /* Fade-in animation */
+}
 
-  /* Media query for screens with a minimum width of 768px */
-  @media (min-width: 768px) {
+@media (min-width: 768px) {
+  .modal {
     width: 70%; /* Width of the modal */
     max-height: 85%; /* Maximum height */
   }
+}
 
-  /* Media query for screens with a minimum width of 1024px */
-  @media (min-width: 1024px) {
+@media (min-width: 1024px) {
+  .modal {
     width: 60%; /* Width of the modal */
     max-height: 80%; /* Maximum height */
   }
@@ -134,17 +121,17 @@
   height: 2.5rem; /* Height of the button */
   border-radius: 50%; /* Rounded corners */
   transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
 
-  &:hover {
-    background-color: var(--background-secondary); /* Background color on hover */
-    transform: scale(1.1); /* Scale up on hover */
-  }
+.closeButton:hover {
+  background-color: var(--background-secondary); /* Background color on hover */
+  transform: scale(1.1); /* Scale up on hover */
+}
 
-  &:before {
-    content: '✕'; /* Close icon */
-    color: var(--text-primary); /* Icon color */
-    font-weight: bold; /* Bold icon */
-  }
+.closeButton:before {
+  content: '✕'; /* Close icon */
+  color: var(--text-primary); /* Icon color */
+  font-weight: bold; /* Bold icon */
 }
 
 /* Certificate image styles */

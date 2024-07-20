@@ -1,82 +1,81 @@
 .blog {
   padding: 50px 15px;
+}
 
-  /* Styles for the progress bar */
-  .scrollProgress {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 5px;
-    background: var(--navbar-primary);
-    z-index: 1000;
-    transition: width 0.25s ease-out;
+.blog .scrollProgress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 5px;
+  background: var(--navbar-primary);
+  z-index: 1000;
+  transition: width 0.25s ease-out;
+}
+
+.blog h1 {
+  text-align: center;
+  font-size: 2.3rem;
+  background: var(--text-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-top: 40px; /* Lower the title heading on mobile to match @allProjects.module.scss */
+}
+
+.blog .filter p {
+  text-align: center;
+  margin-top: -5px; /* Ensure the distance between the heading and filter text is identical to @allProjects.module.scss */
+}
+
+.blog .filter p::after {
+  content: ':';
+  color: var(--navbar-primary);
+}
+
+.blog .filterButtons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.blog .filterButtons button {
+  margin: 2px;
+}
+
+.blog .galleryWrap {
+  margin-top: 50px;
+}
+
+@media only screen and (min-width: 768px) {
+  .blog {
+    padding: 150px 25px;
+    min-height: 100vh;
+    margin-bottom: 0;
   }
 
-  h1 {
+  .blog .container {
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  .blog h1 {
     text-align: center;
-    font-size: 2.3rem;
+    font-size: 3.8rem;
     background: var(--text-gradient);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    margin-top: 40px; /* Lower the title heading on mobile to match @allProjects.module.scss */
+    margin-top: -40px; /* Move the title heading up slightly on desktop */
   }
 
-  .filter {
-    p {
-      text-align: center;
-      margin-top: -5px; /* Ensure the distance between the heading and filter text is identical to @allProjects.module.scss */
-
-      &::after {
-        content: ':';
-        color: var(--navbar-primary);
-      }
-    }
-
-    .filterButtons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      
-      button {
-        margin: 2px;
-      }
-    }
+  .blog .filter {
+    margin-top: -40px; /* Adjust the top margin for the filter section */
   }
 
-  .galleryWrap {
-    margin-top: 50px;
-  }
-
-  @media only screen and (min-width: 768px) {
-    padding: 150px 25px;
-    min-height: 100vh;
-    margin-bottom: 0;
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    h1 {
-      text-align: center;
-      font-size: 3.8rem;
-      background: var(--text-gradient);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      margin-top: -40px; /* Move the title heading up slightly on desktop */
-    }
-
-    .filter {
-      margin-top: -40px; /* Adjust the top margin for the filter section */
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-gap: 25px;
-    }
+  .blog .gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 25px;
   }
 }

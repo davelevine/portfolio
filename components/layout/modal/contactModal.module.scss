@@ -15,112 +15,105 @@
   top: 50%;
   transform: translate(-50%, -50%);
   padding-bottom: 3rem; /* Added more empty space at the bottom */
+}
 
-  /* Close button styles */
-  .close {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-  }
+.contactModal .close {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
 
-  /* Input field styles */
-  .inputField {
-    margin: 25px 0;
+.contactModal .inputField {
+  margin: 25px 0;
+}
 
-    label {
-      margin-bottom: 5px;
-      text-align: left;
-      display: block;
-      color: var(--navbar-primary);
-    }
+.contactModal .inputField label {
+  margin-bottom: 5px;
+  text-align: left;
+  display: block;
+  color: var(--navbar-primary);
+}
 
-    input,
-    textarea {
-      color: var(--text-primary);
-      background-color: transparent;
-      width: 100%;
-      border: none;
-      border-bottom: 1px solid var(--text-secondary);
-    }
+.contactModal .inputField input,
+.contactModal .inputField textarea {
+  color: var(--text-primary);
+  background-color: transparent;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid var(--text-secondary);
+}
 
-    textarea {
-      width: 100%;
-      border: 1px solid var(--text-secondary);
-      border-radius: 5px;
-      height: 175px;
-    }
+.contactModal .inputField textarea {
+  width: 100%;
+  border: 1px solid var(--text-secondary);
+  border-radius: 5px;
+  height: 175px;
+}
 
-    input:focus,
-    textarea:focus {
-      outline: none;
-    }
-  }
+.contactModal .inputField input:focus,
+.contactModal .inputField textarea:focus {
+  outline: none;
+}
 
-  /* Action button styles */
-  .action {
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: space-between;
-    margin-top: auto;
+.contactModal .action {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+}
 
-    i {
-      font-size: 3.4rem;
-      color: var(--background-secondary);
-    }
+.contactModal .action i {
+  font-size: 3.4rem;
+  color: var(--background-secondary);
+}
 
-    .sendLink {
-      align-self: center;
-    }
-  }
+.contactModal .action .sendLink {
+  align-self: center;
+}
 
-  /* Styles for screens with a minimum width of 768px */
-  @media only screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) {
+  .contactModal {
     min-width: 600px;
     overflow: hidden;
     padding: 2rem;
-
-    .contactForm {
-      display: flex;
-      flex-direction: column;
-      height: 425px;
-    }
-
-    .row {
-      display: flex;
-      justify-content: center;
-    }
-
-    .inputField {
-      margin: 25px 0;
-      width: 100%;
-    }
-
-    .action {
-      margin-bottom: unset;
-    }
   }
 
-  /* Styles for screens with a maximum width of 767px */
-  @media only screen and (max-width: 767px) {
+  .contactModal .contactForm {
+    display: flex;
+    flex-direction: column;
+    height: 425px;
+  }
+
+  .contactModal .row {
+    display: flex;
+    justify-content: center;
+  }
+
+  .contactModal .inputField {
+    margin: 25px 0;
+    width: 100%;
+  }
+
+  .contactModal .action {
+    margin-bottom: unset;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .contactModal {
     min-height: 500px;
     top: 45%; /* Adjusted to move the modal lower on mobile */
     transform: translate(-50%, -45%); /* Adjusted to move the modal lower on mobile */
   }
-
-  /* Move the declaration inside &{} to opt into the new behavior */
-  & {
-    margin-bottom: 0;
-  }
 }
 
 /* Styles for contact links */
-.contactLinks {
-  a {
-    margin-right: 20px; /* Adjust this value as needed */
-    i {
-      font-size: 3rem; /* Increase the size of the contact links */
-    }
-  }
+.contactLinks a {
+  margin-right: 20px; /* Adjust this value as needed */
+}
+
+.contactLinks a i {
+  font-size: 3rem; /* Increase the size of the contact links */
 }
 
 /* Styles for the contact modal confirmation */
@@ -128,25 +121,16 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
 
-  .linkedinLink {
-    i {
-      font-size: 4rem;
-    }
-  }
+.contactModalConfirmation .linkedinLink i {
+  font-size: 4rem;
+}
 
-  .confirmationButton {
-    button {
-      width: 100%;
-    }
-  }
+.contactModalConfirmation .confirmationButton button {
+  width: 100%;
+}
 
-  .contactLinks {
-    margin-top: 40px; /* Add additional space before contact links */
-  }
-
-  /* Move the declaration inside &{} to opt into the new behavior */
-  & {
-    margin-bottom: 0;
-  }
+.contactModalConfirmation .contactLinks {
+  margin-top: 40px; /* Add additional space before contact links */
 }

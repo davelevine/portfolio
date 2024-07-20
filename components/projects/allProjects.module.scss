@@ -1,123 +1,100 @@
 /* Styles for the projectsGallery class */
 .projectsGallery {
   padding: 50px 15px; /* Set padding for the projectsGallery container */
+}
 
-  /* Styles for the progress bar */
-  .scrollProgress {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 5px;
-    background: var(--navbar-primary);
-    z-index: 1000;
-    transition: width 0.25s ease-out;
-    overflow-x: auto; /* Enable horizontal scrolling */
+.projectsGallery .scrollProgress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 5px;
+  background: var(--navbar-primary);
+  z-index: 1000;
+  transition: width 0.25s ease-out;
+  overflow-x: auto; /* Enable horizontal scrolling */
+}
 
-    @media (max-width: 768px) {
-      display: block; /* Ensure progress bar is visible on mobile */
-    }
-  }
+.projectsGallery h1 {
+  text-align: center;
+  font-size: 2.3rem;
+  background: var(--text-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent; /* Apply gradient text effect */
+  margin-top: 40px; /* Lower the title heading on mobile */
+}
 
-  /* Styles for the h1 element inside projectsGallery */
-  h1 {
-    text-align: center;
-    font-size: 2.3rem;
-    background: var(--text-gradient);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent; /* Apply gradient text effect */
-    margin-top: 40px; /* Lower the title heading on mobile */
-  }
+.projectsGallery .filter p {
+  text-align: center;
+  margin-top: -5px; /* Ensure the distance between the heading and filter text is identical to @allCerts.module.scss */
+}
 
-  /* Styles for the filter section inside projectsGallery */
-  .filter {
-    /* Styles for the p element inside filter */
-    p {
-      text-align: center;
-      margin-top: -5px; /* Ensure the distance between the heading and filter text is identical to @allCerts.module.scss */
-      
-      /* Apply background-secondary color to the ":" symbol */
-      &::after {
-        content: ':';
-        color: var(--navbar-primary);
-      }
-    }
+.projectsGallery .filter p::after {
+  content: ':';
+  color: var(--navbar-primary); /* Apply background-secondary color to the ":" symbol */
+}
 
-    /* Styles for the filterButtons section inside filter */
-    .filterButtons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+.projectsGallery .filterButtons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
-      /* Styles for the button elements inside filterButtons */
-      button {
-        margin: 2px;
-      }
-    }
-  }
+.projectsGallery .filterButtons button {
+  margin: 2px;
+}
 
-  /* Styles for the galleryWrap section inside projectsGallery */
-  .galleryWrap {
-    margin-top: 50px; /* Set top margin for galleryWrap */
-  }
+.projectsGallery .galleryWrap {
+  margin-top: 50px; /* Set top margin for galleryWrap */
+}
 
-  /* Media query for screens with a minimum width of 768px */
-  @media only screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) {
+  .projectsGallery {
     padding: 150px 25px; /* Adjust padding for larger screens */
     min-height: 100vh; /* Set minimum height to 100% of the viewport height */
     margin-bottom: 0; /* Remove bottom margin */
-
-    /* Styles for the container element inside projectsGallery */
-    .container {
-      max-width: 1200px;
-      margin: auto; /* Center the container horizontally */
-    }
-
-    /* Styles for the h1 element inside the media query */
-    h1 {
-      font-size: 3.8rem; /* Increase font size for larger screens */
-      margin-top: -40px; /* Ensure the distance between the heading and filter is identical to @allCerts.module.scss */
-    }
-
-    /* Reduce the distance between the filter and the title heading on desktop */
-    .filter {
-      margin-top: -30px; /* Ensure the distance between the heading and filter is identical to @allCerts.module.scss */
-    }
-
-    /* Styles for the gallery section inside the media query */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-gap: 25px;
-
-      /* Styles for the img elements inside the gallery section */
-      img {
-        object-fit: contain;
-        width: 100%;
-        height: 100%;
-      }
-    }
   }
 
-  /* Media query for screens with a minimum width of 1080px */
-  @media only screen and (min-width: 1080px) {
-    /* Styles for the gallery section inside the larger media query */
-    .gallery {
-      grid-template-columns: repeat(3, 1fr); /* Adjust grid columns for larger screens */
-    }
+  .projectsGallery .container {
+    max-width: 1200px;
+    margin: auto; /* Center the container horizontally */
   }
 
-  /* Media query for screens with a maximum width of 767px */
-  @media only screen and (max-width: 767px) {
-    /* Styles for the img elements inside the gallery section for smaller screens */
-    .gallery img {
-      object-fit: contain; /* Adjust object-fit for smaller screens */
-    }
+  .projectsGallery h1 {
+    font-size: 3.8rem; /* Increase font size for larger screens */
+    margin-top: -40px; /* Ensure the distance between the heading and filter is identical to @allCerts.module.scss */
+  }
 
-    /* Ensure the progress bar is visible on mobile */
-    .scrollProgress {
-      display: block;
-    }
+  .projectsGallery .filter {
+    margin-top: -30px; /* Reduce the distance between the filter and the title heading on desktop */
+  }
+
+  .projectsGallery .gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 25px;
+  }
+
+  .projectsGallery .gallery img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media only screen and (min-width: 1080px) {
+  .projectsGallery .gallery {
+    grid-template-columns: repeat(3, 1fr); /* Adjust grid columns for larger screens */
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .projectsGallery .gallery img {
+    object-fit: contain; /* Adjust object-fit for smaller screens */
+  }
+
+  .projectsGallery .scrollProgress {
+    display: block; /* Ensure the progress bar is visible on mobile */
   }
 }

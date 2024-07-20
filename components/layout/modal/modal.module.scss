@@ -1,5 +1,3 @@
-// modal.module.scss
-
 /* Backdrop styles for the modal */
 .backdrop {
   position: fixed; /* Fixes the backdrop to the viewport */
@@ -78,9 +76,4 @@
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   border: none; /* No border */
-}
-
-/* Move the declaration inside &{} to opt into the new behavior */
-.resumeModal {
-  margin-bottom: 0;
 }
