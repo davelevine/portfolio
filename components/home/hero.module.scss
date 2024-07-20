@@ -21,17 +21,17 @@
     max-height: 230px;
     margin: 0 auto 5px; /* Decreased margin to reduce distance */
   }
+}
 
-  @media (orientation: landscape) {
-    .greetings .columnLeft {
-      margin-top: 10px; /* Decreased margin to reduce distance */
-    }
+@media (orientation: landscape) {
+  .greetings .columnLeft {
+    margin-top: 10px; /* Decreased margin to reduce distance */
+  }
 
-    .greetings .columnRight.profilePic {
-      max-width: 200px;
-      max-height: 200px;
-      margin: 0 auto 5px; /* Decreased margin to reduce distance */
-    }
+  .greetings .columnRight.profilePic {
+    max-width: 200px;
+    max-height: 200px;
+    margin: 0 auto 5px; /* Decreased margin to reduce distance */
   }
 }
 
@@ -219,11 +219,11 @@
 
   .greetings .columnLeft {
     width: 60%;
-    margin-left: 5%;
+    margin-left: 0; /* Removed margin-left to make columnLeft equidistant */
   }
 
   .greetings .columnRight {
     width: 40%;
-    margin-right: 5%;
+    margin-right: 0; /* Removed margin-right to make columnRight equidistant */
   }
 }
