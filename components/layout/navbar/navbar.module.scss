@@ -6,212 +6,200 @@
   position: fixed; /* Fixed position at the top */
   transition: background 0.3s; /* Smooth background transition */
   margin-bottom: 0; /* Move this declaration above nested rules */
+}
 
-  &.sticky {
-    /* Styles for the sticky navigation bar */
-    position: fixed;
-    top: 0;
-    background-color: var(--background);
-    box-shadow: 0 6px 30px 2px rgba(0, 0, 0, 0.03),
-                0 3px 15px 1px rgba(0, 0, 0, 0.02),
-                0 1px 8px 1px rgba(0, 0, 0, 0.01); /* Subtle shadow for depth */
-  }
+.navbar.sticky {
+  /* Styles for the sticky navigation bar */
+  position: fixed;
+  top: 0;
+  background-color: var(--background);
+  box-shadow: 0 6px 30px 2px rgba(0, 0, 0, 0.03),
+              0 3px 15px 1px rgba(0, 0, 0, 0.02),
+              0 1px 8px 1px rgba(0, 0, 0, 0.01); /* Subtle shadow for depth */
+}
 
-  .container {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    margin: 0 auto; /* Center content horizontally */
-  }
+.navbar .container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: 0 auto; /* Center content horizontally */
+}
 
-  .logo {
-    z-index: 3;
-    font-weight: bold;
-    background-color: transparent;
-    color: var(--navbar-primary); /* Set text color */
-    border-radius: 50%;
-    padding: 5px;
-    font-size: 1rem;
-    width: 45px;
-    height: 30px;
-    box-shadow: none;
-    margin-right: auto; /* Adjust the logo's right margin */
-    margin-left: 20px;
-    white-space: nowrap; /* Prevent text wrapping */
-    transition: color 0.3s; /* Smooth color transition */
+.navbar .logo {
+  z-index: 3;
+  font-weight: bold;
+  background-color: transparent;
+  color: var(--navbar-primary); /* Set text color */
+  border-radius: 50%;
+  padding: 5px;
+  font-size: 1rem;
+  width: 45px;
+  height: 30px;
+  box-shadow: none;
+  margin-right: auto; /* Adjust the logo's right margin */
+  margin-left: 20px;
+  white-space: nowrap; /* Prevent text wrapping */
+  transition: color 0.3s; /* Smooth color transition */
+}
 
-    .name {
-      color: var(--background-secondary); /* Set the color for the brackets */
-    }
+.navbar .logo .name {
+  color: var(--background-secondary); /* Set the color for the brackets */
+}
 
-    &:hover {
-      color: var(--text-secondary); /* Change color on hover */
-    }
-  }
+.navbar .logo:hover {
+  color: var(--text-secondary); /* Change color on hover */
+}
 
-  .navMenu {
-    height: 0;
-    overflow: hidden;
-    transition: all 0.4s ease; /* Smooth transition for all properties */
-    position: absolute;
-    top: 0;
-    padding-top: 65px;
-    margin-left: auto;
+.navbar .navMenu {
+  height: 0;
+  overflow: hidden;
+  transition: all 0.4s ease; /* Smooth transition for all properties */
+  position: absolute;
+  top: 0;
+  padding-top: 65px;
+  margin-left: auto;
+}
 
-    a {
-      font-size: 1.3rem;
-      color: var(--navbar-primary);
-      border-bottom: 1px solid var(--border);
-    }
+.navbar .navMenu a {
+  font-size: 1.3rem;
+  color: var(--navbar-primary);
+  border-bottom: 1px solid var(--border);
+}
 
-    a:first-child {
-      border-top: 1px solid var(--border);
-    }
+.navbar .navMenu a:first-child {
+  border-top: 1px solid var(--border);
+}
 
-    .linkWrapper a:hover {
-      color: var(--background-secondary); /* Change color on hover */
-    }
+.navbar .navMenu .linkWrapper a:hover {
+  color: var(--background-secondary); /* Change color on hover */
+}
 
-    .activeLink {
-      color: var(--background-secondary); /* Change the color for the active link */
-    }
+.navbar .navMenu .activeLink {
+  color: var(--background-secondary); /* Change the color for the active link */
+}
 
-    &.responsive {
-      height: auto;
-      width: 100%;
-      display: block;
-      text-align: center;
-      right: 0;
-      background-color: var(--transparent-primary);
+.navbar .navMenu.responsive {
+  height: auto;
+  width: 100%;
+  display: block;
+  text-align: center;
+  right: 0;
+  background-color: var(--transparent-primary);
+}
 
-      a {
-        display: block;
-        padding: 25px 0;
-      }
-    }
-  }
+.navbar .navMenu.responsive a {
+  display: block;
+  padding: 25px 0;
+}
 
-  .navContainer {
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin-left: auto;
+.navbar .navContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
 
-    .icon {
-      cursor: pointer;
-      background-color: transparent;
-      border: none;
+.navbar .navContainer .icon {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
 
-      i,
-      svg {
-        font-size: 1.5rem;
-        color: var(--navbar-primary);
-        padding: 5px;
+.navbar .navContainer .icon i,
+.navbar .navContainer .icon svg {
+  font-size: 1.5rem;
+  color: var(--navbar-primary);
+  padding: 5px;
+}
 
-        path {
-          stroke: var(--navbar-primary);
-        }
-      }
+.navbar .navContainer .icon path {
+  stroke: var(--navbar-primary);
+}
 
-      &:hover i,
-      &:hover svg {
-        color: var(--text-secondary); /* Change color on hover */
-      }
-    }
+.navbar .navContainer .icon:hover i,
+.navbar .navContainer .icon:hover svg {
+  color: var(--text-secondary); /* Change color on hover */
+}
 
-    @media (max-width: 768px) {
-      .iconMain {
-        height: 40px; /* Adjust the height for mobile devices */
-        margin-right: 10px; /* Align with the logo's left margin */
-      }
-    }
-
-    .themeToggleContainer {
-      width: 40px; /* Fixed width for theme toggle */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
+.navbar .navContainer .themeToggleContainer {
+  width: 40px; /* Fixed width for theme toggle */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Media query for mobile screens */
 @media only screen and (max-width: 767px) {
-  .navbar {
-    .logo {
-      margin-right: auto; /* Adjust the logo's right margin for mobile */
-    }
+  .navbar .logo {
+    margin-right: auto; /* Adjust the logo's right margin for mobile */
+  }
+
+  .navbar .navContainer .iconMain {
+    height: 40px; /* Adjust the height for mobile devices */
+    margin-right: 10px; /* Align with the logo's left margin */
   }
 }
 
 /* Media query for tablet and larger screens */
 @media only screen and (min-width: 768px) {
-  .navbar {
-    .container {
-      max-width: 1265px;
-      margin: 0 auto; /* Center content horizontally */
-    }
+  .navbar .container {
+    max-width: 1265px;
+    margin: 0 auto; /* Center content horizontally */
+  }
 
-    .navMenu {
-      height: auto;
-      display: flex;
-      width: 90%;
-      top: 0;
-      padding-top: 0;
-      position: static;
+  .navbar .navMenu {
+    height: auto;
+    display: flex;
+    width: 90%;
+    top: 0;
+    padding-top: 0;
+    position: static;
+  }
 
-      &.responsive {
-        width: 45%;
-        display: flex;
-        background-color: transparent !important;
-      }
+  .navbar .navMenu.responsive {
+    width: 45%;
+    display: flex;
+    background-color: transparent !important;
+  }
 
-      .linkWrapper {
-        margin: 0 auto; /* Center content horizontally */
-        display: flex;
-        justify-content: flex-end;
-        width: 94%;
+  .navbar .navMenu .linkWrapper {
+    margin: 0 auto; /* Center content horizontally */
+    display: flex;
+    justify-content: flex-end;
+    width: 94%;
+  }
 
-        a {
-          margin-left: 25px;
-          border-bottom: none;
-          font-size: 1.03rem;
-        }
+  .navbar .navMenu .linkWrapper a {
+    margin-left: 25px;
+    border-bottom: none;
+    font-size: 1.03rem;
+  }
 
-        a:first-child {
-          border-top: none;
-          margin-left: 0;
-        }
-      }
-    }
+  .navbar .navMenu .linkWrapper a:first-child {
+    border-top: none;
+    margin-left: 0;
+  }
 
-    .logo {
-      margin-left: 0; /* Adjust logo margins */
-    }
+  .navbar .logo {
+    margin-left: 0; /* Adjust logo margins */
+  }
 
-    .iconMain {
-      display: none; /* Hide iconMain on larger screens */
-    }
+  .navbar .navContainer .iconMain {
+    display: none; /* Hide iconMain on larger screens */
   }
 }
 
 /* Media query for very large screens */
 @media only screen and (min-width: 1600px) {
-  .navbar {
-    .container {
-      max-width: 1400px; /* Adjust max-width for very large screens */
-    }
+  .navbar .container {
+    max-width: 1400px; /* Adjust max-width for very large screens */
+  }
 
-    .navMenu {
-      .linkWrapper {
-        a {
-          font-size: 1.2rem; /* Increase font size for very large screens */
-        }
-      }
-    }
+  .navbar .navMenu .linkWrapper a {
+    font-size: 1.2rem; /* Increase font size for very large screens */
+  }
 
-    .logo {
-      font-size: 1.2rem; /* Increase logo font size for very large screens */
-    }
+  .navbar .logo {
+    font-size: 1.2rem; /* Increase logo font size for very large screens */
   }
 }

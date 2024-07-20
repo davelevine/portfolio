@@ -1,337 +1,230 @@
 .greetings {
   padding: 50px 15px 20px;
   height: 100vh;
+}
 
-  .row {
-    display: flex;
-    flex-flow: column;
-    height: 100%;
-    justify-content: center; /* Center content vertically */
+.greetings .row {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+}
+
+.greetings .columnLeft {
+  order: 2;
+}
+
+.greetings .columnLeft h1 {
+  color: var(--navbar-primary);
+  font-size: 2.5rem;
+  margin: 0;
+  text-align: left;
+  line-height: 1.2;
+}
+
+.greetings .columnLeft h2 {
+  color: var(--navbar-primary);
+  font-size: 1.8rem;
+  margin: 0 2px;
+  margin-bottom: 6px;
+  text-align: left;
+}
+
+.greetings .columnLeft h3 {
+  color: var(--text-secondary);
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin: 0 5px;
+  text-align: left;
+  line-height: 2.8;
+  margin-bottom: -11px;
+  margin-top: -4px;
+}
+
+.greetings .columnLeft h5 {
+  color: var(--text-secondary);
+  font-size: 1.5rem;
+  margin: 0;
+  text-align: left;
+}
+
+.greetings .columnLeft .name {
+  color: var(--background-secondary);
+}
+
+.greetings .columnLeft .punctuation {
+  color: var(--navbar-primary);
+}
+
+.greetings .columnLeft span {
+  position: relative;
+  top: 1px;
+}
+
+.greetings .columnLeft .socialMedia {
+  display: flex;
+  margin-top: 20px;
+}
+
+.greetings .columnLeft .socialMedia i {
+  font-size: 2rem;
+  margin: 0 5px;
+  color: var(--navbar-primary);
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.14));
+}
+
+.greetings .columnLeft .socialMedia i:hover {
+  color: var(--background-secondary);
+}
+
+.greetings .columnLeft .ctaButtons {
+  margin-top: 30px;
+  display: flex;
+}
+
+.greetings .columnLeft .ctaButtons button + button {
+  margin-left: 15px;
+}
+
+.greetings .columnLeft .ctaButtons button {
+  font-size: 1.125rem;
+  padding: 10px 20px;
+}
+
+.greetings .columnRight {
+  order: 1;
+}
+
+.greetings .columnRight.profilePic {
+  text-align: center;
+  margin: 20px auto;
+}
+
+.greetings .columnRight.profilePic .imageWrapper {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 100%;
+  max-width: 250px;
+  max-height: 250px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+}
+
+.greetings .columnRight.profilePic .imageWrapper img {
+  border-radius: 50%;
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+@media only screen and (max-width: 767px) {
+  .greetings .columnLeft {
+    margin-top: 40px;
   }
 
-  @media only screen and (max-width: 767px) {
-    .columnLeft {
-      margin-top: 40px;
+  .greetings .columnRight.profilePic {
+    max-width: 230px;
+    max-height: 230px;
+    margin: 0 auto 10px;
+  }
+
+  @media (orientation: landscape) {
+    .greetings .columnLeft {
+      margin-top: 20px;
     }
 
-    .columnRight.profilePic {
-      max-width: 230px;
-      max-height: 230px;
+    .greetings .columnRight.profilePic {
+      max-width: 200px;
+      max-height: 200px;
       margin: 0 auto 10px;
     }
-
-    @media (orientation: landscape) {
-      .columnLeft {
-        margin-top: 20px;
-      }
-
-      .columnRight.profilePic {
-        max-width: 200px;
-        max-height: 200px;
-        margin: 0 auto 10px;
-      }
-    }
   }
+}
 
-  .columnLeft {
-    order: 2;
-
-    h1 {
-      color: var(--navbar-primary);
-      font-size: 2.5rem;
-      margin: 0;
-      text-align: left;
-
-      @media only screen and (max-width: 767px) {
-        font-size: 2.5rem;
-        margin: 0;
-        line-height: 1.2;
-      }
-
-      @media only screen and (max-width: 1601px) {
-        line-height: 1.2;
-        margin: 0;
-      }
-    }
-
-    h2 {
-      color: var(--navbar-primary);
-      font-size: 1.8rem;
-      margin: 0 2px;
-      margin-bottom: 6px;
-      text-align: left;
-    }
-
-    h3 {
-      color: var(--text-secondary);
-      font-size: 1.3rem;
-      font-weight: 400;
-      margin: 0 5px;
-      text-align: left;
-
-      @media only screen and (max-width: 1601px) {
-        line-height: 2.8;
-      }
-
-      @media only screen and (max-width: 767px) {
-        line-height: 2.8;
-        margin-bottom: -11px;
-        margin-top: -4px;
-      }
-    }
-
-    h5 {
-      color: var(--text-secondary);
-      font-size: 2.2rem;
-      margin: 0;
-      text-align: left;
-    }
-
-    .name {
-      color: var(--background-secondary);
-    }
-
-    .punctuation {
-      color: var(--navbar-primary);
-    }
-
-    span {
-      position: relative;
-      top: 1px;
-    }
-
-    .socialMedia {
-      display: flex;
-      margin-top: 20px;
-
-      i {
-        font-size: 2rem;
-        margin: 0 5px;
-        color: var(--navbar-primary);
-
-        &:hover {
-          color: var(--background-secondary);
-        }
-      }
-    }
-
-    .ctaButtons {
-      margin-top: 30px;
-      display: flex;
-
-      &:first-child {
-        margin-right: 15px;
-      }
-
-      button + button {
-        margin-left: 15px;
-      }
-
-      button {
-        font-size: 18px;
-        padding: 10px 20px;
-      }
-
-      @media only screen and (max-width: 767px) {
-        margin-bottom: 5%;
-      }
-    }
-  }
-
-  @media only screen and (max-width: 767px) {
-    margin-top: 0;
-  }
-
-  .columnRight {
-    order: 1;
-
-    &.profilePic {
-      text-align: center;
-      margin: 20px auto 0;
-
-      .imageWrapper {
-        position: relative;
-        border-radius: 50%;
-        overflow: hidden;
-        width: 100%;
-        max-width: 250px;
-        max-height: 250px;
-        aspect-ratio: 1 / 1;
-        margin: 0 auto;
-
-        @media (min-width: 768px) {
-          max-width: 640px;
-          max-height: 640px;
-        }
-
-        img {
-          border-radius: 50%;
-          object-fit: contain;
-          width: 100%;
-          height: 100%;
-        }
-      }
-
-      @media only screen and (max-width: 767px) {
-        margin: 40px auto -10px;
-      }
-    }
-  }
-
-  @media only screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) {
+  .greetings {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: auto;
     height: 100vh;
-
-    .container {
-      height: 100%;
-      max-width: 1140px;
-      margin: auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .row {
-      display: flex;
-      flex-flow: row;
-      align-items: center;
-      justify-content: center; /* Center content horizontally */
-      height: 100%;
-    }
-
-    .columnLeft {
-      order: 1;
-      align-self: center;
-      display: flex;
-      flex-direction: column;
-      width: 55%;
-      margin-bottom: unset;
-      margin-top: 0;
-      margin: auto;
-
-      h1 {
-        font-size: 4.0rem;
-        margin: -10px -5px 0 -5px;
-        text-align: left;
-      }
-
-      h2 {
-        font-size: 2.3rem;
-        margin: 0;
-        text-align: left;
-      }
-
-      h3 {
-        font-size: 1.5rem;
-        text-align: left;
-      }
-
-      h3, p {
-        margin: -10px 2px;
-        font-size: 1.2rem;
-      }
-    }
-
-    .columnRight {
-      order: 2;
-      width: 38%;
-      margin: auto;
-
-      &.profilePic {
-        margin: auto;
-        margin-right: 5%;
-
-        .imageWrapper {
-          position: relative;
-          border-radius: 50%;
-          overflow: hidden;
-          width: 100%;
-          max-width: 640px;
-          max-height: 640px;
-          aspect-ratio: 1 / 1;
-          margin: 0 auto;
-
-          img {
-            border-radius: 50%;
-            object-fit: contain;
-            width: 100%;
-            height: 100%;
-          }
-        }
-      }
-    }
+    padding: auto;
   }
 
-  @media only screen and (min-width: 1600px) {
+  .greetings .container {
+    height: 100%;
+    max-width: 1140px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .greetings .row {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .greetings .columnLeft {
+    order: 1;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+  }
+
+  .greetings .columnLeft h1 {
+    font-size: 4rem;
+    margin: -10px -5px 0 -5px;
+    text-align: left;
+  }
+
+  .greetings .columnLeft h2 {
+    font-size: 2.3rem;
+    margin: 0;
+    text-align: left;
+  }
+
+  .greetings .columnLeft h3,
+  .greetings .columnLeft p {
+    font-size: 1.2rem;
+    margin: -10px 2px;
+    text-align: left;
+  }
+
+  .greetings .columnRight {
+    order: 2;
+    width: 38%;
+    margin: auto;
+  }
+
+  .greetings .columnRight.profilePic .imageWrapper {
+    max-width: 640px;
+    max-height: 640px;
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  .greetings {
     padding: 100px 30px 25px;
     height: 95vh;
     margin-bottom: 3%;
-
-    .container {
-      height: 100%;
-      max-width: 1400px;
-      margin: auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .row {
-      display: flex;
-      flex-flow: row;
-      align-items: center;
-      justify-content: center; /* Center content horizontally */
-      height: 100%;
-    }
-
-    .columnLeft {
-      width: 60%;
-      margin-top: auto;
-      margin-left: 5%;
-
-      h1 {
-        font-size: 4.5rem;
-      }
-
-      h2 {
-        font-size: 2.5rem;
-      }
-
-      h3 {
-        font-size: 1.7rem;
-      }
-
-      h3, p {
-        font-size: 1.4rem;
-      }
-    }
-
-    .columnRight {
-      width: 40%;
-      position: relative;
-      margin-top: auto;
-
-      &.profilePic {
-        margin: auto;
-        margin-right: 5%;
-
-        .imageWrapper {
-          max-width: 640px;
-          max-height: 640px;
-
-          img {
-            width: 100%;
-            height: 100%;
-          }
-        }
-      }
-    }
   }
 
-  & {
-    margin-bottom: 0;
+  .greetings .container {
+    max-width: 1400px;
+  }
+
+  .greetings .columnLeft {
+    width: 60%;
+    margin-left: 5%;
+  }
+
+  .greetings .columnRight {
+    width: 40%;
+    margin-right: 5%;
   }
 }
