@@ -1,13 +1,38 @@
 .greetings {
-  padding: 50px 15px 20px;
+  padding: 30px 15px 50px;
   height: 100vh;
 }
 
 .greetings .row {
   display: flex;
-  flex-direction: column;
+  flex-flow: column;
   height: 100%;
-  justify-content: center;
+  justify-content: center; /* Center content vertically */
+  align-items: center;
+}
+
+@media only screen and (max-width: 767px) {
+  .greetings .columnLeft {
+    margin-top: 20px; /* Decreased margin to reduce distance */
+  }
+
+  .greetings .columnRight.profilePic {
+    max-width: 230px;
+    max-height: 230px;
+    margin: 0 auto 5px; /* Decreased margin to reduce distance */
+  }
+
+  @media (orientation: landscape) {
+    .greetings .columnLeft {
+      margin-top: 10px; /* Decreased margin to reduce distance */
+    }
+
+    .greetings .columnRight.profilePic {
+      max-width: 200px;
+      max-height: 200px;
+      margin: 0 auto 5px; /* Decreased margin to reduce distance */
+    }
+  }
 }
 
 .greetings .columnLeft {
@@ -15,30 +40,29 @@
 }
 
 .greetings .columnLeft h1 {
+  font-size: 3.8rem;
   color: var(--navbar-primary);
-  font-size: 2.5rem;
-  margin: 0;
-  text-align: left;
-  line-height: 1.2;
+  line-height: 0.95;
+  margin: 0 0 0 -4px;
 }
 
 .greetings .columnLeft h2 {
   color: var(--navbar-primary);
-  font-size: 1.8rem;
+  font-size: 1.45rem;
   margin: 0 2px;
-  margin-bottom: 6px;
+  margin-bottom: auto;
   text-align: left;
 }
 
 .greetings .columnLeft h3 {
   color: var(--text-secondary);
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 400;
-  margin: 0 5px;
+  margin: 2;
   text-align: left;
-  line-height: 2.8;
-  margin-bottom: -11px;
-  margin-top: -4px;
+  line-height: 2.5;
+  margin-bottom: auto;
+  margin-top: auto;
 }
 
 .greetings .columnLeft h5 {
@@ -56,6 +80,12 @@
   color: var(--navbar-primary);
 }
 
+.greetings .columnLeft .subtitle {
+  font-size: 0.9rem;
+  color: var(--text-tertiary);
+  margin: 0;
+}
+
 .greetings .columnLeft span {
   position: relative;
   top: 1px;
@@ -63,7 +93,7 @@
 
 .greetings .columnLeft .socialMedia {
   display: flex;
-  margin-top: 20px;
+  margin-top: 14px;
 }
 
 .greetings .columnLeft .socialMedia i {
@@ -78,17 +108,17 @@
 }
 
 .greetings .columnLeft .ctaButtons {
-  margin-top: 30px;
+  margin-top: 25px;
   display: flex;
+}
+
+.greetings .columnLeft .ctaButtons button {
+  font-size: 18px;
+  padding: 10px 20px;
 }
 
 .greetings .columnLeft .ctaButtons button + button {
   margin-left: 15px;
-}
-
-.greetings .columnLeft .ctaButtons button {
-  font-size: 1.125rem;
-  padding: 10px 20px;
 }
 
 .greetings .columnRight {
@@ -97,58 +127,27 @@
 
 .greetings .columnRight.profilePic {
   text-align: center;
-  margin: 20px auto;
+  margin: 50px auto 0;
+  max-width: 230px;
+  max-height: 230px;
 }
 
-.greetings .columnRight.profilePic .imageWrapper {
-  position: relative;
+.greetings .columnRight.profilePic img {
   border-radius: 50%;
-  overflow: hidden;
-  width: 100%;
-  max-width: 250px;
-  max-height: 250px;
-  aspect-ratio: 1 / 1;
-  margin: 0 auto;
 }
 
-.greetings .columnRight.profilePic .imageWrapper img {
-  border-radius: 50%;
-  object-fit: contain;
-  width: 100%;
-  height: 100%;
-}
-
-@media only screen and (max-width: 767px) {
-  .greetings .columnLeft {
-    margin-top: 40px;
-  }
-
+@media only screen and (min-width: 480px) {
   .greetings .columnRight.profilePic {
-    max-width: 230px;
-    max-height: 230px;
-    margin: 0 auto 10px;
-  }
-
-  @media (orientation: landscape) {
-    .greetings .columnLeft {
-      margin-top: 20px;
-    }
-
-    .greetings .columnRight.profilePic {
-      max-width: 200px;
-      max-height: 200px;
-      margin: 0 auto 10px;
-    }
+    max-width: 350px;
+    max-height: 350px;
+    margin: 0 auto 50px;
   }
 }
 
 @media only screen and (min-width: 768px) {
   .greetings {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    padding: 120px 25px 55px;
     height: 100vh;
-    padding: auto;
   }
 
   .greetings .container {
@@ -164,7 +163,7 @@
     display: flex;
     flex-flow: row;
     align-items: center;
-    justify-content: center;
+    justify-content: center; /* Center content horizontally */
     height: 100%;
   }
 
@@ -177,45 +176,48 @@
   }
 
   .greetings .columnLeft h1 {
-    font-size: 4rem;
-    margin: -10px -5px 0 -5px;
+    font-size: 4.0rem;
+    margin: 0; /* Adjusted margin for consistency */
     text-align: left;
+    line-height: 1.1; /* Adjusted line-height for better spacing */
   }
 
   .greetings .columnLeft h2 {
     font-size: 2.3rem;
-    margin: 0;
+    margin: auto 0; /* Adjusted margin for consistency */
     text-align: left;
   }
 
   .greetings .columnLeft h3,
   .greetings .columnLeft p {
     font-size: 1.2rem;
-    margin: -10px 2px;
+    margin: -10px 0; /* Adjusted margin for consistency */
     text-align: left;
   }
 
   .greetings .columnRight {
     order: 2;
-    width: 38%;
+    width: 45%;
     margin: auto;
   }
 
-  .greetings .columnRight.profilePic .imageWrapper {
-    max-width: 640px;
-    max-height: 640px;
+  .greetings .columnRight.profilePic {
+    max-width: 460px;
+    max-height: 460px;
+    margin: 0;
+  }
+
+  .greetings .columnRight.profilePic img {
+    max-width: 100%;
+    height: auto;
   }
 }
 
-@media only screen and (min-width: 1600px) {
-  .greetings {
-    padding: 100px 30px 25px;
-    height: 95vh;
-    margin-bottom: 3%;
-  }
-
-  .greetings .container {
-    max-width: 1400px;
+@media only screen and (min-width: 1080px) {
+  .greetings .columnLeft h1 {
+    font-size: 4.0rem;
+    line-height: 1.1; /* Adjusted line-height for better spacing */
+    margin: 0 0 10px -4px; /* Adjusted margin for consistency */
   }
 
   .greetings .columnLeft {
