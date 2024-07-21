@@ -39,7 +39,7 @@ const Hero = () => {
   }, [showModal]);
 
   useEffect(() => {
-    Aos.init({ duration: 400, once: true });
+    Aos.init({ duration: 500, once: true });
   }, []);
 
   useEffect(() => {
