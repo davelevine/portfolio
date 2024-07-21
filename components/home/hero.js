@@ -33,15 +33,13 @@ const Hero = () => {
   useEffect(() => {
     if (showModal) {
       document.body.style.overflow = 'hidden';
-      document.body.style.paddingRight = '0px';
     } else {
       document.body.style.overflow = 'auto';
-      document.body.style.paddingRight = '0px';
     }
   }, [showModal]);
 
   useEffect(() => {
-    Aos.init({ duration: 550 });
+    Aos.init({ duration: 400, once: true });
   }, []);
 
   useEffect(() => {
@@ -49,7 +47,7 @@ const Hero = () => {
       setImageSrc(window.matchMedia("(max-width: 767px)").matches ? PROFILE_PIC_LOW_RES_PATH : PROFILE_PIC_PATH);
     };
 
-    const debouncedUpdateImageSrc = debounce(updateImageSrc, 100);
+    const debouncedUpdateImageSrc = debounce(updateImageSrc, 200);
 
     updateImageSrc();
     window.addEventListener('resize', debouncedUpdateImageSrc);
@@ -60,8 +58,8 @@ const Hero = () => {
   }, []);
 
   const buttonVariants = useMemo(() => ({
-    whileHover: { scale: 1.1 },
-    whileTap: { scale: 0.9 },
+    whileHover: { scale: 1.05 },
+    whileTap: { scale: 0.95 },
   }), []);
 
   return (
@@ -76,7 +74,7 @@ const Hero = () => {
                 </span>!{' '}
               </h2>
               <h1 data-aos='fade-right'>Solutions Engineer</h1>
-              <h3 data-aos='fade-left' data-aos-delay='200'>
+              <h3 data-aos='fade-left' data-aos-delay='100'>
                 I design and implement systems
                 <span className={classes.punctuation}><b>.</b></span>
                 <span>
@@ -90,19 +88,19 @@ const Hero = () => {
                   <i
                     className='fab fa-linkedin'
                     data-aos='flip-up'
-                    data-aos-delay='100'></i>
+                    data-aos-delay='50'></i>
                 </a>{' '}
                 <a href='https://kb.levine.io' target='_blank' rel='noreferrer' aria-label="Knowledge Base">
                   <i
                     className='fa fa-globe'
                     data-aos='flip-up'
-                    data-aos-delay='200'></i>
+                    data-aos-delay='100'></i>
                 </a>
                 <a href={PGP_KEY_PATH} target='_blank' rel='noreferrer' aria-label="PGP Key">
                   <i
                     className='fa fa-key'
                     data-aos='flip-up'
-                    data-aos-delay='300'></i>
+                    data-aos-delay='150'></i>
                 </a>
               </div>
               <div className={classes.ctaButtons}>
@@ -112,7 +110,7 @@ const Hero = () => {
                   data-aos='fade-up'
                   onClick={() => showModalHandler('resume')}
                   aria-label="My Resume"
-                  transition={{ duration: 0.55 }}
+                  transition={{ duration: 0.4 }}
                 >
                   MY RESUME
                 </motion.button>
@@ -122,7 +120,7 @@ const Hero = () => {
                   data-aos='fade-down'
                   onClick={() => showModalHandler('contact')}
                   aria-label="Contact Me"
-                  transition={{ duration: 0.55 }}
+                  transition={{ duration: 0.4 }}
                 >
                   CONTACT
                 </motion.button>
@@ -140,14 +138,13 @@ const Hero = () => {
                   style={{
                     maxWidth: "100%",
                     height: "auto",
-                    maxHeight: "100%",
                     borderRadius: "50%",
                     objectFit: "contain"
                   }} 
                   priority={true}
                   placeholder="blur"
                   blurDataURL={PROFILE_PIC_LOW_RES_PATH}
-                  sizes="(max-width: 767px) 320px, 640px"
+                  sizes="(max-width: 767px) 480px, 640px"
                 />
               </div>
               <div className={classes.quote} data-aos='fade-right'></div>

@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useCallback } from 'react';
+import React, { lazy, Suspense, useEffect, useCallback, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import classes from './modal.module.scss';
 
@@ -8,11 +8,11 @@ const RESUME_FILE_PATH = 'https://cdn.levine.io/uploads/portfolio/public/assets/
 
 const Modal = ({ contact, resume, onClose, ...props }) => {
   // Define animation variants for the modal
-  const fadeIn = {
+  const fadeIn = useMemo(() => ({
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 0.3, ease: 'easeInOut' } },
     exit: { opacity: 0 },
-  };
+  }), []);
 
   // Function to render the contact modal
   const renderContactModal = useCallback(() => (
