@@ -13,6 +13,7 @@ class MyDocument extends Document {
           <meta name="author" content="Dave Levine" />
 
           <link rel="preconnect" href="https://cdn.levine.io" />
+          <link rel="dns-prefetch" href="https://cdn.levine.io" />
 
           <link
             rel="preload"
@@ -31,6 +32,11 @@ class MyDocument extends Document {
           <link
             rel="stylesheet"
             href="https://cdn.levine.io/uploads/portfolio/public/fonts/webfonts/custom-fontawesome.css"
+          />
+          <link
+            rel="preload"
+            href="https://cdn.levine.io/uploads/portfolio/public/images/profile-pic-1.webp"
+            as="image"
           />
         </Head>
         <body>

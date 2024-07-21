@@ -7,31 +7,31 @@
   display: flex;
   flex-flow: column;
   height: 100%;
-  justify-content: center; /* Center content vertically */
+  justify-content: center;
   align-items: center;
 }
 
 @media only screen and (max-width: 767px) {
   .greetings .columnLeft {
-    margin-top: 20px; /* Decreased margin to reduce distance */
+    margin-top: 20px;
   }
 
   .greetings .columnRight.profilePic {
     max-width: 230px;
     max-height: 230px;
-    margin: 0 auto 5px; /* Decreased margin to reduce distance */
+    margin: 0 auto 5px;
   }
 }
 
 @media (orientation: landscape) {
   .greetings .columnLeft {
-    margin-top: 10px; /* Decreased margin to reduce distance */
+    margin-top: 10px;
   }
 
   .greetings .columnRight.profilePic {
     max-width: 200px;
     max-height: 200px;
-    margin: 0 auto 5px; /* Decreased margin to reduce distance */
+    margin: 0 auto 5px;
   }
 }
 
@@ -160,7 +160,7 @@
     display: flex;
     flex-flow: row;
     align-items: center;
-    justify-content: center; /* Center content horizontally */
+    justify-content: center;
     height: 100%;
   }
 
@@ -174,21 +174,21 @@
 
   .greetings .columnLeft h1 {
     font-size: 4.0rem;
-    margin: 0; /* Adjusted margin for consistency */
+    margin: 0;
     text-align: left;
-    line-height: 1.1; /* Adjusted line-height for better spacing */
+    line-height: 1.1;
   }
 
   .greetings .columnLeft h2 {
     font-size: 2.3rem;
-    margin: auto 0; /* Adjusted margin for consistency */
+    margin: auto 0;
     text-align: left;
   }
 
   .greetings .columnLeft h3,
   .greetings .columnLeft p {
     font-size: 1.2rem;
-    margin: -10px 0; /* Adjusted margin for consistency */
+    margin: -10px 0;
     text-align: left;
   }
 
@@ -213,17 +213,17 @@
 @media only screen and (min-width: 1080px) {
   .greetings .columnLeft h1 {
     font-size: 4.0rem;
-    line-height: 1.1; /* Adjusted line-height for better spacing */
-    margin: 0 0 10px -4px; /* Adjusted margin for consistency */
+    line-height: 1.1;
+    margin: 0 0 10px -4px;
   }
 
   .greetings .columnLeft {
     width: 60%;
-    margin-left: 0; /* Removed margin-left to make columnLeft equidistant */
+    margin-left: 0;
   }
 
   .greetings .columnRight {
     width: 40%;
-    margin-right: 0; /* Removed margin-right to make columnRight equidistant */
+    margin-right: 0;
   }
 }
