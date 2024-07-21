@@ -18,7 +18,6 @@ const PROFILE_PIC_LOW_RES_PATH = 'https://cdn.levine.io/uploads/portfolio/public
 const Hero = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState('');
-  const [isHorizontal, setIsHorizontal] = useState(false);
   const [imageSrc, setImageSrc] = useState(PROFILE_PIC_LOW_RES_PATH);
 
   const showModalHandler = useCallback((type) => {
@@ -32,8 +31,13 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = 'auto';
-    document.body.style.paddingRight = '0px';
+    if (showModal) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.paddingRight = '0px';
+    } else {
+      document.body.style.overflow = 'auto';
+      document.body.style.paddingRight = '0px';
+    }
   }, [showModal]);
 
   useEffect(() => {
@@ -41,24 +45,16 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
-    const checkOrientation = () => {
-      setIsHorizontal(window.innerWidth > window.innerHeight && window.innerWidth <= 1080);
-    };
-
     const updateImageSrc = () => {
       setImageSrc(window.matchMedia("(max-width: 767px)").matches ? PROFILE_PIC_LOW_RES_PATH : PROFILE_PIC_PATH);
     };
 
-    const debouncedCheckOrientation = debounce(checkOrientation, 100);
     const debouncedUpdateImageSrc = debounce(updateImageSrc, 100);
 
-    checkOrientation();
     updateImageSrc();
-    window.addEventListener('resize', debouncedCheckOrientation);
     window.addEventListener('resize', debouncedUpdateImageSrc);
 
     return () => {
-      window.removeEventListener('resize', debouncedCheckOrientation);
       window.removeEventListener('resize', debouncedUpdateImageSrc);
     };
   }, []);

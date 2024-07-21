@@ -1,10 +1,18 @@
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
+import { motion } from 'framer-motion';
 import { getAllCerts } from '../../util/certs-util';
+import classes from '../../components/certs/certContent.module.scss';
 
 // Dynamically import AllCerts for code splitting
 const AllCerts = dynamic(() => import('../../components/certs/allCerts'), {
-  loading: () => <div>Loading...</div>,
+  loading: () => (
+    <motion.div
+      animate={{ rotate: 360 }}
+      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+      className={classes.spinner}
+    />
+  ),
 });
 
 // Refactored Certs component to use destructuring directly in the function parameter

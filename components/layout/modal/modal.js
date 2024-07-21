@@ -17,7 +17,13 @@ const Modal = ({ contact, resume, onClose, ...props }) => {
   // Function to render the contact modal
   const renderContactModal = useCallback(() => (
     <motion.div initial="hidden" animate="visible" exit="exit" variants={fadeIn}>
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense fallback={
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+          className={classes.spinner}
+        />
+      }>
         <ContactModalDynamic {...props} onClose={onClose} />
       </Suspense>
     </motion.div>

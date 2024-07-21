@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import PropTypes from 'prop-types';
 import classes from './certContent.module.scss';
+import { motion } from 'framer-motion';
 
 const ReactMarkdown = lazy(() => import('react-markdown'));
 const SyntaxHighlighter = lazy(() => import('react-syntax-highlighter').then(mod => mod.Prism));
@@ -35,7 +36,13 @@ const CertContent = ({ cert, currentTheme }) => {
     const style = currentTheme === 'dark' ? atomDark : solarizedlight;
 
     return (
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+          className={classes.spinner}
+        />
+      }>
         <SyntaxHighlighter style={style} language={language} showLineNumbers>
           {children}
         </SyntaxHighlighter>
@@ -47,7 +54,13 @@ const CertContent = ({ cert, currentTheme }) => {
     <div className={classes.certContent}>
       <div className={classes.container}>
         <article>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+              className={classes.spinner}
+            />
+          }>
             <ReactMarkdown components={{ code: renderCode }}>{content}</ReactMarkdown>
           </Suspense>
         </article>

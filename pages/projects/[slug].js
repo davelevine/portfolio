@@ -1,10 +1,18 @@
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
+import { motion } from 'framer-motion';
 import { getProjectData, getProjectsFiles } from '../../util/projects-util';
+import classes from '../../components/projects/projectContent.module.scss';
 
 // Dynamically import ProjectContent for code splitting
 const ProjectContent = dynamic(() => import('../../components/projects/projectContent'), {
-  loading: () => <div>Loading...</div>,
+  loading: () => (
+    <motion.div
+      animate={{ rotate: 360 }}
+      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+      className={classes.spinner}
+    />
+  ),
 });
 
 // Refactored ProjectDetailPage to use destructuring directly in the function parameter for cleaner code
@@ -44,7 +52,7 @@ export const getStaticPaths = async () => {
   );
 
   return {
-    paths: slugs.map((slug) => ({ params: { slug } })), // Simplified object property shorthand
+    paths: slugs.map((slug) => ({ params: { slug } })),
     fallback: false,
   };
 };

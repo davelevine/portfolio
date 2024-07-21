@@ -5,6 +5,7 @@ import Aos from 'aos';
 import 'aos/dist/aos.css';
 import Image from 'next/image';
 import Modal from 'react-modal';
+import { motion } from 'framer-motion';
 
 /**
  * Helper function to format the date.
@@ -67,7 +68,13 @@ const CertItem = ({ cert }) => {
           <i className="fa fa-arrow-up-right-from-square"></i> View certificate
         </button>
       </div>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+          className={classes.spinner}
+        />
+      }>
         <Modal
           isOpen={modalIsOpen}
           onRequestClose={toggleModal}

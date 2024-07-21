@@ -27,7 +27,13 @@ const getCustomRenderers = (currentTheme) => ({
   code({ className, children }) {
     const language = className?.split('-')[1];
     return (
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+          className={classes.spinner}
+        />
+      }>
         <SyntaxHighlighter
           showLineNumbers
           language={language}
@@ -123,7 +129,13 @@ const ProjectContent = ({ project, currentTheme }) => {
             </div>
           )}
 
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+              className={classes.spinner}
+            />
+          }>
             <ReactMarkdown
               components={customRenderers}
               rehypePlugins={[rehypeRaw]}

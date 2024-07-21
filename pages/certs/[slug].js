@@ -1,10 +1,18 @@
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
-import { getCertData, getCertsFiles } from '../../util/certs-util'; // Updated the import path
+import { getCertData, getCertsFiles } from '../../util/certs-util';
+import { motion } from 'framer-motion';
+import classes from '../../components/certs/certContent.module.scss';
 
 // Dynamically import CertContent for code splitting
 const CertContent = dynamic(() => import('../../components/certs/certContent'), {
-  loading: () => <div>Loading...</div>,
+  loading: () => (
+    <motion.div
+      animate={{ rotate: 360 }}
+      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+      className={classes.spinner}
+    />
+  ),
 });
 
 const CertDetailPage = ({ cert, currentTheme }) => {
