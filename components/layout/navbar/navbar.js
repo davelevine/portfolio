@@ -99,7 +99,7 @@ const Navbar = ({ theme, newTheme, children }) => {
                   onClick={() => window.innerWidth <= 768 && toggleNav()}
                   className={isLinkActive(path) ? classes.activeLink : ''}
                 >
-                  {path.toUpperCase().replace('/', '') || 'HOME'}
+                  {path === '/about' ? 'ABOUT ME' : path.toUpperCase().replace('/', '') || 'HOME'}
                 </motion.a>
               ))}
             </div>
