@@ -55,8 +55,12 @@
 }
 
 .card small {
-  color: var(--text-primary); /* Text color from CSS variable */
+  color: var(--navbar-primary); /* Text color from CSS variable */
   text-align: center; /* Center text */
+}
+
+.card p {
+  color: var(--navbar-primary); /* Text color from CSS variable */
 }
 
 .card .projectLinks {

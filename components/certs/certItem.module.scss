@@ -13,7 +13,7 @@
 
 .card h4 {
   margin: 0; /* Remove default margin */
-  color: var(--text-secondary); /* Text color from CSS variable */
+  color: var(--text-secondary);
 }
 
 .card h4:hover {
@@ -21,12 +21,16 @@
 }
 
 .card time {
-  color: var(--navbar-primary); /* Text color from CSS variable */
+  color: var(--navbar-primary);
+}
+
+.card p {
+  color: var(--navbar-primary);
 }
 
 .card .expires strong,
 .card .expired strong {
-  color: var(--accent); /* Text color from CSS variable */
+  color: var(--accent);
 }
 
 .card .cardAction {
@@ -36,7 +40,7 @@
 }
 
 .card .cardAction button {
-  color: var(--accent); /* Text color from CSS variable */
+  color: var(--accent);
   background: none; /* No background */
   border: none; /* No border */
   cursor: pointer; /* Pointer cursor on hover */
@@ -113,7 +117,7 @@
   top: 10px; /* Position from the top */
   right: 10px; /* Position from the right */
   cursor: pointer; /* Pointer cursor on hover */
-  color: var(--text-primary); /* Text color from CSS variable */
+  color: var(--text-primary);
   display: flex; /* Flexbox layout */
   align-items: center; /* Center items vertically */
   justify-content: center; /* Center items horizontally */

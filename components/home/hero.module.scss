@@ -17,9 +17,14 @@
   }
 
   .greetings .columnRight.profilePic {
-    max-width: 480px;
-    max-height: 480px;
+    max-width: 450px;
+    max-height: 450px;
     margin: 0 auto 5px;
+  }
+
+  .greetings .columnLeft h3 {
+    font-size: 1.15rem !important;
+    line-height: 2.0 !important;
   }
 }
 
@@ -39,8 +44,15 @@
   order: 2;
 }
 
+.greetings .columnLeft h1,
+.greetings .columnLeft h2,
+.greetings .columnLeft h3,
+.greetings .columnLeft h4 {
+  margin-left: -4px;
+}
+
 .greetings .columnLeft h1 {
-  font-size: 3.8rem;
+  font-size: 3.9rem;
   color: var(--navbar-primary);
   line-height: 0.95;
   margin: 0 0 0 -4px;
@@ -62,7 +74,7 @@
   line-height: 2.5;
 }
 
-.greetings .columnLeft h5 {
+.greetings .columnLeft h4 {
   color: var(--text-secondary);
   font-size: 1.5rem;
   margin: 0;
@@ -98,6 +110,7 @@
   margin: 0 5px;
   color: var(--navbar-primary);
   filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.14));
+  align-self: center;
 }
 
 .greetings .columnLeft .socialMedia i:hover {
@@ -112,6 +125,12 @@
 .greetings .columnLeft .ctaButtons button {
   font-size: 18px;
   padding: 10px 20px;
+  transition: all 0.3s ease;
+}
+
+.greetings .columnLeft .ctaButtons button:hover {
+  transform: scale(1.05); /* Subtle hover effect */
+  background-color: var(--background-secondary);
 }
 
 .greetings .columnLeft .ctaButtons button + button {
@@ -127,6 +146,7 @@
   margin: 50px auto 0;
   max-width: 230px;
   max-height: 230px;
+  border-radius: 50%;
 }
 
 .greetings .columnRight.profilePic img {
@@ -199,8 +219,8 @@
   }
 
   .greetings .columnRight.profilePic {
-    max-width: 460px;
-    max-height: 460px;
+    max-width: 440px;
+    max-height: 440px;
     margin: 0;
   }
 
