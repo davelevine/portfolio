@@ -3,7 +3,7 @@ import classes from './projectItem.module.scss';
 import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 import { useMemo } from 'react';
-import Image from 'next/image'; // Import Image from next/image
+import Image from 'next/image';
 
 // Dynamically import the Link component for code splitting
 const Link = dynamic(() => import('next/link'), {
@@ -15,23 +15,26 @@ const Link = dynamic(() => import('next/link'), {
  * @param {string} image - The image filename.
  * @returns {JSX.Element} - The rendered image component.
  */
-const useRenderImage = (image) => useMemo(() => (
-  <div className={classes.image}>
-    <Image
-      src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/${image}`}
-      width={320}
-      height={220}
-      alt=''
-      style={{
-        width: "310px", // Set fixed width
-        height: "210px", // Set fixed height
-        objectFit: "contain" // Ensure the image covers the container
-      }}
-      priority={image === 'atw.png'} // Add priority if the image is "atw.png"
-      loading={image === 'atw.png' ? undefined : "lazy"} // Defer offscreen images unless it's "atw.png"
-    />
-  </div>
-), [image]);
+const useRenderImage = (image) => useMemo(() => {
+  const isPriorityImage = ['atw.png', 'atomic-url.webp'].includes(image);
+  return (
+    <div className={classes.image}>
+      <Image
+        src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/${image}`}
+        width={320}
+        height={220}
+        alt={image}
+        style={{
+          width: "310px",
+          height: "210px",
+          objectFit: "contain"
+        }}
+        priority={isPriorityImage}
+        loading={isPriorityImage ? undefined : "lazy"}
+      />
+    </div>
+  );
+}, [image]);
 
 /**
  * Custom hook for memoized project link rendering logic.
@@ -89,19 +92,14 @@ const ProjectItem = ({ project }) => {
           <small className='mb-10 d-block'>
             {Array.isArray(tech) ? tech.join(', ') : tech}
           </small>
-
-          {image ? (
-            renderImage
-          ) : (
+          {image ? renderImage : (
             <div className={classes.placeholderContainer}>
               <div className={classes.placeholder}>.</div>
             </div>
           )}
         </div>
       </Link>
-
       <p>{description}</p>
-
       {renderProjectLinks}
     </motion.div>
   );

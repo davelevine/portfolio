@@ -39,17 +39,14 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-}
-
-.projectsGallery .filterButtons button {
-  margin: 2px;
+  gap: 2px; /* Use gap for spacing between buttons */
 }
 
 .projectsGallery .galleryWrap {
   margin-top: 50px; /* Set top margin for galleryWrap */
 }
 
-@media only screen and (min-width: 768px) {
+@media (min-width: 768px) {
   .projectsGallery {
     padding: 150px 25px; /* Adjust padding for larger screens */
     min-height: 100vh; /* Set minimum height to 100% of the viewport height */
@@ -73,7 +70,7 @@
   .projectsGallery .gallery {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 25px;
+    gap: 25px; /* Use gap for grid spacing */
   }
 
   .projectsGallery .gallery img {
@@ -83,13 +80,13 @@
   }
 }
 
-@media only screen and (min-width: 1080px) {
+@media (min-width: 1080px) {
   .projectsGallery .gallery {
     grid-template-columns: repeat(3, 1fr); /* Adjust grid columns for larger screens */
   }
 }
 
-@media only screen and (max-width: 767px) {
+@media (max-width: 767px) {
   .projectsGallery .gallery img {
     object-fit: contain; /* Adjust object-fit for smaller screens */
   }

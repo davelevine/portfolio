@@ -10,14 +10,17 @@
     }
   }
 
-  // Styles for h1 elements
-  h1 {
-    @include text-styles(var(--text-secondary), 0);
+  // Styles for heading elements
+  h1, h2 {
+    @include text-styles(var(--text-secondary));
   }
 
-  // Styles for h2 elements
+  h1 {
+    margin-bottom: 0;
+  }
+
   h2 {
-    @include text-styles(var(--text-secondary), null, 1.3rem);
+    font-size: 1.3rem;
   }
 
   // Styles for small elements
@@ -57,23 +60,19 @@
 
   // Specific styles for card class
   .card {
-    // Styles for h4 elements inside card
     h4 {
       @include text-styles(var(--text-secondary), 0);
     }
 
-    // Styles for time elements inside card
     time {
       color: var(--text-tertiary);
     }
 
-    // Styles for cardAction class inside card
     .cardAction {
       display: flex;
       flex-direction: row;
       margin-top: auto;
 
-      // Styles for anchor elements inside cardAction
       a {
         color: var(--accent);
       }
@@ -85,22 +84,20 @@
     display: flex;
     justify-content: center; // Center horizontally
     align-items: center; // Center vertically
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
   }
 
-  // Styles for img elements inside projectImage
-  .projectImage img {
-    max-width: 100%;
-    max-height: 100%;
-  }
-
-  // Media query for mobile screens (up to 768px)
+  // Media queries for projectImage class
   @media only screen and (max-width: 768px) {
     .projectImage {
       height: 360px; // Adjust the height as needed
     }
   }
 
-  // Media query for desktop screens (greater than 768px)
   @media only screen and (min-width: 768px) {
     .projectImage {
       height: 500px; // Adjust the height as needed
@@ -112,23 +109,20 @@
     display: flex;
     flex-direction: row;
     margin-top: auto;
-  }
 
-  // Styles for anchor elements inside projectLinks
-  .projectLinks a {
-    margin-right: 15px;
-    color: var(--accent);
-  }
+    a {
+      margin-right: 15px;
+      color: var(--accent);
 
-  // Hover effect for anchor elements inside projectLinks
-  .projectLinks a:hover {
-    color: var(--link-hover);
-  }
+      &:hover {
+        color: var(--link-hover);
+      }
+    }
 
-  // Styles for i elements inside projectLinks
-  .projectLinks i {
-    margin-right: 5px;
-    color: var(--navbar-primary);
+    i {
+      margin-right: 5px;
+      color: var(--navbar-primary);
+    }
   }
 
   // Media query for screens with a minimum width of 768px
@@ -144,21 +138,18 @@
     margin-left: 5px;
   }
 
-  // Rotate span inside summary when details is open
   details[open] summary span {
     transform: rotate(90deg);
   }
 
-  // Styles for summary elements
   summary {
     display: flex;
     width: 100px;
     cursor: pointer;
-  }
 
-  // Hide default marker for summary elements
-  summary::-webkit-details-marker {
-    display: none;
+    &::-webkit-details-marker {
+      display: none;
+    }
   }
 
   // Ensure new behavior

@@ -52,7 +52,7 @@ const AllProjects = ({ projects }) => {
     const techs = new Set();
     validProjects.forEach(({ tech }) => {
       if (Array.isArray(tech)) {
-        tech.forEach((t) => techs.add(t));
+        tech.forEach(t => techs.add(t));
       }
     });
     return Array.from(techs).sort();

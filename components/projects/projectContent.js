@@ -60,7 +60,7 @@ const renderImage = (image) => {
       src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/${image}`}
       width={dimensions.width}
       height={dimensions.height}
-      alt=''
+      alt={image}
       priority
       style={{
         maxWidth: "100%",
