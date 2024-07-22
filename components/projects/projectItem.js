@@ -3,11 +3,9 @@ import classes from './projectItem.module.scss';
 import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 import { useMemo } from 'react';
+import Image from 'next/image'; // Import Image from next/image
 
-// Dynamically import the Image and Link components for code splitting
-const Image = dynamic(() => import('next/image'), {
-  loading: () => <div className="skeleton-loader"></div>,
-});
+// Dynamically import the Link component for code splitting
 const Link = dynamic(() => import('next/link'), {
   loading: () => <div className="skeleton-loader"></div>,
 });
@@ -24,12 +22,14 @@ const useRenderImage = (image) => useMemo(() => (
       width={320}
       height={220}
       alt=''
-      priority
       style={{
         width: "310px", // Set fixed width
         height: "210px", // Set fixed height
         objectFit: "contain" // Ensure the image covers the container
-      }} />
+      }}
+      priority={image === 'atw.png'} // Add priority if the image is "atw.png"
+      loading={image === 'atw.png' ? undefined : "lazy"} // Defer offscreen images unless it's "atw.png"
+    />
   </div>
 ), [image]);
 
