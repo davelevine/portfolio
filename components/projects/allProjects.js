@@ -77,17 +77,8 @@ const AllProjects = ({ projects }) => {
 
   // Manage body overflow when the modal is open or closed
   useEffect(() => {
-    const hideScrollbar = () => {
-      document.body.style.overflow = showModal ? 'hidden' : 'auto';
-      document.body.style.paddingRight = showModal ? '15px' : '0px';
-    };
-
-    hideScrollbar();
-
-    return () => {
-      document.body.style.overflow = 'auto';
-      document.body.style.paddingRight = '0px';
-    };
+    document.body.style.overflow = showModal ? 'hidden' : 'auto';
+    document.body.style.paddingRight = showModal ? '15px' : '0px';
   }, [showModal]);
 
   // Filter projects based on selected tech
@@ -116,6 +107,31 @@ const AllProjects = ({ projects }) => {
     handleScroll(); // Initial call to set the progress bar width
 
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Lazy-load offscreen and hidden images after all critical resources have finished loading
+  useEffect(() => {
+    const lazyLoadImages = () => {
+      const images = document.querySelectorAll('img[data-src]');
+      images.forEach(img => {
+        if (img.getBoundingClientRect().top < window.innerHeight) {
+          img.src = img.dataset.src;
+          img.removeAttribute('data-src');
+        }
+      });
+    };
+
+    const onLoad = () => {
+      lazyLoadImages();
+      window.addEventListener('scroll', lazyLoadImages);
+    };
+
+    window.addEventListener('load', onLoad);
+
+    return () => {
+      window.removeEventListener('load', onLoad);
+      window.removeEventListener('scroll', lazyLoadImages);
+    };
   }, []);
 
   return (

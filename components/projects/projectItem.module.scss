@@ -17,6 +17,11 @@
 
 .card .image img {
   border-radius: 4px; /* Rounded corners for the image */
+  max-width: 320px; /* Ensure the image does not exceed the container width */
+  max-height: 220px; /* Ensure the image does not exceed the container height */
+  width: 100%; /* Ensure the image scales properly */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Ensure the image covers the container */
 }
 
 .card .placeholderContainer {
