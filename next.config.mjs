@@ -1,6 +1,5 @@
 // Import necessary packages
 import pkg from 'next-compose-plugins';
-import withPWA from '@ducanh2912/next-pwa';
 import CompressionPlugin from 'compression-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
@@ -75,20 +74,6 @@ const configureWebpack = (config, { isServer }) => {
   return config;
 };
 
-// PWA configuration
-const pwaOptions = {
-  dest: 'public',
-  register: true,
-  skipWaiting: true,
-  disable: !isProduction,
-  runtimeCaching: getRuntimeCaching(), // Refactored to use the new function
-  buildExcludes: [/middleware-manifest.\json$/],
-  scope: '/',
-  dynamicStartUrl: true,
-  reloadOnOnline: false,
-  // Add other options as needed
-};
-
 // Brotli compression configuration
 const brotliOptions = {
   compress: true,
@@ -107,4 +92,4 @@ const nextConfig = {
   },
 };
 
-export default pkg([withPWA(pwaOptions), brotliOptions], nextConfig);
+export default pkg([brotliOptions], nextConfig);
