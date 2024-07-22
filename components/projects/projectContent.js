@@ -27,13 +27,7 @@ const getCustomRenderers = (currentTheme) => ({
   code({ className, children }) {
     const language = className?.split('-')[1];
     return (
-      <Suspense fallback={
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-          className={classes.spinner}
-        />
-      }>
+      <Suspense fallback={<Spinner />}>
         <SyntaxHighlighter
           showLineNumbers
           language={language}
@@ -47,26 +41,39 @@ const getCustomRenderers = (currentTheme) => ({
 });
 
 /**
+ * Spinner component for loading fallback.
+ * @returns {JSX.Element} The rendered Spinner component.
+ */
+const Spinner = () => (
+  <motion.div
+    animate={{ rotate: 360 }}
+    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+    className={classes.spinner}
+  />
+);
+
+/**
  * Render an image with specific dimensions based on the image name.
- * @param {string} image - The image file name.
+ * @param {string} imageName - The image file name.
  * @returns {JSX.Element} The rendered Image component.
  */
-const renderImage = (image) => {
-  const isSpecialImage = ['portfolio.webp', 'start-page.webp'].includes(image);
+const renderImage = (imageName) => {
+  const isSpecialImage = ['portfolio.webp', 'start-page.webp'].includes(imageName);
   const dimensions = isSpecialImage ? { width: 850, height: 500 } : { width: 700, height: 450 };
 
   return (
     <Image
-      src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/${image}`}
+      src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/${imageName}`}
       width={dimensions.width}
       height={dimensions.height}
-      alt={image}
+      alt={imageName}
       priority
       style={{
         maxWidth: "100%",
         height: "auto",
         aspectRatio: `${dimensions.width} / ${dimensions.height}`
-      }} />
+      }}
+    />
   );
 };
 
@@ -129,13 +136,7 @@ const ProjectContent = ({ project, currentTheme }) => {
             </div>
           )}
 
-          <Suspense fallback={
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-              className={classes.spinner}
-            />
-          }>
+          <Suspense fallback={<Spinner />}>
             <ReactMarkdown
               components={customRenderers}
               rehypePlugins={[rehypeRaw]}
@@ -167,7 +168,8 @@ const ProjectContent = ({ project, currentTheme }) => {
                         height: "auto",
                         objectFit: "contain",
                         aspectRatio: "1000 / 700"
-                      }} />
+                      }}
+                    />
                   </SwiperSlide>
                 ))}
               </Swiper>

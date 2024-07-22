@@ -15,26 +15,28 @@ const Link = dynamic(() => import('next/link'), {
  * @param {string} image - The image filename.
  * @returns {JSX.Element} - The rendered image component.
  */
-const useRenderImage = (image) => useMemo(() => {
-  const isPriorityImage = ['atw.png', 'atomic-url.webp'].includes(image);
-  return (
-    <div className={classes.image}>
-      <Image
-        src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/${image}`}
-        width={320}
-        height={220}
-        alt={image}
-        style={{
-          width: "310px",
-          height: "210px",
-          objectFit: "contain"
-        }}
-        priority={isPriorityImage}
-        loading={isPriorityImage ? undefined : "lazy"}
-      />
-    </div>
-  );
-}, [image]);
+const useRenderImage = (image) => {
+  return useMemo(() => {
+    const isPriorityImage = ['atw.png', 'atomic-url.webp'].includes(image);
+    return (
+      <div className={classes.image}>
+        <Image
+          src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/${image}`}
+          width={320}
+          height={220}
+          alt={image}
+          style={{
+            width: "310px",
+            height: "210px",
+            objectFit: "contain"
+          }}
+          priority={isPriorityImage}
+          loading={isPriorityImage ? undefined : "lazy"}
+        />
+      </div>
+    );
+  }, [image]);
+};
 
 /**
  * Custom hook for memoized project link rendering logic.
@@ -43,25 +45,27 @@ const useRenderImage = (image) => useMemo(() => {
  * @param {string} slug - The project slug.
  * @returns {JSX.Element} - The rendered project links component.
  */
-const useRenderProjectLinks = (githubLink, liveLink, slug) => useMemo(() => (
-  <div className={classes.projectLinks}>
-    {githubLink && (
-      <a href={githubLink} target='_blank' rel='noreferrer'>
-        <i className='fab fa-github'></i>
-        Github
-      </a>
-    )}
-    {liveLink && (
-      <a href={liveLink} target='_blank' rel='noreferrer'>
-        <i className='fa fa-link'></i>
-        Website
-      </a>
-    )}
-    <Link href={`/projects/${slug}`}>
-      <i className='fa fa-circle-info'></i>Details
-    </Link>
-  </div>
-), [githubLink, liveLink, slug]);
+const useRenderProjectLinks = (githubLink, liveLink, slug) => {
+  return useMemo(() => (
+    <div className={classes.projectLinks}>
+      {githubLink && (
+        <a href={githubLink} target='_blank' rel='noreferrer'>
+          <i className='fab fa-github'></i>
+          Github
+        </a>
+      )}
+      {liveLink && (
+        <a href={liveLink} target='_blank' rel='noreferrer'>
+          <i className='fa fa-link'></i>
+          Website
+        </a>
+      )}
+      <Link href={`/projects/${slug}`}>
+        <i className='fa fa-circle-info'></i>Details
+      </Link>
+    </div>
+  ), [githubLink, liveLink, slug]);
+};
 
 /**
  * ProjectItem component to display individual project details.

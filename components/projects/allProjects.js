@@ -64,7 +64,7 @@ const AllProjects = ({ projects }) => {
   }, []);
 
   // Handle button click to set filter and active button
-  const handleClick = useCallback((tech) => {
+  const handleFilterClick = useCallback((tech) => {
     setFilter(tech);
     setActiveButton(tech);
   }, []);
@@ -94,45 +94,48 @@ const AllProjects = ({ projects }) => {
     visible: { opacity: 1, x: 0, transition: { duration: 0.3, ease: "easeInOut" } }
   };
 
-  // Handle scroll progress bar with debounce
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollProgress = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight)) * 100;
-      const progressBar = document.getElementById('scroll-progress');
-      if (progressBar) progressBar.style.width = `${scrollProgress}%`;
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    handleScroll(); // Initial call to set the progress bar width
-
-    return () => window.removeEventListener('scroll', handleScroll);
+  // Function to handle scroll and update progress bar
+  const handleScroll = useCallback(() => {
+    const scrollProgress = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight)) * 100;
+    const progressBar = document.getElementById('scroll-progress');
+    if (progressBar) progressBar.style.width = `${scrollProgress}%`;
   }, []);
 
-  // Lazy-load offscreen and hidden images after all critical resources have finished loading
   useEffect(() => {
-    const lazyLoadImages = () => {
-      const images = document.querySelectorAll('img[data-src]');
-      images.forEach(img => {
-        if (img.getBoundingClientRect().top < window.innerHeight) {
-          img.src = img.dataset.src;
-          img.removeAttribute('data-src');
-        }
-      });
-    };
+    window.addEventListener('scroll', handleScroll);
 
-    const onLoad = () => {
+    // Initial call to set the progress bar width
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [handleScroll]);
+
+  // Function to lazy load images
+  const lazyLoadImages = useCallback(() => {
+    const images = document.querySelectorAll('img[data-src]');
+    images.forEach(img => {
+      if (img.getBoundingClientRect().top < window.innerHeight) {
+        img.src = img.dataset.src;
+        img.removeAttribute('data-src');
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    const handleWindowLoad = () => {
       lazyLoadImages();
       window.addEventListener('scroll', lazyLoadImages);
     };
 
-    window.addEventListener('load', onLoad);
+    window.addEventListener('load', handleWindowLoad);
 
     return () => {
-      window.removeEventListener('load', onLoad);
+      window.removeEventListener('load', handleWindowLoad);
       window.removeEventListener('scroll', lazyLoadImages);
     };
-  }, []);
+  }, [lazyLoadImages]);
 
   return (
     <section className={classes.projectsGallery}>
@@ -173,7 +176,7 @@ const AllProjects = ({ projects }) => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.9 }}
-              onClick={() => handleClick('all')}
+              onClick={() => handleFilterClick('all')}
               className={`btn btn-outlined sm ${activeButton === 'all' ? 'active' : ''}`}
               variants={buttonVariants}
             >
@@ -183,7 +186,7 @@ const AllProjects = ({ projects }) => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.9 }}
-                onClick={() => handleClick(tech)}
+                onClick={() => handleFilterClick(tech)}
                 className={`btn btn-outlined sm ${activeButton === tech ? 'active' : ''}`}
                 key={tech}
                 variants={buttonVariants}
