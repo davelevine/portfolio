@@ -31,11 +31,9 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
-    if (showModal) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
+    const bodyStyle = document.body.style;
+    bodyStyle.overflow = showModal ? 'hidden' : 'auto';
+    bodyStyle.paddingRight = '0px';
   }, [showModal]);
 
   useEffect(() => {
