@@ -33,18 +33,13 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://cdn.levine.io/uploads/portfolio/public/fonts/webfonts/custom-fontawesome.css"
           />
-          <link
-            rel="preload"
-            href="https://cdn.levine.io/uploads/portfolio/public/images/profile-pic-1.webp"
-            as="image"
-          />
         </Head>
         <body>
           <Main />
           <NextScript />
 
           {/* Plausible tracking script */}
-          <script defer data-domain="dave.levine.io" data-api="/data/api/event" src="/data/js/script.js" async></script>
+          <script defer data-domain="dave.levine.io" data-api="/data/api/event" src="/data/js/script.js"></script>
         </body>
       </Html>
     );
