@@ -17,7 +17,7 @@ const Link = dynamic(() => import('next/link'), {
  */
 const useRenderImage = (image) => {
   return useMemo(() => {
-    const isPriorityImage = ['atw.png', 'atomic-url.webp'].includes(image);
+    const isPriorityImage = ['atw.webp', 'atomic-url.webp'].includes(image);
     return (
       <div className={classes.image}>
         <Image
