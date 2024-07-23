@@ -73,7 +73,7 @@
 }
 
 .navbar .navMenu .activeLink {
-  color: var(--background-secondary);
+  color: var(--navbar-primary);
 }
 
 .navbar .navMenu.responsive {
@@ -116,7 +116,7 @@
 
 .navbar .navContainer .icon:hover i,
 .navbar .navContainer .icon:hover svg {
-  color: var(--text-secondary);
+  color: var(--background-secondary);
 }
 
 .navbar .navContainer .themeToggleContainer {

@@ -5,7 +5,7 @@
 
 .greetings .row {
   display: flex;
-  flex-flow: column;
+  flex-direction: column;
   height: 100%;
   justify-content: center;
   align-items: center;
@@ -178,9 +178,9 @@
 
   .greetings .row {
     display: flex;
-    flex-flow: row;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     height: 100%;
   }
 
@@ -189,14 +189,15 @@
     align-self: center;
     display: flex;
     flex-direction: column;
-    margin: auto;
+    width: 45%;
+    margin-left: auto;
   }
 
   .greetings .columnLeft h1 {
-    font-size: 4.0rem;
+    font-size: 4.5rem;
     margin: 0;
     text-align: left;
-    line-height: 1.1;
+    line-height: 0.9;
   }
 
   .greetings .columnLeft h2 {
@@ -207,21 +208,22 @@
 
   .greetings .columnLeft h3,
   .greetings .columnLeft p {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     margin: -10px 0;
     text-align: left;
   }
 
   .greetings .columnRight {
     order: 2;
-    width: 45%;
+    width: 35%;
     margin: auto;
+    margin-right: auto;
   }
 
   .greetings .columnRight.profilePic {
     max-width: 440px;
     max-height: 440px;
-    margin: 0;
+    margin: 0 auto 20px;
   }
 
   .greetings .columnRight.profilePic img {
@@ -232,18 +234,50 @@
 
 @media only screen and (min-width: 1080px) {
   .greetings .columnLeft h1 {
-    font-size: 4.0rem;
-    line-height: 1.1;
-    margin: 0 0 10px -4px;
+    font-size: 6.5rem;
+    line-height: 0.85;
+    margin: 0 0 20px -4px;
   }
 
   .greetings .columnLeft {
-    width: 60%;
-    margin-left: 0;
+    width: 45%;
+    margin-left: auto;
   }
 
   .greetings .columnRight {
-    width: 40%;
-    margin-right: 0;
+    width: 45%;
+    margin-right: auto;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .greetings .columnLeft h1 {
+    font-size: 4rem;
+    line-height: 1.1;
+  }
+
+  .greetings .columnLeft h2 {
+    font-size: 1.8rem;
+  }
+
+  .greetings .columnLeft h3,
+  .greetings .columnLeft p {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (min-width: 1080px) and (max-width: 1440px) {
+  .greetings .columnLeft h1 {
+    font-size: 6.5rem;
+    line-height: 0.9;
+  }
+
+  .greetings .columnLeft h2 {
+    font-size: 2.1rem;
+  }
+
+  .greetings .columnLeft h3,
+  .greetings .columnLeft p {
+    font-size: 1.3rem;
   }
 }
