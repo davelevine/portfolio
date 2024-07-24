@@ -8,6 +8,7 @@
   display: flex;
   flex-direction: column;
   min-height: 260px;
+  text-align: center; /* Center-align text within the card */
 }
 
 .card .image {
@@ -56,12 +57,10 @@
 .card h4 {
   margin: 0;
   color: var(--text-secondary);
-  text-align: center;
 }
 
 .card small {
   color: var(--navbar-primary);
-  text-align: center;
 }
 
 .card p {
