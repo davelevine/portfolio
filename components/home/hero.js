@@ -61,13 +61,13 @@ const Hero = () => {
         <div className={classes.container}>
           <div className={classes.row}>
             <div className={classes.columnLeft}>
-              <h2 data-aos='fade-left'>Hey, I&apos;m{' '}
+              <h2 data-aos='fade-left' data-aos-duration='500'>Hey, I&apos;m{' '}
                 <span className={classes.name}>
                   Dave
                 </span>!{' '}
               </h2>
-              <h1 data-aos='fade-right'>Solutions Engineer</h1>
-              <h3 data-aos='fade-left' data-aos-delay='100'>
+              <h1 data-aos='fade-right' data-aos-duration='500'>Solutions Engineer</h1>
+              <h3 data-aos='fade-left' data-aos-delay='100' data-aos-duration='500'>
                 I design and implement systems
                 <span className={classes.punctuation}><b>.</b></span>
                 <span>
@@ -75,25 +75,30 @@ const Hero = () => {
               </h3>
               <div className={classes.socialMedia}>
                 <a href='https://github.com/davelevine' target='_blank' rel='noreferrer' aria-label="GitHub Profile">
-                  <i className='fab fa-github' data-aos='flip-up'></i>
+                  <i className='fab fa-github' data-aos='flip-up'
+                    data-aos-delay='25'
+                    data-aos-duration='500'></i>
                 </a>
                 <a href='https://www.linkedin.com/in/iamdavelevine' target='_blank' rel='noreferrer' aria-label="LinkedIn Profile">
                   <i
                     className='fab fa-linkedin'
                     data-aos='flip-up'
-                    data-aos-delay='50'></i>
+                    data-aos-delay='50'
+                    data-aos-duration='500'></i>
                 </a>{' '}
                 <a href='https://kb.levine.io' target='_blank' rel='noreferrer' aria-label="Knowledge Base">
                   <i
                     className='fa fa-globe'
                     data-aos='flip-up'
-                    data-aos-delay='100'></i>
+                    data-aos-delay='100'
+                    data-aos-duration='500'></i>
                 </a>
                 <a href={PGP_KEY_PATH} target='_blank' rel='noreferrer' aria-label="PGP Key">
                   <i
                     className='fa fa-key'
                     data-aos='flip-up'
-                    data-aos-delay='150'></i>
+                    data-aos-delay='150'
+                    data-aos-duration='500'></i>
                 </a>
               </div>
               <div className={classes.ctaButtons}>
@@ -102,6 +107,8 @@ const Hero = () => {
                   animate="visible"
                   className='btn btn-filled'
                   data-aos='fade-up'
+                  data-aos-delay='100'
+                  data-aos-duration='500'
                   onClick={() => showModalHandler('resume')}
                   aria-label="My Resume"
                   whileHover={{ 
@@ -117,6 +124,8 @@ const Hero = () => {
                   animate="visible"
                   className='btn btn-outlined'
                   data-aos='fade-down'
+                  data-aos-delay='100'
+                  data-aos-duration='500'
                   onClick={() => showModalHandler('contact')}
                   aria-label="Contact Me"
                   whileHover={{ 
@@ -138,6 +147,8 @@ const Hero = () => {
                   height={640}
                   alt='profile-pic'
                   data-aos='fade-left'
+                  data-aos-delay='50'
+                  data-aos-duration='500'
                   style={{
                     maxWidth: "100%",
                     height: "auto",
@@ -150,7 +161,7 @@ const Hero = () => {
                   sizes="(max-width: 767px) 480px, 640px"
                 />
               </div>
-              <div className={classes.quote} data-aos='fade-right'></div>
+              <div className={classes.quote} data-aos='fade-right' data-aos-duration='500'></div>
             </div>
           </div>
         </div>
