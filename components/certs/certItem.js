@@ -10,7 +10,7 @@ import { motion } from 'framer-motion';
 /**
  * Helper function to format the date.
  * @param {string} date - The date string to format.
- * @param {string} status - The status of the date (e.g., 'Expired', 'Expires').
+ * @param {string} status - The status of the date (e.g., 'Expired', 'Expires', 'Achieved').
  * @returns {JSX.Element} The formatted date element.
  */
 const formatDate = (date, status) => {
@@ -43,7 +43,7 @@ const CertItem = ({ cert }) => {
 
   const currentDate = new Date();
   const expirationDate = new Date(date);
-  const dateStatus = expirationDate < currentDate ? 'Expired' : 'Expires';
+  const dateStatus = title === 'Certificate in Solutions Design' ? 'Achieved' : (expirationDate < currentDate ? 'Expired' : 'Expires');
   const expiresDate = formatDate(date, dateStatus);
   const linkPath = `https://cdn.levine.io/uploads/portfolio/public/images/certs/${image}`;
 

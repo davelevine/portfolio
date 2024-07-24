@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import classes from './hero.module.scss';
 import Image from "next/image";
 import dynamic from 'next/dynamic';
@@ -55,11 +55,6 @@ const Hero = () => {
     };
   }, []);
 
-  const buttonVariants = useMemo(() => ({
-    whileHover: { scale: 1.05, transition: { duration: 0.3, ease: "easeInOut" } },
-    whileTap: { scale: 0.95 },
-  }), []);
-
   return (
     <>
       <section className={classes.greetings}>
@@ -105,26 +100,30 @@ const Hero = () => {
                 <motion.button
                   initial="hidden"
                   animate="visible"
-                  variants={buttonVariants}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.9 }}
                   className='btn btn-filled'
                   data-aos='fade-up'
                   onClick={() => showModalHandler('resume')}
                   aria-label="My Resume"
+                  whileHover={{ 
+                    scale: 1.1, 
+                    boxShadow: "0px 0px 8px rgb(0, 0, 0)",
+                    transition: { duration: 0.001 }
+                  }}
                 >
                   MY RESUME
                 </motion.button>
                 <motion.button
                   initial="hidden"
                   animate="visible"
-                  variants={buttonVariants}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.9 }}
                   className='btn btn-outlined'
                   data-aos='fade-down'
                   onClick={() => showModalHandler('contact')}
                   aria-label="Contact Me"
+                  whileHover={{ 
+                    scale: 1.1, 
+                    boxShadow: "0px 0px 8px rgb(0, 0, 0)",
+                    transition: { duration: 0.001 }
+                  }}
                 >
                   CONTACT
                 </motion.button>

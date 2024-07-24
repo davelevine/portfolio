@@ -13,7 +13,6 @@ const Modal = dynamic(() => import('../layout/modal/contactModal'), {
 const AllCerts = ({ certs }) => {
   const [filter, setFilter] = useState('all');
   const [activeButton, setActiveButton] = useState('all');
-  const [isDesktop, setIsDesktop] = useState(false);
 
   const { showModal, modalType, closeModalHandler } = useModal();
 
@@ -29,12 +28,6 @@ const AllCerts = ({ certs }) => {
 
   useEffect(() => {
     document.title = 'Dave Levine - Certs';
-
-    const updateIsDesktop = () => setIsDesktop(window.innerWidth > 768);
-    updateIsDesktop();
-    window.addEventListener('resize', updateIsDesktop);
-
-    return () => window.removeEventListener('resize', updateIsDesktop);
   }, []);
 
   const handleClick = useCallback((tech) => {
@@ -57,16 +50,16 @@ const AllCerts = ({ certs }) => {
   }, [showModal]);
 
   const commonSortLogic = useCallback((a, b) => {
-    const isALegacy = a.title.includes('(Legacy)');
-    const isBLegacy = b.title.includes('(Legacy)');
+    const isALegacy = a.originalTitle && a.originalTitle.includes('(Legacy)');
+    const isBLegacy = b.originalTitle && b.originalTitle.includes('(Legacy)');
 
     if (isALegacy && isBLegacy) return a.title.localeCompare(b.title);
     if (isALegacy) return 1;
     if (isBLegacy) return -1;
 
-    if (a.expirationDate && b.expirationDate) return a.expirationDate.localeCompare(b.expirationDate);
-    if (a.expirationDate) return -1;
-    if (b.expirationDate) return 1;
+    if (a.dateStatus && b.dateStatus) return a.dateStatus.localeCompare(b.dateStatus);
+    if (a.dateStatus) return -1;
+    if (b.dateStatus) return 1;
 
     return b.isFeatured - a.isFeatured;
   }, []);
