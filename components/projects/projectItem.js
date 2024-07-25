@@ -93,9 +93,6 @@ const ProjectItem = ({ project }) => {
       <Link href={`/projects/${slug}`}>
         <div className={classes.cardContent}>
           <h4>{title}</h4>
-          <small className='mb-10 d-block'>
-            {Array.isArray(tech) ? tech.join(', ') : tech}
-          </small>
           {image ? renderImage : (
             <div className={classes.placeholderContainer}>
               <div className={classes.placeholder}>.</div>

@@ -1,28 +1,31 @@
 /* Card container styles */
 .card {
-  border-radius: 5px; /* Rounded corners for the card */
+  border-radius: 8px; /* Rounded corners for the card */
   padding: 25px; /* Padding inside the card */
   background-color: var(--background-card); /* Background color from CSS variable */
-  transition: background 1s; /* Smooth background transition */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth background transition */
   border: 1px solid var(--border-card); /* Border color from CSS variable */
   margin-bottom: 25px; /* Space below each card */
   display: flex; /* Flexbox layout */
   flex-direction: column; /* Column layout */
   min-height: 260px; /* Minimum height for the card */
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
 }
 
 .card h4 {
   margin: 0; /* Remove default margin */
   color: var(--text-secondary);
-}
-
-.card h4:hover {
-  color: var(--link-hover); /* Change color on hover */
+  font-size: 1.15rem;
+  margin-bottom: 0;
 }
 
 .card time,
 .card p {
-  color: var(--navbar-primary);
+  color: var(--text-primary);
 }
 
 .card .expires strong,
@@ -44,10 +47,12 @@
   font-size: inherit; /* Inherit font size */
   text-decoration: none; /* No text decoration */
   padding: 0; /* Remove default padding */
+  transition: color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
 }
 
 .card .cardAction button:hover {
   color: var(--link-hover); /* Change color on hover */
+  transform: scale(1.1);
 }
 
 .card .cardAction button i {
