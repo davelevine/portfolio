@@ -1,8 +1,8 @@
-.blog {
+.certs {
   padding: 50px 15px;
 }
 
-.blog .scrollProgress {
+.certs .scrollProgress {
   position: fixed;
   top: 0;
   left: 0;
@@ -13,7 +13,7 @@
   transition: width 0.25s ease-out;
 }
 
-.blog h1 {
+.certs h1 {
   text-align: center;
   font-size: 2.3rem;
   background: var(--text-gradient);
@@ -23,43 +23,43 @@
   margin-top: 40px; /* Lower the title heading on mobile to match @allProjects.module.scss */
 }
 
-.blog .filter p {
+.certs .filter p {
   text-align: center;
   margin-top: -5px; /* Ensure the distance between the heading and filter text is identical to @allProjects.module.scss */
 }
 
-.blog .filter p::after {
+.certs .filter p::after {
   content: ':';
   color: var(--navbar-primary);
 }
 
-.blog .filterButtons {
+.certs .filterButtons {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.blog .filterButtons button {
+.certs .filterButtons button {
   margin: 2px;
 }
 
-.blog .galleryWrap {
+.certs .galleryWrap {
   margin-top: 50px;
 }
 
 @media only screen and (min-width: 768px) {
-  .blog {
+  .certs {
     padding: 150px 25px;
     min-height: 100vh;
     margin-bottom: 0;
   }
 
-  .blog .container {
+  .certs .container {
     max-width: 1200px;
     margin: auto;
   }
 
-  .blog h1 {
+  .certs h1 {
     text-align: center;
     font-size: 3.8rem;
     background: var(--text-gradient);
@@ -69,11 +69,11 @@
     margin-top: -40px; /* Move the title heading up slightly on desktop */
   }
 
-  .blog .filter {
+  .certs .filter {
     margin-top: -40px; /* Adjust the top margin for the filter section */
   }
 
-  .blog .gallery {
+  .certs .gallery {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 25px;

@@ -90,7 +90,7 @@ const AllCerts = ({ certs }) => {
   };
 
   return (
-    <section className={classes.blog}>
+    <section className={classes.certs}>
       <div id="scroll-progress" className={classes.scrollProgress}></div>
       <div className={classes.container}>
         <motion.h1
