@@ -47,6 +47,12 @@
   margin-top: 50px;
 }
 
+.certs .gallery {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 25px;
+}
+
 @media only screen and (min-width: 768px) {
   .certs {
     padding: 150px 25px;
@@ -74,8 +80,12 @@
   }
 
   .certs .gallery {
-    display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 25px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .certs .gallery {
+    grid-template-columns: repeat(3, 1fr);
   }
 }

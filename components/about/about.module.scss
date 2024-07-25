@@ -20,11 +20,13 @@
   background-clip: text;
   color: transparent;
   margin-top: 30px; /* Lower the title heading on mobile */
+  text-align: center; /* Center text on mobile */
 }
 
 .about .columnLeft {
   margin: auto;
   margin-bottom: auto; /* Adjust margin as needed */
+  text-align: center; /* Center text on mobile */
 }
 
 .about .columnLeft h1 {
@@ -44,18 +46,19 @@
 .about .columnLeft p {
   font-size: 1.3rem;
   padding-bottom: 1.5rem; /* Add padding to create spacing between paragraphs */
+  line-height: 1.6; /* Improve line height for readability */
 }
 
 .about .columnRight .imageContainer {
   display: flex;
   justify-content: center;
-  margin-bottom: 60px; /* Reduced margin to decrease blank space */
+  margin-bottom: 40px; /* Reduced margin to decrease blank space */
 }
 
 .about .columnRight .imageContainer img {
   border-radius: 50%;
-  width: 500px; /* Set fixed width */
-  height: 500px; /* Set fixed height */
+  width: 300px; /* Reduced width for better proportion on mobile */
+  height: 300px; /* Reduced height for better proportion on mobile */
 }
 
 .about .columnRight .quote {
@@ -112,6 +115,7 @@
   .about h2 {
     font-size: 3.5rem; /* Adjusted font size for desktop view */
     margin-top: 5%; /* Lower the title heading on desktop */
+    text-align: left; /* Left align text on desktop */
   }
 
   .about .columnLeft {
@@ -121,6 +125,7 @@
     flex-direction: column;
     padding-right: 100px;
     font-size: 1rem; /* Adjust font size if needed */
+    text-align: left; /* Left align text on desktop */
   }
 
   .about .columnRight {
