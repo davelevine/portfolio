@@ -8,7 +8,7 @@
 
   liveLink: https://dave.levine.io
   githubLink: https://github.com/davelevine/portfolio
-  image: hero.png
+  image: hero.webp
   isFeatured: true
   screenshots:
     - screenshot: 01-certs.png

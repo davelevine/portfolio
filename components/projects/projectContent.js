@@ -4,11 +4,6 @@ import rehypeRaw from 'rehype-raw';
 import Image from "next/image";
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
 
 import classes from './projectContent.module.scss';
 
@@ -92,8 +87,6 @@ const ProjectContent = ({ project, currentTheme }) => {
     title,
     tech,
     image,
-    screenshots,
-    slug,
   } = project;
 
   const customRenderers = useMemo(() => getCustomRenderers(currentTheme), [currentTheme]);
@@ -101,17 +94,16 @@ const ProjectContent = ({ project, currentTheme }) => {
   return (
     <div className={classes.projectDetail}>
       <div className='container section mvh-100 projectDetail'>
-        <Link href='/projects/'>
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className='btn btn-filled-project'
-          >
-            View All Projects
-          </motion.button>
-        </Link>
-
         <div className={classes.card}>
+          <h1>{title}</h1>
+          <small>{Array.isArray(tech) ? tech.join(', ') : tech}</small>
+
+          {image && (
+            <div className={classes.projectImage}>
+              {renderImage(image)}
+            </div>
+          )}
+
           <div className={classes.projectLinks}>
             {githubLink && (
               <a href={githubLink} target='_blank' rel='noreferrer'>
@@ -121,20 +113,13 @@ const ProjectContent = ({ project, currentTheme }) => {
             )}
             {liveLink && (
               <a href={liveLink} target='_blank' rel='noreferrer'>
-                <i className='fa fa-link'></i>
+                <i className='fa fa-arrow-up-right-from-square'></i>
                 Website
               </a>
             )}
           </div>
 
-          <h1>{title}</h1>
-          <small>{Array.isArray(tech) ? tech.join(', ') : tech}</small>
-
-          {image && (
-            <div className={classes.projectImage}>
-              {renderImage(image)}
-            </div>
-          )}
+          <div className={classes.divider}></div>
 
           <Suspense fallback={<Spinner />}>
             <ReactMarkdown
@@ -145,36 +130,17 @@ const ProjectContent = ({ project, currentTheme }) => {
             </ReactMarkdown>
           </Suspense>
 
-          {screenshots && screenshots.length > 0 && (
-            <div className='mb-50'>
-              <h2>Screenshots</h2>
-              <Swiper
-                rewind={true}
-                grabCursor={true}
-                modules={[Navigation]}
-                navigation={true}
-                className='mySwiper'
+          <div className={classes.btnContainer}>
+            <Link href='/projects/'>
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className={classes.btnFilledProject} // Apply the SCSS class
               >
-                {screenshots.map((screenshot, index) => (
-                  <SwiperSlide key={index}>
-                    <Image
-                      src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/${slug}/${screenshot.screenshot}`}
-                      width={1000}
-                      height={700}
-                      alt={screenshot.description || 'Screenshot'}
-                      priority
-                      style={{
-                        maxWidth: "100%",
-                        height: "auto",
-                        objectFit: "contain",
-                        aspectRatio: "1000 / 700"
-                      }}
-                    />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </div>
-          )}
+                View All Projects
+              </motion.button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
@@ -189,10 +155,6 @@ ProjectContent.propTypes = {
     title: PropTypes.string.isRequired,
     tech: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]).isRequired,
     image: PropTypes.string,
-    screenshots: PropTypes.arrayOf(PropTypes.shape({
-      screenshot: PropTypes.string.isRequired,
-      description: PropTypes.string,
-    })),
     slug: PropTypes.string.isRequired,
   }).isRequired,
   currentTheme: PropTypes.oneOf(['dark', 'light']).isRequired,

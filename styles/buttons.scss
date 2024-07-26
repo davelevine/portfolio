@@ -77,6 +77,11 @@ button {
   color: var(--navbar-primary);
   background-color: transparent;
   margin-top: 10px; // Default margin
+  display: flex;
+  justify-content: center; // Center the button horizontally
+  align-items: center; // Center the button vertically
+  margin-left: auto; // Center the button horizontally
+  margin-right: auto; // Center the button horizontally
 
   // Hover effect for project-specific filled buttons
   &:hover {

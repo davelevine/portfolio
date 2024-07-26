@@ -17,16 +17,19 @@
 
   h1 {
     margin-bottom: 0;
+    font-size: 2rem;
   }
 
   h2 {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
+    margin-bottom: 10px; // Reduce space between H2 and paragraph text
   }
 
   // Styles for small elements
   small {
     @include text-styles(var(--navbar-primary), 25px);
     display: block;
+    font-size: 1rem;
   }
 
   // Styles for anchor elements
@@ -34,11 +37,21 @@
     color: var(--accent);
   }
 
+  // Styles for links in paragraph text
+  p a {
+    font-size: 1rem; // Smaller font size for links in paragraph text
+  }
+
+  // Styles for project links
+  .projectLinks a {
+    font-size: 1.2rem; // Larger font size for project links
+  }
+
   // Styles for strong elements
   strong {
     background: #cecece;
     padding: 0 4px;
-    border-radius: 4px;
+    border-radius: 8px;
     color: black;
     font-weight: 400;
     font-size: 0.8rem;
@@ -47,7 +60,7 @@
   // Common styles for card and description classes
   .card,
   .description {
-    border-radius: 5px;
+    border-radius: 8px;
     padding: 25px;
     background-color: var(--background-card);
     transition: background 1s;
@@ -94,11 +107,19 @@
     }
   }
 
+  // Media query for screens with a minimum width of 768px
+  @media only screen and (min-width: 768px) {
+    .projectImage {
+      width: 80%; // Make the image smaller on desktop
+      margin: 0 auto; // Center the image on desktop
+    }
+  }
+
   // Styles for projectLinks class
   .projectLinks {
     display: flex;
     flex-direction: row;
-    margin-top: auto;
+    margin-top: 25px; // Ensure the same distance after the image
 
     a {
       margin-right: 15px;
@@ -115,10 +136,25 @@
     }
   }
 
+  // Add a white divider after project links
+  .divider {
+    width: 100%;
+    height: 1px;
+    background-color: white;
+    margin: 20px 0;
+  }
+
   // Media query for screens with a minimum width of 768px
   @media only screen and (min-width: 768px) {
     .projectDetail {
       margin-bottom: 0;
+    }
+  }
+
+  // Media query for screens smaller than 768px
+  @media only screen and (max-width: 767px) {
+    .card {
+      margin-top: 50px; // Move the card down on mobile
     }
   }
 
@@ -145,5 +181,40 @@
   // Ensure new behavior
   .projectDetail {
     margin-bottom: 0;
+  }
+
+  // Styles for the button container
+  .btnContainer {
+    display: flex;
+    justify-content: center;
+
+    @media only screen and (max-width: 767px) {
+      width: 100%; // Full width on mobile
+    }
+  }
+
+  // Styles for the button
+  .btnFilledProject {
+    margin-top: 20px; // Add space above the button
+    background: none;
+    border: 2px solid var(--accent-secondary);
+    color: var(--text-primary);
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 25px; // Pill shape
+    transition: all 0.3s ease; // Consistent animation
+    text-align: center;
+
+    &:hover {
+      background-color: var(--accent-secondary);
+      color: var(--background);
+      transform: scale(1.05); // Slight scale-up on hover
+    }
+
+    @media only screen and (max-width: 767px) {
+      width: 100%; // Full width on mobile
+      padding: 12px 24px; // Slightly larger padding on mobile
+      font-size: 1.1rem; // Slightly larger font size on mobile
+    }
   }
 }
