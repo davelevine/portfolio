@@ -2,7 +2,7 @@
 title: 'CompTIA Security+'
 date: '2019-11'
 image: comptia-securityplus.webp
-excerpt: 'My journey to achieve the AWS Certified Solutions Architect – Associate certification has been a humbling experience. It has allowed me to deepen my understanding of AWS services and their application in creating robust and secure cloud solutions.'
+excerpt: 'The CompTIA Security+ certification demonstrates a comprehensive understanding of fundamental cybersecurity principles. Certificate holders have proved they can assess the security posture of an enterprise environment, recommend and implement appropriate security solutions, monitor and secure hybrid environments, operate with an awareness of applicable laws and policies, and identify, analyze, and respond to security events and incidents.'
 isFeatured: true
 tech: ['Cybersecurity', 'Network Security', 'Risk Management']
 ---
