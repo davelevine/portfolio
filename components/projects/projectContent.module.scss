@@ -45,6 +45,12 @@
   // Styles for project links
   .projectLinks a {
     font-size: 1.2rem; // Larger font size for project links
+    transition: color 0.3s ease, transform 0.3s ease; // Add transition for hover effect
+
+    &:hover {
+      color: var(--link-hover);
+      transform: scale(1.1); // Slight scale-up on hover
+    }
   }
 
   // Styles for strong elements
@@ -187,26 +193,27 @@
   .btnContainer {
     display: flex;
     justify-content: center;
+    margin-top: 20px; // Add space between the paragraph text and the button
 
     @media only screen and (max-width: 767px) {
       width: 100%; // Full width on mobile
     }
   }
 
-  // Styles for the button
+  // Improved styles for the button
   .btnFilledProject {
-    margin-top: 20px; // Add space above the button
     background: none;
-    border: 2px solid var(--accent-secondary);
+    border: 2px solid var(--text-secondary);
     color: var(--text-primary);
     padding: 10px 20px;
     font-size: 1rem;
     border-radius: 25px; // Pill shape
-    transition: all 0.3s ease; // Consistent animation
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; // More specific transitions
     text-align: center;
+    cursor: pointer; // Add pointer cursor for better UX
 
     &:hover {
-      background-color: var(--accent-secondary);
+      background-color: var(--background-secondary);
       color: var(--background);
       transform: scale(1.05); // Slight scale-up on hover
     }
