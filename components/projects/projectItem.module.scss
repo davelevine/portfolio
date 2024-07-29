@@ -15,6 +15,12 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
+
+  h4 {
+    color: var(--text-secondary);
+    font-size: 1.15rem;
+    margin-bottom: 0.5rem;
+  }
 }
 
 .card .image {
@@ -60,13 +66,6 @@
     0 1px 5px 0 rgb(0 0 0 / 20%);
 }
 
-.card h4 {
-  margin: 0;
-  color: var(--text-secondary);
-  font-size: 1.15rem;
-  margin-bottom: 0.5rem;
-}
-
 .card p {
   color: var(--text-primary);
   margin-bottom: 1.5rem;
@@ -82,9 +81,8 @@
   a {
     color: var(--accent);
     font-size: 1rem;
-    margin-right: 15px;
+    margin: 0 15px 10px 0;
     display: block;
-    margin-bottom: 10px;
     transition: color 0.3s ease, transform 0.3s ease;
 
     &:hover {

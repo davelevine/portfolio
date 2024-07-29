@@ -1,7 +1,7 @@
 .projectDetail {
   // Mixin for common text styles to ensure reusability
-  @mixin text-styles($color, $margin-bottom: null, $font-size: null) {
-    color: $color;
+  @mixin text-styles($text-color, $margin-bottom: null, $font-size: null) {
+    color: $text-color;
     @if $margin-bottom {
       margin-bottom: $margin-bottom;
     }
@@ -27,9 +27,8 @@
 
   // Styles for small elements
   small {
-    @include text-styles(var(--navbar-primary), 25px);
+    @include text-styles(var(--navbar-primary), 25px, 1rem);
     display: block;
-    font-size: 1rem;
   }
 
   // Styles for anchor elements

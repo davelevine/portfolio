@@ -4,7 +4,7 @@ date: '2023-07'
 image: aws-saa-legacy.png
 excerpt: 'My journey to achieve the AWS Certified Solutions Architect – Associate certification has been a humbling experience. It has allowed me to deepen my understanding of AWS services and their application in creating robust and secure cloud solutions.'
 isFeatured: true
-tech: ['AWS', 'Security', 'Compliance', 'Migration', 'Serverless']
+tech: ['AWS', 'Cybersecurity', 'Compliance', 'Migration', 'Serverless']
 ---
 
 ![AWS](/images/certs/aws-saa-legacy.png)

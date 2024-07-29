@@ -7,14 +7,12 @@ const ContactModalDynamic = lazy(() => import('./contactModal'));
 const RESUME_FILE_PATH = 'https://cdn.levine.io/uploads/portfolio/public/assets/davelevine-resume.pdf';
 
 const Modal = ({ contact, resume, onClose, ...props }) => {
-  // Define animation variants for the modal
   const fadeIn = useMemo(() => ({
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 0.3, ease: 'easeInOut' } },
     exit: { opacity: 0 },
   }), []);
 
-  // Function to render the contact modal
   const renderContactModal = useCallback(() => (
     <motion.div initial="hidden" animate="visible" exit="exit" variants={fadeIn}>
       <Suspense fallback={
@@ -29,26 +27,23 @@ const Modal = ({ contact, resume, onClose, ...props }) => {
     </motion.div>
   ), [onClose, props, fadeIn]);
 
-  // Function to render the resume modal
   const renderResumeModal = useCallback(() => (
     <motion.div initial="hidden" animate="visible" exit="exit" variants={fadeIn}>
       <div className={classes.resumeModal}>
-        <a href='#!' className={classes.close} onClick={onClose}>
+        <button className={classes.close} onClick={onClose} aria-label="Close">
           <i className='fa fa-xmark'></i>
-        </a>
+        </button>
         <iframe src={RESUME_FILE_PATH} className={classes.iframe} title="Resume" />
       </div>
     </motion.div>
   ), [onClose, fadeIn]);
 
-  // Handle click on the backdrop to close the modal
   const handleBackdropClick = useCallback((e) => {
     if (e.target === e.currentTarget) {
       onClose();
     }
   }, [onClose]);
 
-  // Effect to handle the Escape key press to close the modal
   useEffect(() => {
     const handleEscapeKey = (e) => {
       if (e.key === 'Escape') {
@@ -68,10 +63,10 @@ const Modal = ({ contact, resume, onClose, ...props }) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       className={classes.backdrop}
-      onClick={handleBackdropClick} // Handle backdrop click
+      onClick={handleBackdropClick}
     >
       <motion.div
-        onClick={(e) => e.stopPropagation()} // Prevent click propagation to backdrop
+        onClick={(e) => e.stopPropagation()}
         className={classes.modalContent}
         variants={fadeIn}
       >

@@ -67,7 +67,7 @@ const AllCerts = ({ certs }) => {
   const filteredCerts = useMemo(() => {
     return filter === 'all'
       ? certs.slice().sort(commonSortLogic)
-      : certs.filter(cert => cert.tech.includes(filter)).sort(commonSortLogic);
+      : certs.filter(cert => cert.tech && cert.tech.includes(filter)).sort(commonSortLogic);
   }, [certs, filter, commonSortLogic]);
 
   useEffect(() => {
@@ -153,7 +153,7 @@ const AllCerts = ({ certs }) => {
           <div className={classes.gallery}>
             {filteredCerts.map((cert) => (
               <div key={cert.slug} style={{ display: 'grid' }}>
-                <CertItem cert={cert} />
+                {cert.title ? <CertItem cert={cert} /> : null}
               </div>
             ))}
           </div>
