@@ -23,7 +23,7 @@
 
 A URL shortener proof of concept built using Cloudflare Workers to show how one builds an actual URL shortener service using serverless computing.
 
-## Key takeaways
+## Key Takeaways
 
 - Building a URL shortener for free with Cloudflare Worker and Workers KV.
 - Proof of concept alternative to URL shorteners such as TinyURL and Bitly.

@@ -22,7 +22,7 @@
 
 My personal portfolio developed with Next.js and React. Certs and Projects sections are written in markdown and rendered with react-markdown and react-syntax-highlighter.
 
-## Key takeaways
+## Key Takeaways
 
 - Built with Next.js and React
 - Progressive Web App (PWA)

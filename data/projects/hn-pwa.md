@@ -20,7 +20,7 @@
 
 A progressive web app for browsing Hacker News, built with React. Makes use of a self-hosted API for fetching content. Focuses on small touches missing from similar projects.
 
-## Key takeaways
+## Key Takeaways
 
 - Single page application (SPA)
   - Built with React + react-router

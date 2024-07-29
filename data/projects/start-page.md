@@ -21,7 +21,7 @@
 
 Terminal-inspired, clean and customizable browser start page for geeks. Has built-in editor for customizing.
 
-## Key takeaways
+## Key Takeaways
 
 - Efficient Link Management
   - Quickly filter and open links.
