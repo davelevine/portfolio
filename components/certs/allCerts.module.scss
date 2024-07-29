@@ -1,5 +1,7 @@
 .certs {
-  padding: 50px 15px;
+  padding: 50px 15px; /* Set padding for the certs container */
+  border-radius: 12px; /* Rounded corners for a modern look */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
 .certs .scrollProgress {
@@ -11,6 +13,8 @@
   background: var(--navbar-primary);
   z-index: 1000;
   transition: width 0.25s ease-out;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  border-radius: 0 0 5px 5px; /* Rounded bottom corners */
 }
 
 .certs h1 {
@@ -19,28 +23,27 @@
   background: var(--text-gradient);
   -webkit-background-clip: text;
   background-clip: text;
-  color: transparent;
-  margin-top: 40px; /* Lower the title heading on mobile to match @allProjects.module.scss */
+  color: transparent; /* Apply gradient text effect */
+  margin-top: 40px; /* Lower the title heading on mobile */
 }
 
 .certs .filter p {
   text-align: center;
   margin-top: -5px; /* Ensure the distance between the heading and filter text is identical to @allProjects.module.scss */
+  font-weight: 600; /* Bold text for modern look */
+  color: var(--text-primary); /* Primary text color */
 }
 
 .certs .filter p::after {
   content: ':';
-  color: var(--navbar-primary);
+  color: var(--accent); /* Apply accent color to the ":" symbol */
 }
 
 .certs .filterButtons {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-}
-
-.certs .filterButtons button {
-  margin: 2px;
+  gap: 4px; /* Use gap for spacing between buttons */
 }
 
 .certs .galleryWrap {
@@ -50,10 +53,10 @@
 .certs .gallery {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  grid-gap: 25px;
+  gap: 25px; /* Use gap for grid spacing */
 }
 
-@media only screen and (min-width: 768px) {
+@media (min-width: 768px) {
   .certs {
     padding: 150px 25px;
     min-height: 100vh;
@@ -66,13 +69,8 @@
   }
 
   .certs h1 {
-    text-align: center;
-    font-size: 3.8rem;
-    background: var(--text-gradient);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    margin-top: -40px; /* Move the title heading up slightly on desktop */
+    font-size: 3.8rem; /* Increase font size for larger screens */
+    margin-top: -40px; /* Ensure the distance between the heading and filter is identical to @allProjects.module.scss */
   }
 
   .certs .filter {
@@ -84,8 +82,14 @@
   }
 }
 
-@media only screen and (min-width: 1200px) {
+@media (min-width: 1080px) {
   .certs .gallery {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr); /* Adjust grid columns for larger screens */
+  }
+}
+
+@media (max-width: 767px) {
+  .certs .scrollProgress {
+    display: block; /* Ensure the progress bar is visible on mobile */
   }
 }

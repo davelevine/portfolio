@@ -1,6 +1,8 @@
 /* Styles for the projectsGallery class */
 .projectsGallery {
   padding: 50px 15px; /* Set padding for the projectsGallery container */
+  border-radius: 12px; /* Rounded corners for a modern look */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
 .projectsGallery .scrollProgress {
@@ -13,6 +15,7 @@
   z-index: 1000;
   transition: width 0.25s ease-out;
   overflow-x: auto; /* Enable horizontal scrolling */
+  border-radius: 0 0 5px 5px; /* Rounded bottom corners */
 }
 
 .projectsGallery h1 {
@@ -28,11 +31,13 @@
 .projectsGallery .filter p {
   text-align: center;
   margin-top: -5px; /* Ensure the distance between the heading and filter text is identical to @allCerts.module.scss */
+  font-weight: 600; /* Bold text for modern look */
+  color: var(--text-primary); /* Primary text color */
 }
 
 .projectsGallery .filter p::after {
   content: ':';
-  color: var(--navbar-primary); /* Apply background-secondary color to the ":" symbol */
+  color: var(--accent); /* Apply accent color to the ":" symbol */
 }
 
 .projectsGallery .filterButtons {
@@ -77,6 +82,12 @@
     object-fit: cover; /* Ensure images cover the grid area */
     width: 100%;
     height: 300px; /* Set a fixed height for all images */
+    border-radius: 8px; /* Rounded corners for images */
+    transition: transform 0.3s ease; /* Smooth transition for hover effect */
+  }
+
+  .projectsGallery .gallery img:hover {
+    transform: scale(1.05); /* Slight zoom on hover for modern effect */
   }
 }
 
@@ -90,6 +101,7 @@
   .projectsGallery .gallery img {
     object-fit: cover; /* Ensure images cover the grid area */
     height: 200px; /* Adjust height for smaller screens */
+    border-radius: 8px; /* Rounded corners for images */
   }
 
   .projectsGallery .scrollProgress {
