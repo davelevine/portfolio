@@ -4,13 +4,13 @@
   --background-card: #ffffff; // Card background color
   --background-secondary: #d94e8f; // Secondary background color
   --text-primary: #2c3e50; // Primary text color
-  --text-secondary: #b74175; // Secondary text color
+  --text-secondary: #c05c7a; // Secondary text color
   --text-tertiary: #6a8a99; // Tertiary text color
-  --accent: #d94e8f; // Accent color
+  --accent: #c03877; // Accent color
   --accent-secondary: #6464640d; // Secondary accent color
   --transparent-primary: #fffffff2; // Primary transparent color
   --transparent-secondary: #fffffffc; // Secondary transparent color
-  --border: #e0e0e0; // Border color
+  --border: #9e9e9e; // Border color
   --border-light: #6464640d; // Light border color
   --border-card: #b0b0b0; // Card border color
   --button-color: #4a5a6a; // Button color
@@ -21,6 +21,7 @@
   --text-gradient: linear-gradient(180deg, var(--accent), #7a2edb); // Text gradient
   --link-hover: #2c3e50; // Link hover color
 }
+
 
 // Dark theme variables
 [data-theme='dark'] {
