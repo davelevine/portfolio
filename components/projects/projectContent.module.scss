@@ -17,12 +17,14 @@
 
   h1 {
     margin-bottom: 0;
-    font-size: 2rem;
+    font-size: 2.1rem;
+    font-weight: 700;
   }
 
   h2 {
-    font-size: 1.5rem;
-    margin-bottom: 10px; // Reduce space between H2 and paragraph text
+    font-size: 1.6rem;
+    margin-bottom: auto;
+    font-weight: 600;
   }
 
   // Styles for small elements
@@ -34,6 +36,13 @@
   // Styles for anchor elements
   a {
     color: var(--accent);
+    text-decoration: none;
+    position: relative;
+
+    &:hover {
+      color: var(--link-hover);
+      text-decoration: underline;
+    }
   }
 
   // Styles for links in paragraph text
@@ -65,8 +74,8 @@
   // Common styles for card and description classes
   .card,
   .description {
-    border-radius: 8px;
-    padding: 25px;
+    border-radius: 12px;
+    padding: 30px;
     background-color: var(--background-card);
     transition: background 1s;
     border: 1px solid var(--border-card);
@@ -80,6 +89,7 @@
   .card {
     h4 {
       @include text-styles(var(--text-secondary), 0);
+      font-weight: 600;
     }
 
     time {
@@ -100,23 +110,25 @@
   // Styles for projectImage class
   .projectImage {
     display: flex;
-    justify-content: center; // Center horizontally
-    align-items: center; // Center vertically
-    width: 100%; // Ensure the image container takes full width
-    height: auto; // Set a fixed height for the image container
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    overflow: hidden;
 
     img {
       width: 100%;
       height: 100%;
-      object-fit: contain; // Ensure the image covers the container
+      object-fit: contain;
     }
   }
 
   // Media query for screens with a minimum width of 768px
   @media only screen and (min-width: 768px) {
     .projectImage {
-      width: 80%; // Make the image smaller on desktop
-      margin: 0 auto; // Center the image on desktop
+      width: 80%;
+      margin: 0 auto;
     }
   }
 
@@ -124,7 +136,7 @@
   .projectLinks {
     display: flex;
     flex-direction: row;
-    margin-top: 25px; // Ensure the same distance after the image
+    margin-top: 25px;
 
     a {
       margin-right: 15px;
@@ -159,7 +171,7 @@
   // Media query for screens smaller than 768px
   @media only screen and (max-width: 767px) {
     .card {
-      margin-top: 50px; // Move the card down on mobile
+      margin-top: 50px;
     }
   }
 
@@ -192,10 +204,10 @@
   .btnContainer {
     display: flex;
     justify-content: center;
-    margin-top: 20px; // Add space between the paragraph text and the button
+    margin-top: 20px;
 
     @media only screen and (max-width: 767px) {
-      width: 100%; // Full width on mobile
+      width: 100%;
     }
   }
 
@@ -204,10 +216,10 @@
     background: none;
     border: 2px solid var(--text-secondary);
     color: var(--text-primary);
-    padding: 10px 20px;
+    padding: 12px 24px;
     font-size: 1rem;
-    border-radius: 25px; // Pill shape
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; // More specific transitions
+    border-radius: 30px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
     text-align: center;
     cursor: pointer; // Add pointer cursor for better UX
 
@@ -219,8 +231,8 @@
 
     @media only screen and (max-width: 767px) {
       width: 100%; // Full width on mobile
-      padding: 12px 24px; // Slightly larger padding on mobile
-      font-size: 1.1rem; // Slightly larger font size on mobile
+      padding: 14px 28px;
+      font-size: 1.2rem;
     }
   }
 }

@@ -47,12 +47,13 @@
   font-size: inherit; /* Inherit font size */
   text-decoration: none; /* No text decoration */
   padding: 0; /* Remove default padding */
-  transition: color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+  transition: color 0.3s ease, transform 0.3s ease, text-decoration 0.3s ease; /* Smooth transitions */
 }
 
 .card .cardAction button:hover {
   color: var(--link-hover); /* Change color on hover */
   transform: scale(1.1);
+  text-decoration: underline; /* Underline on hover */
 }
 
 .card .cardAction button i {

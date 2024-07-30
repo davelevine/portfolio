@@ -1,79 +1,79 @@
 /* Backdrop styles for the modal */
 .backdrop {
-  position: fixed; /* Fixes the backdrop to the viewport */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
-  z-index: 1000; /* Ensures the backdrop is above other elements */
-  display: flex; /* Flexbox layout for centering */
-  align-items: center; /* Center items vertically */
-  justify-content: center; /* Center items horizontally */
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Container for modal content */
 .modalContent {
-  position: relative; /* Allows for absolute positioning of children */
+  position: relative;
 }
 
 /* General modal styles */
 .modal {
-  display: flex; /* Flexbox layout for centering */
-  align-items: center; /* Center items vertically */
-  justify-content: center; /* Center items horizontally */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Styles for the resume modal */
 .resumeModal {
-  position: relative; /* Allows for absolute positioning of children */
-  width: 90vw; /* Responsive width */
-  height: 90vh; /* Responsive height */
-  max-width: 1200px; /* Maximum width */
-  max-height: 90vh; /* Maximum height */
-  background: #2c2c2c; /* Slightly lighter background for contrast */
-  border: 1px solid #555; /* Subtle border for modern look */
-  border-radius: 12px; /* Slightly increased border radius for modern look */
-  padding: 20px; /* Padding inside the modal */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Softer shadow for sleek appearance */
+  position: relative;
+  width: 90vw;
+  height: 90vh;
+  max-width: 1200px;
+  max-height: 90vh;
+  background: #2c2c2c;
+  border: 1px solid #555;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 /* Media query for mobile devices */
 @media (max-width: 767px) {
   .resumeModal {
-    height: 70vh; /* Adjust height for mobile devices */
+    height: 70vh;
   }
 }
 
 /* Close button styles for the resume modal */
 .resumeModal .close {
-  position: absolute; /* Absolute positioning within the modal */
-  top: 12px; /* Position it within the padding area */
-  right: 12px; /* Position it within the padding area */
-  width: 30px; /* Set width for a smaller shape */
-  height: 30px; /* Set height for a smaller shape */
-  font-size: 18px; /* Adjusted font size */
-  color: #fff; /* Changed color to white for better visibility */
-  display: flex; /* Flexbox layout for centering */
-  align-items: center; /* Center items vertically */
-  justify-content: center; /* Center items horizontally */
-  border-radius: 50%; /* Circular shape */
-  cursor: pointer; /* Pointer cursor on hover */
-  transition: background 0.3s ease, transform 0.3s ease; /* Smooth transitions */
-  background: rgba(0, 0, 0, 0.7); /* Slightly darker background for button */
-  z-index: 1001; /* Ensured it appears above other elements */
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1001;
 }
 
 /* Hover effects for the close button */
 .resumeModal .close:hover {
-  color: #ff4d4d; /* Softer hover color for modern look */
-  background: rgba(255, 255, 255, 0.2); /* Change background on hover for modern effect */
-  transform: scale(1.1); /* Slight scale-up on hover for a sleek effect */
+  color: #ff4d4d;
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
 }
 
 /* Styles for the iframe within the resume modal */
 .resumeModal .iframe {
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  border: none; /* No border */
+  width: 100%;
+  height: 100%;
+  border: none;
 }

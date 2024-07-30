@@ -1,6 +1,6 @@
 .certs {
-  padding: 50px 15px; /* Set padding for the certs container */
-  border-radius: 12px; /* Rounded corners for a modern look */
+  padding: 50px 15px;
+  border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
@@ -29,14 +29,14 @@
 
 .certs .filter p {
   text-align: center;
-  margin-top: -5px; /* Ensure the distance between the heading and filter text is identical to @allProjects.module.scss */
-  font-weight: 600; /* Bold text for modern look */
-  color: var(--text-primary); /* Primary text color */
+  margin-top: -5px;
+  font-weight: 600;
+  color: var(--text-primary);
 }
 
 .certs .filter p::after {
   content: ':';
-  color: var(--accent); /* Apply accent color to the ":" symbol */
+  color: var(--accent);
 }
 
 .certs .filterButtons {
@@ -52,8 +52,8 @@
 
 .certs .gallery {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 25px; /* Use gap for grid spacing */
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 25px;
 }
 
 @media (min-width: 768px) {
@@ -69,22 +69,18 @@
   }
 
   .certs h1 {
-    font-size: 3.8rem; /* Increase font size for larger screens */
-    margin-top: -40px; /* Ensure the distance between the heading and filter is identical to @allProjects.module.scss */
+    font-size: 3.8rem;
+    margin-top: -40px;
   }
 
   .certs .filter {
-    margin-top: -40px; /* Adjust the top margin for the filter section */
-  }
-
-  .certs .gallery {
-    grid-template-columns: repeat(2, 1fr);
+    margin-top: -30px;
   }
 }
 
-@media (min-width: 1080px) {
+@media only screen and (min-width: 1200px) {
   .certs .gallery {
-    grid-template-columns: repeat(3, 1fr); /* Adjust grid columns for larger screens */
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 

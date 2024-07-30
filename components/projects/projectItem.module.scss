@@ -83,11 +83,12 @@
     font-size: 1rem;
     margin: 0 15px 10px 0;
     display: block;
-    transition: color 0.3s ease, transform 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease, text-decoration 0.3s ease;
 
     &:hover {
       color: var(--link-hover);
       transform: scale(1.1);
+      text-decoration: underline;
     }
   }
 
