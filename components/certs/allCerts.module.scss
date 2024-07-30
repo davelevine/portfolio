@@ -88,4 +88,9 @@
   .certs .scrollProgress {
     display: block; /* Ensure the progress bar is visible on mobile */
   }
+
+  .certs .gallery {
+    grid-template-columns: 1fr; /* Single column on mobile */
+    grid-gap: 0; /* Adjust gap for mobile to match allProjects.module.scss */
+  }
 }
