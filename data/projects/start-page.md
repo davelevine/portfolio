@@ -19,7 +19,7 @@
 
 ## Description
 
-Terminal-inspired, clean and customizable browser start page for geeks. Has built-in editor for customizing.
+Terminal-inspired, clean and customizable browser start page for geeks. Built with [Next.js] and [Tailwind CSS]. Has built-in editor for customizing.
 
 ## Key Takeaways
 
@@ -32,3 +32,6 @@ Terminal-inspired, clean and customizable browser start page for geeks. Has buil
   - Customizable Fetch UI.
   - Autosuggest, autocomplete, and link cycling.
 - Built-in editor
+
+  [Next.js]: https://nextjs.org
+  [Tailwind CSS]: https://tailwindcss.com

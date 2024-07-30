@@ -22,9 +22,15 @@
   }
 
   h2 {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     margin-bottom: auto;
     font-weight: 600;
+  }
+
+  // Reduce margin between h2 and bulleted lists
+  h2 + ul,
+  h2 + ol {
+    margin-top: 10px; // Adjust this value as needed
   }
 
   // Styles for small elements
@@ -172,6 +178,10 @@
   @media only screen and (max-width: 767px) {
     .card {
       margin-top: 50px;
+    }
+
+    ul, ol {
+      padding-left: 20px; // Adjust indentation for bullets on mobile
     }
   }
 

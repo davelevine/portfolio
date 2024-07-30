@@ -22,16 +22,16 @@ A progressive web app for browsing Hacker News, built with React. Makes use of a
 
 ## Key Takeaways
 
-- Single page application (SPA)
-  - Built with React + react-router
-  - Utilizes the [hackerweb] and [Algolia APIs] for fetching content
-- Progressive web app
-  - [App manifest]
-  - [Service worker]
-  - 100/100 Lighthouse score
-- [TailwindCSS 2.0]
-  - Responsive, mobile first design
-  - Light/dark theme available (set automatically based off device theme)
+- Single Page Application (SPA)
+  - Developed using React and react-router
+  - Fetches content via [hackerweb] and [Algolia APIs]
+- Progressive Web App (PWA)
+  - Includes an [App manifest]
+  - Employs a [Service worker]
+  - Achieves a perfect 100/100 Lighthouse score
+- Styled with [TailwindCSS 2.0]
+  - Features a responsive, mobile-first design
+  - Automatically adapts to light/dark themes based on device settings
 
   [hackerweb]: https://github.com/davelevine/node-hnapi
   [Algolia APIs]: https://www.algolia.com/doc/rest-api/search/
