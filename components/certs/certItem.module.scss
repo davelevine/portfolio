@@ -28,9 +28,22 @@
   color: var(--text-primary);
 }
 
-.card .expires strong,
+.card .expires strong {
+  color: var(--text-primary);
+}
+
+.card .expires strong:after {
+  content: ':';
+  color: var(--accent);
+}
+
 .card .expired strong {
   color: var(--accent);
+}
+
+.card .expired strong:after {
+  content: ':';
+  color: var(--text-primary);
 }
 
 .card .cardAction {

@@ -15,7 +15,7 @@ import { motion } from 'framer-motion';
  */
 const formatDate = (date, status) => {
   if (date === 'Never') {
-    return <span className={classes.expires}><strong>{status}:</strong> Never</span>;
+    return <span className={classes.expires}><strong>{status}</strong> Never</span>;
   }
 
   const formattedDate = new Date(date).toLocaleDateString('en-US', {
@@ -24,7 +24,7 @@ const formatDate = (date, status) => {
     year: 'numeric',
   });
 
-  return <span className={status === 'Expired' ? classes.expired : classes.expires}><strong>{status}:</strong> {formattedDate}</span>;
+  return <span className={status === 'Expired' ? classes.expired : classes.expires}><strong>{status}</strong> {formattedDate}</span>;
 };
 
 /**
