@@ -44,7 +44,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 4px;
+  gap: 8px; /* Increased gap to prevent overlap */
 }
 
 .projectsGallery .galleryWrap {

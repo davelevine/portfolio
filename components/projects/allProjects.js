@@ -182,7 +182,7 @@ const AllProjects = ({ projects }) => {
               style={{ borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
               <div className={classes.techLogoContainer}>
-                <i className="fa-solid fa-asterisk" style={{ fontSize: '24px', color: 'currentColor' }}></i>
+                <i className="fa fa-asterisk" style={{ fontSize: '32px', color: 'currentColor' }}></i>
                 <span className={classes.techLogoName}>All</span>
               </div>
             </motion.button>
@@ -201,7 +201,7 @@ const AllProjects = ({ projects }) => {
                     src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/logos/${tech}.svg`} 
                     alt={tech} 
                     className={classes.techLogo} 
-                    style={{ width: '24px', height: '24px', borderRadius: '50%', objectFit: 'contain' }}
+                    style={{ width: '32px', height: '32px', borderRadius: '50%', objectFit: 'contain' }}
                   />
                   <span className={classes.techLogoName}>{tech}</span>
                 </div>
