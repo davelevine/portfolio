@@ -174,24 +174,37 @@ const AllProjects = ({ projects }) => {
             }}
           >
             <motion.button
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.2, translateY: -5 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => handleFilterClick('all')}
               className={`btn btn-outlined sm ${activeButton === 'all' ? 'active' : ''}`}
               variants={buttonVariants}
+              style={{ borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
-              All
+              <div className={classes.techLogoContainer}>
+                <i className="fa-solid fa-asterisk" style={{ fontSize: '24px', color: 'currentColor' }}></i>
+                <span className={classes.techLogoName}>All</span>
+              </div>
             </motion.button>
             {selectedTechs.map((tech) => (
               <motion.button
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.2, translateY: -5 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => handleFilterClick(tech)}
                 className={`btn btn-outlined sm ${activeButton === tech ? 'active' : ''}`}
                 key={tech}
                 variants={buttonVariants}
+                style={{ borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
               >
-                {tech}
+                <div className={classes.techLogoContainer}>
+                  <img 
+                    src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/logos/${tech}.svg`} 
+                    alt={tech} 
+                    className={classes.techLogo} 
+                    style={{ width: '24px', height: '24px', borderRadius: '50%', objectFit: 'contain' }}
+                  />
+                  <span className={classes.techLogoName}>{tech}</span>
+                </div>
               </motion.button>
             ))}
           </motion.div>

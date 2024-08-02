@@ -13,7 +13,6 @@
   background: var(--navbar-primary);
   z-index: 1000;
   transition: width 0.25s ease-out;
-  overflow-x: auto; /* Enable horizontal scrolling */
   border-radius: 0 0 5px 5px; /* Rounded bottom corners */
 }
 
@@ -60,7 +59,6 @@
   .certs {
     padding: 150px 25px;
     min-height: 100vh;
-    margin-bottom: 0;
   }
 
   .certs .container {
@@ -78,7 +76,7 @@
   }
 }
 
-@media only screen and (min-width: 1200px) {
+@media (min-width: 1200px) {
   .certs .gallery {
     grid-template-columns: repeat(3, 1fr);
   }

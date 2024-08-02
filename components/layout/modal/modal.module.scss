@@ -31,8 +31,8 @@
   height: 90vh;
   max-width: 1200px;
   max-height: 90vh;
-  background: #2c2c2c;
-  border: 1px solid #555;
+  background: var(--modal-background, #2c2c2c); /* Use CSS variable for background */
+  border: 1px solid var(--modal-border, #555); /* Use CSS variable for border */
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);

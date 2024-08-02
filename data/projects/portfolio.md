@@ -4,6 +4,7 @@
     - Next.js
     - React
     - Markdown
+    - Sass
   description: My personal portfolio developed with Next.js and React. Certs and Projects sections are written in markdown and rendered with react-markdown and react-syntax-highlighter.
 
   liveLink: https://dave.levine.io

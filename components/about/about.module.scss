@@ -25,15 +25,13 @@
 
 .about .columnLeft {
   margin: auto;
-  margin-bottom: auto; /* Adjust margin as needed */
   text-align: center; /* Center text on mobile */
 }
 
 .about .columnLeft h1 {
   color: var(--navbar-primary);
   font-size: 1.5rem;
-  margin: 0;
-  margin-bottom: 25px; /* Add margin to create spacing between h1 and p */
+  margin: 0 0 25px; /* Add margin to create spacing between h1 and p */
 }
 
 .about .columnLeft .h3 {
@@ -94,8 +92,6 @@
 @media only screen and (min-width: 768px) {
   .about {
     padding: 70px 25px 10px; /* Reduced padding on top for desktop view */
-    min-height: 100vh; /* Ensure full viewport height */
-    margin-bottom: 0;
   }
 
   .about .container {
@@ -105,7 +101,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center; /* Center content vertically */
-    align-items: left;
+    align-items: flex-start;
   }
 
   .about .row {
@@ -135,7 +131,6 @@
 
   .about .columnRight .imageContainer {
     margin-top: -90px; /* Move the image up on desktop view */
-    margin-bottom: 0; /* Ensure the image container margin is centered */
   }
 
   .about .columnRight .imageContainer img {
@@ -147,7 +142,6 @@
 @media only screen and (min-width: 1600px) {
   .about {
     padding: 100px 30px 25px; /* Increased padding for very large screens */
-    min-height: 100vh; /* Ensure full viewport height */
   }
 
   .about .container {

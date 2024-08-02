@@ -104,3 +104,60 @@
     display: block; /* Ensure the progress bar is visible on mobile */
   }
 }
+
+/* Styles for the tech logo hover effect */
+.techLogoContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.techLogoName {
+  display: none;
+  position: absolute;
+  bottom: -30px; /* Increased to add separation */
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--transparent-secondary); /* Changed to improve readability */
+  color: var(--accent);
+  padding: 2px 8px;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.techLogoContainer:hover .techLogoName {
+  display: block;
+}
+
+/* Ensure buttons maintain a round shape */
+.btn-outlined.sm {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden; /* Ensures the logo does not distort the button shape */
+}
+
+.btn-outlined.sm img {
+  max-width: 60%; /* Ensure the icon is smaller than the button to maintain padding */
+  max-height: 60%; /* Ensure the icon is smaller than the button to maintain padding */
+}
+
+.fa-asterisk {
+  max-width: 60%; /* Ensure the icon is smaller than the button to maintain padding */
+  max-height: 60%; /* Ensure the icon is smaller than the button to maintain padding */
+}
+
+/* Dark theme adjustments */
+[data-theme='dark'] .techLogoName {
+  background: var(--text-tertiary); /* Changed to improve readability */
+  color: var(--text-primary);
+}

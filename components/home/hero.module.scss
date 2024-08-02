@@ -48,14 +48,13 @@
 .greetings .columnLeft h2,
 .greetings .columnLeft h3,
 .greetings .columnLeft h4 {
-  margin-left: -4px;
+  margin: 0; /* Reset margin for consistent spacing */
 }
 
 .greetings .columnLeft h1 {
   font-size: 3.9rem;
   color: var(--navbar-primary);
   line-height: 0.95;
-  margin: 0 0 0 -4px;
 }
 
 .greetings .columnLeft h2 {

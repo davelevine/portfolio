@@ -3,7 +3,6 @@
   tech:
     - React
     - Tailwind CSS
-    - API
   description: A progressive web app for browsing Hacker News, built with React. Makes use of a self-hosted API for fetching content. Focuses on small touches missing from similar projects.
   liveLink: https://hn.xdv.com
   githubLink: https://github.com/davelevine/hn-pwa

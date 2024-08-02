@@ -3,7 +3,7 @@
   text-align: center;
   border-radius: 5px;
   background-color: var(--background-card);
-  padding: 1rem;
+  padding: 1rem 1rem 3rem; /* Combined padding for consistency */
   overflow: auto;
   z-index: 3;
   position: fixed;
@@ -14,7 +14,6 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  padding-bottom: 3rem; /* Added more empty space at the bottom */
 }
 
 .contactModal .close {
@@ -44,7 +43,6 @@
 }
 
 .contactModal .inputField textarea {
-  width: 100%;
   border: 1px solid var(--text-secondary);
   border-radius: 5px;
   height: 175px;
@@ -56,10 +54,9 @@
 }
 
 .contactModal .action {
-  margin-bottom: 20px;
+  margin: 20px 0 0; /* Adjusted margin for consistency */
   display: flex;
   justify-content: space-between;
-  margin-top: auto;
 }
 
 .contactModal .action i {
@@ -90,12 +87,11 @@
   }
 
   .contactModal .inputField {
-    margin: 25px 0;
     width: 100%;
   }
 
   .contactModal .action {
-    margin-bottom: unset;
+    margin-bottom: 0; /* Reset margin for clarity */
   }
 }
 

@@ -2,9 +2,7 @@
   title: Atomic URL
   tech:
     - Javascript
-    - CF Workers
-    - Wrangler
-    - Workers KV
+    - Cloudflare Workers
   description: A URL shortener proof of concept built using Cloudflare Workers to show how one builds an actual URL shortener service using serverless computing.
 
   liveLink: https://dl.is
