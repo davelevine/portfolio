@@ -68,6 +68,34 @@ const useRenderProjectLinks = (githubLink, liveLink, slug) => {
 };
 
 /**
+ * Custom hook for rendering tech logos.
+ * @param {Array} tech - The tech array.
+ * @returns {JSX.Element} - The rendered tech logos component.
+ */
+const useRenderTechLogos = (tech) => {
+  return useMemo(() => (
+    <div className={classes.techLogos} style={{ marginTop: '1rem' }}> {/* Added marginTop for spacing */}
+      {Array.isArray(tech) ? tech.map((t) => (
+        <img
+          key={t}
+          src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/logos/${t}.svg`}
+          alt={t}
+          className={classes.techLogo}
+          style={{ width: '32px', height: '32px', borderRadius: '50%', objectFit: 'contain', margin: '0 5px' }}
+        />
+      )) : (
+        <img
+          src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/logos/${tech}.svg`}
+          alt={tech}
+          className={classes.techLogo}
+          style={{ width: '32px', height: '32px', borderRadius: '50%', objectFit: 'contain', margin: '0 5px' }}
+        />
+      )}
+    </div>
+  ), [tech]);
+};
+
+/**
  * ProjectItem component to display individual project details.
  * @param {object} props - The component props.
  * @param {object} props.project - The project data.
@@ -78,6 +106,7 @@ const ProjectItem = ({ project }) => {
 
   const renderImage = useRenderImage(image);
   const renderProjectLinks = useRenderProjectLinks(githubLink, liveLink, slug);
+  const renderTechLogos = useRenderTechLogos(tech);
 
   // Ensure the project has a valid id before rendering
   if (!id) return null;
@@ -98,6 +127,7 @@ const ProjectItem = ({ project }) => {
               <div className={classes.placeholder}>.</div>
             </div>
           )}
+          {renderTechLogos}
         </div>
       </Link>
       <p>{description}</p>
