@@ -81,14 +81,14 @@ const useRenderTechLogos = (tech) => {
           src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/logos/${t}.svg`}
           alt={t}
           className={classes.techLogo}
-          style={{ width: '32px', height: '32px', borderRadius: '50%', objectFit: 'contain', margin: '0 5px' }}
+          style={{ width: '24px', height: '24px', borderRadius: '50%', objectFit: 'contain', margin: '0 10px' }} // Increased margin for spacing
         />
       )) : (
         <img
           src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/logos/${tech}.svg`}
           alt={tech}
           className={classes.techLogo}
-          style={{ width: '32px', height: '32px', borderRadius: '50%', objectFit: 'contain', margin: '0 5px' }}
+          style={{ width: '24px', height: '24px', borderRadius: '50%', objectFit: 'contain', margin: '0 10px' }} // Increased margin for spacing
         />
       )}
     </div>
