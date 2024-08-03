@@ -2,6 +2,8 @@
   title: Start Page
   tech:
     - Next.js
+    - Node.js
+    - React
     - Tailwind CSS
   description: Terminal-inspired, clean and customizable browser start page for geeks. Has built-in editor for customizing.
 

@@ -1,8 +1,9 @@
 ---
   title: Atomic URL
   tech:
-    - Javascript
     - Cloudflare Workers
+    - Javascript
+    - Node.js
   description: A URL shortener proof of concept built using Cloudflare Workers to show how one builds an actual URL shortener service using serverless computing.
 
   liveLink: https://dl.is
