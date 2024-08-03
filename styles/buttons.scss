@@ -16,19 +16,20 @@ button {
   text-align: center;
   border-radius: 25px;
   padding: 13px 25px;
-  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%),
-    0 1px 5px 0 rgb(0 0 0 / 20%);
-
-  // Styles for active buttons
-  &.active {
-    color: black;
-    background-color: var(--background-secondary);
-  }
-
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 
+              0 3px 1px -2px rgba(0, 0, 0, 0.12),
+              0 1px 5px 0 rgba(0, 0, 0, 0.20);
   // Styles for small buttons
   &.sm {
     width: auto; // Use auto instead of unset for better clarity
     padding: 5px 10px;
+    background-color: var(--project-button);
+  }
+  
+  // Styles for active buttons
+  &.active {
+    color: var(--background);
+    background-color: var(--background-secondary);
   }
 }
 
@@ -59,16 +60,14 @@ button {
   // Hover effect for filled buttons
   &:hover {
     background-color: var(--background-secondary);
-    color: #22272e;
+    color: var(--transparent-primary);
   }
 }
 
 // Media query for screens with a minimum width of 480px
 @media only screen and (min-width: 480px) {
   .btn {
-    & {
-      width: auto; // Use auto instead of unset for better clarity
-    }
+    width: auto; // Use auto instead of unset for better clarity
   }
 }
 
@@ -76,23 +75,19 @@ button {
 .btn-filled-project {
   color: var(--navbar-primary);
   background-color: transparent;
-  margin-top: 10px; // Default margin
+  margin: 10px auto; // Default margin and center the button
   display: flex;
   justify-content: center; // Center the button horizontally
   align-items: center; // Center the button vertically
-  margin-left: auto; // Center the button horizontally
-  margin-right: auto; // Center the button horizontally
 
   // Hover effect for project-specific filled buttons
   &:hover {
     background-color: var(--background-secondary);
-    color: #22272e;
+    color: var(--text-primary);
   }
 
   // Media query for screens with a maximum width of 768px (typical for mobile devices)
   @media (max-width: 768px) {
-    & {
-      margin-top: 45px; // Adjust margin for mobile screens
-    }
+    margin-top: 45px; // Adjust margin for mobile screens
   }
 }
