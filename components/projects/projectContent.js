@@ -1,4 +1,4 @@
-import { useMemo, lazy, Suspense } from 'react';
+import { useMemo, lazy, Suspense, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import rehypeRaw from 'rehype-raw';
 import Image from "next/image";
@@ -79,7 +79,7 @@ const renderImage = (imageName) => {
  * @param {string} props.currentTheme - The current theme ('dark' or 'light').
  * @returns {JSX.Element} The rendered ProjectContent component.
  */
-const ProjectContent = ({ project, currentTheme }) => {
+const ProjectContent = ({ project, currentTheme, showModal }) => {
   const {
     content,
     githubLink,
@@ -90,6 +90,13 @@ const ProjectContent = ({ project, currentTheme }) => {
   } = project;
 
   const customRenderers = useMemo(() => getCustomRenderers(currentTheme), [currentTheme]);
+
+  // Prevent vertical scrollbar when modal is opened
+  useEffect(() => {
+    const bodyStyle = document.body.style;
+    bodyStyle.overflow = showModal ? 'hidden' : 'auto';
+    bodyStyle.paddingRight = '0px';
+  }, [showModal]);
 
   return (
     <div className={classes.projectDetail}>
@@ -158,6 +165,7 @@ ProjectContent.propTypes = {
     slug: PropTypes.string.isRequired,
   }).isRequired,
   currentTheme: PropTypes.oneOf(['dark', 'light']).isRequired,
+  showModal: PropTypes.bool.isRequired, // Added prop type for showModal
 };
 
 export default ProjectContent;
