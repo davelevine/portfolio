@@ -1,9 +1,11 @@
+@import '../../styles/ui.scss'; // Adjust the path as needed
+
 /* Card container styles */
 .card {
   border-radius: 8px; /* Rounded corners for the card */
   padding: 25px; /* Padding inside the card */
   background-color: var(--background-card); /* Background color from CSS variable */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth background transition */
+  transition: transform $transition-speed ease, box-shadow $transition-speed ease; /* Smooth background transition */
   border: 1px solid var(--border-card); /* Border color from CSS variable */
   margin-bottom: 25px; /* Space below each card */
   display: flex; /* Flexbox layout */
@@ -60,7 +62,7 @@
   font-size: inherit; /* Inherit font size */
   text-decoration: none; /* No text decoration */
   padding: 0; /* Remove default padding */
-  transition: color 0.3s ease, transform 0.3s ease, text-decoration 0.3s ease; /* Smooth transitions */
+  transition: color $transition-speed ease, transform $transition-speed ease, text-decoration $transition-speed ease; /* Smooth transitions */
 }
 
 .card .cardAction button:hover {
@@ -95,7 +97,7 @@
   overflow: hidden; /* Hide overflow */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
   border-radius: 10px; /* Rounded corners */
-  animation: fadeIn 0.5s ease-in-out; /* Fade-in animation */
+  animation: fadeIn $transition-speed ease-in-out; /* Fade-in animation */
 }
 
 @media (min-width: 768px) {
@@ -121,7 +123,7 @@
   bottom: 0; /* Bottom of the screen */
   background: rgba(0, 0, 0, 0.75); /* Semi-transparent background */
   z-index: 999; /* Ensure overlay is below the modal */
-  animation: fadeIn 0.5s ease-in-out; /* Fade-in animation */
+  animation: fadeIn $transition-speed ease-in-out; /* Fade-in animation */
 }
 
 /* Close button styles */
@@ -140,7 +142,7 @@
   width: 2.5rem; /* Width of the button */
   height: 2.5rem; /* Height of the button */
   border-radius: 50%; /* Rounded corners */
-  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+  transition: background-color $transition-speed ease, transform $transition-speed ease; /* Smooth transitions */
 }
 
 .closeButton:hover {

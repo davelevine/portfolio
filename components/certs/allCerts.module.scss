@@ -1,3 +1,5 @@
+@import '../../styles/ui.scss'; // Adjust the path as needed
+
 .certs {
   padding: 50px 15px;
   border-radius: 12px;
@@ -12,7 +14,7 @@
   height: 5px;
   background: var(--navbar-primary);
   z-index: 1000;
-  transition: width 0.25s ease-out;
+  transition: width $transition-speed ease-out;
   border-radius: 0 0 5px 5px; /* Rounded bottom corners */
 }
 

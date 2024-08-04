@@ -1,8 +1,11 @@
+// Define the global transition speed variable
+$transition-speed: 0.5s;
+
 // Mixin for reusable .app styles
 @mixin app-styles {
   color: var(--text-primary);
   background-color: var(--background);
-  transition: background 1s;
+  transition: background $transition-speed;
   min-height: 100vh;
   overflow: hidden; // Prevent content overflow
 }

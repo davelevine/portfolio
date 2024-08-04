@@ -1,3 +1,5 @@
+@import '../../styles/ui.scss'; // Adjust the path as needed
+
 .projectDetail {
   // Mixin for common text styles to ensure reusability
   @mixin text-styles($text-color, $margin-bottom: null, $font-size: null) {
@@ -59,7 +61,7 @@
   // Styles for project links
   .projectLinks a {
     font-size: 1.2rem; // Larger font size for project links
-    transition: color 0.3s ease, transform 0.3s ease; // Add transition for hover effect
+    transition: color $transition-speed ease, transform $transition-speed ease; // Add transition for hover effect
 
     &:hover {
       color: var(--link-hover);
@@ -83,7 +85,7 @@
     border-radius: 12px;
     padding: 30px;
     background-color: var(--background-card);
-    transition: background 1s;
+    transition: background $transition-speed;
     border: 1px solid var(--border-card);
     margin: 25px 0;
     display: flex;
@@ -187,7 +189,7 @@
 
   // Styles for code collapse functionality
   details > summary span {
-    transition: all 0.3s;
+    transition: all $transition-speed;
     margin-left: 5px;
   }
 
@@ -224,7 +226,7 @@
     padding: 12px 24px;
     font-size: 1rem;
     border-radius: 30px;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    transition: background-color $transition-speed ease, color $transition-speed ease, transform $transition-speed ease;
     text-align: center;
     cursor: pointer; // Add pointer cursor for better UX
 
