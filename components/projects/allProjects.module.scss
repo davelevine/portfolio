@@ -46,6 +46,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 8px;
+  transition: transform $transition-speed ease, color $transition-speed ease;
 }
 
 .projectsGallery .galleryWrap {

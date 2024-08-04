@@ -30,7 +30,7 @@ A knowledge base I started in 2016. It has since amassed to hundreds of articles
 * Hosted with [Cloudflare Pages].
 * Site analytics by [Plausible].
 * DNS by [Cloudflare].
-* Media content hosted on [Backblaze] and served with Cloudflare.
+* Media content hosted on [Backblaze] and served with [Cloudflare].
 * Written in [Cursor].
 
   [GitHub]: https://github.com/davelevine/docs-public

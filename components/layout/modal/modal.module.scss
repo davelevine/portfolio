@@ -47,28 +47,29 @@
 
 /* Close button styles for the resume modal */
 .resumeModal .close {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 30px;
-  height: 30px;
-  font-size: 18px;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease;
-  background: rgba(0, 0, 0, 0.7);
+  background: var(--background-card); /* Background color from CSS variable */
+  border: none; /* No border */
+  font-size: 1.5rem; /* Font size */
+  position: absolute; /* Absolute position */
+  top: 20px; /* Position from the top */
+  right: 20px; /* Position from the right */
+  cursor: pointer; /* Pointer cursor on hover */
+  color: var(--text-primary);
+  display: flex; /* Flexbox layout */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+  width: 2.5rem; /* Width of the button */
+  height: 2.5rem; /* Height of the button */
+  border-radius: 50%; /* Rounded corners */
+  transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease; /* Smooth transitions */
   z-index: 1001;
 }
 
 /* Hover effects for the close button */
 .resumeModal .close:hover {
-  color: #ff4d4d;
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.1);
+  background-color: var(--background-secondary); /* Background color on hover */
+  color: var(--transparent-primary);
+  transform: scale(1.1); /* Scale up on hover */
 }
 
 /* Styles for the iframe within the resume modal */
