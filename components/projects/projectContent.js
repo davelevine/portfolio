@@ -77,9 +77,10 @@ const renderImage = (imageName) => {
  * @param {object} props - The component props.
  * @param {object} props.project - The project data.
  * @param {string} props.currentTheme - The current theme ('dark' or 'light').
+ * @param {boolean} props.showModal - Indicates if a modal is shown.
  * @returns {JSX.Element} The rendered ProjectContent component.
  */
-const ProjectContent = ({ project, currentTheme, showModal }) => {
+const ProjectContent = ({ project, currentTheme, showModal = false }) => {
   const {
     content,
     githubLink,
@@ -165,7 +166,7 @@ ProjectContent.propTypes = {
     slug: PropTypes.string.isRequired,
   }).isRequired,
   currentTheme: PropTypes.oneOf(['dark', 'light']).isRequired,
-  showModal: PropTypes.bool.isRequired, // Added prop type for showModal
+  showModal: PropTypes.bool,
 };
 
 export default ProjectContent;
