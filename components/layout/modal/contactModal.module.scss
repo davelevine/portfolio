@@ -16,12 +16,32 @@
   transform: translate(-50%, -50%);
 }
 
+/* Close button styles */
 .contactModal .close {
-  position: absolute;
-  right: 20px;
-  top: 20px;
+  background: var(--background-card); /* Background color from CSS variable */
+  border: none; /* No border */
+  font-size: 1.5rem; /* Font size */
+  position: absolute; /* Absolute position */
+  top: 20px; /* Position from the top */
+  right: 20px; /* Position from the right */
+  cursor: pointer; /* Pointer cursor on hover */
+  color: var(--text-primary);
+  display: flex; /* Flexbox layout */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+  width: 2.5rem; /* Width of the button */
+  height: 2.5rem; /* Height of the button */
+  border-radius: 50%; /* Rounded corners */
+  transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease; /* Smooth transitions */
 }
 
+.contactModal .close:hover {
+  background-color: var(--background-secondary); /* Background color on hover */
+  color: var(--transparent-primary);
+  transform: scale(1.1); /* Scale up on hover */
+}
+
+/* Remaining modal styles */
 .contactModal .inputField {
   margin: 25px 0;
 }

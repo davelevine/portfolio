@@ -6,13 +6,18 @@ import { motion } from 'framer-motion';
 const ContactModal = ({ onClose }) => {
   const [state, handleSubmit] = useForm('xzbloaed'); // TODO: replaceWithYourOwn
 
+  // Common close button component
+  const CloseButton = () => (
+    <button className={classes.close} onClick={onClose} aria-label="Close Modal">
+      ✕
+    </button>
+  );
+
   // Refactored common modal content into a separate function for reusability and clarity
   const renderModalContent = (title, message, showLinks = true) => (
     <div className={classes.modal}>
       <div className={`${classes.contactModal} ${classes.contactModalConfirmation}`}>
-        <a href='#!' className={classes.close} onClick={onClose}>
-          <i className='fa fa-xmark'></i>
-        </a>
+        <CloseButton />
         <div>
           <h2>{title}</h2>
           <p>
@@ -49,9 +54,7 @@ const ContactModal = ({ onClose }) => {
       return (
         <div className={classes.modal}>
           <div className={`${classes.contactModal} ${classes.contactModalConfirmation}`}>
-            <a href='#!' className={classes.close} onClick={onClose}>
-              <i className='fa fa-xmark'></i>
-            </a>
+            <CloseButton />
             <div>
               <h2>Thanks for reaching out!</h2>
               <p>
@@ -96,10 +99,7 @@ const ContactModal = ({ onClose }) => {
     <div className={classes.modal}>
       {renderBasedOnState() || (
         <div className={classes.contactModal}>
-          <a href='#!' className={classes.close} onClick={onClose}>
-            <i className='fa fa-xmark'></i>
-          </a>
-
+          <CloseButton />
           <h2>Contact me</h2>
 
           <form id='contactForm' className={classes.contactForm} onSubmit={handleSubmit}>
@@ -107,7 +107,6 @@ const ContactModal = ({ onClose }) => {
               <div className={classes.inputField}>
                 <label htmlFor='email'>Email Address</label>
                 <input id='email' type='email' name='email' required autoComplete="email" />
-
                 <ValidationError prefix='Email' field='email' errors={state.errors} />
               </div>
             </div>
@@ -143,6 +142,6 @@ const ContactModal = ({ onClose }) => {
       )}
     </div>
   );
-}
+};
 
 export default dynamic(() => Promise.resolve(ContactModal), { ssr: false });
