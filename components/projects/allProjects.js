@@ -13,8 +13,8 @@ const Modal = dynamic(() => import('../layout/modal/contactModal'), {
 
 // Component to animate project items when they come into view
 const ProjectItemWithAnimation = ({ project }) => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
+  const [ref, inView, entry] = useInView({
+    triggerOnce: false, // Set to false to allow repeated triggering
     threshold: 0.1, // Trigger when 10% of the item is visible
   });
 
@@ -24,7 +24,7 @@ const ProjectItemWithAnimation = ({ project }) => {
       initial={{ opacity: 0, y: 100, scale: 0.5 }}
       animate={inView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 100, scale: 0.5 }}
       exit={{ opacity: 0, y: -100, scale: 0.5 }}
-      transition={{ duration: 0.4, ease: "easeInOut" }}
+      transition={{ duration: 0.4, ease: 'easeInOut' }}
       style={{ display: 'grid' }}
     >
       <ProjectItem project={project} lazyLoad={inView} />
@@ -45,14 +45,14 @@ const AllProjects = ({ projects }) => {
   const [modalType, setModalType] = useState(''); // State to determine modal type
 
   // Ensure that each project has an id before proceeding
-  const validProjects = useMemo(() => projects.filter(project => project.id), [projects]);
+  const validProjects = useMemo(() => projects.filter((project) => project.id), [projects]);
 
   // Memoize selectedTechs using Set directly
   const selectedTechs = useMemo(() => {
     const techs = new Set();
     validProjects.forEach(({ tech }) => {
       if (Array.isArray(tech)) {
-        tech.forEach(t => techs.add(t));
+        tech.forEach((t) => techs.add(t));
       }
     });
     return Array.from(techs).sort();
@@ -91,12 +91,15 @@ const AllProjects = ({ projects }) => {
   // Motion variants for buttons
   const buttonVariants = {
     hidden: { opacity: 0, x: 100 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.3, ease: "easeInOut" } }
+    visible: { opacity: 1, x: 0, transition: { duration: 0.3, ease: 'easeInOut' } },
   };
 
   // Function to handle scroll and update progress bar
   const handleScroll = useCallback(() => {
-    const scrollProgress = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight)) * 100;
+    const scrollProgress =
+      (document.documentElement.scrollTop /
+        (document.documentElement.scrollHeight - document.documentElement.clientHeight)) *
+      100;
     const progressBar = document.getElementById('scroll-progress');
     if (progressBar) progressBar.style.width = `${scrollProgress}%`;
   }, []);
@@ -115,7 +118,7 @@ const AllProjects = ({ projects }) => {
   // Function to lazy load images
   const lazyLoadImages = useCallback(() => {
     const images = document.querySelectorAll('img[data-src]');
-    images.forEach(img => {
+    images.forEach((img) => {
       if (img.getBoundingClientRect().top < window.innerHeight) {
         img.src = img.dataset.src;
         img.removeAttribute('data-src');
@@ -144,7 +147,7 @@ const AllProjects = ({ projects }) => {
         <motion.h1
           initial={{ opacity: 0, x: -600 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
+          transition={{ duration: 0.3, ease: 'easeInOut' }}
         >
           PROJECTS
         </motion.h1>
@@ -152,7 +155,7 @@ const AllProjects = ({ projects }) => {
           <motion.h3
             initial={{ opacity: 0, x: 300 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
             <p>Sort By Tech</p>
           </motion.h3>
@@ -168,7 +171,7 @@ const AllProjects = ({ projects }) => {
                 transition: {
                   staggerChildren: 0.1,
                   duration: 0.3,
-                  ease: "easeInOut"
+                  ease: 'easeInOut',
                 },
               },
             }}
@@ -197,10 +200,10 @@ const AllProjects = ({ projects }) => {
                 style={{ borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
               >
                 <div className={classes.techLogoContainer}>
-                  <img 
-                    src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/logos/${tech}.svg`} 
-                    alt={tech} 
-                    className={classes.techLogo} 
+                  <img
+                    src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/logos/${tech}.svg`}
+                    alt={tech}
+                    className={classes.techLogo}
                     style={{ width: '32px', height: '32px', borderRadius: '50%', objectFit: 'contain' }}
                   />
                   <span className={classes.techLogoName}>{tech}</span>
@@ -218,19 +221,19 @@ const AllProjects = ({ projects }) => {
           </div>
         </div>
       </div>
-      <AnimatePresence>
-        {showModal && <Modal contact={modalType === 'contact'} onClose={closeModalHandler} />}
-      </AnimatePresence>
+      <AnimatePresence>{showModal && <Modal contact={modalType === 'contact'} onClose={closeModalHandler} />}</AnimatePresence>
     </section>
   );
 };
 
 AllProjects.propTypes = {
-  projects: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    tech: PropTypes.arrayOf(PropTypes.string).isRequired,
-    isFeatured: PropTypes.bool.isRequired,
-  })).isRequired,
+  projects: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      tech: PropTypes.arrayOf(PropTypes.string).isRequired,
+      isFeatured: PropTypes.bool.isRequired,
+    })
+  ).isRequired,
 };
 
 export default AllProjects;
