@@ -5,7 +5,7 @@
     - Node.js
     - React
     - Tailwind CSS
-  description: Terminal-inspired, clean and customizable browser start page for geeks. Has built-in editor for customizing.
+  description: A sleek, terminal-inspired browser start page that offers extensive customization options for tech enthusiasts. It includes a built-in editor for seamless personalization.
 
   liveLink: https://dash.xdv.com
   githubLink: https://github.com/davelevine/start-page
@@ -15,25 +15,22 @@
     - screenshot: 01-home.webp
     - screenshot: 02-home.webp
       description: >-
-              Terminal-inspired, clean and customizable browser start page for geeks. Has built-in editor for customizing.
+              A sleek, terminal-inspired browser start page that offers extensive customization options for tech enthusiasts. It includes a built-in editor for seamless personalization.
 
 ---
 
 ## Description
 
-Terminal-inspired, clean and customizable browser start page for geeks. Built with [Next.js] and [Tailwind CSS]. Has built-in editor for customizing.
+A sleek, terminal-inspired browser start page that offers extensive customization options for tech enthusiasts. It includes a built-in editor for seamless personalization.
 
 ## Key Takeaways
 
-- Efficient Link Management
-  - Quickly filter and open links.
-  - Default search for unmatched filters.
-- Use custom commands for specific searches.
-- Visual and UI Customization
-- Intuitive Interface
-  - Customizable Fetch UI.
-  - Autosuggest, autocomplete, and link cycling.
-- Built-in editor
+- Built with [Next.js] and [Tailwind CSS].
+- Efficient link management and quick filtering.
+- Custom commands for searches.
+- Visual and UI customization options.
+- Intuitive interface with autosuggest, autocomplete, and link cycling.
+- Built-in editor for easy customization.
 
-  [Next.js]: https://nextjs.org
-  [Tailwind CSS]: https://tailwindcss.com
+  [Next.js]: https://nextjs.org/
+  [Tailwind CSS]: https://tailwindcss.com/

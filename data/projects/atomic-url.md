@@ -4,7 +4,7 @@
     - Cloudflare Workers
     - Javascript
     - Node.js
-  description: A URL shortener proof of concept built using Cloudflare Workers to show how one builds an actual URL shortener service using serverless computing.
+  description: A proof of concept for a URL shortener developed with Cloudflare Workers, demonstrating the process of creating a fully functional URL shortening service using serverless architecture.
 
   liveLink: https://dl.is
   githubLink: https://github.com/davelevine/atomic-url
@@ -14,13 +14,13 @@
     - screenshot: 01-home.webp
     - screenshot: 02-home.webp
       description: >-
-              A URL shortener proof of concept built using Cloudflare Workers to show how one builds an actual URL shortener service using serverless computing.
+              A proof of concept for a URL shortener developed with Cloudflare Workers, demonstrating the process of creating a fully functional URL shortening service using serverless architecture.
 
 ---
 
 ## Description
 
-A URL shortener proof of concept built using Cloudflare Workers to show how one builds an actual URL shortener service using serverless computing.
+A proof of concept for a URL shortener developed with Cloudflare Workers, demonstrating the process of creating a fully functional URL shortening service using serverless architecture.
 
 ## Key Takeaways
 

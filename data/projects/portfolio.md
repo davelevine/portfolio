@@ -22,7 +22,7 @@
 
 ## Description
 
-My personal portfolio developed with [Next.js] and [React]. Certs and Projects sections are written in markdown and rendered with [react-markdown] and [react-syntax-highlighter].
+My personal portfolio developed with Next.js and React. Certs and Projects sections are written in markdown and rendered with react-markdown and react-syntax-highlighter.
 
 ## Key Takeaways
 
@@ -30,7 +30,7 @@ My personal portfolio developed with [Next.js] and [React]. Certs and Projects s
 - Lighthouse score: [94/100] (Mobile), [100/100] (Desktop)
 - Static Site
 - Posts and projects written in markdown
-- Rendered using react-markdown and react-syntax-highlighter
+- Rendered using [react-markdown] and [react-syntax-highlighter]
 
   [Next.js]: https://nextjs.org/
   [React]: https://reactjs.org/
