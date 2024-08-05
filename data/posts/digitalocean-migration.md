@@ -7,6 +7,8 @@ date: "2020-08-30"
 description: As much as I enjoy using AWS, to use it how I would like to use it is just too expensive. Because of this, I've hosted the large majority of my cloud infrastructure on DigitalOcean. This boils down to two reasons — it's a lot easier to use than AWS, and the pricing is predictable.
 ---
 
+<!--markdownlint-disable-->
+
 ## Background
 
 As much as I enjoy using AWS, to use it how I would like to use it is just too expensive. Because of this, I've hosted the large majority of my cloud infrastructure on DigitalOcean. This boils down to two reasons — it's a lot easier to use than AWS, and the pricing is predictable.
@@ -15,13 +17,13 @@ As much as I enjoy using AWS, to use it how I would like to use it is just too e
 
 Could I estimate how much it would cost for me to host everything on AWS? Sure, and here's the breakdown...
 
-![Screen-Shot-2020-08-29-at-11.46.13-PM](https://cdn.levine.io/uploads/images/gallery/2022-09//08/Screen-Shot-2020-08-29-at-11.46.13-PM.png)
+<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//08/Screen-Shot-2020-08-29-at-11.46.13-PM.png" alt="Screen Shot 2020-08-29 at 11.46.13 PM" />
 
 Of course, this is based off a quick estimate that doesn't really account for actual usage, including snapshots and data transfer. The thing is, regardless of all that, nearly $50/month is a lot. Factor in something like data transfer, and it could end up being a lot more. The same configuration on DigitalOcean works out to be a lot cheaper.
 
 This is my bill as of the moment. This will end up being even cheaper next month since I decommissioned two droplets this month and also disabled backups in favor of snapshots.
 
-![Screen-Shot-2020-08-29-at-11.52.09-PM](https://cdn.levine.io/uploads/images/gallery/2022-09//08/Screen-Shot-2020-08-29-at-11.52.09-PM.png)
+<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//08/Screen-Shot-2020-08-29-at-11.52.09-PM.png" alt="Screen Shot 2020-08-29 at 11.52.09 PM" />
 
 It may not seem like that big of a difference, but at ~$11-12/mo, that's pretty big to me. Anyway, let me not get too lost in the weeds with pricing and get back to the point of this article.
 
@@ -65,12 +67,12 @@ The blog was almost as seamless, but did take some extra configuring to connect 
 
 Finally, it was time for my knowledge base. I spun up a container of Bookstack, pointed it towards the managed database, updated the IP information with Cloudflare. I navigated to the URL and there it was.
 
-> **Some background** — my knowledge base has grown very large, currently sitting at the following stats:
->
-> * 218 pages
-> * 66 chapters
-> * 18 books
-> * 3 shelves
+`Some background` — my knowledge base has grown very large, currently sitting at the following stats:
+
+* 218 pages
+* 66 chapters
+* 18 books
+* 3 shelves
 
 Because of the sheer amount of content I was sitting on, I decided to snapshot the droplet and power it down. I hung onto it for a week while I went through literally every single page, chapter, book and shelf to verify nothing was missing.
 
@@ -86,9 +88,9 @@ I created a bucket and configured it so that it would use S3 Standard, but inclu
 
 At this point, the droplet was beginning to show signs of slowing down, so I needed to resize it. I started small and kept the single CPU, but bumped the memory to 2GB. It seemed fine at first, but any real usage started showing it wasn't enough. I played around with a few different configurations until finally settling on my current one...
 
-> * 2vCPUs
-> * 4GB of RAM
-> * 80GB SSD
+* 2vCPUs
+* 4GB of RAM
+* 80GB SSD
 
 I should also mention I installed a number of miscellaneous apps that I was hosting on my homelab. The decision to migrate them had more to do with their value than anything else. If I had something catastrophic happen to my homelab, I'd like to know those are safe.
 

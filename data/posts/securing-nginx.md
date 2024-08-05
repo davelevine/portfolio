@@ -7,6 +7,8 @@ date: "2020-09-06"
 description: A few weeks ago, I was reading an article on Scott Helme's blog about caching Ghost with Nginx. In doing this, I made this blog and a number of other services that I use kick into overdrive, but that whole endeavor is best left for its own article.
 ---
 
+<!--markdownlint-disable-->
+
 ## Starting line
 
 A few weeks ago, I was reading an article on [Scott Helme's blog](https://scotthelme.co.uk/) about [caching Ghost with Nginx](https://scotthelme.co.uk/caching-ghost-with-nginx/). In doing this, I made this blog and a number of other services that I use kick into overdrive, but that whole endeavor is best left for its own article.
@@ -25,15 +27,13 @@ There were a number of resources I found about securing Nginx, but the problem w
 
 For example, I tried the following header that kept cropping up in my research, only to find out that it completely bypassed multi-factor auth:
 
-> proxy_hide_header Set-Cookie;
+`proxy_hide_header Set-Cookie;`
 
-The breakdown of the **proxy_hide_header is as follows:
+The breakdown of the `proxy_hide_header` is as follows:
 
 > By default, nginx does not pass the header fields “Date”, “Server”, “X-Pad”, and “X-Accel-...” from the response of a proxied server to a client. The proxy_hide_header directive sets additional fields that will not be passed. If, on the contrary, the passing of fields needs to be permitted, the proxy_pass_header directive can be used.
 
-Because the header was effectively being bypassed, it was breaking multi-factor auth.
-
-> To be clear, I have multi-factor auth enabled through [Cloudflare Access](https://www.cloudflare.com/teams-access/) using [Okta](https://www.okta.com/) as the IdP.
+Because the header was effectively being bypassed, it was breaking multi-factor auth. To be clear, I have multi-factor auth enabled through [Cloudflare Access](https://www.cloudflare.com/teams-access/) using [Okta](https://www.okta.com/) as the IdP.
 
 ## Trial and Error
 
@@ -62,7 +62,7 @@ For reference, the resources I used in order to make things work the way I wante
 
 The problem with having this site password protected is that I can't get an accurate read on the headers; only an approximation. This is done by using my knowledge base as a comparison since the same headers and caching are used throughout the Nginx config file.
 
-![Screen-Shot-2020-09-05-at-10.52.32-PM](https://cdn.levine.io/uploads/images/gallery/2022-09//09/Screen-Shot-2020-09-05-at-10.52.32-PM.png)
+<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//09/Screen-Shot-2020-09-05-at-10.52.32-PM.png" alt="Screen Shot 2020-09-05 at 10.52.32 PM" />
 
 As you can see, my knowledge base headers are in great shape, which effectively means the headers for this blog are in great shape.
 

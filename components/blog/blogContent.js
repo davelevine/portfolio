@@ -35,6 +35,15 @@ const getCustomRenderers = (currentTheme) => ({
       </code>
     );
   },
+  blockquote({ node, children, ...props }) {
+    return (
+      <div className={classes.quoteBox}>
+        <blockquote {...props}>
+          {children}
+        </blockquote>
+      </div>
+    );
+  },
 });
 
 /**

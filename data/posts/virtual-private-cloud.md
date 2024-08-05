@@ -7,6 +7,8 @@ date: "2020-04-19"
 description: I just finished the Virtual Private Cloud (VPC) section of the AWS Certified Solutions Architect course and I wanted to write it out in order to gain some clarity around it.
 ---
 
+<!--markdownlint-disable-->
+
 ## Introduction
 
 I just finished the Virtual Private Cloud (VPC) section of the AWS Certified Solutions Architect course and I wanted to write it out in order to gain some clarity around it.
@@ -42,7 +44,7 @@ All the concepts individually are not very difficult to understand, but putting 
 
 The following is what was required to be built for this lab, and what I'll be discussing below:
 
-![lab_diagram_customvpc](https://cdn.levine.io/uploads/images/gallery/2022-09//04/lab_diagram_customvpc.png)
+<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//04/lab_diagram_customvpc.png" alt="lab diagram custom VPC" />
 
 ### Creation of VPC and Subnet Architecture
 
@@ -52,7 +54,7 @@ The lab has you create a three Availability Zone (AZ), three-app tier subnet lay
 
 The layout looked like the following:
 
-![Screen-Shot-2020-04-19-at-10.12.41-AM](https://cdn.levine.io/uploads/images/gallery/2022-09//04/Screen-Shot-2020-04-19-at-10.12.41-AM.png)
+<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//04/Screen-Shot-2020-04-19-at-10.12.41-AM.png" alt="Screen Shot 2020-04-19 at 10.12.41 AM" />
 
 10.0.12.0/24, 10.0.13.0/24, 10.0.14.0/24, and 10.0.15.0/24 were reserved for the fourth tier in four AZs.
 
@@ -69,18 +71,19 @@ The main points to remember are:
 
 ### Bastion Hosts
 
-I've never heard this terminology prior to this course. I've always known them as *jump boxes*, but I understand why *bastion host* is used. This section didn't give me much trouble as I was already familiar with them, but I just wanted to point a real world example for future reference...
+I've never heard this terminology prior to this course. I've always known them as `jump boxes`, but I understand why `bastion host` is used. This section didn't give me much trouble as I was already familiar with them, but I just wanted to point a real world example for future reference...
 
-> At my job, I often have to run a SQL query to obtain foreign grant sponsors for reporting. Because I have to run the query from a Production database, the security around it is tight. The jump box lives on a server and hosts MS SQL Server with access to the Production database. I have access to RDP into the server and appropriate credentials to run these queries.
+At my job, I often have to run a SQL query to obtain foreign grant sponsors for reporting. Because I have to run the query from a Production database, the security around it is tight. The jump box lives on a server and hosts MS SQL Server with access to the Production database. I have access to RDP into the server and appropriate credentials to run these queries.
 
 ### NAT Gateway
 
 Allows for private instances to gain access to the public Internet and/or other AWS services. The Internet cannot initiate a connection with those instances.
 
 From the [AWS Documentation](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html):
+
 > The following diagram illustrates the architecture of a VPC with a NAT gateway. The main route table sends Internet traffic from the instances in the private subnet to the NAT gateway. The NAT gateway sends the traffic to the Internet gateway using the NAT gateway’s Elastic IP address as the source IP address.
 
-![nat-gateway-diagram](https://cdn.levine.io/uploads/images/gallery/2022-09//04/nat-gateway-diagram.png)
+<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//04/nat-gateway-diagram.png" alt="NAT gateway diagram" />
 
 Three different NAT gateways were required to be created for this portion of the lab, one for each public subnet.
 

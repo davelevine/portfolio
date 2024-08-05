@@ -8,6 +8,8 @@ date: "2020-10-04"
 description: Much to my chagrin, I find myself making a configuration change that I have high hopes for, but ends up causing more problems than it solves. This is no different from what happened to me a few days ago by making a firewall change on my homelab.
 ---
 
+<!--markdownlint-disable-->
+
 ## Primer
 
 Much to my chagrin, I find myself making a configuration change that I have high hopes for, but ends up causing more problems than it solves. This is no different from what happened to me a few days ago by making a firewall change on my homelab.
@@ -29,11 +31,13 @@ I could have an entirely separate post about this to go into detail, but the bot
 
 Well, in deciding to no longer go that route, I've put the effort into connecting as many services as I can to Slack. This way, if something happens, I'll immediately get a notification about it instead of having to rely on looking at a monitoring dashboard.
 
-My current notification setup can be found [here]((<https://cdn.levine.io/uploads/images/gallery/2020-10/Tv2MhDAaCI67cYgE-slack-mind-map.png>).
+My current notification setup is as follows:
+
+<Image src="https://cdn.levine.io/uploads/images/gallery/2020-10/Tv2MhDAaCI67cYgE-slack-mind-map.png" alt="Slack Mind Map" />
 
 All that long-winded explanation aside, the downside to this is how nice Cloudflare and Uptime Robot play with pfSense. All of my services are monitored in some form by Uptime Robot, but everything in my homelab goes...
 
-pfSense --> Cloudflare --> Uptime Robot --> etc
+pfSense > Cloudflare > Uptime Robot > etc
 
 The problem is that after a few days, I begin receiving notifications from Uptime Robot that my internal services are down with a resulting 503 or 522 error. The services, however, aren't actually down, but for some reason, Cloudflare thinks otherwise.
 
@@ -41,7 +45,7 @@ I've run through countless configuration changes in Cloudflare to make sure it p
 
 I figured it might be worthwhile to whitelist the [Cloudflare IPs](https://www.cloudflare.com/ips-v4) on pfSense.
 
-I created this whitelist in pfSense under **pfBlockerNG --> IP --> IPv4** and set it to **Permit Outbound**. Updated the service and everything seemed to be running as it should.
+I created this whitelist in pfSense under `pfBlockerNG > IP > IPv4` and set it to `Permit Outbound`. Updated the service and everything seemed to be running as it should.
 
 This brings us to the present.
 
@@ -53,8 +57,8 @@ This is unusual because my Plex VM has become incredibly self-sufficient, so eve
 
 I tried pulling in the metadata manually, but noticed that it wasn't finding any. The metadata pulls in from the following two sources:
 
-- The Movie Database
-- TheTVDB
+- [The Movie Database](https://www.themoviedb.org)
+- [TheTVDB](https://thetvdb.com)
 
 I let it go overnight because I didn't have the time to troubleshoot further. Fast-forward to today...
 
@@ -78,12 +82,12 @@ Problem solved? Not quite. I still wanted to get the Cloudflare IPs whitelisted 
 
 Because of an authentication issue I had awhile back with getting Plex working on one of my restricted VLANs, I setup an alias to allow traffic from <https://plex.tv> to that particular VLAN. This has been tremendously helpful, so I figured I may get lucky with doing the same for the Cloudflare IPs.
 
-I went into **Firewall --> Aliases --> URLs** and added the [Cloudflare IPs](https://www.cloudflare.com/ips-v4) site. Navigated to **Firewall --> Rules** and created the following firewall rule:
+I went into `Firewall > Aliases > URLs` and added the [Cloudflare IPs](https://www.cloudflare.com/ips-v4) site. Navigated to `Firewall > Rules` and created the following firewall rule:
 
-- **Action**: Pass
-- **Interface**: WAN
-- **Source**: Single host or alias | Cloudflare alias
-- **Destination**: LAN Net
-- **Gateway**: WAN_DHCP
+- `Action`: Pass
+- `Interface`: WAN
+- `Source`: Single host or alias | Cloudflare alias
+- `Destination`: LAN Net
+- `Gateway`: WAN_DHCP
 
 As of the time of this writing, it's only been about 6 hours since I made this change, so it may be too soon to tell. However, things have been stable, and I haven't received any notifications. I'll continue to monitor things and update if necessary, but hopefully I won't have to.

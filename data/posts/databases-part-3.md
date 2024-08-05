@@ -7,36 +7,38 @@ date: "2020-06-06"
 description: I meant to get to finishing this up shortly after my last post, but life comes at you fast sometimes. No excuses though, as I've been continuing with my course and should be finished within the next day or two. In the meantime, I still have a bunch of content to write, so let's get to it.
 ---
 
+<!--markdownlint-disable-->
+
 ## Preface
 
 I meant to get to finishing this up shortly after my last post, but life comes at you fast sometimes. No excuses though, as I've been continuing with my course and should be finished within the next day or two. In the meantime, I still have a bunch of content to write, so let's get to it.
 
 <!-- more -->
 
-The link to the post about Aurora can be found [here](../posts/databases-part-2.md)
+The link to the post about Aurora can be found [here](../blog/databases-part-2).
 
 ## NoSQL
 
 NoSQL databases are just as they sound — they contain unstructured data that has been added to tables without the use of SQL. In this case, I'm referring to DynamoDB, the AWS NoSQL offering.
 
-> Because I'm in no way a database guy, I'll be relying a lot on the material from Linux Academy.
+_`Because I'm in no way a database guy, I'll be relying a lot on the material from Linux Academy.`_
 
 There are quite a few terms to be aware of when dealing with DynamoDB that I'll outline below...
 
-* **TABLE** — a collection of items that share the same partition key (PK) or partition key and sort key (SK) together with other configuration and performance settings.
-* **ITEM** — a collection of attributes (up to **400 KB** in size) inside a table that shares the **same key structure** as every other item in the table.
-* **ATTRIBUTE** — a key and value — an attribute name and value.
+* `TABLE` — a collection of items that share the same partition key (PK) or partition key and sort key (SK) together with other configuration and performance settings.
+* `ITEM` — a collection of attributes (up to `400 KB` in size) inside a table that shares the `same key structure` as every other item in the table.
+* `ATTRIBUTE` — a key and value — an attribute name and value.
 
-![Screen-Shot-2020-06-05-at-11.26.10-PM](https://cdn.levine.io/uploads/images/gallery/2022-09//06/Screen-Shot-2020-06-05-at-11.26.10-PM.png)
+<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//06/Screen-Shot-2020-06-05-at-11.26.10-PM.png" alt="Screen Shot 2020-06-05 at 11.26.10 PM" />
 
 ## Capacity Modes
 
 Capacity modes are what DynamoDB uses in order to read/write data to tables.
 
-There are two capacity modes — **provisioned throughput** (default) and **on-demand mode**. Both of which handle performance differently, which is outlined below...
+There are two capacity modes — `provisioned throughput` (default) and `on-demand mode`. Both of which handle performance differently, which is outlined below...
 
 * When using on-demand mode, DynamoDB automatically scales to handle performance demands and bills a per-request charge.
-* When using provisioned throughput mode, each table is configured with read capacity units (**RCU**) and write capacity units (**WCU**).
+* When using provisioned throughput mode, each table is configured with read capacity units (`RCU`) and write capacity units (`WCU`).
 
 > Every operation on ITEMS consumes at least 1 RCU or WCU — partial RCU/WCU cannot be consumed.
 
@@ -56,7 +58,7 @@ There are two capacity modes — **provisioned throughput** (default) and **on-d
   * Five operations of 200 bytes consumes 5 WCU.
 * Atomic transactions require 2x the WCU to complete.
 
-![Screen-Shot-2020-06-05-at-11.42.46-PM](https://cdn.levine.io/uploads/images/gallery/2022-09//06/Screen-Shot-2020-06-05-at-11.42.46-PM.png)
+<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//06/Screen-Shot-2020-06-05-at-11.42.46-PM.png" alt="Screen Shot 2020-06-05 at 11.42.46 PM" />
 
 ## DynamoDB Consistency
 
@@ -72,33 +74,30 @@ From the Linux Academy Orion Papers...
 
 From the Linux Academy Orion Papers...
 
-A system needs to store 60 patient records of 1.5 KB, each, every minute. What WCU should you allocate on the patient record table?
-
-* 60 records per minute = ~1 per second (and the DDB RCU/WCU buffer can smooth this out if not)
-* Each record is 1.5 KB. 1 WCU = 1 KB per second, so each
-record requires 2 WCU.
-* A WCU setting of 2 is required on the table.
-
-A weather application reads data from a DynamoDB table. Each
-item in the table is 7 KB in size. How many RCUs should be set on the table to allow for 10 reads per second?
-
-* 1 item is 7 KB, which is 2 RCU (1 RCU is 4 KB).
-* 10 reads per second for 7 KB items = 20 RCU
-* But the question didn't specify if eventual or strong
-consistency is required. The default is eventual, which allows for 2 reads of 4 KB per second for 1 RCU.
-* Assuming eventually consistent reads, the answer is 10 RCU.
+>A system needs to store 60 patient records of 1.5 KB, each, every minute. What WCU should you allocate on the patient record table?
+>
+>* 60 records per minute = ~1 per second (and the DDB RCU/WCU buffer can smooth this out if not)
+>* Each record is 1.5 KB. 1 WCU = 1 KB per second, so each record requires 2 WCU.
+>* A WCU setting of 2 is required on the table.
+>
+>A weather application reads data from a DynamoDB table. Each item in the table is 7 KB in size. How many RCUs should be set on the table to allow for 10 reads per second?
+>
+>* 1 item is 7 KB, which is 2 RCU (1 RCU is 4 KB).
+>* 10 reads per second for 7 KB items = 20 RCU
+>* But the question didn't specify if eventual or strong consistency is required. The default is eventual, which allows for 2 reads of 4 KB per second for 1 RCU.
+>* Assuming eventually consistent reads, the answer is 10 RCU.
 
 ## Streams
 
 From the Linux Academy Orion Papers...
 
-![Screen-Shot-2020-06-05-at-11.51.51-PM](https://cdn.levine.io/uploads/images/gallery/2022-09//06/Screen-Shot-2020-06-05-at-11.51.51-PM.png)
+<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//06/Screen-Shot-2020-06-05-at-11.51.51-PM.png" alt="Screen Shot 2020-06-05 at 11.51.51 PM" />
 
 ## Indexes
 
 From the Linux Academy Orion Papers...
 
-![Screen-Shot-2020-06-05-at-11.52.43-PM](https://cdn.levine.io/uploads/images/gallery/2022-09//06/Screen-Shot-2020-06-05-at-11.52.43-PM.png)
+<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//06/Screen-Shot-2020-06-05-at-11.52.43-PM.png" alt="Screen Shot 2020-06-05 at 11.52.43 PM" />
 
 ## An Understanding
 

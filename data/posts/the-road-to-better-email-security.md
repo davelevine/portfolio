@@ -9,6 +9,7 @@ date: "2021-02-08"
 description: This is going to be a pretty long post as the project has span almost an entire week. I think in order to understand where I am today, it's worth knowing where I started.
 ---
 
+<!--markdownlint-disable-->
 
 ## Preface
 
@@ -36,7 +37,7 @@ Nowadays, with Google scanning everyone's emails and prying into as much of your
 
 The more I looked into it, the more I kept seeing a company called [SimpleLogin](https://simplelogin.io). Their service allows you to link your personal inbox to a seemingly unlimited number of aliases. The following diagram from their website shows how it works.
 
-![hero](https://cdn.levine.io/uploads/images/gallery/2022-09//02/hero.svg)
+<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//02/hero.svg" alt="SimpleLogin Diagram" />
 
 I found this concept to be a game changer because you can seemingly create an alias for every service you use. Not only that, but you can add a PGP key to each mailbox to encrypt everything that is sent to that alias (more on that later). Having virtually every email that arrives at my mailbox be encrypted, and also see exactly who is selling your email address should you start getting spam to a certain alias? Sign me up!
 

@@ -62,7 +62,7 @@ Install Docker and the following containers:
 
 - Migrate any crontabs from all VMs on Z620
   - Adjust file/folder paths as necessary and ensure they all work as they should.
-  - **Make absolutely sure that all files/folders have the proper permissions to work, especially regarding the Google Photos backup**
+  - `Make absolutely sure that all files/folders have the proper permissions to work, especially regarding the Google Photos backup`
 - <s>Migrate Nagios XI to RasPi</s>
   - This <s>may not even be</s> is not necessary as Glances will <s>likely</s> cover what's necessary. <s>May need to take health notifications for disk, ram, etc into consideration.</s>
     - Edit: After looking into this further, will install Smartmontools from Ubuntu pkg repo and run it every month with a cronjob. Report to healthchecks.io.

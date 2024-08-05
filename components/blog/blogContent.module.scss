@@ -255,12 +255,51 @@
     }
   }
 
+  // Styles for blockquote
+  blockquote {
+    padding: 15px;
+    background-color: var(--background-card);
+    border-left: 5px solid var(--accent);
+    margin: 20px 0;
+    color: var(--text-primary);
+    border-radius: 8px;
+  }
+
   code {
     white-space: pre-wrap; // Ensure inline code does not break into new lines
     word-wrap: break-word; // Allow long words to be broken and wrap to the next line
-    background-color: var(--background-secondary); // Light grey background for inline code
-    color: var(--background);
+    color: var(--background-secondary);
     border-radius: 5px; // Slightly rounded corners for inline code
     padding: 2px 4px; // Padding around inline code for better readability
+  }
+
+  // Styles for blockquotes to ensure proper rendering in GitHub Flavored Markdown
+  blockquote {
+    padding: 15px;
+    background-color: var(--background-card);
+    border-left: 5px solid var(--accent);
+    margin: 20px 0;
+    color: var(--text-primary);
+    border-radius: 8px;
+  }
+
+  // Styles for code blocks
+  pre {
+    background-color: var(--background-card);
+    padding: 10px;
+    border-radius: 8px;
+    overflow: auto; // Allow scrolling for long code blocks
+  }
+
+  // Styles for lists
+  ul, ol {
+    margin: 10px 0; // Add margin for lists
+    padding-left: 20px; // Indent lists
+  }
+
+  // Styles for strikethrough text
+  del {
+    text-decoration: line-through;
+    color: var(--text-tertiary);
   }
 }

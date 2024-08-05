@@ -23,10 +23,10 @@ One of the additions to my resume has been a *Technical Proficiencies* section, 
 
 Agile is officially summarized by the following 4 points:
 
-* **Individuals and interactions** over processes and tools
-* **Working software** over comprehensive documentation
-* **Customer collaboration** over contract negotiation
-* **Responding to change** over following a plan
+* `Individuals and interactions` over processes and tools
+* `Working software` over comprehensive documentation
+* `Customer collaboration` over contract negotiation
+* `Responding to change` over following a plan
 
 That's a good high level overview, but I think it's important to find out what exactly that means to me. Let's dive in...
 

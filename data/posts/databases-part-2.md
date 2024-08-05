@@ -7,7 +7,9 @@ date: "2020-05-15"
 description: This will be a continuation in the Database series covering the AWS offerings as part of the AWS Solutions Architect Associate exam. I covered RDS in part 1 and will continue with Aurora in this part.
 ---
 
-This will be a continuation in the Database series covering the AWS offerings as part of the AWS Solutions Architect: Associate exam. I covered RDS in [part 1](../posts/databases-part-1.md) and will continue with Aurora in this part.
+<!--markdownlint-disable-->
+
+This will be a continuation in the Database series covering the AWS offerings as part of the AWS Solutions Architect: Associate exam. I covered RDS in [part 1](../blog/databases-part-1) and will continue with Aurora in this part.
 
 <!-- more -->
 
@@ -27,7 +29,7 @@ The cluster data is replicated six times across three AZs, making it extremely d
 
 Because Aurora is constantly backing up to S3, it allows for point in time restorations using backtracking. This is not a good replacement for traditional backups, but is generally suitable for recovering from user errors.
 
-Additional information on Backtrack can be found [here](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Managing.Backtrack.html)
+Additional information on Backtrack can be found [here](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Managing.Backtrack.html).
 
 ### Cluster Architecture
 
@@ -35,28 +37,28 @@ The following has been taken from the Orion Papers offered by Linux Academy:
 
 * Cluster volume scales automatically, only bills for consumed data, and is constantly backed up to S3.
 * Aurora replicas improve availability, can be promoted to be a primary instance quickly, and allow for efficient read scaling.
-* Reads and writes use the **cluster endpoint**.
-* Reads can use the **reader endpoint**, which balances connections over all
+* Reads and writes use the `cluster endpoint`.
+* Reads can use the `reader endpoint`, which balances connections over all
 replica instances.
 
-![Screen-Shot-2020-05-14-at-11.51.56-PM](https://cdn.levine.io/uploads/images/gallery/2022-09//05/Screen-Shot-2020-05-14-at-11.51.56-PM.png)
-
-![Screen-Shot-2020-05-15-at-12.06.28-AM](https://cdn.levine.io/uploads/images/gallery/2022-09//05/Screen-Shot-2020-05-15-at-12.06.28-AM.png)
+<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//05/Screen-Shot-2020-05-14-at-11.51.56-PM.png" alt="Screen Shot 2020-05-14 at 11.51.56 PM" />
+<br></br>
+<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//05/Screen-Shot-2020-05-15-at-12.06.28-AM.png" alt="Screen Shot 2020-05-15 at 12.06.28 AM" />
 
 ### Best Practices
 
 As mentioned in the above image, there are a handful of best practices to remember regarding resiliency and scaling that I'll list below:
 
 * To improve resiliency, use additional replicas
-* To scale **write** workloads, scale up the instance size.
-* To scale **read** workloads, scale out (add additional replicas)
+* To scale `write` workloads, scale up the instance size.
+* To scale `read` workloads, scale out (add additional replicas)
 
 ## Aurora Serverless
 
 The Orion Papers describe Aurora Serverless as follows:
-> Aurora Serverless is based on the same database engine as Aurora, but instead of provisioning certain resource allocation, Aurora Serverless handles this as a service. You simply specify a minimum and maximum number of Aurora capacity units (**ACUs**) — Aurora Serverless can use the **Data API**.
+> Aurora Serverless is based on the same database engine as Aurora, but instead of provisioning certain resource allocation, Aurora Serverless handles this as a service. You simply specify a minimum and maximum number of Aurora capacity units (`ACUs`) — Aurora Serverless can use the `Data API`.
 
-![Screen-Shot-2020-05-15-at-12.18.01-AM](https://cdn.levine.io/uploads/images/gallery/2022-09//05/Screen-Shot-2020-05-15-at-12.18.01-AM.png)
+<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//05/Screen-Shot-2020-05-15-at-12.18.01-AM.png" alt="Screen Shot 2020-05-15 at 12.18.01 AM" />
 
 ## Additional Resources
 
@@ -68,4 +70,4 @@ There are additional topics that lend to database migration and working with que
 
 ## To Be Continued
 
-This marks the end of part 2, and the SQL end of AWS databases. Part 3 will focus on NoSQL databases, specifically DynamoDB.
+This marks the end of part 2, and the SQL end of AWS databases. [Part 3](../blog/databases-part-3) will focus on NoSQL databases, specifically DynamoDB.

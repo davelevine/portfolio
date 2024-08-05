@@ -21,7 +21,7 @@ This article will describe the challenges of each service/app, along with the cu
 
 <!-- more -->
 
-**Edit**: To configure Dracula theme for MkDocs, use this comment as a reference...
+`Edit`: To configure Dracula theme for MkDocs, use this comment as a reference...
 
 <https://github.com/facelessuser/pymdown-extensions/pull/857#issuecomment-602085247>
 

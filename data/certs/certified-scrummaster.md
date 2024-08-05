@@ -17,13 +17,13 @@ The CSM certification is not just a piece of paper; it signifies my commitment t
 
 Here's why I hold this certification in high regard:
 
-1. **Embracing Agile Philosophy**: Agile is about more than just processes; it's a mindset that values customer collaboration, responsiveness to change, and the delivery of working solutions. The CSM journey has deepened my appreciation for these Agile principles and their application in real-world scenarios.
+1. `Embracing Agile Philosophy`: Agile is about more than just processes; it's a mindset that values customer collaboration, responsiveness to change, and the delivery of working solutions. The CSM journey has deepened my appreciation for these Agile principles and their application in real-world scenarios.
 
-2. **Facilitating Scrum Teams**: The heart of Scrum is the collaborative, self-organizing team. As a Certified ScrumMaster, I've learned to guide and support these teams, enabling them to deliver high-quality products and adapt to evolving project requirements gracefully.
+2. `Facilitating Scrum Teams`: The heart of Scrum is the collaborative, self-organizing team. As a Certified ScrumMaster, I've learned to guide and support these teams, enabling them to deliver high-quality products and adapt to evolving project requirements gracefully.
 
-3. **Continuous Improvement**: Agile is synonymous with constant enhancement. This certification journey has shown me the importance of fostering a culture of continuous improvement, where teams are encouraged to inspect and adapt, leading to better outcomes and higher customer satisfaction.
+3. `Continuous Improvement`: Agile is synonymous with constant enhancement. This certification journey has shown me the importance of fostering a culture of continuous improvement, where teams are encouraged to inspect and adapt, leading to better outcomes and higher customer satisfaction.
 
-4. **Real-World Application**: The CSM certification goes beyond theory; it emphasizes practical application. I've had the privilege of implementing Scrum principles in actual projects, which has significantly improved project results and the overall team dynamic.
+4. `Real-World Application`: The CSM certification goes beyond theory; it emphasizes practical application. I've had the privilege of implementing Scrum principles in actual projects, which has significantly improved project results and the overall team dynamic.
 
 In essence, my journey to become a Certified ScrumMaster represents a transformative experience. It has armed me with the tools and know-how to navigate the complex landscape of Agile project management. I'm enthusiastic about using this newfound expertise to drive positive change within my organization and the broader Agile community.
 

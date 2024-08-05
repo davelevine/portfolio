@@ -23,17 +23,17 @@ Of course, running low on space is subjective — it still has north of 2TB rema
 
 My NAS backup architecture is fairly simple, but I suppose a bit more complex than average. The diagram below lists my backup architecture in broad strokes, but gives a good idea of what backs up to where.
 
-![Backup_Diagram](https://cdn.levine.io/uploads/images/gallery/2022-09//06/Backup_Diagram.png)
+<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//06/Backup_Diagram.png" alt="Backup Diagram" />
 
 As can be seen from this diagram, all machines in one way or another all backup to my NAS. I'll break it down in broad strokes.
 
-* **XCP-NG**: All VMs, configs and metadata
-* **Dave's Computers**:
-  * **Manjaro**: Timeshift snapshots and data
-  * **MBP**: Snapshots
-* **Maria's Computers**:
-  * **Win7**: N/A
-  * **MBP**: Time Machine backups
+* `XCP-NG`: All VMs, configs and metadata
+* `Dave's Computers`:
+  * `Manjaro`: Timeshift snapshots and data
+  * `MBP`: Snapshots
+* `Maria's Computers`:
+  * `Win7`: N/A
+  * `MBP`: Time Machine backups
 
 Of course, this is an oversimplification of it, but for the purpose of this post, further breakdown is unnecessary.
 
@@ -49,14 +49,14 @@ Obviously, just from looking at that amount of wasted space, I can do better.
 
 I can't speak for other NAS systems like QNAP or UnRAID, but Synology really sucks in regard to changing RAID types. Most RAID types can be changed to some degree, but when you get locked into Synology Hybrid RAID 2 (SHR-2), you need to have an understanding of its pros and cons.
 
-Pros:
+`Pros`:
 
 * Reliable
 * Mirrors data across all disks
 * Two disk fault tolerance
 * Essentially RAID 6
 
-Cons:
+`Cons`:
 
 * Changing RAID types requires the creation of a new volume
 * Wasted space

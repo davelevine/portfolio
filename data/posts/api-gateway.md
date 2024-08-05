@@ -6,6 +6,8 @@ date: "2020-04-06"
 description: I have to preface this by saying that I am not a developer. I can read snippets of code and muddle my way through certain things, but coding is not my strong suit.
 ---
 
+<!--markdownlint-disable-->
+
 ## Preface
 
 I have to preface this by saying that I am not a developer. I can read snippets of code and muddle my way through certain things, but coding is not my strong suit.
@@ -32,7 +34,7 @@ AWS defines API Gateway as follows:
 >
 > API Gateway acts as a “front door” for applications to access data, business logic, or functionality from your backend services, such as workloads running on Amazon Elastic Compute Cloud (Amazon EC2), code running on AWS Lambda, any web application, or real-time communication applications.*
 
-REST APIs are **HTTP based** and **stateless**, whereas WebSocket APIs use the WebSocket protocol, which makes it **stateful** and allows for sending and receiving information.
+REST APIs are `HTTP based` and `stateless`, whereas WebSocket APIs use the WebSocket protocol, which makes it `stateful` and allows for sending and receiving information.
 
 So which one is better? The answer is, it depends on what you're doing.
 
@@ -48,11 +50,13 @@ So which one is better? The answer is, it depends on what you're doing.
 
 ### Architecture
 
-![Product-Page-Diagram_Amazon-API-Gateway-How-Works](https://cdn.levine.io/uploads/images/gallery/2022-09/04/Product-Page-Diagram_Amazon-API-Gateway-How-Works.png)
-Obtained from [AWS](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html)
+<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09/04/Product-Page-Diagram_Amazon-API-Gateway-How-Works.png" alt="Product Page Diagram Amazon API Gateway How Works" />
 
-![Screen-Shot-2020-04-06-at-12.17.13-AM](https://cdn.levine.io/uploads/images/gallery/2022-09/04/Screen-Shot-2020-04-06-at-12.17.13-AM.png)
-Obtained from the [Orion Papers](https://interactive.linuxacademy.com/diagrams/AWSCSA.html)
+_Obtained from [AWS](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html)_
+
+<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09/04/Screen-Shot-2020-04-06-at-12.17.13-AM.png" alt="Screen Shot 2020-04-06 at 12.17.13 AM" />
+
+_Obtained from the [Orion Papers](https://interactive.linuxacademy.com/diagrams/AWSCSA.html)_
 
 ### Wrapping Up
 
