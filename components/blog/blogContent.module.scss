@@ -1,0 +1,245 @@
+@import '../../styles/ui.scss'; // Adjust the path as needed
+
+.blogDetail {
+  // Mixin for common text styles to ensure reusability
+  @mixin text-styles($text-color, $margin-bottom: null, $font-size: null) {
+    color: $text-color;
+    @if $margin-bottom {
+      margin-bottom: $margin-bottom;
+    }
+    @if $font-size {
+      font-size: $font-size;
+    }
+  }
+
+  // Styles for heading elements
+  h1, h2 {
+    @include text-styles(var(--text-secondary));
+  }
+
+  h1 {
+    margin-bottom: 0;
+    font-size: 2.1rem;
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: auto;
+    font-weight: 600;
+  }
+
+  // Reduce margin between h2 and bulleted lists
+  h2 + ul,
+  h2 + ol {
+    margin-top: 10px; // Adjust this value as needed
+  }
+
+  // Styles for small elements
+  small {
+    @include text-styles(var(--navbar-primary), -10px, 1rem); // Reduced margin-bottom
+    display: block;
+  }
+
+  // Styles for anchor elements
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    position: relative;
+
+    &:hover {
+      color: var(--link-hover);
+      text-decoration: underline;
+    }
+  }
+
+  // Styles for links in paragraph text
+  p a {
+    font-size: 1rem; // Smaller font size for links in paragraph text
+  }
+
+  // Styles for blog links
+  .blogLinks a {
+    font-size: 1.2rem; // Larger font size for blog links
+    transition: color $transition-speed ease, transform $transition-speed ease; // Add transition for hover effect
+
+    &:hover {
+      color: var(--link-hover);
+      transform: scale(1.1); // Slight scale-up on hover
+    }
+  }
+
+  // Styles for strong elements
+  strong {
+    background: #cecece;
+    padding: 0 4px;
+    border-radius: 8px;
+    color: black;
+    font-weight: 400;
+    font-size: 0.8rem;
+  }
+
+  // Common styles for card and description classes
+  .card,
+  .description {
+    border-radius: 12px;
+    padding: 30px;
+    background-color: var(--background-card);
+    transition: background $transition-speed;
+    border: 1px solid var(--border-card);
+    margin: 25px 0;
+    display: flex;
+    flex-direction: column;
+    color: var(--navbar-primary);
+  }
+
+  // Specific styles for card class
+  .card {
+    h4 {
+      @include text-styles(var(--text-secondary), 0);
+      font-weight: 600;
+    }
+
+    time {
+      color: var(--text-tertiary);
+    }
+
+    .cardAction {
+      display: flex;
+      flex-direction: row;
+      margin-top: auto;
+
+      a {
+        color: var(--accent);
+      }
+    }
+  }
+
+  // Styles for blogImage class
+  .blogImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  // Media query for screens with a minimum width of 768px
+  @media only screen and (min-width: 768px) {
+    .blogImage {
+      width: 80%;
+      margin: 0 auto;
+    }
+  }
+
+  // Styles for blogLinks class
+  .blogLinks {
+    display: flex;
+    flex-direction: row;
+    margin-top: 0;
+
+    a {
+      margin-right: 15px;
+      color: var(--accent);
+
+      &:hover {
+        color: var(--link-hover);
+      }
+    }
+
+    i {
+      margin-right: 5px;
+      color: var(--navbar-primary);
+    }
+  }
+
+  // Add a white divider after blog links
+  .divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--text-primary);
+    margin: 20px 0;
+  }
+
+  // Media query for screens with a minimum width of 768px
+  @media only screen and (min-width: 768px) {
+    .blogDetail {
+      margin-bottom: 0;
+    }
+  }
+
+  // Media query for screens smaller than 768px
+  @media only screen and (max-width: 767px) {
+    .card {
+      margin-top: 50px;
+    }
+
+    ul, ol {
+      padding-left: 20px; // Adjust indentation for bullets on mobile
+    }
+  }
+
+  // Styles for code collapse functionality
+  details > summary span {
+    transition: all $transition-speed;
+    margin-left: 5px;
+  }
+
+  details[open] summary span {
+    transform: rotate(90deg);
+  }
+
+  summary {
+    display: flex;
+    width: 100px;
+    cursor: pointer;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+
+  // Styles for the button container
+  .btnContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+    @media only screen and (max-width: 767px) {
+      width: 100%;
+    }
+  }
+
+  // Improved styles for the button
+  .btnFilledBlog {
+    background: none;
+    border: 2px solid var(--text-secondary);
+    color: var(--text-primary);
+    padding: 12px 24px;
+    font-size: 1rem;
+    border-radius: 30px;
+    transition: background-color $transition-speed ease, color $transition-speed ease, transform $transition-speed ease;
+    text-align: center;
+    cursor: pointer; // Add pointer cursor for better UX
+
+    &:hover {
+      background-color: var(--background-secondary);
+      color: var(--background);
+      transform: scale(1.05); // Slight scale-up on hover
+    }
+
+    @media only screen and (max-width: 767px) {
+      width: 100%; // Full width on mobile
+      padding: 14px 28px;
+      font-size: 1.2rem;
+    }
+  }
+}

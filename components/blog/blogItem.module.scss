@@ -1,0 +1,119 @@
+@import '../../styles/ui.scss'; // Adjust the path as needed
+
+.card {
+  border-radius: 8px;
+  padding: 25px; // Adjusted padding for consistency
+  background-color: var(--background-card);
+  border: 1px solid var(--border-card);
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  min-height: 260px;
+  text-align: left; // Left-align text for better readability
+  transition: box-shadow $transition-speed ease; // Removed transform transition
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  h4 {
+    color: var(--text-secondary);
+    font-size: 1.15rem;
+    margin-top: 0; // Remove top margin to reduce space above the title
+    margin-bottom: 0; // Set bottom margin to zero
+  }
+}
+
+.card .image {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px; // Reduced margin-bottom to make the layout more compact
+}
+
+.card .image img {
+  border-radius: 4px;
+  max-width: 320px;
+  max-height: 220px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.card .placeholderContainer {
+  margin: 20px 0;
+  width: 100%;
+  max-height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card .placeholderContainer .placeholder {
+  text-align: center;
+  color: #ffffff;
+  font-weight: bold;
+  background-color: #8bb2c3;
+  border-radius: 50%;
+  padding: 5px;
+  font-size: 1.5rem;
+  background-image: linear-gradient(-45deg, rgba(255, 255, 220, 0.2) 0%, transparent 100%);
+  width: 200px;
+  height: 200px;
+  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%);
+}
+
+.card p {
+  color: var(--text-primary);
+  margin-bottom: 1rem; // Reduced margin-bottom to make the layout more compact
+}
+
+.card .blogLinks {
+  margin-top: auto;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start; // Align links to the start for consistency with text
+  gap: 10px; // Add spacing between links
+
+  a {
+    color: var(--accent);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    transition: color $transition-speed ease, transform $transition-speed ease, text-decoration $transition-speed ease;
+
+    &:hover {
+      color: var(--link-hover);
+      transform: scale(1.1);
+      text-decoration: underline;
+    }
+
+    i {
+      margin-right: 5px; // Ensure spacing between icon and text
+      color: var(--navbar-primary);
+    }
+  }
+}
+
+.card .written {
+  color: var(--text-primary);
+  font-weight: bold;
+  margin-top: 0; // Adjusted top margin for better spacing
+  margin-bottom: 0.5rem; // Reduced margin-bottom to bring the date closer to the title
+}
+
+.card .written strong {
+  color: var(--text-primary);
+}
+
+.card .written strong:after {
+  content: ':';
+  color: var(--accent);
+}
+
+@media only screen and (max-width: 767px) {
+  .card {
+    margin-bottom: 25px;
+  }
+}

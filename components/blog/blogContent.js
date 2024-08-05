@@ -1,0 +1,176 @@
+import { useMemo, lazy, Suspense, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import rehypeRaw from 'rehype-raw';
+import Image from "next/image";
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+
+import classes from './blogContent.module.scss';
+
+// Lazy load components for code splitting
+const ReactMarkdown = lazy(() => import('react-markdown'));
+const SyntaxHighlighter = lazy(() => import('react-syntax-highlighter').then(mod => mod.Prism));
+const atomDark = lazy(() => import('react-syntax-highlighter/dist/cjs/styles/prism').then(mod => mod.atomDark));
+const solarizedlight = lazy(() => import('react-syntax-highlighter/dist/cjs/styles/prism').then(mod => mod.solarizedlight));
+
+/**
+ * Get custom renderers for ReactMarkdown based on the current theme.
+ * @param {string} currentTheme - The current theme ('dark' or 'light').
+ * @returns {object} Custom renderers for ReactMarkdown.
+ */
+const getCustomRenderers = (currentTheme) => ({
+  code({ className, children }) {
+    const language = className?.split('-')[1];
+    return (
+      <Suspense fallback={<Spinner />}>
+        <SyntaxHighlighter
+          showLineNumbers
+          language={language}
+          style={currentTheme === 'dark' ? atomDark : solarizedlight}
+        >
+          {children}
+        </SyntaxHighlighter>
+      </Suspense>
+    );
+  },
+});
+
+/**
+ * Spinner component for loading fallback.
+ * @returns {JSX.Element} The rendered Spinner component.
+ */
+const Spinner = () => (
+  <motion.div
+    animate={{ rotate: 360 }}
+    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+    className={classes.spinner}
+  />
+);
+
+/**
+ * Render an image with specific dimensions based on the image name.
+ * @param {string} imageName - The image file name.
+ * @returns {JSX.Element} The rendered Image component.
+ */
+const renderImage = (imageName) => {
+  const isSpecialImage = ['portfolio.webp', 'start-page.webp'].includes(imageName);
+  const dimensions = isSpecialImage ? { width: 850, height: 500 } : { width: 700, height: 450 };
+
+  return (
+    <Image
+      src={`https://cdn.levine.io/uploads/portfolio/public/images/blog/${imageName}`}
+      width={dimensions.width}
+      height={dimensions.height}
+      alt={imageName}
+      priority
+      style={{
+        maxWidth: "100%",
+        height: "auto",
+        aspectRatio: `${dimensions.width} / ${dimensions.height}`
+      }}
+    />
+  );
+};
+
+/**
+ * BlogContent component to display blog details.
+ * @param {object} props - The component props.
+ * @param {object} props.blog - The blog data.
+ * @param {string} props.currentTheme - The current theme ('dark' or 'light').
+ * @param {boolean} props.showModal - Indicates if a modal is shown.
+ * @returns {JSX.Element} The rendered BlogContent component.
+ */
+const BlogContent = ({ blog, currentTheme, showModal = false }) => {
+  const {
+    content,
+    githubLink,
+    liveLink,
+    title,
+    categories,
+    image,
+  } = blog;
+
+  const customRenderers = useMemo(() => getCustomRenderers(currentTheme), [currentTheme]);
+
+  // Prevent vertical scrollbar when modal is opened
+  useEffect(() => {
+    const bodyStyle = document.body.style;
+    bodyStyle.overflow = showModal ? 'hidden' : 'auto';
+    bodyStyle.paddingRight = '0px';
+  }, [showModal]);
+
+  // Calculate reading time based on content length
+  const readingTime = Math.ceil(content.split(' ').length / 200); // Assuming average reading speed of 200 words per minute
+
+  return (
+    <div className={classes.blogDetail}>
+      <div className='container section mvh-100 blogDetail'>
+        <div className={classes.card}>
+          <h1>{title}</h1>
+          <small>Categories: {Array.isArray(categories) ? categories.join(', ') : categories}</small>
+          <p>Estimated reading time: {readingTime} minute{readingTime !== 1 ? 's' : ''}</p>
+
+          {image && (
+            <div className={classes.blogImage}>
+              {renderImage(image)}
+            </div>
+          )}
+
+          <div className={classes.blogLinks}>
+            {githubLink && (
+              <a href={githubLink} target='_blank' rel='noreferrer'>
+                <i className='fab fa-github'></i>
+                Github
+              </a>
+            )}
+            {liveLink && (
+              <a href={liveLink} target='_blank' rel='noreferrer'>
+                <i className='fa fa-arrow-up-right-from-square'></i>
+                Website
+              </a>
+            )}
+          </div>
+
+          <div className={classes.divider}></div>
+
+          <Suspense fallback={<Spinner />}>
+            <ReactMarkdown
+              components={customRenderers}
+              rehypePlugins={[rehypeRaw]}
+            >
+              {content}
+            </ReactMarkdown>
+          </Suspense>
+
+          <div className={classes.btnContainer}>
+            <Link href='/blog/'>
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className={classes.btnFilledBlog}
+              >
+                View All Posts
+              </motion.button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+BlogContent.propTypes = {
+  blog: PropTypes.shape({
+    content: PropTypes.string.isRequired,
+    githubLink: PropTypes.string,
+    liveLink: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    categories: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]).isRequired,
+    image: PropTypes.string,
+    slug: PropTypes.string.isRequired,
+  }).isRequired,
+  currentTheme: PropTypes.oneOf(['dark', 'light']).isRequired,
+  showModal: PropTypes.bool,
+};
+
+export default BlogContent;

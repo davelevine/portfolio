@@ -1,0 +1,100 @@
+@import '../../styles/ui.scss'; // Adjust the path as needed
+
+.blogGallery {
+  padding: 50px 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.blogGallery .scrollProgress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 5px;
+  background: var(--navbar-primary);
+  z-index: 1000;
+  transition: width $transition-speed ease-out;
+  border-radius: 0 0 5px 5px; /* Rounded bottom corners */
+}
+
+.blogGallery h1 {
+  text-align: center;
+  font-size: 2.3rem;
+  background: var(--text-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent; /* Apply gradient text effect */
+  margin-top: 40px; /* Lower the title heading on mobile */
+}
+
+.blogGallery .filter p {
+  text-align: center;
+  margin-top: -5px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.blogGallery .filter p::after {
+  content: ':';
+  color: var(--accent);
+}
+
+.blogGallery .filterButtons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px; /* Use gap for spacing between buttons */
+}
+
+.blogGallery .galleryWrap {
+  margin-top: 50px;
+}
+
+.blogGallery .gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Default to 2 columns */
+  grid-gap: 0 25px;
+}
+
+@media (min-width: 768px) {
+  .blogGallery {
+    padding: 150px 25px;
+    min-height: 100vh;
+  }
+
+  .blogGallery .container {
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  .blogGallery h1 {
+    font-size: 3.8rem;
+    margin-top: -40px;
+  }
+
+  .blogGallery .filter {
+    margin-top: -30px;
+  }
+
+  .blogGallery .gallery {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for medium screens */
+  }
+}
+
+@media (min-width: 1200px) {
+  .blogGallery .gallery {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for larger screens */
+  }
+}
+
+@media (max-width: 767px) {
+  .blogGallery .scrollProgress {
+    display: block; /* Ensure the progress bar is visible on mobile */
+  }
+
+  .blogGallery .gallery {
+    grid-template-columns: 1fr; /* Single column on mobile */
+    grid-gap: 0; /* Adjust gap for mobile */
+  }
+}
