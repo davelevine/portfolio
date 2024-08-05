@@ -11,13 +11,18 @@ const Link = dynamic(() => import('next/link'), {
 });
 
 /**
- * Custom hook for memoized blog link rendering logic.
- * @param {string} liveLink - The live blog link.
- * @param {string} slug - The blog slug.
- * @returns {JSX.Element} - The rendered blog links component.
+ * BlogItem component to display individual blog details.
+ * @param {object} props - The component props.
+ * @param {object} props.blog - The blog data.
+ * @returns {JSX.Element|null} - The rendered blog item component or null if no valid id.
  */
-const useRenderBlogLinks = (liveLink, slug) => {
-  return (
+const BlogItem = ({ blog }) => {
+  const { id, title, description, date, liveLink, slug } = blog;
+
+  // Ensure the blog has a valid id before rendering
+  if (!id) return null;
+
+  const renderBlogLinks = (
     <div className={classes.blogLinks}>
       {liveLink && (
         <a href={liveLink} target='_blank' rel='noreferrer'>
@@ -30,21 +35,6 @@ const useRenderBlogLinks = (liveLink, slug) => {
       </Link>
     </div>
   );
-};
-
-/**
- * BlogItem component to display individual blog details.
- * @param {object} props - The component props.
- * @param {object} props.blog - The blog data.
- * @returns {JSX.Element|null} - The rendered blog item component or null if no valid id.
- */
-const BlogItem = ({ blog }) => {
-  const { id, title, description, date, liveLink, slug } = blog;
-
-  // Ensure the blog has a valid id before rendering
-  if (!id) return null;
-
-  const renderBlogLinks = useRenderBlogLinks(liveLink, slug);
 
   return (
     <motion.div
