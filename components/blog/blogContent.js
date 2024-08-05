@@ -1,17 +1,15 @@
-import { useMemo, lazy, Suspense, useEffect } from 'react';
+import { useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import rehypeRaw from 'rehype-raw';
 import Image from "next/image";
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { dracula, xonokai } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 import classes from './blogContent.module.scss';
-
-// Lazy load components for code splitting
-const ReactMarkdown = lazy(() => import('react-markdown'));
-const SyntaxHighlighter = lazy(() => import('react-syntax-highlighter').then(mod => mod.Prism));
-const atomDark = lazy(() => import('react-syntax-highlighter/dist/cjs/styles/prism').then(mod => mod.atomDark));
-const solarizedlight = lazy(() => import('react-syntax-highlighter/dist/cjs/styles/prism').then(mod => mod.solarizedlight));
 
 /**
  * Get custom renderers for ReactMarkdown based on the current theme.
@@ -19,18 +17,22 @@ const solarizedlight = lazy(() => import('react-syntax-highlighter/dist/cjs/styl
  * @returns {object} Custom renderers for ReactMarkdown.
  */
 const getCustomRenderers = (currentTheme) => ({
-  code({ className, children }) {
-    const language = className?.split('-')[1];
-    return (
-      <Suspense fallback={<Spinner />}>
-        <SyntaxHighlighter
-          showLineNumbers
-          language={language}
-          style={currentTheme === 'dark' ? atomDark : solarizedlight}
-        >
-          {children}
-        </SyntaxHighlighter>
-      </Suspense>
+  code({ node, inline, className, children, ...props }) {
+    const match = /language-(\w+)/.exec(className || '');
+    return !inline && match ? (
+      <SyntaxHighlighter
+        style={currentTheme === 'dark' ? dracula : xonokai}
+        language={match[1]}
+        PreTag="div"
+        showLineNumbers
+        {...props}
+      >
+        {String(children).replace(/\n$/, '')}
+      </SyntaxHighlighter>
+    ) : (
+      <code className={className} {...props}>
+        {children}
+      </code>
     );
   },
 });
@@ -57,18 +59,20 @@ const renderImage = (imageName) => {
   const dimensions = isSpecialImage ? { width: 850, height: 500 } : { width: 700, height: 450 };
 
   return (
-    <Image
-      src={`https://cdn.levine.io/uploads/portfolio/public/images/blog/${imageName}`}
-      width={dimensions.width}
-      height={dimensions.height}
-      alt={imageName}
-      priority
-      style={{
-        maxWidth: "100%",
-        height: "auto",
-        aspectRatio: `${dimensions.width} / ${dimensions.height}`
-      }}
-    />
+    <div className={classes.blogImage}>
+      <Image
+        src={`https://cdn.levine.io/uploads/portfolio/public/images/blog/${imageName}`}
+        width={850} // Updated to match projectContent.js
+        height={500} // Updated to match projectContent.js
+        alt={imageName}
+        priority
+        style={{
+          maxWidth: "100%",
+          height: "auto",
+          aspectRatio: `850 / 500` // Updated to match projectContent.js
+        }}
+      />
+    </div>
   );
 };
 
@@ -133,14 +137,13 @@ const BlogContent = ({ blog, currentTheme, showModal = false }) => {
 
           <div className={classes.divider}></div>
 
-          <Suspense fallback={<Spinner />}>
-            <ReactMarkdown
-              components={customRenderers}
-              rehypePlugins={[rehypeRaw]}
-            >
-              {content}
-            </ReactMarkdown>
-          </Suspense>
+          <ReactMarkdown
+            components={customRenderers}
+            rehypePlugins={[rehypeRaw]}
+            remarkPlugins={[remarkGfm]}
+          >
+            {content}
+          </ReactMarkdown>
 
           <div className={classes.btnContainer}>
             <Link href='/blog/'>
