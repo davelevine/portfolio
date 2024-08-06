@@ -4,7 +4,9 @@ authors: [davelevine]
 categories:
     - Knowledge
 date: "2021.03.09"
-description: I realized only within the last few days that it's not particularly easy to migrate my documentation if the opportunity were to arise.
+# Start of Selection
+description: Migrating my documentation to Markdown has proven to be more challenging than I thought.
+# End of Selection
 ---
 
 ## Summary

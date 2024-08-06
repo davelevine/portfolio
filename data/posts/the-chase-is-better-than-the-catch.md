@@ -4,7 +4,7 @@ authors: [davelevine]
 categories:
     - Knowledge
 date: "2020.09.07"
-description: I'm a bit of a strange case in the sense that I greatly prefer setting up and configuring something over actually using it. There's something about the challenge of figuring things out that I just tend to lose myself in. The problem is that I spend a lot of time getting something up and running only to lose interest in it shortly after. I know it seems strange, but what I'm trying to figure out is whether it's time well spent.
+description: A reflection on my preference for setting up and configuring projects over using them, and whether that time is well spent.
 ---
 
 I'm a bit of a strange case in the sense that I greatly prefer setting up and configuring something over actually using it. There's something about the challenge of figuring things out that I just tend to lose myself in. The problem is that I spend a lot of time getting something up and running only to lose interest in it shortly after. I know it seems strange, but what I'm trying to figure out is whether it's time well spent.

@@ -4,7 +4,7 @@ authors: [davelevine]
 categories:
     - Knowledge
 date: "2021.02.27"
-description: Since my son was born, my wife and I have been taking what seems like an endless stream of photos and videos, all of which are backed up to Google Photos. This has been great as it's seamless and easy to distribute to family members. So what's the problem?
+description: A personal account of using rclone to back up photos and videos from Google Photos.
 ---
 
 <!--markdownlint-disable-->

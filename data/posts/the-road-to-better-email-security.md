@@ -6,7 +6,7 @@ categories:
     - Recommended
     - Security
 date: "2021.02.08"
-description: This is going to be a pretty long post as the project has span almost an entire week. I think in order to understand where I am today, it's worth knowing where I started.
+description: A detailed account of my week-long journey to enhance email security and privacy.
 ---
 
 <!--markdownlint-disable-->

@@ -88,7 +88,14 @@ const nextConfig = {
   },
   webpack: configureWebpack,
   images: {
-    domains: ['cdn.levine.io'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.levine.io',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
 };
 

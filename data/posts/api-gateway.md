@@ -3,7 +3,7 @@ title: API Gateway
 categories:
     - AWS
 date: "2020.04.06"
-description: I have to preface this by saying that I am not a developer. I can read snippets of code and muddle my way through certain things, but coding is not my strong suit.
+description: A beginner's exploration of AWS API Gateway and its role in enabling communication between services.
 ---
 
 <!--markdownlint-disable-->

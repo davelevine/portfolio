@@ -5,7 +5,7 @@ categories:
     - Knowledge
     - Security
 date: "2020-10-04"
-description: Much to my chagrin, I find myself making a configuration change that I have high hopes for, but it ends up causing more problems than it solves. This is no different from what happened to me a few days ago by making a firewall change on my homelab.
+description: A recent firewall change in my homelab led to unexpected issues instead of improvements.
 ---
 
 <!--markdownlint-disable-->

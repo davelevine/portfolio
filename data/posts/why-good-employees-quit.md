@@ -4,7 +4,7 @@ authors: [davelevine]
 categories:
     - Recommended
 date: "2021.03.16"
-description: If I spend enough time on this post, it will go sideways quick, so I'll keep it brief(ish).
+description: An exploration of the key reasons why good employees leave their jobs, beyond just salary.
 ---
 
 ## Striving for Something Better

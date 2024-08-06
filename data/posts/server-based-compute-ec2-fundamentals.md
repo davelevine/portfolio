@@ -4,7 +4,7 @@ authors: [davelevine]
 categories:
     - AWS
 date: "2020.03.27"
-description: I finished the EC2 Fundamentals course last night and just wanted to write some of my thoughts on it as I move onto the Intermediate coursework.
+description: Reflections on the EC2 Fundamentals course as I prepare for the Intermediate coursework.
 ---
 
 <!--markdownlint-disable-->

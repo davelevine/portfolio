@@ -5,7 +5,7 @@ categories:
     - Recommended
 date: "2021.08.07"
 # Start of Selection
-description: I've decided to downsize my extensive homelab setup and will outline my reasons for this change below.
+description: I've decided to downsize my extensive homelab setup and my reasons are outlined below.
 # End of Selection
 ---
 <!--markdownlint-disable-->

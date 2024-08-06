@@ -4,7 +4,7 @@ authors: [davelevine]
 categories:
     - AWS
 date: "2020.04.29"
-description: I'll start by saying I have a very general understanding of DNS. I know it's often dubbed the “internet phone book” and that it translates IP addresses into URLs. I know some of the various DNS record types off the top of my head — A, AAAA, CNAME, MX, TXT — along with how each of them are used, but mostly at a high level.
+description: A high-level overview of DNS and the various routing policies available in AWS Route 53.
 ---
 <!--markdownlint-disable-->
 

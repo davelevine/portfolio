@@ -4,7 +4,7 @@ authors: [davelevine]
 categories:
     - AWS
 date: "2020.04.03"
-description: It's a bit of a challenge for me because I don't have any real experience with it, but I understand the concepts at a 30,000 ft level. I'll start with what I know and then get into some theory I've compiled.
+description: An exploration of serverless architecture concepts and their practical applications in cloud computing.
 ---
 
 <!--markdownlint-disable-->

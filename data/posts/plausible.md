@@ -4,7 +4,7 @@ authors: [davelevine]
 categories:
     - Knowledge
 date: "2021.03.20"
-description: Analytics has been something that I've had mixed feelings about for as long as I've been aware of them.
+description: A personal exploration of self-hosted analytics solutions and their implications on privacy.
 ---
 
 

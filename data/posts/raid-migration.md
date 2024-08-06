@@ -4,7 +4,7 @@ authors: [davelevine]
 categories:
     - Knowledge
 date: "2020.06.07"
-description: Of all the systems I maintain in my homelab, the one I generally look at the least is my NAS. I'm not sure if that would come as a surprise to anyone, but it's become one of my most trusted “set it and forget it” systems.
+description: Rethinking my NAS RAID configuration to optimize storage while maintaining reliability.
 ---
 
 <!--markdownlint-disable-->

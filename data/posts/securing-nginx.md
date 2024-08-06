@@ -4,7 +4,7 @@ authors: [davelevine]
 categories:
     - Security
 date: "2020.09.06"
-description: A few weeks ago, I was reading an article on Scott Helme's blog about caching Ghost with Nginx. In doing this, I made this blog and a number of other services that I use kick into overdrive, but that whole endeavor is best left for its own article.
+description: A guide to enhancing the security of Nginx configurations.
 ---
 
 <!--markdownlint-disable-->

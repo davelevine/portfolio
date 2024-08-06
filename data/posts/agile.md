@@ -4,7 +4,7 @@ authors: [davelevine]
 categories:
     - Methodologies
 date: "2020.03.30"
-description: In this post, I share my journey with Agile methodologies, breaking down what they mean in everyday terms and how they can make software development and project management feel more approachable and collaborative.
+description: An overview of my experiences with Agile methodologies in software development and project management.
 ---
 
 ## Primer
