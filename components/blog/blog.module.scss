@@ -53,8 +53,8 @@
 
 .blogGallery .gallery {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Default to 2 columns */
-  grid-gap: 0 25px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
 }
 
 @media (min-width: 768px) {
@@ -95,6 +95,6 @@
 
   .blogGallery .gallery {
     grid-template-columns: 1fr; /* Single column on mobile */
-    grid-gap: 0; /* Adjust gap for mobile */
+    gap: 0 15px; /* Adjust gap for mobile */
   }
 }

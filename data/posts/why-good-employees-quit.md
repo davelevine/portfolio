@@ -3,7 +3,7 @@ title: Why Good Employees Quit
 authors: [davelevine]
 categories:
     - Recommended
-date: "2021-03-16"
+date: "2021.03.16"
 description: If I spend enough time on this post, it will go sideways quick, so I'll keep it brief(ish).
 ---
 

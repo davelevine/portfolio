@@ -3,7 +3,7 @@ title: Site Migration
 authors: [davelevine]
 categories:
     - Knowledge
-date: "2020-04-09"
+date: "2020.04.09"
 description: I've been thinking about obtaining a more professional domain name for some time now, but didn't actually pull the trigger on it until last week. I ended up purchasing two domains, which may seem silly, but there is some logic behind it.
 ---
 

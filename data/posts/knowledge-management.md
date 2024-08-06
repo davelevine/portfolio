@@ -3,7 +3,7 @@ title: Knowledge Management
 authors: [davelevine]
 categories:
     - Knowledge
-date: "2020-03-29"
+date: "2020.03.29"
 description: I had originally intended to write this post about flowchart topology, but the more I wrote, the more I found myself writing about knowledge management, so I'm just going to run with it.
 ---
 

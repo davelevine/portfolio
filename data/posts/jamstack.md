@@ -3,7 +3,7 @@ title: Jamstack
 authors: [davelevine]
 categories:
     - Knowledge
-date: "2021-03-14"
+date: "2021.03.14"
 description: This article will be a quick write-up on my static website hosting on Cloudflare Pages, also known as Jamstack.
 ---
 

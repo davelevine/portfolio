@@ -3,7 +3,7 @@ title: Choosing a Routing Policy
 authors: [davelevine]
 categories:
     - AWS
-date: "2020-04-29"
+date: "2020.04.29"
 description: I'll start by saying I have a very general understanding of DNS. I know it's often dubbed the “internet phone book” and that it translates IP addresses into URLs. I know some of the various DNS record types off the top of my head — A, AAAA, CNAME, MX, TXT — along with how each of them are used, but mostly at a high level.
 ---
 <!--markdownlint-disable-->
@@ -26,8 +26,6 @@ As a baseline...
 
 My entire homelab, although traveling through a VPN to leave my network, passes through Cloudflare. It's where I have my domains registered and all traffic proxied, so getting my feet wet with Route 53 felt very different; more involved.
 
-Route 53 — aptly named after combining the *route* from Route 66 and the default port for DNS (*53*) — is DNS on steroids, at least from where I'm sitting.
-
 As I mentioned in the preface, my experience with DNS is limited in comparison to Route 53. Although the breadth of features is incredibly varied, I wanted to focus this post on the various different routing policies and how they affect traffic traversing through Route 53.
 
 ## Routing Policy
@@ -44,7 +42,7 @@ Failover routing is routing that exists with an active-passive configuration suc
 
 An example of the healthchecks interface can be seen below:
 
-![1_H4_Es0n0UVn4DeHMOIkN8w](https://cdn.levine.io/uploads/images/gallery/2022-09//04/1_H4_Es0n0UVn4DeHMOIkN8w.png)
+<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//04/1_H4_Es0n0UVn4DeHMOIkN8w.png" alt="1_H4_Es0n0UVn4DeHMOIkN8w" />
 
 `Source`: [Amazon Route 53 — Routing Policies](https://medium.com/tensult/amazon-route-53-routing-policies-cbe356b851d3)
 

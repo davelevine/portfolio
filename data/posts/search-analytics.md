@@ -3,13 +3,13 @@ title: Search Analytics
 authors: [davelevine]
 categories:
     - Recommended
-date: "2021-08-19"
-description: Although Searx comes with it's own built in statistics, it doesn't natively allow for adding analytics. This is largely by design considering the privacy aspect of the project. However, I was curious to see if my instance gets any traffic that isn't from me.
+date: "2021.08.19"
+description: Searx has built-in statistics but doesn't support external analytics due to privacy, prompting my curiosity about traffic to my instance beyond my own visits.
 ---
 
 ## Summary
 
-Although [Searx](https://github.com/searx/searx) comes with it's own built in statistics, it doesn't natively allow for adding analytics. This is largely by design considering the privacy aspect of the project. However, I was curious to see if my instance gets any traffic that isn't from me.
+Although [Searx](https://github.com/searx/searx) comes with its own built in statistics, it doesn't natively allow for adding analytics. This is largely by design considering the privacy aspect of the project. However, I was curious to see if my instance gets any traffic that isn't from me.
 
 <!-- more -->
 

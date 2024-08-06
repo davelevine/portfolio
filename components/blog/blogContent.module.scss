@@ -196,6 +196,7 @@
 
     ul, ol {
       padding-left: 20px; // Adjust indentation for bullets on mobile
+      overflow-wrap: break-word; // Ensure list items do not overflow
     }
   }
 
@@ -263,6 +264,7 @@
     margin: 20px 0;
     color: var(--text-primary);
     border-radius: 8px;
+    overflow-wrap: break-word; // Ensure blockquotes do not overflow
   }
 
   code {
@@ -281,6 +283,7 @@
     margin: 20px 0;
     color: var(--text-primary);
     border-radius: 8px;
+    overflow-wrap: break-word; // Ensure blockquotes do not overflow
   }
 
   // Styles for code blocks
@@ -289,12 +292,15 @@
     padding: 10px;
     border-radius: 8px;
     overflow: auto; // Allow scrolling for long code blocks
+    max-width: 100%; // Ensure code blocks do not exceed the width of the container
+    word-wrap: break-word; // Allow long lines in code blocks to wrap
   }
 
   // Styles for lists
   ul, ol {
     margin: 10px 0; // Add margin for lists
     padding-left: 20px; // Indent lists
+    overflow-wrap: break-word; // Ensure list items do not overflow
   }
 
   // Styles for strikethrough text

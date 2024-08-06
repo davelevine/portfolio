@@ -3,7 +3,7 @@ title: Documentation Migration
 authors: [davelevine]
 categories:
     - Knowledge
-date: "2021-03-09"
+date: "2021.03.09"
 description: I realized only within the last few days that it's not particularly easy to migrate my documentation if the opportunity were to arise.
 ---
 

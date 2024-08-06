@@ -1,10 +1,10 @@
 ---
-title: Migrating from DigitalOcean to Hetzner
+title: DigitalOcean to Hetzner Migrating
 authors: [davelevine]
 categories:
     - Knowledge
-date: "2023-06-08"
-description: I've been using DigitalOcean as my cloud provider of choice for VPS since late 2019, and overall, I've been very happy with them. While I can't say a bad thing about them as the service has been rock solid, as of late, they've gotten much too expensive for me.
+date: "2023.06.08"
+description: I've been happy with DigitalOcean as my VPS provider since 2019, but their recent price increases have become too much for me.
 ---
 <!--markdownlint-disable-->
 

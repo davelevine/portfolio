@@ -3,7 +3,7 @@ title: Databases (Part 3)
 authors: [davelevine]
 categories:
     - AWS
-date: "2020-06-06"
+date: "2020.06.06"
 description: I meant to get to finishing this up shortly after my last post, but life comes at you fast sometimes. No excuses though, as I've been continuing with my course and should be finished within the next day or two. In the meantime, I still have a bunch of content to write, so let's get to it.
 ---
 

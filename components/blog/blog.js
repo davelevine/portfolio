@@ -13,7 +13,7 @@ const Modal = dynamic(() => import('../layout/modal/contactModal'), {
 
 // Component to animate blog items when they come into view
 const BlogItemWithAnimation = ({ blog }) => {
-  const [ref, inView, entry] = useInView({
+  const [ref, inView] = useInView({
     triggerOnce: false, // Set to false to allow repeated triggering
     threshold: 0.1, // Trigger when 10% of the item is visible
   });

@@ -3,7 +3,7 @@ title: EC2 Volume Types
 authors: [davelevine]
 categories:
     - AWS
-date: "2020-03-25"
+date: "2020.03.25"
 description: A simple breakdown of the different types of storage options available for EC2 instances, helping to clarify when to use each one.
 ---
 

@@ -3,7 +3,7 @@ title: Plausible Analytics
 authors: [davelevine]
 categories:
     - Knowledge
-date: "2021-03-20"
+date: "2021.03.20"
 description: Analytics has been something that I've had mixed feelings about for as long as I've been aware of them.
 ---
 

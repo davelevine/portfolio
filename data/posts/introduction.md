@@ -2,7 +2,7 @@
 title: An Introduction
 categories:
     - Getting Started
-date: "2020-03-24"
+date: "2020.03.24"
 description: I'm not entirely sure what I plan on writing in this, or if I even plan on keeping it.
 ---
 

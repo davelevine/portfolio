@@ -3,7 +3,7 @@ title: AWS Certified Solutions Architect
 authors: [davelevine]
 categories:
     - AWS
-date: "2020-08-01"
+date: "2020.08.01"
 description: After ~6 months of studying, I finally took the AWS Certified Solutions Architect Associate exam today and I PASSED! I'm incredibly excited about it and really proud of myself for sticking with it
 ---
 

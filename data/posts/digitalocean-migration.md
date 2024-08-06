@@ -3,7 +3,7 @@ title: DigitalOcean Migration
 authors: [davelevine]
 categories:
     - Knowledge
-date: "2020-08-30"
+date: "2020.08.30"
 description: As much as I enjoy using AWS, to use it how I would like to use it is just too expensive. Because of this, I've hosted the large majority of my cloud infrastructure on DigitalOcean. This boils down to two reasons — it's a lot easier to use than AWS, and the pricing is predictable.
 ---
 

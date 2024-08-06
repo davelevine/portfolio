@@ -2,85 +2,76 @@
 
 .card {
   border-radius: 8px;
-  padding: 25px; // Adjusted padding for consistency
+  padding: 25px;
   background-color: var(--background-card);
   border: 1px solid var(--border-card);
   margin-bottom: 25px;
   display: flex;
   flex-direction: column;
   min-height: 260px;
-  text-align: left; // Left-align text for better readability
-  transition: box-shadow $transition-speed ease; // Removed transform transition
+  text-align: center;
 
   &:hover {
     transform: scale(1.02);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    transition: transform $transition-speed ease, box-shadow $transition-speed ease;
   }
 
   h4 {
     color: var(--text-secondary);
     font-size: 1.15rem;
-    margin-top: 0; // Remove top margin to reduce space above the title
-    margin-bottom: 0; // Set bottom margin to zero
+    margin-bottom: 1rem;
   }
-}
-
-.card .image {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px; // Reduced margin-bottom to make the layout more compact
-}
-
-.card .image img {
-  border-radius: 4px;
-  max-width: 320px;
-  max-height: 220px;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-.card .placeholderContainer {
-  margin: 20px 0;
-  width: 100%;
-  max-height: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.card .placeholderContainer .placeholder {
-  text-align: center;
-  color: #ffffff;
-  font-weight: bold;
-  background-color: #8bb2c3;
-  border-radius: 50%;
-  padding: 5px;
-  font-size: 1.5rem;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 220, 0.2) 0%, transparent 100%);
-  width: 200px;
-  height: 200px;
-  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%);
 }
 
 .card p {
   color: var(--text-primary);
-  margin-bottom: 1rem; // Reduced margin-bottom to make the layout more compact
+  margin-bottom: 1.5rem;
+}
+
+.card .cardContent {
+  flex: 1; // Allow the content to grow and fill the space
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; // Ensure space is distributed evenly
+  min-height: 120px; // Adjust the min-height as necessary
+}
+
+.card .metaInfo {
+  display: flex;
+  justify-content: center;
+  gap: 20px; // Space between the date and reading time
+  margin-top: auto; // Push meta info to the bottom
+
+  .metaItem {
+    display: flex;
+    align-items: center;
+
+    i {
+      margin-right: 5px;
+      color: var(--accent); // Red color for the icon
+    }
+
+    p {
+      margin: 0;
+      color: var(--text-primary); // White color for the text
+      font-weight: bold;
+    }
+  }
 }
 
 .card .blogLinks {
-  margin-top: auto;
+  margin-top: 10px;
   font-size: 0.9rem;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start; // Align links to the start for consistency with text
-  gap: 10px; // Add spacing between links
+  flex-direction: column;
+  align-items: center;
 
   a {
     color: var(--accent);
     font-size: 1rem;
-    display: flex;
-    align-items: center;
+    margin: 5px 0;
+    display: block;
     transition: color $transition-speed ease, transform $transition-speed ease, text-decoration $transition-speed ease;
 
     &:hover {
@@ -88,32 +79,17 @@
       transform: scale(1.1);
       text-decoration: underline;
     }
+  }
 
-    i {
-      margin-right: 5px; // Ensure spacing between icon and text
-      color: var(--navbar-primary);
-    }
+  i {
+    width: 20px;
+    margin-right: 5px;
+    color: var(--navbar-primary);
   }
 }
 
-.card .written {
-  color: var(--text-primary);
-  font-weight: bold;
-  margin-top: 0; // Adjusted top margin for better spacing
-  margin-bottom: 0.5rem; // Reduced margin-bottom to bring the date closer to the title
-}
-
-.card .written strong {
-  color: var(--text-primary);
-}
-
-.card .written strong:after {
-  content: ':';
-  color: var(--accent);
-}
-
-@media only screen and (max-width: 767px) {
+@media only screen and (min-width: 768px) {
   .card {
-    margin-bottom: 25px;
+    margin-bottom: 0;
   }
 }

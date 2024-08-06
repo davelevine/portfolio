@@ -3,7 +3,7 @@ title: Working With Agile
 authors: [davelevine]
 categories:
     - Methodologies
-date: "2020-03-30"
+date: "2020.03.30"
 description: In this post, I share my journey with Agile methodologies, breaking down what they mean in everyday terms and how they can make software development and project management feel more approachable and collaborative.
 ---
 
@@ -17,7 +17,7 @@ I spent some time a few nights ago completely overhauling my resume. This is rea
 
 <!-- more -->
 
-One of the additions to my resume has been a *Technical Proficiencies* section, which includes a piece on *Methodologies*. In my current role as a Business Analyst, I'm always on the System Development Life Cycle (SDLC) wheel, but additionally, I'm also using Agile more than I may realize.
+One of the additions to my resume has been a `Technical Proficiencies` section, which includes a piece on `Methodologies`. In my current role as a Business Analyst, I'm always on the System Development Life Cycle (SDLC) wheel, but additionally, I'm also using Agile more than I may realize.
 
 ### What is Agile?
 

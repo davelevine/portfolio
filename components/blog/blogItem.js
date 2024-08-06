@@ -17,22 +17,25 @@ const Link = dynamic(() => import('next/link'), {
  * @returns {JSX.Element|null} - The rendered blog item component or null if no valid id.
  */
 const BlogItem = ({ blog }) => {
-  const { id, title, description, date, liveLink, slug } = blog;
+  const { id, title, description, date, liveLink, slug, content } = blog;
 
   // Ensure the blog has a valid id before rendering
   if (!id) return null;
 
+  // Calculate reading time based on content length
+  const readingTime = Math.ceil(content.split(' ').length / 200); // Assuming average reading speed of 200 words per minute
+
   const renderBlogLinks = (
     <div className={classes.blogLinks}>
+      <Link href={`/blog/${slug}`}>
+        <i className='fa fa-arrow-up-right-from-square'></i>View Post
+      </Link>
       {liveLink && (
         <a href={liveLink} target='_blank' rel='noreferrer'>
           <i className='fa fa-arrow-up-right-from-square'></i>
           Website
         </a>
       )}
-      <Link href={`/blog/${slug}`}>
-        <i className='fa fa-arrow-up-right-from-square'></i>View Post
-      </Link>
     </div>
   );
 
@@ -47,10 +50,19 @@ const BlogItem = ({ blog }) => {
       <Link href={`/blog/${slug}`}>
         <div className={classes.cardContent}>
           <h4>{title}</h4>
-          <p className={classes.written}><strong>Written</strong> {date}</p> {/* Displaying the date the blog post was written */}
+          <p>{description}</p>
         </div>
       </Link>
-      <p>{description}</p>
+      <div className={classes.metaInfo}>
+        <div className={classes.metaItem}>
+          <i className='fa fa-calendar'></i>
+          <p>{date}</p>
+        </div>
+        <div className={classes.metaItem}>
+          <i className='fa fa-clock'></i>
+          <p>{readingTime} minute{readingTime !== 1 ? 's' : ''}</p>
+        </div>
+      </div>
       {renderBlogLinks}
     </motion.div>
   );
@@ -65,6 +77,7 @@ BlogItem.propTypes = {
     date: PropTypes.string.isRequired, // Added date prop type validation
     liveLink: PropTypes.string,
     slug: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired, // Added content prop type validation for reading time calculation
   }).isRequired,
 };
 
