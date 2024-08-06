@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { dracula, xonokai } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { atomDark, oneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 import classes from './blogContent.module.scss';
 
@@ -21,7 +21,7 @@ const getCustomRenderers = (currentTheme) => ({
     const match = /language-(\w+)/.exec(className || '');
     return !inline && match ? (
       <SyntaxHighlighter
-        style={currentTheme === 'dark' ? dracula : xonokai}
+        style={currentTheme === 'dark' ? atomDark : oneLight}
         language={match[1]}
         PreTag="div"
         showLineNumbers
@@ -120,8 +120,11 @@ const BlogContent = ({ blog, currentTheme, showModal = false }) => {
       <div className='container section mvh-100 blogDetail'>
         <div className={classes.card}>
           <h1>{title}</h1>
-          <small>Categories: {Array.isArray(categories) ? categories.join(', ') : categories}</small>
-          <p>Estimated reading time: {readingTime} minute{readingTime !== 1 ? 's' : ''}</p>
+          <small>
+            <span>Categories</span> {Array.isArray(categories) ? categories.join(', ') : categories}
+            <br />
+            <span>Estimated reading time</span> {readingTime} minute{readingTime !== 1 ? 's' : ''}
+          </small>
 
           {image && (
             <div className={classes.blogImage}>

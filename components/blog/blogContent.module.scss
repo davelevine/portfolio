@@ -39,6 +39,15 @@
   small {
     @include text-styles(var(--navbar-primary), -10px, 1rem); // Reduced margin-bottom
     display: block;
+
+    // Match "Sort by" text style
+    span {
+      color: var(--text-primary); // Ensure the text is white
+      &:after {
+        content: ':'; // Add a colon
+        color: red;
+      }
+    }
   }
 
   // Styles for anchor elements
