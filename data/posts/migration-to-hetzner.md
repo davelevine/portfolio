@@ -1,5 +1,5 @@
 ---
-title: DigitalOcean to Hetzner Migrating
+title: DigitalOcean to Hetzner Migration
 authors: [davelevine]
 categories:
     - Knowledge
