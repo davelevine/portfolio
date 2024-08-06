@@ -3,6 +3,9 @@ title: The Chase is Better Than the Catch
 authors: [davelevine]
 categories:
     - Knowledge
+    - Methodologies
+    - Opinion
+    - Recommended
 date: "2020.09.07"
 description: A reflection on my preference for setting up and configuring projects over using them, and whether that time is well spent.
 ---

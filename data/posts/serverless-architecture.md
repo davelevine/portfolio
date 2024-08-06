@@ -3,6 +3,8 @@ title: Serverless Architecture
 authors: [davelevine]
 categories:
     - AWS
+    - DevOps
+    - Knowledge
 date: "2020.04.03"
 description: An exploration of serverless architecture concepts and their practical applications in cloud computing.
 ---

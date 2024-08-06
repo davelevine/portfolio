@@ -3,6 +3,7 @@ title: Knowledge Management
 authors: [davelevine]
 categories:
     - Knowledge
+    - Productivity
 date: "2020.03.29"
 description: An exploration of knowledge management and its significance in documenting complex systems.
 ---

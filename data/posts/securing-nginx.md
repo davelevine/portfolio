@@ -2,6 +2,7 @@
 title: Securing Nginx
 authors: [davelevine]
 categories:
+    - Recommended
     - Security
 date: "2020.09.06"
 description: A guide to enhancing the security of Nginx configurations.

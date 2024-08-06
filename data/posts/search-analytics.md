@@ -2,7 +2,8 @@
 title: Search Analytics
 authors: [davelevine]
 categories:
-    - Recommended
+    - Knowledge
+    - Tools
 date: "2021.08.19"
 description: Searx has built-in statistics but doesn't support external analytics, prompting my curiosity about traffic to my instance beyond my own visits.
 ---

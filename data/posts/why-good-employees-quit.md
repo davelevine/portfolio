@@ -2,7 +2,9 @@
 title: Why Good Employees Quit
 authors: [davelevine]
 categories:
-    - Recommended
+    - Knowledge
+    - Methodologies
+    - Opinion
 date: "2021.03.16"
 description: An exploration of the key reasons why good employees leave their jobs, beyond just salary.
 ---

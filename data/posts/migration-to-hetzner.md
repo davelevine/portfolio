@@ -2,7 +2,9 @@
 title: DigitalOcean to Hetzner Migration
 authors: [davelevine]
 categories:
-    - Knowledge
+    - Cloud Migration
+    - Getting Started
+    - Recommended
 date: "2023.06.08"
 description: I've been happy with DigitalOcean as my VPS provider since 2019, but their recent price increases have become too much for me.
 ---

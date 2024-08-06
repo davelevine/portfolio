@@ -3,6 +3,7 @@ title: Virtual Private Cloud (VPC)
 authors: [davelevine]
 categories:
     - AWS
+    - Knowledge
 date: "2020.04.19"
 description: A summary of my experience and insights gained from the Virtual Private Cloud (VPC) section of the AWS Certified Solutions Architect course.
 ---

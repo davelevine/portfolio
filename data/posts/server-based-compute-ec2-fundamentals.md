@@ -3,6 +3,7 @@ title: Server-Based Compute (EC2) Fundamentals
 authors: [davelevine]
 categories:
     - AWS
+    - Knowledge
 date: "2020.03.27"
 description: Reflections on the EC2 Fundamentals course as I prepare for the Intermediate coursework.
 ---

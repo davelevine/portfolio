@@ -3,6 +3,8 @@ title: Plausible Analytics
 authors: [davelevine]
 categories:
     - Knowledge
+    - Recommended
+    - Tools
 date: "2021.03.20"
 description: A personal exploration of self-hosted analytics solutions and their implications on privacy.
 ---

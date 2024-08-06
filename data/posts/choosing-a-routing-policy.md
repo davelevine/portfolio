@@ -3,6 +3,8 @@ title: Choosing a Routing Policy
 authors: [davelevine]
 categories:
     - AWS
+    - DevOps
+    - Knowledge
 date: "2020.04.29"
 description: A high-level overview of DNS and the various routing policies available in AWS Route 53.
 ---

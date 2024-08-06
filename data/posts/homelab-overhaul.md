@@ -2,6 +2,8 @@
 title: Homelab Overhaul
 authors: [davelevine]
 categories:
+    - Cloud Migration
+    - Getting Started
     - Recommended
 date: "2021.08.07"
 # Start of Selection

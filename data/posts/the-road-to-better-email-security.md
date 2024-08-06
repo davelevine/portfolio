@@ -2,7 +2,6 @@
 title: The Road to Better Email Security
 authors: [davelevine]
 categories:
-    - Knowledge
     - Recommended
     - Security
 date: "2021.02.08"
