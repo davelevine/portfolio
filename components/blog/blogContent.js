@@ -104,7 +104,7 @@ const BlogContent = ({ blog, currentTheme, showModal = false }) => {
             <span className={classes.dot}> • </span>
             <span><i className="fa-regular fa-clock" /> {readingTime} min</span>
             <br />
-            <span>Categories: </span>
+            <span><i className="fa fa-hashtag" /> </span>
             {Array.isArray(categories) ? categories.map((category, index) => (
               <span key={index} className={classes.category}>
                 {category}
