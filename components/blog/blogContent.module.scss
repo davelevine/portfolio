@@ -63,9 +63,14 @@
   .dot {
     color: var(--text-primary);
     margin: 0 5px; // Add spacing around the dot
+    font-size: 1.1rem; // Increase the size of the dot
     &:after {
       content: ''; // Prevent the colon from being added after the dot
     }
+  }
+
+  .category {
+    color: var(--accent); // Apply accent color to categories
   }
 
   .icon {

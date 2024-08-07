@@ -2,8 +2,7 @@
 title: RAID Migration
 authors: [davelevine]
 categories:
-    - Cloud Migration
-    - Getting Started
+    - Cloud
     - Knowledge
 date: "2020.06.07"
 description: Rethinking my NAS RAID configuration to optimize storage while maintaining reliability.

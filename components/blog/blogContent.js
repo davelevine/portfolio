@@ -11,11 +11,6 @@ import { atomDark, oneLight } from 'react-syntax-highlighter/dist/cjs/styles/pri
 
 import classes from './blogContent.module.scss';
 
-/**
- * Get custom renderers for ReactMarkdown based on the current theme.
- * @param {string} currentTheme - The current theme ('dark' or 'light').
- * @returns {object} Custom renderers for ReactMarkdown.
- */
 const getCustomRenderers = (currentTheme) => ({
   code({ node, inline, className, children, ...props }) {
     const match = /language-(\w+)/.exec(className || '');
@@ -46,10 +41,6 @@ const getCustomRenderers = (currentTheme) => ({
   },
 });
 
-/**
- * Spinner component for loading fallback.
- * @returns {JSX.Element} The rendered Spinner component.
- */
 const Spinner = () => (
   <motion.div
     animate={{ rotate: 360 }}
@@ -58,11 +49,6 @@ const Spinner = () => (
   />
 );
 
-/**
- * Render an image with specific dimensions based on the image name.
- * @param {string} imageName - The image file name.
- * @returns {JSX.Element} The rendered Image component.
- */
 const renderImage = (imageName) => {
   const isSpecialImage = ['portfolio.webp', 'start-page.webp'].includes(imageName);
   const dimensions = isSpecialImage ? { width: 850, height: 500 } : { width: 700, height: 450 };
@@ -71,28 +57,20 @@ const renderImage = (imageName) => {
     <div className={classes.blogImage}>
       <Image
         src={`https://cdn.levine.io/uploads/portfolio/public/images/blog/${imageName}`}
-        width={850} // Updated to match projectContent.js
-        height={500} // Updated to match projectContent.js
+        width={850}
+        height={500}
         alt={imageName}
         priority
         style={{
           maxWidth: "100%",
           height: "auto",
-          aspectRatio: `850 / 500` // Updated to match projectContent.js
+          aspectRatio: `850 / 500`
         }}
       />
     </div>
   );
 };
 
-/**
- * BlogContent component to display blog details.
- * @param {object} props - The component props.
- * @param {object} props.blog - The blog data.
- * @param {string} props.currentTheme - The current theme ('dark' or 'light').
- * @param {boolean} props.showModal - Indicates if a modal is shown.
- * @returns {JSX.Element} The rendered BlogContent component.
- */
 const BlogContent = ({ blog, currentTheme, showModal = false }) => {
   const {
     content,
@@ -106,17 +84,14 @@ const BlogContent = ({ blog, currentTheme, showModal = false }) => {
 
   const customRenderers = useMemo(() => getCustomRenderers(currentTheme), [currentTheme]);
 
-  // Prevent vertical scrollbar when modal is opened
   useEffect(() => {
     const bodyStyle = document.body.style;
     bodyStyle.overflow = showModal ? 'hidden' : 'auto';
     bodyStyle.paddingRight = '0px';
   }, [showModal]);
 
-  // Calculate reading time based on content length
-  const readingTime = Math.ceil(content.split(' ').length / 200); // Assuming average reading speed of 200 words per minute
+  const readingTime = Math.ceil(content.split(' ').length / 200);
 
-  // Format the date
   const formattedDate = new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
   return (
@@ -129,7 +104,13 @@ const BlogContent = ({ blog, currentTheme, showModal = false }) => {
             <span className={classes.dot}> • </span>
             <span><i className="fa-regular fa-clock" /> {readingTime} min</span>
             <br />
-            <span>Categories: </span> {Array.isArray(categories) ? categories.join(', ') : categories}
+            <span>Categories: </span>
+            {Array.isArray(categories) ? categories.map((category, index) => (
+              <span key={index} className={classes.category}>
+                {category}
+                {index < categories.length - 1 && <span className={classes.dot}> • </span>}
+              </span>
+            )) : categories}
           </small>
 
           {image && (

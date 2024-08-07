@@ -2,8 +2,7 @@
 title: DigitalOcean Migration
 authors: [davelevine]
 categories:
-    - Cloud Migration
-    - Getting Started
+    - Cloud
     - Recommended
 date: "2020.08.30"
 description: As much as I enjoy using AWS, to use it how I would like to use it is just too expensive.

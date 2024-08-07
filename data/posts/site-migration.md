@@ -2,8 +2,7 @@
 title: Site Migration
 authors: [davelevine]
 categories:
-    - Cloud Migration
-    - Getting Started
+    - Cloud
     - Knowledge
 date: "2020.04.09"
 description: A successful migration to a new professional domain and the lessons learned along the way.

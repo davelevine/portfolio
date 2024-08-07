@@ -2,7 +2,6 @@
 title: API Gateway
 categories:
     - AWS
-    - Getting Started
     - Knowledge
 date: "2020.04.06"
 description: A beginner's exploration of AWS API Gateway and its role in enabling communication between services.
