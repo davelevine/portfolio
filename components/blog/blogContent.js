@@ -100,6 +100,7 @@ const BlogContent = ({ blog, currentTheme, showModal = false }) => {
     liveLink,
     title,
     categories,
+    date,
     image,
   } = blog;
 
@@ -115,15 +116,20 @@ const BlogContent = ({ blog, currentTheme, showModal = false }) => {
   // Calculate reading time based on content length
   const readingTime = Math.ceil(content.split(' ').length / 200); // Assuming average reading speed of 200 words per minute
 
+  // Format the date
+  const formattedDate = new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
   return (
     <div className={classes.blogDetail}>
       <div className='container section mvh-100 blogDetail'>
         <div className={classes.card}>
           <h1>{title}</h1>
           <small>
-            <span>Categories</span> {Array.isArray(categories) ? categories.join(', ') : categories}
+            <span><i className="fa-regular fa-calendar" /> {formattedDate}</span>
+            <span className={classes.dot}> • </span>
+            <span><i className="fa-regular fa-clock" /> {readingTime} min</span>
             <br />
-            <span>Estimated reading time</span> {readingTime} minute{readingTime !== 1 ? 's' : ''}
+            <span>Categories: </span> {Array.isArray(categories) ? categories.join(', ') : categories}
           </small>
 
           {image && (

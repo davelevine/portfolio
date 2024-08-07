@@ -44,10 +44,32 @@
     span {
       color: var(--navbar-primary); // Ensure the text is white
       &:after {
-        content: ':'; // Add a colon
-        color: var(--text-primary);
+        content: ''; // Remove colon
+      }
+
+      i {
+        margin-right: 5px; // Add spacing between icon and text
+        color: var(--accent); // Ensure icons use the --accent color
+        font-family: 'Font Awesome 6 Free'; // Ensure icons use FontAwesome
+        font-style: normal; // Prevents icon flash
+        font-weight: 400; // Default weight for FontAwesome icons
+        display: inline-block; // Ensures correct inline display
+        font-size: 1rem; // Ensures icons are appropriately sized
       }
     }
+  }
+
+  // Style for the dot separator
+  .dot {
+    color: var(--text-primary);
+    margin: 0 5px; // Add spacing around the dot
+    &:after {
+      content: ''; // Prevent the colon from being added after the dot
+    }
+  }
+
+  .icon {
+    color: var(--accent); // Set icon color to the --accent variable
   }
 
   // Styles for anchor elements
@@ -298,7 +320,7 @@
   // Styles for code blocks
   pre {
     background-color: var(--background-card);
-    padding: 10px;
+    padding: auto;
     border-radius: 8px;
     overflow: auto; // Allow scrolling for long code blocks
     max-width: 100%; // Ensure code blocks do not exceed the width of the container
