@@ -1,8 +1,8 @@
 ---
 title: 'Certificate in Solutions Design'
-date: '2021-06'
+date: '2021-06-26'
 image: solutions-design.png
-excerpt: 'This course helps to define functional requirements and objectively measure the value of any potential systems design solution. After understanding the purpose, intent, and audience for the project, the course aids in utilizing fundamental systems design and architecture techniques to develop a deeper understanding of how all of the components of the solution work together.'
+excerpt: 'This course defines functional requirements and measures the value of systems design solutions while utilizing fundamental design techniques to understand component interactions.'
 isFeatured: true
 tech: ['System Architecture', 'Risk Management']
 ---

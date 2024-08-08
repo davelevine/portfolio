@@ -1,8 +1,8 @@
 ---
 title: 'CompTIA Security+'
-date: '2019-11'
+date: '2019-11-05'
 image: comptia-securityplus.webp
-excerpt: 'The CompTIA Security+ certification demonstrates a comprehensive understanding of fundamental cybersecurity principles. Certificate holders have proved they can assess the security posture of an enterprise environment, recommend and implement appropriate security solutions, monitor and secure hybrid environments, operate with an awareness of applicable laws and policies, and identify, analyze, and respond to security events and incidents.'
+excerpt: 'The CompTIA Security+ certification validates essential cybersecurity skills, including assessing security posture, recommending solutions, and responding to incidents.'
 isFeatured: true
 tech: ['Cybersecurity', 'Network Security', 'Risk Management']
 ---

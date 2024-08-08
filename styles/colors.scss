@@ -22,6 +22,7 @@
   --modal-background: #2c2c2c; // Modal background color
   --modal-border: #555; // Modal border color
   --project-button: #2c3e50; // Project button color (darker but still visible for black icons)
+  --valid-cert: #388E3C;
 }
 
 // Dark theme variables
@@ -47,4 +48,5 @@
   --text-gradient: linear-gradient(180deg, var(--accent-secondary), #6ef5c9); // Text gradient
   --link-hover: #cdd9e5; // Link hover color
   --project-button: #cdd9e5; // Project button color
+  --valid-cert: #a3e600;
 }

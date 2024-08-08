@@ -15,16 +15,30 @@ import { motion } from 'framer-motion';
  */
 const formatDate = (date, status) => {
   if (date === 'Never') {
-    return <span className={classes.expires}><strong>{status}</strong> Never</span>;
+    return (
+      <span className={classes.expires}>
+        <strong>
+          <i className="fa-regular fa-calendar-check"></i> Never
+        </strong>
+      </span>
+    );
   }
 
   const formattedDate = new Date(date).toLocaleDateString('en-US', {
     timeZone: 'UTC',
-    month: 'long',
+    month: 'short',
+    day: 'numeric',
     year: 'numeric',
   });
 
-  return <span className={status === 'Expired' ? classes.expired : classes.expires}><strong>{status}</strong> {formattedDate}</span>;
+  return (
+    <span className={status === 'Expired' ? classes.expired : classes.expires}>
+      <strong>
+        <i className={status === 'Expired' ? 'fa-regular fa-calendar-xmark' : 'fa-regular fa-calendar-check'}></i> 
+        {formattedDate}
+      </strong>
+    </span>
+  );
 };
 
 /**
@@ -59,14 +73,14 @@ const CertItem = ({ cert }) => {
   return (
     <div className={classes.card} data-aos='zoom-in-up'>
       <div className={classes.cardContent}>
-        <h4 onClick={toggleModal} style={{ cursor: 'pointer' }}>{title}</h4>
-        <time>{expiresDate}</time>
+        <h4 onClick={toggleModal}>{title}</h4>
         <p>{excerpt}</p>
       </div>
       <div className={classes.cardAction}>
         <button onClick={toggleModal}>
           <i className="fa-regular fa-arrow-up-right-from-square"></i> View Certificate
         </button>
+        <time>{expiresDate}</time>
       </div>
       <Suspense fallback={
         <motion.div

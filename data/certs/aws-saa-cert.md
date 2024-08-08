@@ -1,8 +1,8 @@
 ---
-title: 'AWS Certified Solutions Architect - Associate'
-date: '2026-08'
+title: 'AWS Certified Solutions Architect'
+date: '2026-08-14'
 image: aws-saa.png
-excerpt: 'My journey to achieve the AWS Certified Solutions Architect – Associate certification has been a humbling experience. It has allowed me to deepen my understanding of AWS services and their application in creating robust and secure cloud solutions.'
+excerpt: 'Achieving the AWS Certified Solutions Architect – Associate certification deepened my understanding of AWS services and their application in creating secure cloud solutions.'
 isFeatured: true
 tech: ['AWS', 'Cybersecurity', 'Compliance', 'Migration', 'Serverless']
 ---

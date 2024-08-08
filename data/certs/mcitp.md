@@ -1,8 +1,8 @@
 ---
 title: 'Microsoft Certified IT Professional (MCITP)'
-date: '2016-10'
+date: '2016-10-05'
 image: mcitp.png
-excerpt: 'The Enterprise Desktop Administrator on Windows 7 certification is for IT Pros that have experience installing, configuring, and administering clients in a Windows networked environment and also have experience deploying operating systems and applications.'
+excerpt: 'MCITP certification validates skills in installing, configuring, and administering Windows 7 clients in a networked environment.'
 isFeatured: true
 tech: ['System Administration']
 ---

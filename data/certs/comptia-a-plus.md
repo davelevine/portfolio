@@ -1,13 +1,13 @@
 ---
 title: 'CompTIA A+'
-date: '2016-03'
-image: comptia-securityplus.png
-excerpt: 'The CompTIA A+ certification demonstrates a thorough and basic understanding of information technology. Certificate holders have proved they can test for, identify, comprehend, and fix issues regarding hardware, software, networking, security, cloud computing, mobile devices, and configuring operating systems.'
+date: '2016-03-18'
+image: comptia-aplus.png
+excerpt: 'The CompTIA A+ certification validates foundational IT skills in hardware, software, networking, and security troubleshooting.'
 isFeatured: true
 tech: ['Troubleshooting', 'Fundamentals']
 ---
 
-![comptia-a-plus](/images/certs/comptia-securityplus.png)
+![comptia-a-plus](/images/certs/comptia-aplus.png)
 
 ## Certificate
 

@@ -1,8 +1,8 @@
 ---
 title: 'Certified ScrumMaster (CSM)'
-date: '2026-08'
+date: '2026-08-14'
 image: csm.webp
-excerpt: "This certification journey has provided me with the knowledge and skills to apply Scrum principles in real-world projects, resulting in improved outcomes and enhanced customer satisfaction. It's a humbling reminder that there's always room for improvement and that successful Scrum implementation requires ongoing learning and growth."
+excerpt: "This certification journey has equipped me with the skills to effectively apply Scrum principles, enhancing project outcomes and customer satisfaction."
 isFeatured: true
 tech: ['Scrum', 'Agile', 'Leadership']
 ---

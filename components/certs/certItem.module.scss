@@ -2,175 +2,205 @@
 
 /* Card container styles */
 .card {
-  border-radius: 8px; /* Rounded corners for the card */
-  padding: 25px; /* Padding inside the card */
-  background-color: var(--background-card); /* Background color from CSS variable */
-  transition: transform $transition-speed ease, box-shadow $transition-speed ease; /* Smooth background transition */
-  border: 1px solid var(--border-card); /* Border color from CSS variable */
-  margin-bottom: 25px; /* Space below each card */
-  display: flex; /* Flexbox layout */
-  flex-direction: column; /* Column layout */
-  min-height: 260px; /* Minimum height for the card */
+  border-radius: 8px;
+  padding: 25px;
+  background-color: var(--background-card);
+  transition: transform $transition-speed ease, box-shadow $transition-speed ease;
+  border: 1px solid var(--border-card);
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  min-height: 350px; // Set a minimum height to ensure consistency
 
   &:hover {
     transform: scale(1.02);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); /* More pronounced box shadow */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  h4 {
+    color: var(--text-secondary);
+    font-size: 1.15rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    min-height: 3rem; /* Set a minimum height for the title */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center; /* Center the title */
   }
 }
 
-.card h4 {
-  margin: 0; /* Remove default margin */
-  color: var(--text-secondary);
-  font-size: 1.15rem;
-  margin-bottom: 0;
+.cardContent {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align to the top */
+  text-align: center; /* Center the content */
 }
 
-.card time,
-.card p {
+.cardContent p {
   color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  min-height: 6rem; /* Set a minimum height for the excerpt */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.card .expires strong {
+.cardAction {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.cardAction button {
   color: var(--text-primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 0;
+  transition: color $transition-speed ease, transform $transition-speed ease, text-decoration $transition-speed ease;
+  display: flex;
+  align-items: center;
 }
 
-.card .expires strong:after {
-  content: ':';
-  color: var(--accent);
-}
-
-.card .expired strong {
-  color: var(--accent);
-}
-
-.card .expired strong:after {
-  content: ':';
-  color: var(--text-primary);
-}
-
-.card .cardAction {
-  display: flex; /* Flexbox layout */
-  flex-direction: row; /* Row layout */
-  margin-top: auto; /* Push to the bottom of the card */
-}
-
-.card .cardAction button {
-  color: var(--text-primary);
-  background: none; /* No background */
-  border: none; /* No border */
-  cursor: pointer; /* Pointer cursor on hover */
-  font-size: inherit; /* Inherit font size */
-  text-decoration: none; /* No text decoration */
-  padding: 0; /* Remove default padding */
-  transition: color $transition-speed ease, transform $transition-speed ease, text-decoration $transition-speed ease; /* Smooth transitions */
-}
-
-.card .cardAction button:hover {
-  color: var(--link-hover); /* Change color on hover */
+.cardAction button:hover {
+  color: var(--link-hover);
   transform: scale(1.1);
-  text-decoration: underline; /* Underline on hover */
+  text-decoration: underline;
 }
 
-.card .cardAction button i {
-  color: var(--accent); /* Icon color from CSS variable */
-  margin-right: 5px; /* Spacing between the icon and the text */
+.cardAction button i {
+  color: var(--accent);
+  margin-right: 5px;
+  font-weight: normal;
+}
+
+.cardAction time {
+  display: flex;
+  align-items: center;
+  color: var(--text-primary);
+}
+
+.cardAction time i {
+  margin-right: 5px;
+}
+
+.expires, .expired {
+  display: flex;
+  align-items: center;
+}
+
+.expires i {
+  color: var(--valid-cert);
+  margin-right: 5px;
+}
+
+.expired i {
+  color: var(--accent);
+  margin-right: 5px;
 }
 
 @media only screen and (min-width: 768px) {
   .card {
-    margin-bottom: unset; /* Remove bottom margin */
+    margin-bottom: unset;
   }
 }
 
 /* Modal Styles */
 .modal {
-  position: fixed; /* Fixed position */
-  top: 50%; /* Center vertically */
-  left: 50%; /* Center horizontally */
-  transform: translate(-50%, -50%); /* Center the modal */
-  background: var(--background-card); /* Background color from CSS variable */
-  padding: 0; /* Remove default padding */
-  z-index: 1000; /* Ensure modal is on top */
-  width: 90%; /* Width of the modal */
-  height: auto; /* Auto height */
-  max-height: 95%; /* Maximum height */
-  overflow: hidden; /* Hide overflow */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
-  border-radius: 10px; /* Rounded corners */
-  animation: fadeIn $transition-speed ease-in-out; /* Fade-in animation */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--background-card);
+  padding: 0;
+  z-index: 1000;
+  width: 90%;
+  height: auto;
+  max-height: 95%;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  animation: fadeIn $transition-speed ease-in-out;
 }
 
 @media (min-width: 768px) {
   .modal {
-    width: 70%; /* Width of the modal */
-    max-height: 85%; /* Maximum height */
+    width: 70%;
+    max-height: 85%;
   }
 }
 
 @media (min-width: 1024px) {
   .modal {
-    width: 60%; /* Width of the modal */
-    max-height: 80%; /* Maximum height */
+    width: 60%;
+    max-height: 80%;
   }
 }
 
 /* Overlay styles */
 .overlay {
-  position: fixed; /* Fixed position */
-  top: 0; /* Top of the screen */
-  left: 0; /* Left of the screen */
-  right: 0; /* Right of the screen */
-  bottom: 0; /* Bottom of the screen */
-  background: rgba(0, 0, 0, 0.75); /* Semi-transparent background */
-  z-index: 999; /* Ensure overlay is below the modal */
-  animation: fadeIn $transition-speed ease-in-out; /* Fade-in animation */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 999;
+  animation: fadeIn $transition-speed ease-in-out;
 }
 
 /* Close button styles */
 .closeButton {
-  background: var(--background-card); /* Background color from CSS variable */
-  border: none; /* No border */
-  font-size: 1.5rem; /* Font size */
-  position: absolute; /* Absolute position */
-  top: 10px; /* Position from the top */
-  right: 10px; /* Position from the right */
-  cursor: pointer; /* Pointer cursor on hover */
+  background: var(--background-card);
+  border: none;
+  font-size: 1.5rem;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
   color: var(--text-primary);
-  display: flex; /* Flexbox layout */
-  align-items: center; /* Center items vertically */
-  justify-content: center; /* Center items horizontally */
-  width: 2.5rem; /* Width of the button */
-  height: 2.5rem; /* Height of the button */
-  border-radius: 50%; /* Rounded corners */
-  transition: background-color $transition-speed ease, transform $transition-speed ease; /* Smooth transitions */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  transition: background-color $transition-speed ease, transform $transition-speed ease;
 }
 
 .closeButton:hover {
-  background-color: var(--background-secondary); /* Background color on hover */
-  transform: scale(1.1); /* Scale up on hover */
+  background-color: var(--background-secondary);
+  transform: scale(1.1);
 }
 
 .closeButton:before {
-  color: var(--text-primary); /* Icon color */
+  color: var(--text-primary);
 }
 
 /* Certificate image styles */
 .certImage {
-  display: block; /* Block display */
-  max-width: 100%; /* Maximum width */
-  max-height: 100%; /* Maximum height */
-  width: auto; /* Auto width */
-  height: auto; /* Auto height */
-  margin: 0 auto; /* Center horizontally */
-  border-radius: 5px; /* Rounded corners */
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 5px;
 }
 
 /* Fade-in animation */
 @keyframes fadeIn {
   from {
-    opacity: 0; /* Start with 0 opacity */
+    opacity: 0;
   }
   to {
-    opacity: 1; /* End with full opacity */
+    opacity: 1;
   }
 }

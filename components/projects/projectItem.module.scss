@@ -79,6 +79,7 @@
     font-size: 1rem;
     margin: 0 15px 10px 0;
     display: block;
+    font-weight: bold; // Make project links bold
     transition: color $transition-speed ease, transform $transition-speed ease, text-decoration $transition-speed ease;
 
     &:hover {
@@ -92,6 +93,7 @@
     width: 20px;
     margin-right: 5px;
     color: var(--accent);
+    font-weight: normal; // Ensure icons are not bold
   }
 }
 

@@ -39,6 +39,7 @@
   small {
     @include text-styles(var(--accent), -10px, 1rem); // Reduced margin-bottom
     display: block;
+    font-weight: bold;
 
     // Match "Sort by" text style
     span {
