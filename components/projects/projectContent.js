@@ -121,7 +121,7 @@ const ProjectContent = ({ project, currentTheme, showModal = false }) => {
             )}
             {liveLink && (
               <a href={liveLink} target='_blank' rel='noreferrer'>
-                <i className='fa fa-arrow-up-right-from-square'></i>
+                <i className='fa-regular fa-arrow-up-right-from-square'></i>
                 Website
               </a>
             )}
