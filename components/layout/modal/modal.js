@@ -31,7 +31,7 @@ const Modal = ({ contact, resume, onClose, ...props }) => {
     <motion.div initial="hidden" animate="visible" exit="exit" variants={fadeIn}>
       <div className={classes.resumeModal}>
         <button className={classes.close} onClick={onClose} aria-label="Close">
-          <i className='fa fa-xmark'></i>
+          <i className='fa-regular fa-xmark'></i>
         </button>
         <iframe src={RESUME_FILE_PATH} className={classes.iframe} title="Resume" />
       </div>

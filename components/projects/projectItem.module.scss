@@ -75,7 +75,7 @@
   justify-content: center;
 
   a {
-    color: var(--accent);
+    color: var(--text-primary);
     font-size: 1rem;
     margin: 0 15px 10px 0;
     display: block;
@@ -91,7 +91,7 @@
   i {
     width: 20px;
     margin-right: 5px;
-    color: var(--navbar-primary);
+    color: var(--accent);
   }
 }
 

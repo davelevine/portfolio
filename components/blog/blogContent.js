@@ -100,7 +100,7 @@ const BlogContent = ({ blog, currentTheme, showModal = false }) => {
         <div className={classes.card}>
           <h1>{title}</h1>
           <small>
-            <span><i className="fa-regular fa-calendar-pen" /> {formattedDate}</span>
+            <span><i className="fa-regular fa-calendar-lines-pen" /> {formattedDate}</span>
             <span className={classes.dot}> • </span>
             <span><i className="fa-regular fa-clock" /> {readingTime} min</span>
             <br />

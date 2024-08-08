@@ -55,7 +55,7 @@ const BlogItem = ({ blog }) => {
       </Link>
       <div className={classes.metaInfo}>
         <div className={classes.metaItem}>
-          <i className='fa-regular fa-calendar-pen'></i>
+          <i className='fa-regular fa-calendar-lines-pen'></i>
           <p>{date}</p>
         </div>
         <div className={classes.metaItem}>

@@ -82,7 +82,9 @@ const CertItem = ({ cert }) => {
           className={classes.modal}
           overlayClassName={classes.overlay}
         >
-          <button onClick={toggleModal} className={classes.closeButton}></button>
+          <button onClick={toggleModal} className={classes.closeButton}>
+            <i className='fa-regular fa-xmark'></i>
+          </button>
           <Image src={linkPath} alt={`Certificate for ${title}`} className={classes.certImage} width={700} height={475} />
         </Modal>
       </Suspense>
