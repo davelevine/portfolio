@@ -35,7 +35,7 @@ const ContactModal = ({ onClose }) => {
                 <i className='fab fa-linkedin'></i>
               </a>
               <a href='/assets/dave.levine.io-pub.asc' target='_blank' rel='noreferrer'>
-                <i className='fa-sharp fa-solid fa-key'></i>
+                <i className='fa-sharp fa-regular fa-key'></i>
               </a>
             </div>
           )}
@@ -67,7 +67,7 @@ const ContactModal = ({ onClose }) => {
                   <i className='fab fa-linkedin'></i>
                 </a>
                 <a href='/assets/dave.levine.io-pub.asc' target='_blank' rel='noreferrer'>
-                  <i className='fa-sharp fa-solid fa-key'></i>
+                  <i className='fa-sharp fa-regular fa-key'></i>
                 </a>
               </div>
             </div>
@@ -121,7 +121,7 @@ const ContactModal = ({ onClose }) => {
                   <i className='fab fa-linkedin'></i>
                 </a>
                 <a href='/assets/dave.levine.io-pgp-key-pub.asc' target='_blank' rel='noreferrer'>
-                  <i className='fa-sharp fa-solid fa-key' style={{fontSize: '3.2em'}}></i>
+                  <i className='fa-sharp fa-regular fa-key' style={{fontSize: '3.2em'}}></i>
                 </a>
               </div>
               <div className={classes.sendLink}>
