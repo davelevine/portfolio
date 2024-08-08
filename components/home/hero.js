@@ -95,7 +95,7 @@ const Hero = () => {
                 </a>
                 <a href={PGP_KEY_PATH} target='_blank' rel='noreferrer' aria-label="PGP Key">
                   <i
-                    className='fa fa-key'
+                    className='fa-sharp fa-regular fa fa-key'
                     data-aos='flip-up'
                     data-aos-delay='150'
                     data-aos-duration='500'></i>
