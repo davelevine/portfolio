@@ -65,7 +65,7 @@ const CertItem = ({ cert }) => {
       </div>
       <div className={classes.cardAction}>
         <button onClick={toggleModal}>
-          <i className="fa fa-arrow-up-right-from-square"></i> View Certificate
+          <i className="fa-regular fa-arrow-up-right-from-square"></i> View Certificate
         </button>
       </div>
       <Suspense fallback={

@@ -185,7 +185,7 @@ const AllProjects = ({ projects }) => {
               style={{ borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
               <div className={classes.techLogoContainer}>
-                <i className="fa fa-asterisk" style={{ fontSize: '32px', color: 'currentColor' }}></i>
+                <i className="fa-regular fa-asterisk" style={{ fontSize: '32px', color: 'currentColor' }}></i>
                 <span className={classes.techLogoName}>All</span>
               </div>
             </motion.button>

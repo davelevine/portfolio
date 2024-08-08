@@ -28,11 +28,11 @@ const BlogItem = ({ blog }) => {
   const renderBlogLinks = (
     <div className={classes.blogLinks}>
       <Link href={`/blog/${slug}`}>
-        <i className='fa fa-arrow-up-right-from-square'></i>View Post
+        <i className='fa-regular fa-arrow-up-right-from-square'></i>View Post
       </Link>
       {liveLink && (
         <a href={liveLink} target='_blank' rel='noreferrer'>
-          <i className='fa fa-arrow-up-right-from-square'></i>
+          <i className='fa-regular fa-arrow-up-right-from-square'></i>
           Website
         </a>
       )}
@@ -55,7 +55,7 @@ const BlogItem = ({ blog }) => {
       </Link>
       <div className={classes.metaInfo}>
         <div className={classes.metaItem}>
-          <i className='fa-regular fa-calendar'></i>
+          <i className='fa-regular fa-calendar-pen'></i>
           <p>{date}</p>
         </div>
         <div className={classes.metaItem}>

@@ -56,12 +56,12 @@ const useRenderProjectLinks = (githubLink, liveLink, slug) => {
       )}
       {liveLink && (
         <a href={liveLink} target='_blank' rel='noreferrer'>
-          <i className='fa fa-arrow-up-right-from-square'></i>
+          <i className='fa-regular fa-arrow-up-right-from-square'></i>
           Website
         </a>
       )}
       <Link href={`/projects/${slug}`}>
-        <i className='fa fa-circle-info'></i>Details
+        <i className='fa-regular fa-circle-info'></i>Details
       </Link>
     </div>
   ), [githubLink, liveLink, slug]);

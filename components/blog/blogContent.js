@@ -100,11 +100,11 @@ const BlogContent = ({ blog, currentTheme, showModal = false }) => {
         <div className={classes.card}>
           <h1>{title}</h1>
           <small>
-            <span><i className="fa-regular fa-calendar" /> {formattedDate}</span>
+            <span><i className="fa-regular fa-calendar-pen" /> {formattedDate}</span>
             <span className={classes.dot}> • </span>
             <span><i className="fa-regular fa-clock" /> {readingTime} min</span>
             <br />
-            <span><i className="fa fa-hashtag" /> </span>
+            <span><i className="fa-regular fa-tags" /> </span>
             {Array.isArray(categories) ? categories.map((category, index) => (
               <span key={index} className={classes.category}>
                 {category}
@@ -128,7 +128,7 @@ const BlogContent = ({ blog, currentTheme, showModal = false }) => {
             )}
             {liveLink && (
               <a href={liveLink} target='_blank' rel='noreferrer'>
-                <i className='fa fa-arrow-up-right-from-square'></i>
+                <i className='fa-regular fa-arrow-up-right-from-square'></i>
                 Website
               </a>
             )}
