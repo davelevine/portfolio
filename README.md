@@ -1,15 +1,21 @@
-# My Personal Portfolio
+## Description
 
-Developed with Next.js and Sass. Certs and Projects sections are written in markdown and rendered with react-markdown and react-syntax-highlighter.
+My personal portfolio developed with Next.js and React. Certs and Projects sections are written in markdown and rendered with react-markdown and react-syntax-highlighter.
 
-## Features
+## Key Takeaways
 
-- Built with Next.js and React
-- Progressive Web App (PWA)
-  - App manifest
-  - Service worker
-  - Lighthouse score: [94/100](https://pagespeed.web.dev/analysis/https-dave-levine-io/b3x99kmdqe?form_factor=mobile) (Mobile), [100/100](https://pagespeed.web.dev/analysis/https-dave-levine-io/b3x99kmdqe?form_factor=desktop) (Desktop)
+- Built with [Next.js] and [React]
+- Lighthouse score: [94/100] (Mobile), [100/100] (Desktop)
 - Static Site
+- Posts and projects written in markdown
+- Rendered using [react-markdown] and [react-syntax-highlighter]
+
+  [Next.js]: https://nextjs.org/
+  [React]: https://reactjs.org/
+  [react-markdown]: https://github.com/remarkjs/react-markdown
+  [react-syntax-highlighter]: https://github.com/react-syntax-highlighter/react-syntax-highlighter
+  [94/100]: https://pagespeed.web.dev/analysis/https-dave-levine-io/b3x99kmdqe?form_factor=mobile
+  [100/100]: https://pagespeed.web.dev/analysis/https-dave-levine-io/b3x99kmdqe?form_factor=desktop
 
 Third party static contact form (formspree):
 
