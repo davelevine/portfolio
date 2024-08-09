@@ -30,4 +30,3 @@ I've been with [Weill Cornell Medicine] since October 2015, now working as a Sol
   [knowledge base]: https://kb.levine.io
   [homelab]: https://cdn.levine.io/uploads/images/gallery/2023-11/network-diagram-1.png
   [Weill Cornell Medicine]: https://weill.cornell.edu/
-  [here]: https://cdn.levine.io/uploads/portfolio/public/assets/davelevine-resume.pdf
