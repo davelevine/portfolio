@@ -88,7 +88,7 @@ const Navbar = ({ theme, newTheme, children }) => {
 
           <nav className={isOpen ? `${classes.navMenu} ${classes.responsive}` : classes.navMenu} id='navMenu'>
             <div className={classes.linkWrapper}>
-              {['/', '/projects', '/certs', '/blog', '/about'].map((path, index) => (
+              {['/', '/now', '/projects', '/certs', '/blog', '/about'].map((path, index) => (
                 <motion.a
                   key={path}
                   href={path}
