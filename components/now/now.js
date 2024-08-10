@@ -1,4 +1,4 @@
-import { useMemo, lazy, Suspense, useEffect, useState } from 'react';
+import { useMemo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Aos from 'aos'; 
 import 'aos/dist/aos.css';
@@ -33,7 +33,16 @@ const getCustomRenderers = (currentTheme) => ({
       </code>
     );
   },
-  hr: () => <hr className={classes.divider} />, // Ensure that horizontal rules are rendered correctly
+  blockquote({ node, children, ...props }) {
+    return (
+      <div className={classes.quoteBox}>
+        <blockquote {...props}>
+          {children}
+        </blockquote>
+      </div>
+    );
+  },
+  hr: () => <hr className={classes.divider} />,
   strong: ({ children }) => <strong className={classes.highlighted}>{children}</strong>,
   a: ({ href, children }) => (
     <a href={href} className={classes.link} target="_blank" rel="noopener noreferrer">
@@ -47,14 +56,13 @@ const getCustomRenderers = (currentTheme) => ({
   ),
 });
 
-const Now = ({ currentTheme, showModal = false }) => {
+const Now = ({ currentTheme = 'light', showModal = false }) => {
   const [markdownContent, setMarkdownContent] = useState('');
 
   useEffect(() => {
     Aos.init({ duration: 550 });
     document.title = 'Dave Levine - Now';
 
-    // Fetch the markdown content
     fetch('/data/now/now.md')
       .then((response) => response.text())
       .then((text) => {
@@ -63,7 +71,9 @@ const Now = ({ currentTheme, showModal = false }) => {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = showModal ? 'hidden' : 'auto';
+    const bodyStyle = document.body.style;
+    bodyStyle.overflow = showModal ? 'hidden' : 'auto';
+    bodyStyle.paddingRight = '0px';
   }, [showModal]);
 
   const customRenderers = useMemo(() => getCustomRenderers(currentTheme), [currentTheme]);
@@ -72,23 +82,22 @@ const Now = ({ currentTheme, showModal = false }) => {
     <div className={classes.now}>
       <div className='container section mvh-100'>
         <div className={classes.card}>
-          <Suspense fallback={<div>Loading content...</div>}>
-            <ReactMarkdown
-              components={customRenderers}
-              rehypePlugins={[rehypeRaw]}  // Allows raw HTML in markdown
-              remarkPlugins={[remarkGfm]} // Enables GitHub flavored markdown (tables, etc.)
-            >
-              {markdownContent}
-            </ReactMarkdown>
-          </Suspense>
+          <ReactMarkdown
+            components={customRenderers}
+            rehypePlugins={[rehypeRaw]}
+            remarkPlugins={[remarkGfm]}
+          >
+            {markdownContent}
+          </ReactMarkdown>
         </div>
       </div>
+      {showModal && <Modal />}
     </div>
   );
 };
 
 Now.propTypes = {
-  currentTheme: PropTypes.oneOf(['dark', 'light']).isRequired,
+  currentTheme: PropTypes.oneOf(['dark', 'light']),
   showModal: PropTypes.bool,
 };
 

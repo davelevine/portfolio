@@ -2,8 +2,11 @@
 
 # Now
 
-<i class="fa-regular fa-calendar-lines-pen"></i> 2024.08.09<br>
-<i class="fa-regular fa-tags"></i> Personal • Professional • Hobbies
+<small>
+<i class="fa-regular fa-calendar-lines-pen"></i> August 9, 2024
+<br>
+<i class="fa-regular fa-tags"></i> Personal • Professional
+</small>
 
 ---
 
