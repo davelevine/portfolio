@@ -44,6 +44,14 @@
       color: var(--text-secondary);
     }
 
+    h3 {
+      margin-top: 15px;
+      margin-bottom: 0;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
     small {
       color: var(--navbar-primary);
       margin-bottom: 10px;
@@ -54,10 +62,9 @@
 
     p {
       font-size: 1rem;
-      line-height: 1.5;
       color: var(--text-primary);
     }
-
+    
     .highlighted {
       color: var(--accent);
     }    
@@ -78,11 +85,11 @@
       margin: 20px 0;
     }
 
-    .blogImage {
+    .nowImage {
       max-width: 100%;
       height: auto;
       border-radius: 8px;
-      max-width: 500px;
+      max-width: 80%;
       margin: 10px auto;
       display: block;
     }
@@ -114,6 +121,12 @@
       }
       &.fa-2x {
         font-size: 2rem;
+      }
+    }
+
+    @media only screen and (max-width: 767px) {
+      .nowImage {
+        max-width: 100%; // Increase size on mobile
       }
     }
 

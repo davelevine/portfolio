@@ -50,7 +50,7 @@ const getCustomRenderers = (currentTheme) => ({
     </a>
   ),
   img: ({ src, alt, ...props }) => (
-    <img src={src} alt={alt} className={classes.blogImage} style={{ maxWidth: '80%', height: 'auto' }} {...props} />
+    <img src={src} alt={alt} className={classes.nowImage} style={{ width: '100%', height: 'auto' }} {...props} />
   ),
 });
 
