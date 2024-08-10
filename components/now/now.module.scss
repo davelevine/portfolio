@@ -24,7 +24,7 @@
     background-color: var(--background-card);
     transition: background $transition-speed;
     border: 1px solid var(--border-card);
-    margin: 25px 0;
+    margin: -30px;
     display: flex;
     flex-direction: column;
     color: var(--navbar-primary);
@@ -69,7 +69,7 @@
     .imageContainer {
       display: flex;
       justify-content: center;
-      margin-bottom: 40px;
+      margin-bottom: 0;
     }
 
     .divider {
@@ -77,11 +77,31 @@
       height: 1px;
       background-color: var(--text-primary);
       margin: 20px 0;
+      margin-top: 0;
     }
 
     ul, ol {
       margin-top: 0; /* Reduce the margin-top for bulleted and numbered lists */
       padding-left: auto; /* Maintain a consistent padding for the lists */
+    }
+
+    // Ensure proper styling and alignment for Font Awesome icons
+    i {
+      margin-right: 5px; // Spacing between the icon and the text
+      color: var(--accent); // Use the accent color for icons
+      font-family: 'Font Awesome 6 Free'; // Ensure correct font family is applied
+      font-weight: 400; // Regular weight for Font Awesome icons
+      font-style: normal; // Prevents icon flash
+      display: inline-block; // Maintain correct inline alignment
+      font-size: 1rem; // Size of the icons, adjust as needed
+
+      // Optional: Adjust size for larger icons
+      &.fa-lg {
+        font-size: 1.25rem;
+      }
+      &.fa-2x {
+        font-size: 2rem;
+      }
     }
 
     @media only screen and (min-width: 768px) {

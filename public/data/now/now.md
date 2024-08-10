@@ -1,8 +1,15 @@
+<!--markdownlint-disable-->
+
 # Now
 
-**Last Updated**: 2024.08.09
+<i class="fa-regular fa-calendar-lines-pen"></i> 2024.08.09<br>
+<i class="fa-regular fa-tags"></i> Personal • Professional • Hobbies
+
+---
 
 This is a [now page]: a brief update of what's currently happening in my life.
+
+![fuure-is-now](https://cdn.levine.io/uploads/portfolio/public/images/home-office.webp)
 
 ## Personal
 

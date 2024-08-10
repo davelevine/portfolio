@@ -4,32 +4,47 @@ import Aos from 'aos';
 import 'aos/dist/aos.css';
 import dynamic from 'next/dynamic';
 import classes from './now.module.scss';
-
-const ReactMarkdown = lazy(() => import('react-markdown'));
-const SyntaxHighlighter = lazy(() => import('react-syntax-highlighter').then(mod => mod.Prism));
-const atomDark = lazy(() => import('react-syntax-highlighter/dist/cjs/styles/prism').then(mod => mod.atomDark));
-const solarizedlight = lazy(() => import('react-syntax-highlighter/dist/cjs/styles/prism').then(mod => mod.solarizedlight));
+import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
+import remarkGfm from 'remark-gfm';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { atomDark, oneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 const Modal = dynamic(() => import('../layout/modal/contactModal'), {
   loading: () => <div className="skeleton-loader"></div>,
 });
 
 const getCustomRenderers = (currentTheme) => ({
-  code({ className, children }) {
-    const language = className?.split('-')[1];
-    return (
-      <Suspense fallback={<div>Loading...</div>}>
-        <SyntaxHighlighter
-          showLineNumbers
-          language={language}
-          style={currentTheme === 'dark' ? atomDark : solarizedlight}
-        >
-          {children}
-        </SyntaxHighlighter>
-      </Suspense>
+  code({ node, inline, className, children, ...props }) {
+    const match = /language-(\w+)/.exec(className || '');
+    return !inline && match ? (
+      <SyntaxHighlighter
+        style={currentTheme === 'dark' ? atomDark : oneLight}
+        language={match[1]}
+        PreTag="div"
+        showLineNumbers
+        {...props}
+      >
+        {String(children).replace(/\n$/, '')}
+      </SyntaxHighlighter>
+    ) : (
+      <code className={className} {...props}>
+        {children}
+      </code>
     );
   },
+  hr: () => <hr className={classes.divider} />, // Ensure that horizontal rules are rendered correctly
   strong: ({ children }) => <strong className={classes.highlighted}>{children}</strong>,
+  a: ({ href, children }) => (
+    <a href={href} className={classes.link} target="_blank" rel="noopener noreferrer">
+      {children}
+    </a>
+  ),
+  img: ({ src, alt }) => (
+    <div className={classes.imageContainer}>
+      <img src={src} alt={alt} className={classes.blogImage} style={{ maxWidth: '100%', height: 'auto' }} />
+    </div>
+  ),
 });
 
 const Now = ({ currentTheme, showModal = false }) => {
@@ -57,8 +72,12 @@ const Now = ({ currentTheme, showModal = false }) => {
     <div className={classes.now}>
       <div className='container section mvh-100'>
         <div className={classes.card}>
-          <Suspense fallback={<div>Loading...</div>}>
-            <ReactMarkdown components={customRenderers}>
+          <Suspense fallback={<div>Loading content...</div>}>
+            <ReactMarkdown
+              components={customRenderers}
+              rehypePlugins={[rehypeRaw]}  // Allows raw HTML in markdown
+              remarkPlugins={[remarkGfm]} // Enables GitHub flavored markdown (tables, etc.)
+            >
               {markdownContent}
             </ReactMarkdown>
           </Suspense>
