@@ -1,4 +1,4 @@
-import { useMemo, useEffect, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import Aos from 'aos'; 
 import 'aos/dist/aos.css';
@@ -49,38 +49,32 @@ const getCustomRenderers = (currentTheme) => ({
       {children}
     </a>
   ),
-  img: ({ src, alt }) => (
-    <div className={classes.imageContainer}>
-      <img src={src} alt={alt} className={classes.blogImage} style={{ maxWidth: '100%', height: 'auto' }} />
-    </div>
+  img: ({ src, alt, ...props }) => (
+    <img src={src} alt={alt} className={classes.blogImage} style={{ maxWidth: '80%', height: 'auto' }} {...props} />
   ),
 });
 
-const Now = ({ currentTheme = 'light', showModal = false }) => {
-  const [markdownContent, setMarkdownContent] = useState('');
-
+const Now = ({ markdownContent, currentTheme = 'light', showModal = false }) => {
   useEffect(() => {
-    Aos.init({ duration: 550 });
-    document.title = 'Dave Levine - Now';
-
-    fetch('/data/now/now.md')
-      .then((response) => response.text())
-      .then((text) => {
-        setMarkdownContent(text);
-      });
+    if (typeof window !== 'undefined') {
+      Aos.init({ duration: 550 });
+      document.title = 'Dave Levine - Now';
+    }
   }, []);
 
   useEffect(() => {
-    const bodyStyle = document.body.style;
-    bodyStyle.overflow = showModal ? 'hidden' : 'auto';
-    bodyStyle.paddingRight = '0px';
+    if (typeof window !== 'undefined') {
+      const bodyStyle = document.body.style;
+      bodyStyle.overflow = showModal ? 'hidden' : 'auto';
+      bodyStyle.paddingRight = '0px';
+    }
   }, [showModal]);
 
   const customRenderers = useMemo(() => getCustomRenderers(currentTheme), [currentTheme]);
 
   return (
     <div className={classes.now}>
-      <div className='container section mvh-100'>
+      <div className="container section mvh-100">
         <div className={classes.card}>
           <ReactMarkdown
             components={customRenderers}
@@ -97,6 +91,7 @@ const Now = ({ currentTheme = 'light', showModal = false }) => {
 };
 
 Now.propTypes = {
+  markdownContent: PropTypes.string.isRequired,
   currentTheme: PropTypes.oneOf(['dark', 'light']),
   showModal: PropTypes.bool,
 };

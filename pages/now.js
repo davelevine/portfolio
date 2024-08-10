@@ -1,8 +1,18 @@
-// pages/now.js
-
-// Refactored to use implicit return for the functional component for conciseness
+import fs from 'fs';
+import path from 'path';
 import Now from '../components/now/now';
 
-const NowPage = () => <Now />;
+export async function getStaticProps() {
+  const filePath = path.join(process.cwd(), 'public', 'data', 'now', 'now.md');
+  const markdownContent = fs.readFileSync(filePath, 'utf8');
+
+  return {
+    props: {
+      markdownContent,
+    },
+  };
+}
+
+const NowPage = ({ markdownContent }) => <Now markdownContent={markdownContent} />;
 
 export default NowPage;

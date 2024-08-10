@@ -37,25 +37,25 @@
     }
 
     h2 {
-      margin-top: 20px; /* Add margin for spacing */
+      margin-top: 20px;
       margin-bottom: 0;
-      font-size: 1.8rem; /* Font size for h2 */
-      font-weight: 600; /* Font weight for h2 */
-      color: var(--text-secondary); /* Color for h2 */
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--text-secondary);
     }
 
     small {
       color: var(--navbar-primary);
       margin-bottom: 10px;
-      font-size: 1.05rem; /* Adjusted font size for small text */
+      font-size: 1.05rem;
       line-height: 1.6;
       display: block;
     }
 
     p {
-      font-size: 1rem; /* Define paragraph text size */
-      line-height: 1.5; /* Optional: improve readability */
-      color: var(--text-primary); /* Optional: set color for paragraph text */
+      font-size: 1rem;
+      line-height: 1.5;
+      color: var(--text-primary);
     }
 
     .highlighted {
@@ -74,35 +74,41 @@
     }
 
     .imageContainer {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 0;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .blogImage {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      max-width: 500px;
+      margin: 10px auto;
+      display: block;
     }
 
     .divider {
       width: 100%;
-      height: 0.5px; /* Made the divider thinner */
+      height: 0.5px;
       background-color: var(--text-primary);
       margin: 30px 0;
       margin-top: 0;
     }
 
     ul, ol {
-      margin-top: 0; /* Reduce the margin-top for bulleted and numbered lists */
-      padding-left: auto; /* Maintain a consistent padding for the lists */
+      margin-top: 0;
+      padding-left: auto;
     }
 
-    // Ensure proper styling and alignment for Font Awesome icons
     i {
-      margin-right: 5px; // Spacing between the icon and the text
-      color: var(--accent); // Use the accent color for icons
-      font-family: 'Font Awesome 6 Free'; // Ensure correct font family is applied
-      font-weight: 400; // Regular weight for Font Awesome icons
-      font-style: normal; // Prevents icon flash
-      display: inline-block; // Maintain correct inline alignment
-      font-size: 1rem; // Size of the icons, adjust as needed
+      margin-right: 5px;
+      color: var(--accent);
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 400;
+      font-style: normal;
+      display: inline-block;
+      font-size: 1rem;
 
-      // Optional: Adjust size for larger icons
       &.fa-lg {
         font-size: 1.25rem;
       }
