@@ -16,19 +16,19 @@ This is a [now page]: a brief update of what's currently happening in my life.
 
 ## Personal
 
-Living on Long Island with my wife and two kids. Remote work has been my routine for nearly 4.5 years.
+I'm still living on Long Island with my wife and two kids. Remote work has been my routine for nearly 4.5 years, which allows me to have a healthy balance of work and family life.
 
 Currently reading [Essentialism: The Disciplined Pursuit of Less] by Greg McKeown
 
 In my spare time, I focus on:
 
-* Updating my [portfolio]
-* Building out my personal [knowledge base]
+* Updating my [portfolio] to reflect my latest projects and achievements.
+* Building out my personal [knowledge base] with new content and resources.
 * Managing and updating my [homelab]
 
 ## Professional
 
-I've been with [Weill Cornell Medicine] since October 2015, now working as a Solutions Engineer.
+I've been with [Weill Cornell Medicine] since October 2015, now working as a Solutions Engineer. This role allows me to blend technical expertise with creative problem-solving.
 
 ## Changelog
 
