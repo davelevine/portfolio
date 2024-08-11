@@ -13,67 +13,63 @@ const Modal = dynamic(() => import('../layout/modal/contactModal'), {
   ssr: false,
 });
 
-const getCustomRenderers = () => ({
-  code({ inline, className, children, ...props }) {
-    const match = /language-(\w+)/.exec(className || '');
-    return !inline && match ? (
-      <pre className={className} {...props}>
-        <code>{String(children).replace(/\n$/, '')}</code>
-      </pre>
-    ) : (
-      <code className={className} {...props}>
-        {children}
-      </code>
-    );
-  },
-  blockquote: ({ children, ...props }) => (
-    <div className={classes.quoteBox}>
-      <blockquote {...props}>{children}</blockquote>
-    </div>
-  ),
-  hr: () => <hr className={classes.divider} />,
-  strong: ({ children }) => <strong className={classes.highlighted}>{children}</strong>,
-  a: ({ href, children }) => (
-    <a href={href} className={classes.link} target="_blank" rel="noopener noreferrer">
-      {children}
-    </a>
-  ),
-  img: ({ src, alt, ...props }) => (
-    <Image 
-      src={src} 
-      alt={alt} 
-      className={classes.nowImage} 
-      layout="responsive" 
-      width={700} 
-      height={450} 
-      loading="eager"
-      {...props} 
-    />
-  ),
-  h1: ({ children }) => (
-    <motion.h1
-      initial={{ opacity: 0, x: -600 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
-      className={classes.title}
-    >
-      {children}
-    </motion.h1>
-  ),
-});
-
 const Now = ({ markdownContent, showModal = false }) => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       document.title = 'Dave Levine - Now';
-    }
-  }, []);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
       document.body.style.overflow = showModal ? 'hidden' : 'auto';
+      document.body.style.paddingRight = showModal ? '15px' : '0px';
     }
-  }, [showModal]);
+  }, [showModal]); // Added showModal as a dependency
+
+  const getCustomRenderers = () => ({
+    code({ inline, className, children, ...props }) {
+      const match = /language-(\w+)/.exec(className || '');
+      return !inline && match ? (
+        <pre className={className} {...props}>
+          <code>{String(children).replace(/\n$/, '')}</code>
+        </pre>
+      ) : (
+        <code className={className} {...props}>
+          {children}
+        </code>
+      );
+    },
+    blockquote: ({ children, ...props }) => (
+      <div className={classes.quoteBox}>
+        <blockquote {...props}>{children}</blockquote>
+      </div>
+    ),
+    hr: () => <hr className={classes.divider} />,
+    strong: ({ children }) => <strong className={classes.highlighted}>{children}</strong>,
+    a: ({ href, children }) => (
+      <a href={href} className={classes.link} target="_blank" rel="noopener noreferrer">
+        {children}
+      </a>
+    ),
+    img: ({ src, alt, ...props }) => (
+      <Image 
+        src={src} 
+        alt={alt} 
+        className={classes.nowImage} 
+        layout="responsive" 
+        width={700} 
+        height={450} 
+        loading="eager"
+        {...props} 
+      />
+    ),
+    h1: ({ children }) => (
+      <motion.h1
+        initial={{ opacity: 0, x: -600 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className={classes.title}
+      >
+        {children}
+      </motion.h1>
+    ),
+  });
 
   return (
     <div className={classes.now}>
