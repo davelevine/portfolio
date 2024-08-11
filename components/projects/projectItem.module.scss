@@ -8,65 +8,73 @@
   margin-bottom: 25px;
   display: flex;
   flex-direction: column;
-  min-height: 260px;
+  height: 100%;  /* Full height to fill the parent container */
   text-align: center;
+  box-sizing: border-box;
+}
 
-  h4 {
-    color: var(--text-secondary);
-    font-size: 1.15rem;
-    margin-bottom: 1rem;
-  }
+.card h4 { /* Changed selector to .card h4 to make it a pure selector */
+  color: var(--text-secondary);
+  font-size: 1.15rem;
+  margin-bottom: 0.7rem;
 }
 
 .card .image {
   display: flex;
   justify-content: center;
-  transition: transform $transition-speed ease, box-shadow $transition-speed ease;
-
-  img {
-    border-radius: 4px;
-    max-width: 320px;
-    max-height: 220px;
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    filter: brightness(0.85); /* Slightly dimming effect */
-    transition: transform $transition-speed ease, filter $transition-speed ease, box-shadow $transition-speed ease;
-  }
+  align-items: center;
+  width: 100%;
+  max-width: 320px; /* Set the max-width for images */
+  height: 220px; /* Fixed height for image container */
+  max-height: 220px; /* Set the max-height for images */
+  margin: 0 auto 0.75rem auto; /* Center the image horizontally and reduce bottom spacing */
+  overflow: hidden;
+  border-radius: 4px;
+  transition: transform $transition-speed ease, filter $transition-speed ease; /* Move transition to the container */
 }
 
-.card:hover .image img {
-  transform: scale(1.05);
+.card:hover .image {
+  transform: scale(1.05); /* Scale the entire container on hover */
   filter: brightness(1); /* Remove dimming effect */
 }
 
-.card .placeholderContainer {
-  margin: 20px 0;
+.card .image img {
   width: 100%;
-  max-height: 200px;
+  height: 100%;
+  object-fit: cover; /* Ensure the image fills the container */
+  max-width: 320px; /* Ensure the image does not exceed the max-width */
+  max-height: 220px; /* Ensure the image does not exceed the max-height */
+  filter: brightness(0.85); /* Slightly dimming effect */
+  transition: filter $transition-speed ease; /* Only transition the filter on the image */
+}
+
+.card .techLogos {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 0.75rem; /* Reduce margin above tech logos */
+  margin-bottom: 0.4rem; /* Ensure spacing below tech logos matches */
 }
 
-.card .placeholderContainer .placeholder {
-  text-align: center;
-  margin: 100% 0;
-  color: #ffffff;
-  font-weight: bold;
-  background-color: #8bb2c3;
+.card .techLogos .techLogo {
+  width: 24px;
+  height: 24px;
+  margin: 0 10px;
   border-radius: 50%;
-  padding: 5px;
-  font-size: 1.5rem;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 220, 0.2) 0%, transparent 100%);
-  width: 200px;
-  height: 200px;
-  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%);
+  overflow: hidden;
+}
+
+.card .techLogos .techLogo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Ensure the logo fits within the defined dimensions without distortion */
 }
 
 .card p {
   color: var(--text-primary);
   margin-bottom: 1.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Add ellipsis if the text is too long */
 }
 
 .card .projectLinks {
@@ -81,7 +89,7 @@
     font-size: 1rem;
     margin: 0 15px 10px 0;
     display: block;
-    font-weight: bold; // Make project links bold
+    font-weight: bold;
     transition: color $transition-speed ease, transform $transition-speed ease, text-decoration $transition-speed ease;
 
     &:hover {
@@ -95,12 +103,13 @@
     width: 20px;
     margin-right: 5px;
     color: var(--accent);
-    font-weight: normal; // Ensure icons are not bold
+    font-weight: normal;
   }
 }
 
 @media only screen and (min-width: 768px) {
   .card {
     margin-bottom: 0;
+    height: 100%;
   }
 }

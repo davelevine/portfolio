@@ -4,16 +4,9 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 
-/**
- * ProjectItem component to display individual project details.
- * @param {object} props - The component props.
- * @param {object} props.project - The project data.
- * @returns {JSX.Element|null} - The rendered project item component or null if no valid id.
- */
 const ProjectItem = ({ project }) => {
   const { id, title, tech, image, description, githubLink, liveLink, slug } = project;
 
-  // Ensure the project has a valid id before rendering
   if (!id) return null;
 
   const imageSrc = `https://cdn.levine.io/uploads/portfolio/public/images/projects/${image}`;
@@ -24,7 +17,6 @@ const ProjectItem = ({ project }) => {
       animate={{ opacity: 1 }}
       initial={{ opacity: 0 }}
       exit={{ scale: 0.1 }}
-      layout
       className={classes.card}
     >
       <Link href={`/projects/${slug}`} aria-label={`View details about ${title}`}>
@@ -36,13 +28,12 @@ const ProjectItem = ({ project }) => {
                 src={imageSrc}
                 width={320}
                 height={220}
-                alt={title} // Updated alt text for better accessibility
+                alt={title}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 style={{
-                  width: "310px",
-                  height: "210px",
                   objectFit: "contain"
                 }}
-                priority // Ensure this image is loaded as a priority
+                priority
               />
             </div>
           ) : (
@@ -50,15 +41,16 @@ const ProjectItem = ({ project }) => {
               <div className={classes.placeholder}>.</div>
             </div>
           )}
-          <div className={classes.techLogos} style={{ marginTop: '1rem' }}>
+          <div className={classes.techLogos}>
             {techLogos.map((t) => (
-              <img
-                key={t}
-                src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/logos/${t}.svg`}
-                alt={`${t} logo`} // Improved alt text for tech logos
-                className={classes.techLogo}
-                style={{ width: '24px', height: '24px', borderRadius: '50%', objectFit: 'contain', margin: '0 10px' }} // Increased margin for spacing
-              />
+              <div key={t} className={classes.techLogo}>
+                <Image
+                  src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/logos/${t}.svg`}
+                  alt={`${t} logo`}
+                  width={24}
+                  height={24}
+                />
+              </div>
             ))}
           </div>
         </div>

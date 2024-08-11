@@ -10,6 +10,7 @@ import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark, oneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import Image from 'next/image'; // Importing Image from next/image
 
 const Modal = dynamic(() => import('../layout/modal/contactModal'), {
   loading: () => <div className="skeleton-loader"></div>,
@@ -53,7 +54,16 @@ const getCustomRenderers = (currentTheme) => ({
     </a>
   ),
   img: ({ src, alt, ...props }) => (
-    <img src={src} alt={alt} className={classes.nowImage} style={{ width: '100%', height: 'auto' }} {...props} loading="lazy" />
+    <Image 
+      src={src} 
+      alt={alt} 
+      className={classes.nowImage} 
+      layout="responsive" 
+      width={700} 
+      height={450} 
+      loading="lazy" 
+      {...props} 
+    />
   ),
   h1: ({ children }) => (
     <motion.h1

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import ProjectItem from './projectItem';
 import { useInView } from 'react-intersection-observer';
 import dynamic from 'next/dynamic';
+import Image from 'next/image'; // Importing Image from next/image
 
 // Dynamically import the Modal component for code splitting
 const Modal = dynamic(() => import('../layout/modal/contactModal'), {
@@ -194,11 +195,13 @@ const AllProjects = ({ projects }) => {
                 aria-pressed={activeButton === tech}
               >
                 <div className={classes.techLogoContainer}>
-                  <img
+                  <Image
                     src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/logos/${tech}.svg`}
                     alt={tech}
                     className={classes.techLogo}
-                    style={{ width: '32px', height: '32px', borderRadius: '50%', objectFit: 'contain' }}
+                    width={32} // Set width for Image component
+                    height={32} // Set height for Image component
+                    style={{borderRadius: '50%', objectFit: 'contain'}}
                     loading="lazy"
                   />
                   <span className={classes.techLogoName}>{tech}</span>

@@ -57,14 +57,14 @@ const renderImage = (imageName) => {
     <div className={classes.blogImage}>
       <Image
         src={`https://cdn.levine.io/uploads/portfolio/public/images/blog/${imageName}`}
-        width={850}
-        height={500}
+        width={dimensions.width}
+        height={dimensions.height}
         alt={imageName}
         priority
         style={{
           maxWidth: "100%",
           height: "auto",
-          aspectRatio: `850 / 500`
+          aspectRatio: `${dimensions.width} / ${dimensions.height}`
         }}
       />
     </div>

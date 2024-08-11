@@ -312,21 +312,10 @@
     padding: 2px 4px; // Padding around inline code for better readability
   }
 
-  // Styles for blockquotes to ensure proper rendering in GitHub Flavored Markdown
-  blockquote {
-    padding: 15px;
-    background-color: var(--background-card);
-    border-left: 5px solid var(--accent);
-    margin: 20px 0;
-    color: var(--text-primary);
-    border-radius: 8px;
-    overflow-wrap: break-word; // Ensure blockquotes do not overflow
-  }
-
   // Styles for code blocks
   pre {
     background-color: var(--background-card);
-    padding: auto;
+    padding: 1rem; // Added padding for better readability
     border-radius: 8px;
     overflow: auto; // Allow scrolling for long code blocks
     max-width: 100%; // Ensure code blocks do not exceed the width of the container
