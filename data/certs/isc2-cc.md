@@ -1,6 +1,7 @@
 ---
 title: 'ISC2 Certified in Cybersecurity (CC)'
-date: '2027-01-31'
+achievedDate: '2024-01-31'
+expirationDate: '2027-01-31'
 image: isc2-cc.png
 excerpt: 'The ISC2 Certified in Cybersecurity (CC) certification validates fundamental knowledge in security concepts, tools, and best practices.'
 isFeatured: true

@@ -1,6 +1,7 @@
 ---
 title: 'Microsoft Certified Solutions Associate (MCSA)'
-date: '2016-10-05'
+achievedDate: '2013-10-05'
+expirationDate: '2016-10-05'
 image: mcsa.png
 excerpt: 'The MCSA certification equips IT professionals with the skills to implement and manage Microsoft solutions across various domains, including Windows Server and SQL Server.'
 isFeatured: true

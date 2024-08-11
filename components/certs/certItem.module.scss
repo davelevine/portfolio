@@ -50,9 +50,8 @@
 
 .cardAction {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin-top: auto;
+  justify-content: center; /* Center the button */
+  margin-top: 10px;
 }
 
 .cardAction button {
@@ -81,28 +80,36 @@
   font-weight: normal;
 }
 
-.cardAction time {
+.dates {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 10px;
+}
+
+.dates time {
   display: flex;
   align-items: center;
   color: var(--text-primary);
+  font-weight: bold;
 }
 
-.cardAction time i {
+.achieved i {
+  color: var(--valid-cert); /* Always primary color for achieved date */
   margin-right: 5px;
 }
 
-.expires, .expired {
-  display: flex;
-  align-items: center;
-}
-
 .expires i {
-  color: var(--valid-cert);
+  color: var(--valid-cert); /* Color for valid certifications */
   margin-right: 5px;
 }
 
 .expired i {
-  color: var(--accent);
+  color: var(--accent); /* Color for expired certifications */
+  margin-right: 5px;
+}
+
+.never i {
+  color: var(--valid-forever-cert); /* Color for 'Never' status */
   margin-right: 5px;
 }
 

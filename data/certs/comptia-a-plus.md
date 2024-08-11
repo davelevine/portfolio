@@ -1,6 +1,7 @@
 ---
 title: 'CompTIA A+'
-date: '2016-03-18'
+achievedDate: '2013-03-18'
+expirationDate: '2016-03-18'
 image: comptia-aplus.png
 excerpt: 'The CompTIA A+ certification validates foundational IT skills in hardware, software, networking, and security troubleshooting.'
 isFeatured: true

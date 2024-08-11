@@ -11,14 +11,15 @@ import { motion } from 'framer-motion';
  * Helper function to format the date.
  * @param {string} date - The date string to format.
  * @param {string} status - The status of the date (e.g., 'Expired', 'Expires', 'Achieved').
+ * @param {boolean} isAchieved - Whether the date is an achieved date.
  * @returns {JSX.Element} The formatted date element.
  */
-const formatDate = (date, status) => {
+const formatDate = (date, status, isAchieved = false) => {
   if (date === 'Never') {
     return (
-      <span className={classes.expires}>
+      <span className={classes.never}>
         <strong>
-          <i className="fa-regular fa-calendar-check"></i> Never
+          <i className="fa-solid fa-infinity"></i> Never
         </strong>
       </span>
     );
@@ -32,9 +33,9 @@ const formatDate = (date, status) => {
   });
 
   return (
-    <span className={status === 'Expired' ? classes.expired : classes.expires}>
+    <span className={isAchieved ? classes.achieved : status === 'Expired' ? classes.expired : classes.expires}>
       <strong>
-        <i className={status === 'Expired' ? 'fa-regular fa-calendar-xmark' : 'fa-regular fa-calendar-check'}></i> 
+        <i className={isAchieved ? 'fa-regular fa-medal' : status === 'Expired' ? 'fa-regular fa-calendar-xmark' : 'fa-regular fa-calendar-check'}></i> 
         {formattedDate}
       </strong>
     </span>
@@ -47,18 +48,23 @@ const formatDate = (date, status) => {
  * @param {Object} props.cert - Certification data.
  * @param {string} props.cert.title - Title of the certification.
  * @param {string} props.cert.excerpt - Excerpt of the certification.
- * @param {string} props.cert.date - Expiration date of the certification.
+ * @param {string} props.cert.expirationDate - Expiration date of the certification.
+ * @param {string} props.cert.achievedDate - Achieved date of the certification.
  * @param {string} props.cert.image - Image filename for the certification.
  * @returns {JSX.Element} The rendered component.
  */
 const CertItem = ({ cert }) => {
-  const { title, excerpt, date, image } = cert;
+  const { title, excerpt, expirationDate, achievedDate, image } = cert;
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const currentDate = new Date();
-  const expirationDate = new Date(date);
-  const dateStatus = title === 'Certificate in Solutions Design' ? 'Achieved' : (expirationDate < currentDate ? 'Expired' : 'Expires');
-  const expiresDate = formatDate(date, dateStatus);
+  const achievedDateObj = new Date(achievedDate);
+  const expDate = expirationDate === 'Never' ? 'Never' : new Date(expirationDate);
+  const dateStatus = expDate === 'Never' ? 'Never' : (expDate < new Date() ? 'Expired' : 'Expires');
+
+  // Format the dates for display
+  const achievedDateFormatted = formatDate(achievedDate, 'Achieved', true);
+  const expiresDateFormatted = expDate === 'Never' ? formatDate('Never', 'Never') : (expDate ? formatDate(expirationDate, dateStatus) : null);
+
   const linkPath = `https://cdn.levine.io/uploads/portfolio/public/images/certs/${image}`;
 
   useEffect(() => {
@@ -76,11 +82,14 @@ const CertItem = ({ cert }) => {
         <h4 onClick={toggleModal}>{title}</h4>
         <p>{excerpt}</p>
       </div>
+      <div className={classes.dates}>
+        <time>{achievedDateFormatted}</time>
+        {expiresDateFormatted && <time>{expiresDateFormatted}</time>}
+      </div>
       <div className={classes.cardAction}>
         <button onClick={toggleModal}>
           <i className="fa-regular fa-arrow-up-right-from-square"></i> View Certificate
         </button>
-        <time>{expiresDate}</time>
       </div>
       <Suspense fallback={
         <motion.div
@@ -110,7 +119,8 @@ CertItem.propTypes = {
   cert: PropTypes.shape({
     title: PropTypes.string.isRequired,
     excerpt: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
+    expirationDate: PropTypes.string.isRequired,
+    achievedDate: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
   }).isRequired,
 };

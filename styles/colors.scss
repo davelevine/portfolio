@@ -7,6 +7,7 @@
   --text-secondary: #d81b60; // Secondary text color
   --text-tertiary: #607d8b; // Tertiary text color
   --accent: #d81b60; // Accent color
+  --valid-forever-cert: #B8860B; // Darker gold color for light theme for better contrast
   --transparent-primary: #fffffff2; // Primary transparent color
   --transparent-secondary: #fffffffc; // Secondary transparent color
   --border: #d0d0d0; // Border color
@@ -25,6 +26,7 @@
   --valid-cert: #388E3C;
 }
 
+
 // Dark theme variables
 [data-theme='dark'] {
   --background: #1E2533; // Dark background color
@@ -35,6 +37,7 @@
   --text-tertiary: #6a8a99; // Tertiary text color
   --accent: #ff5d5d; // Accent color
   --accent-secondary: #a3e600; // Secondary accent color
+  --valid-forever-cert: #FFD700; // Gold color for dark theme
   --transparent-primary: #272E3Bed; // Primary transparent color
   --transparent-secondary: #242729fc; // Secondary transparent color
   --border: #5a5f63; // Border color

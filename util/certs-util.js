@@ -27,7 +27,13 @@ export const getCertData = async (certIdentifier) => {
 export const getAllCerts = async () => {
   const certFiles = await getCertsFiles();
   const certsData = await Promise.all(certFiles.map(getCertData));
-  return certsData.sort((certA, certB) => (certA.date > certB.date ? -1 : 1));
+
+  // Convert date strings to Date objects and sort by achievedDate in descending order
+  return certsData.sort((certA, certB) => {
+    const dateA = new Date(certA.achievedDate); // certA.achievedDate corresponds to achievedDate
+    const dateB = new Date(certB.achievedDate); // certB.achievedDate corresponds to achievedDate
+    return dateB - dateA; // Sort in descending order
+  });
 };
 
 // Refactored to use implicit return and arrow function

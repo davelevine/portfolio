@@ -1,6 +1,7 @@
 ---
 title: 'Certified ScrumMaster (CSM)'
-date: '2026-08-14'
+achievedDate: '2024-08-14'
+expirationDate: '2026-08-14'
 image: csm.webp
 excerpt: "This certification journey has equipped me with the skills to effectively apply Scrum principles, enhancing project outcomes and customer satisfaction."
 isFeatured: true

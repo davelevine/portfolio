@@ -1,6 +1,7 @@
 ---
 title: 'CompTIA Security+'
-date: '2019-11-05'
+achievedDate: '2016-11-05'
+expirationDate: '2019-11-05'
 image: comptia-securityplus.webp
 excerpt: 'The CompTIA Security+ certification validates essential cybersecurity skills, including assessing security posture, recommending solutions, and responding to incidents.'
 isFeatured: true

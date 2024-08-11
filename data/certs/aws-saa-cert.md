@@ -1,6 +1,7 @@
 ---
 title: 'AWS Certified Solutions Architect'
-date: '2026-08-14'
+achievedDate: '2023-08-14'
+expirationDate: '2026-08-14'
 image: aws-saa.png
 excerpt: 'Achieving the AWS Certified Solutions Architect – Associate certification deepened my understanding of AWS services and their application in creating secure cloud solutions.'
 isFeatured: true

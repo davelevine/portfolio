@@ -11,12 +11,6 @@
   min-height: 260px;
   text-align: center;
 
-  &:hover {
-    transform: scale(1.02);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-    transition: transform $transition-speed ease, box-shadow $transition-speed ease;
-  }
-
   h4 {
     color: var(--text-secondary);
     font-size: 1.15rem;
@@ -27,15 +21,23 @@
 .card .image {
   display: flex;
   justify-content: center;
-}
+  transition: transform $transition-speed ease, box-shadow $transition-speed ease;
 
-.card .image img {
-  border-radius: 4px;
-  max-width: 320px;
-  max-height: 220px;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
+  img {
+    border-radius: 4px;
+    max-width: 320px;
+    max-height: 220px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    filter: brightness(0.85); /* Slightly dimming effect */
+    transition: transform $transition-speed ease, filter $transition-speed ease, box-shadow $transition-speed ease;
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+    filter: brightness(1); /* Remove dimming effect */
+  }
 }
 
 .card .placeholderContainer {

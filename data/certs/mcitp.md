@@ -1,6 +1,7 @@
 ---
 title: 'Microsoft Certified IT Professional (MCITP)'
-date: '2016-10-05'
+achievedDate: '2013-10-05'
+expirationDate: '2016-10-05'
 image: mcitp.png
 excerpt: 'MCITP certification validates skills in installing, configuring, and administering Windows 7 clients in a networked environment.'
 isFeatured: true
