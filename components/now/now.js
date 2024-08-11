@@ -52,7 +52,6 @@ const Now = ({ markdownContent, showModal = false }) => {
         src={src} 
         alt={alt} 
         className={classes.nowImage} 
-        layout="responsive" 
         width={700} 
         height={450} 
         loading="eager"
