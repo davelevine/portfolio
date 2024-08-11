@@ -55,8 +55,8 @@ const useLazyLoadImages = () => {
 // Component to animate project items when they come into view
 const ProjectItemWithAnimation = ({ project }) => {
   const [ref, inView] = useInView({
-    triggerOnce: false,
-    threshold: 0.1,
+    triggerOnce: true, // Animate only once when in view
+    threshold: 0.2, // Trigger slightly later for better perceived performance
   });
 
   return (
@@ -64,9 +64,7 @@ const ProjectItemWithAnimation = ({ project }) => {
       ref={ref}
       initial={{ opacity: 0, y: 100, scale: 0.5 }}
       animate={inView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 100, scale: 0.5 }}
-      exit={{ opacity: 0, y: -100, scale: 0.5 }}
-      transition={{ duration: 0.4, ease: 'easeInOut' }}
-      style={{ display: 'grid' }}
+      transition={{ duration: 0.3, ease: 'easeInOut' }} // Speed up the animation
       role="listitem"
     >
       <ProjectItem project={project} lazyLoad={inView} />
@@ -118,7 +116,6 @@ const AllProjects = ({ projects }) => {
 
   useEffect(() => {
     document.body.style.overflow = showModal ? 'hidden' : 'auto';
-    document.body.style.paddingRight = showModal ? '15px' : '0px';
   }, [showModal]);
 
   const filteredProjects = useMemo(() => {
@@ -133,18 +130,18 @@ const AllProjects = ({ projects }) => {
       <div className={classes.container}>
         <motion.h1
           id="projects-heading"
-          initial={{ opacity: 0, x: -600 }}
+          initial={{ opacity: 0, x: -600 }} // Restored original animation for title
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3, ease: 'easeInOut' }}
+          transition={{ duration: 0.3, ease: 'easeInOut' }} // Original duration
           tabIndex="0"
         >
           PROJECTS
         </motion.h1>
         <div className={classes.filter}>
           <motion.h3
-            initial={{ opacity: 0, x: 300 }}
+            initial={{ opacity: 0, x: 300 }} // Restored original animation for "Sort by Tech"
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }} // Original duration
           >
             <p>Sort By Tech</p>
           </motion.h3>
@@ -153,12 +150,12 @@ const AllProjects = ({ projects }) => {
             initial="hidden"
             animate="visible"
             variants={{
-              hidden: { opacity: 0, x: 100 },
+              hidden: { opacity: 0, x: 100 }, // Restored original animation
               visible: {
                 opacity: 1,
                 x: 0,
                 transition: {
-                  staggerChildren: 0.1,
+                  staggerChildren: 0.05, // Speed up the tech logo animation
                   duration: 0.3,
                   ease: 'easeInOut',
                 },
@@ -166,8 +163,8 @@ const AllProjects = ({ projects }) => {
             }}
           >
             <motion.button
-              whileHover={{ scale: 1.2, translateY: -5 }}
-              whileTap={{ scale: 0.9 }}
+              whileHover={{ scale: 1.1, translateY: -2 }} // Your preferred hover effect for buttons
+              whileTap={{ scale: 0.95 }}
               onClick={() => handleFilterClick('all')}
               className={`btn btn-outlined sm ${activeButton === 'all' ? 'active' : ''}`}
               variants={{
@@ -184,8 +181,8 @@ const AllProjects = ({ projects }) => {
             </motion.button>
             {selectedTechs.map((tech) => (
               <motion.button
-                whileHover={{ scale: 1.2, translateY: -5 }}
-                whileTap={{ scale: 0.9 }}
+                whileHover={{ scale: 1.1, translateY: -2 }} // Your preferred hover effect for buttons
+                whileTap={{ scale: 0.95 }}
                 onClick={() => handleFilterClick(tech)}
                 className={`btn btn-outlined sm ${activeButton === tech ? 'active' : ''}`}
                 key={tech}

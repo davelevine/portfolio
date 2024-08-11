@@ -16,7 +16,6 @@ const ProjectItem = ({ project }) => {
   // Ensure the project has a valid id before rendering
   if (!id) return null;
 
-  const isPriorityImage = image === 'atw.webp'; // Only 'atw.webp' is prioritized
   const imageSrc = `https://cdn.levine.io/uploads/portfolio/public/images/projects/${image}`;
   const techLogos = Array.isArray(tech) ? tech : [tech];
 
@@ -43,8 +42,7 @@ const ProjectItem = ({ project }) => {
                   height: "210px",
                   objectFit: "contain"
                 }}
-                priority={isPriorityImage} // Use priority only for 'atw.webp'
-                loading={isPriorityImage ? undefined : "lazy"} // Defer offscreen images
+                priority // Ensure this image is loaded as a priority
               />
             </div>
           ) : (
