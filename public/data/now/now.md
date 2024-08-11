@@ -20,6 +20,8 @@ I've officially been in my house for 8 years now. Between that, my wife, and two
 
 I’m currently reading [Essentialism: The Disciplined Pursuit of Less] by Greg McKeown. It’s been eye-opening in terms of managing both my personal and professional life more effectively. Once I finish, I'll be getting back to [Meditations] by Marcus Aurelius.
 
+Also, I've been getting back into exercising after a prolonged hiatus. It's been great to prioritize my health and well-being again. Small steps, but I'm feeling better for it.
+
 Whatever’s left of my spare time is spent:
 
 * Updating my [portfolio] to showcase my latest projects and achievements.

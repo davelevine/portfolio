@@ -33,11 +33,11 @@
     filter: brightness(0.85); /* Slightly dimming effect */
     transition: transform $transition-speed ease, filter $transition-speed ease, box-shadow $transition-speed ease;
   }
+}
 
-  &:hover img {
-    transform: scale(1.05);
-    filter: brightness(1); /* Remove dimming effect */
-  }
+.card:hover .image img {
+  transform: scale(1.05);
+  filter: brightness(1); /* Remove dimming effect */
 }
 
 .card .placeholderContainer {
