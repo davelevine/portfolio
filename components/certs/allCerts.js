@@ -86,7 +86,7 @@ const AllCerts = ({ certs }) => {
 
   const buttonVariants = {
     hidden: { opacity: 0, x: 100 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.3, ease: "easeInOut" } }
+    visible: { opacity: 1, x: 0, transition: { duration: 0.2, ease: "easeInOut" } } // Speed up the animation
   };
 
   return (
@@ -118,7 +118,7 @@ const AllCerts = ({ certs }) => {
                 opacity: 1,
                 x: 0,
                 transition: {
-                  staggerChildren: 0.1,
+                  staggerChildren: 0.05, // Speed up the stagger animation
                   duration: 0.3,
                   ease: "easeInOut"
                 },

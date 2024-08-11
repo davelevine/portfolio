@@ -24,7 +24,7 @@ const BlogItemWithAnimation = ({ blog }) => {
       initial={{ opacity: 0, y: 100, scale: 0.5 }}
       animate={inView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 100, scale: 0.5 }}
       exit={{ opacity: 0, y: -100, scale: 0.5 }}
-      transition={{ duration: 0.4, ease: 'easeInOut' }}
+      transition={{ duration: 0.3, ease: 'easeInOut' }} // Speed up the animation to match allProjects.js
       style={{ display: 'grid' }}
     >
       <BlogItem blog={blog} lazyLoad={inView} />
@@ -170,7 +170,7 @@ const Blog = ({ blog }) => {
                 opacity: 1,
                 x: 0,
                 transition: {
-                  staggerChildren: 0.1,
+                  staggerChildren: 0.05, // Speed up the tech logo animation to match allProjects.js
                   duration: 0.3,
                   ease: 'easeInOut',
                 },
@@ -178,8 +178,8 @@ const Blog = ({ blog }) => {
             }}
           >
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.9 }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => handleFilterClick('all')}
               className={`btn btn-outlined sm ${activeButton === 'all' ? 'active' : ''}`}
               variants={buttonVariants}
@@ -188,8 +188,8 @@ const Blog = ({ blog }) => {
             </motion.button>
             {selectedCategories.map((category) => (
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.9 }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => handleFilterClick(category)}
                 className={`btn btn-outlined sm ${activeButton === category ? 'active' : ''}`}
                 key={category}
