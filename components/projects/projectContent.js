@@ -7,11 +7,23 @@ import { motion } from 'framer-motion';
 
 import classes from './projectContent.module.scss';
 
-// Lazy load components for code splitting
+// Lazy load components for code splitting where it makes sense
 const ReactMarkdown = lazy(() => import('react-markdown'));
 const SyntaxHighlighter = lazy(() => import('react-syntax-highlighter').then(mod => mod.Prism));
 const atomDark = lazy(() => import('react-syntax-highlighter/dist/cjs/styles/prism').then(mod => mod.atomDark));
 const solarizedlight = lazy(() => import('react-syntax-highlighter/dist/cjs/styles/prism').then(mod => mod.solarizedlight));
+
+/**
+ * Spinner component for loading fallback.
+ * @returns {JSX.Element} The rendered Spinner component.
+ */
+const Spinner = () => (
+  <motion.div
+    animate={{ rotate: 360 }}
+    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+    className={classes.spinner}
+  />
+);
 
 /**
  * Get custom renderers for ReactMarkdown based on the current theme.
@@ -36,18 +48,6 @@ const getCustomRenderers = (currentTheme) => ({
 });
 
 /**
- * Spinner component for loading fallback.
- * @returns {JSX.Element} The rendered Spinner component.
- */
-const Spinner = () => (
-  <motion.div
-    animate={{ rotate: 360 }}
-    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-    className={classes.spinner}
-  />
-);
-
-/**
  * Render an image with specific dimensions based on the image name.
  * @param {string} imageName - The image file name.
  * @returns {JSX.Element} The rendered Image component.
@@ -66,7 +66,7 @@ const renderImage = (imageName) => {
       style={{
         maxWidth: "100%",
         height: "auto",
-        aspectRatio: `${dimensions.width} / ${dimensions.height}`
+        aspectRatio: `${dimensions.width} / ${dimensions.height}`,
       }}
     />
   );
@@ -96,7 +96,7 @@ const ProjectContent = ({ project, currentTheme, showModal = false }) => {
   useEffect(() => {
     const bodyStyle = document.body.style;
     bodyStyle.overflow = showModal ? 'hidden' : 'auto';
-    bodyStyle.paddingRight = '0px';
+    bodyStyle.paddingRight = showModal ? '0px' : '0px'; // Adjust padding for modal
   }, [showModal]);
 
   return (

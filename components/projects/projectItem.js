@@ -1,99 +1,8 @@
 import PropTypes from 'prop-types';
 import classes from './projectItem.module.scss';
-import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
-import { useMemo } from 'react';
 import Image from 'next/image';
-
-// Dynamically import the Link component for code splitting
-const Link = dynamic(() => import('next/link'), {
-  loading: () => <div className="skeleton-loader"></div>,
-});
-
-/**
- * Custom hook for memoized image rendering logic.
- * @param {string} image - The image filename.
- * @returns {JSX.Element} - The rendered image component.
- */
-const useRenderImage = (image) => {
-  return useMemo(() => {
-    const isPriorityImage = ['atw.webp', 'atomic-url.webp'].includes(image);
-    return (
-      <div className={classes.image}>
-        <Image
-          src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/${image}`}
-          width={320}
-          height={220}
-          alt={image}
-          style={{
-            width: "310px",
-            height: "210px",
-            objectFit: "contain"
-          }}
-          priority={isPriorityImage}
-          loading={isPriorityImage ? undefined : "lazy"}
-        />
-      </div>
-    );
-  }, [image]);
-};
-
-/**
- * Custom hook for memoized project link rendering logic.
- * @param {string} githubLink - The GitHub link.
- * @param {string} liveLink - The live project link.
- * @param {string} slug - The project slug.
- * @returns {JSX.Element} - The rendered project links component.
- */
-const useRenderProjectLinks = (githubLink, liveLink, slug) => {
-  return useMemo(() => (
-    <div className={classes.projectLinks}>
-      {githubLink && (
-        <a href={githubLink} target='_blank' rel='noreferrer'>
-          <i className='fab fa-github'></i>
-          Github
-        </a>
-      )}
-      {liveLink && (
-        <a href={liveLink} target='_blank' rel='noreferrer'>
-          <i className='fa-regular fa-arrow-up-right-from-square'></i>
-          Website
-        </a>
-      )}
-      <Link href={`/projects/${slug}`}>
-        <i className='fa-regular fa-circle-info'></i>Details
-      </Link>
-    </div>
-  ), [githubLink, liveLink, slug]);
-};
-
-/**
- * Custom hook for rendering tech logos.
- * @param {Array} tech - The tech array.
- * @returns {JSX.Element} - The rendered tech logos component.
- */
-const useRenderTechLogos = (tech) => {
-  return useMemo(() => (
-    <div className={classes.techLogos} style={{ marginTop: '1rem' }}> {/* Added marginTop for spacing */}
-      {Array.isArray(tech) ? tech.map((t) => (
-        <img
-          key={t}
-          src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/logos/${t}.svg`}
-          alt={t}
-          className={classes.techLogo}
-          style={{ width: '24px', height: '24px', borderRadius: '50%', objectFit: 'contain', margin: '0 10px' }} // Increased margin for spacing
-        />
-      )) : (
-        <img
-          src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/logos/${tech}.svg`}
-          alt={tech}
-          className={classes.techLogo}
-          style={{ width: '24px', height: '24px', borderRadius: '50%', objectFit: 'contain', margin: '0 10px' }} // Increased margin for spacing
-        />
-      )}
-    </div>
-  ), [tech]);
-};
+import Link from 'next/link';
 
 /**
  * ProjectItem component to display individual project details.
@@ -104,12 +13,12 @@ const useRenderTechLogos = (tech) => {
 const ProjectItem = ({ project }) => {
   const { id, title, tech, image, description, githubLink, liveLink, slug } = project;
 
-  const renderImage = useRenderImage(image);
-  const renderProjectLinks = useRenderProjectLinks(githubLink, liveLink, slug);
-  const renderTechLogos = useRenderTechLogos(tech);
-
   // Ensure the project has a valid id before rendering
   if (!id) return null;
+
+  const isPriorityImage = image === 'atw.webp'; // Only 'atw.webp' is prioritized
+  const imageSrc = `https://cdn.levine.io/uploads/portfolio/public/images/projects/${image}`;
+  const techLogos = Array.isArray(tech) ? tech : [tech];
 
   return (
     <motion.div
@@ -119,19 +28,61 @@ const ProjectItem = ({ project }) => {
       layout
       className={classes.card}
     >
-      <Link href={`/projects/${slug}`}>
+      <Link href={`/projects/${slug}`} aria-label={`View details about ${title}`}>
         <div className={classes.cardContent}>
           <h4>{title}</h4>
-          {image ? renderImage : (
+          {image ? (
+            <div className={classes.image}>
+              <Image
+                src={imageSrc}
+                width={320}
+                height={220}
+                alt={image}
+                style={{
+                  width: "310px",
+                  height: "210px",
+                  objectFit: "contain"
+                }}
+                priority={isPriorityImage} // Use priority only for 'atw.webp'
+                loading={isPriorityImage ? undefined : "lazy"} // Defer offscreen images
+              />
+            </div>
+          ) : (
             <div className={classes.placeholderContainer}>
               <div className={classes.placeholder}>.</div>
             </div>
           )}
-          {renderTechLogos}
+          <div className={classes.techLogos} style={{ marginTop: '1rem' }}>
+            {techLogos.map((t) => (
+              <img
+                key={t}
+                src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/logos/${t}.svg`}
+                alt={t}
+                className={classes.techLogo}
+                style={{ width: '24px', height: '24px', borderRadius: '50%', objectFit: 'contain', margin: '0 10px' }} // Increased margin for spacing
+              />
+            ))}
+          </div>
         </div>
       </Link>
       <p>{description}</p>
-      {renderProjectLinks}
+      <div className={classes.projectLinks}>
+        {githubLink && (
+          <a href={githubLink} target='_blank' rel='noreferrer' aria-label={`View ${title} on GitHub`}>
+            <i className='fab fa-github'></i>
+            Github
+          </a>
+        )}
+        {liveLink && (
+          <a href={liveLink} target='_blank' rel='noreferrer' aria-label={`View ${title} live`}>
+            <i className='fa-regular fa-arrow-up-right-from-square'></i>
+            Website
+          </a>
+        )}
+        <Link href={`/projects/${slug}`} aria-label={`More details about ${title}`}>
+          <i className='fa-regular fa-circle-info'></i>Details
+        </Link>
+      </div>
     </motion.div>
   );
 };
