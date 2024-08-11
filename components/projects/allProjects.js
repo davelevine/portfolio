@@ -31,7 +31,7 @@ const useLazyLoadImages = () => {
   const lazyLoadImages = useCallback(() => {
     const images = document.querySelectorAll('img[data-src]');
     images.forEach((img) => {
-      if (img.getBoundingClientRect().top < window.innerHeight) {
+      if (img.getBoundingClientRect().top < window.innerHeight + 100) { // Load images slightly before they come into view
         img.src = img.dataset.src;
         img.removeAttribute('data-src');
       }
@@ -56,7 +56,7 @@ const useLazyLoadImages = () => {
 const ProjectItemWithAnimation = ({ project }) => {
   const [ref, inView] = useInView({
     triggerOnce: true, // Animate only once when in view
-    threshold: 0.2, // Trigger slightly later for better perceived performance
+    threshold: 0.1, // Trigger earlier for better perceived performance on mobile
   });
 
   return (

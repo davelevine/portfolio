@@ -36,7 +36,7 @@ const ProjectItem = ({ project }) => {
                 src={imageSrc}
                 width={320}
                 height={220}
-                alt={image}
+                alt={title} // Updated alt text for better accessibility
                 style={{
                   width: "310px",
                   height: "210px",
@@ -55,7 +55,7 @@ const ProjectItem = ({ project }) => {
               <img
                 key={t}
                 src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/logos/${t}.svg`}
-                alt={t}
+                alt={`${t} logo`} // Improved alt text for tech logos
                 className={classes.techLogo}
                 style={{ width: '24px', height: '24px', borderRadius: '50%', objectFit: 'contain', margin: '0 10px' }} // Increased margin for spacing
               />

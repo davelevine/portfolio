@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Aos from 'aos'; 
 import 'aos/dist/aos.css';
 import dynamic from 'next/dynamic';
+import { motion } from 'framer-motion';
 import classes from './now.module.scss';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
@@ -12,6 +13,7 @@ import { atomDark, oneLight } from 'react-syntax-highlighter/dist/cjs/styles/pri
 
 const Modal = dynamic(() => import('../layout/modal/contactModal'), {
   loading: () => <div className="skeleton-loader"></div>,
+  ssr: false,
 });
 
 const getCustomRenderers = (currentTheme) => ({
@@ -23,6 +25,7 @@ const getCustomRenderers = (currentTheme) => ({
         language={match[1]}
         PreTag="div"
         showLineNumbers
+        wrapLines
         {...props}
       >
         {String(children).replace(/\n$/, '')}
@@ -50,7 +53,17 @@ const getCustomRenderers = (currentTheme) => ({
     </a>
   ),
   img: ({ src, alt, ...props }) => (
-    <img src={src} alt={alt} className={classes.nowImage} style={{ width: '100%', height: 'auto' }} {...props} />
+    <img src={src} alt={alt} className={classes.nowImage} style={{ width: '100%', height: 'auto' }} {...props} loading="lazy" />
+  ),
+  h1: ({ children }) => (
+    <motion.h1
+      initial={{ opacity: 0, x: -600 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+      className={classes.title}
+    >
+      {children}
+    </motion.h1>
   ),
 });
 

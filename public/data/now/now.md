@@ -1,6 +1,6 @@
 <!--markdownlint-disable-->
 
-# What I'm Doing Now
+# Here and Now
 
 <small>
 <i class="fa-regular fa-calendar-lines-pen"></i> August 09, 2024
