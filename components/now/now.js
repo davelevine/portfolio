@@ -14,11 +14,11 @@ const Modal = dynamic(() => import('../layout/modal/contactModal'), {
 });
 
 const Now = ({ markdownContent, showModal = false }) => {
-  const hasAnimated = useRef(false); // Track if animation has already occurred
+  const hasAnimated = useRef(false);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      document.title = 'Dave Levine - Now'; // Keep this for the browser tab title
+      document.title = 'Dave Levine - Now';
       document.body.style.overflow = showModal ? 'hidden' : 'auto';
       document.body.style.paddingRight = showModal ? '15px' : '0px';
     }
@@ -57,6 +57,7 @@ const Now = ({ markdownContent, showModal = false }) => {
         width={700}
         height={450}
         loading="eager"
+        priority
         {...props}
       />
     ),
