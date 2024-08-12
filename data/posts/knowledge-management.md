@@ -1,6 +1,5 @@
 ---
 title: Knowledge Management
-authors: [davelevine]
 categories:
     - Knowledge
     - Productivity

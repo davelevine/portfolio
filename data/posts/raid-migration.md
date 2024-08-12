@@ -1,6 +1,5 @@
 ---
 title: RAID Migration
-authors: [davelevine]
 categories:
     - Cloud
     - Knowledge

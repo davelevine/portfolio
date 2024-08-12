@@ -1,6 +1,5 @@
 ---
 title: Homelab Overhaul
-authors: [davelevine]
 categories:
     - Cloud
     - Recommended

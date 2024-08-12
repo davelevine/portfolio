@@ -1,6 +1,5 @@
 ---
 title: Databases (Part 3)
-authors: [davelevine]
 categories:
     - AWS
     - Knowledge

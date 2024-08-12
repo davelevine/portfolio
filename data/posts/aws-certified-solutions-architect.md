@@ -1,6 +1,5 @@
 ---
 title: AWS Certified Solutions Architect
-authors: [davelevine]
 categories:
     - AWS
     - DevOps

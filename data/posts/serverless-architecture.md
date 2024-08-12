@@ -1,6 +1,5 @@
 ---
 title: Serverless Architecture
-authors: [davelevine]
 categories:
     - AWS
     - DevOps

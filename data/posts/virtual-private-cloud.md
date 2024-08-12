@@ -1,6 +1,5 @@
 ---
 title: Virtual Private Cloud (VPC)
-authors: [davelevine]
 categories:
     - AWS
     - Knowledge

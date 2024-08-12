@@ -1,6 +1,5 @@
 ---
 title: DigitalOcean Migration
-authors: [davelevine]
 categories:
     - Cloud
     - Recommended

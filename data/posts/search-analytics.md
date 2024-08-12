@@ -1,6 +1,5 @@
 ---
 title: Search Analytics
-authors: [davelevine]
 categories:
     - Knowledge
     - Tools

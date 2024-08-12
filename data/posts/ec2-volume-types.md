@@ -1,6 +1,5 @@
 ---
 title: EC2 Volume Types
-authors: [davelevine]
 categories:
     - AWS
     - Knowledge

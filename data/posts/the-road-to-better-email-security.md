@@ -1,6 +1,5 @@
 ---
 title: The Road to Better Email Security
-authors: [davelevine]
 categories:
     - Recommended
     - Security

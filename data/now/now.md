@@ -3,7 +3,7 @@
 # Here and Now
 
 <small>
-<i class="fa-regular fa-calendar-lines-pen"></i> August 09, 2024
+<i class="fa-regular fa-calendar-lines-pen"></i> Aug 09, 2024
 <br>
 <i class="fa-regular fa-tags"></i> Personal • Professional
 </small>
@@ -40,7 +40,7 @@ Lately, I’ve been focusing on:
 
 ## Changelog
 
-* **August 09, 2024**: Initial creation of the Now page.
+* **Aug 09, 2024**: Initial creation of the Now page.
 
   [now page]: https://nownownow.com/about
   [Essentialism: The Disciplined Pursuit of Less]: https://gregmckeown.com/books/essentialism/

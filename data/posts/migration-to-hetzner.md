@@ -1,6 +1,5 @@
 ---
 title: DigitalOcean to Hetzner Migration
-authors: [davelevine]
 categories:
     - Cloud
     - Recommended

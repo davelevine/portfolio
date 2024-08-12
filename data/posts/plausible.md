@@ -1,6 +1,5 @@
 ---
 title: Plausible Analytics
-authors: [davelevine]
 categories:
     - Knowledge
     - Recommended

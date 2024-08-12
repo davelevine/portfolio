@@ -1,6 +1,5 @@
 ---
 title: Choosing a Routing Policy
-authors: [davelevine]
 categories:
     - AWS
     - DevOps

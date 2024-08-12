@@ -1,6 +1,5 @@
 ---
 title: Documentation Migration
-authors: [davelevine]
 categories:
     - Knowledge
     - Tools

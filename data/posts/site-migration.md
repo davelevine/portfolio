@@ -1,6 +1,5 @@
 ---
 title: Site Migration
-authors: [davelevine]
 categories:
     - Cloud
     - Knowledge

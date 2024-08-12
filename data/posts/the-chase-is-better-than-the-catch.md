@@ -1,6 +1,5 @@
 ---
 title: The Chase is Better Than the Catch
-authors: [davelevine]
 categories:
     - Knowledge
     - Methodologies

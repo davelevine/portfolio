@@ -1,6 +1,5 @@
 ---
 title: Why Good Employees Quit
-authors: [davelevine]
 categories:
     - Knowledge
     - Methodologies

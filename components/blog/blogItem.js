@@ -22,6 +22,9 @@ const BlogItem = ({ blog }) => {
   // Ensure the blog has a valid id before rendering
   if (!id) return null;
 
+  // Format the date to "MMM DD, YYYY"
+  const formattedDate = new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' });
+
   // Calculate reading time based on content length
   const readingTime = Math.ceil(content.split(' ').length / 200); // Assuming average reading speed of 200 words per minute
 
@@ -56,7 +59,7 @@ const BlogItem = ({ blog }) => {
       <div className={classes.metaInfo}>
         <div className={classes.metaItem}>
           <i className='fa-regular fa-calendar-lines-pen'></i>
-          <p>{date}</p>
+          <p>{formattedDate}</p>
         </div>
         <div className={classes.metaItem}>
           <i className='fa-regular fa-clock'></i>

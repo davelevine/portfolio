@@ -13,6 +13,14 @@ const Modal = dynamic(() => import('../layout/modal/contactModal'), {
   ssr: false,
 });
 
+// Function to determine the initial theme
+const getInitialTheme = () => {
+  if (typeof window !== 'undefined') {
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+  return 'dark'; // Default to dark if window is not defined
+};
+
 const Now = ({ markdownContent, showModal = false }) => {
   const hasAnimated = useRef(false);
 
@@ -21,6 +29,22 @@ const Now = ({ markdownContent, showModal = false }) => {
       document.title = 'Dave Levine - Now';
       document.body.style.overflow = showModal ? 'hidden' : 'auto';
       document.body.style.paddingRight = showModal ? '15px' : '0px';
+      
+      // Set the initial theme class on the body to prevent FOUC
+      const initialTheme = getInitialTheme();
+      document.body.className = initialTheme; // Set the body class based on the initial theme
+
+      // Add a listener to update the theme on preference change
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: light)');
+      const handleThemeChange = (e) => {
+        document.body.className = e.matches ? 'light' : 'dark';
+      };
+      mediaQuery.addEventListener('change', handleThemeChange);
+
+      // Cleanup listener on component unmount
+      return () => {
+        mediaQuery.removeEventListener('change', handleThemeChange);
+      };
     }
   }, [showModal]);
 

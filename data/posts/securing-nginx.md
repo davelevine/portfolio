@@ -1,6 +1,5 @@
 ---
 title: Securing Nginx
-authors: [davelevine]
 categories:
     - Recommended
     - Security

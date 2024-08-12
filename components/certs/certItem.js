@@ -28,7 +28,7 @@ const formatDate = (date, status, isAchieved = false) => {
   const formattedDate = new Date(date).toLocaleDateString('en-US', {
     timeZone: 'UTC',
     month: 'short',
-    day: 'numeric',
+    day: '2-digit',
     year: 'numeric',
   });
 

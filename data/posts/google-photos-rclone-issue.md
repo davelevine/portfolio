@@ -1,6 +1,5 @@
 ---
 title: Google Photos / Rclone Issue
-authors: [davelevine]
 categories:
     - Knowledge
     - Tools

@@ -1,6 +1,5 @@
 ---
 title: Jamstack
-authors: [davelevine]
 categories:
     - Knowledge
     - Recommended

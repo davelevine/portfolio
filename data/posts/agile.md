@@ -1,6 +1,5 @@
 ---
 title: Working With Agile
-authors: [davelevine]
 categories:
     - Knowledge
     - Methodologies

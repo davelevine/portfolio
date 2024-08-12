@@ -1,6 +1,5 @@
 ---
 title: Firewall Misconfiguration
-authors: [davelevine]
 categories:
     - Case Studies
     - Security

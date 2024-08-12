@@ -3,7 +3,7 @@ import path from 'path';
 import Now from '../components/now/now';
 
 export async function getStaticProps() {
-  const filePath = path.join(process.cwd(), 'public', 'data', 'now', 'now.md');
+  const filePath = path.join(process.cwd(), 'data', 'now', 'now.md');
   const markdownContent = fs.readFileSync(filePath, 'utf8');
 
   return {
