@@ -87,10 +87,10 @@
     }
 
     .nowImage {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
       max-width: 80%;
+      height: auto;
+      width: auto; // Maintain aspect ratio
+      border-radius: 8px;
       margin: 10px auto;
       display: block;
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -131,6 +131,7 @@
     @media only screen and (max-width: 767px) {
       .nowImage {
         max-width: 100%; // Increase size on mobile
+        width: auto; // Maintain aspect ratio
       }
     }
 

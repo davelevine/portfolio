@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
@@ -14,15 +14,17 @@ const Modal = dynamic(() => import('../layout/modal/contactModal'), {
 });
 
 const Now = ({ markdownContent, showModal = false }) => {
+  const hasAnimated = useRef(false); // Track if animation has already occurred
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      document.title = 'Dave Levine - Now';
+      document.title = 'Dave Levine - Now'; // Keep this for the browser tab title
       document.body.style.overflow = showModal ? 'hidden' : 'auto';
       document.body.style.paddingRight = showModal ? '15px' : '0px';
     }
-  }, [showModal]); // Added showModal as a dependency
+  }, [showModal]);
 
-  const getCustomRenderers = () => ({
+  const getCustomRenderers = {
     code({ inline, className, children, ...props }) {
       const match = /language-(\w+)/.exec(className || '');
       return !inline && match ? (
@@ -48,34 +50,36 @@ const Now = ({ markdownContent, showModal = false }) => {
       </a>
     ),
     img: ({ src, alt, ...props }) => (
-      <Image 
-        src={src} 
-        alt={alt} 
-        className={classes.nowImage} 
-        width={700} 
-        height={450} 
+      <Image
+        src={src}
+        alt={alt}
+        className={classes.nowImage}
+        width={700}
+        height={450}
         loading="eager"
-        {...props} 
+        {...props}
       />
     ),
+    // Conditionally animate the "Here and Now" title only on initial render
     h1: ({ children }) => (
       <motion.h1
-        initial={{ opacity: 0, x: -600 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
+        initial={hasAnimated.current ? {} : { opacity: 0, x: -600 }}
+        animate={hasAnimated.current ? {} : { opacity: 1, x: 0 }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
         className={classes.title}
+        onAnimationComplete={() => { hasAnimated.current = true; }} // Set after animation runs
       >
         {children}
       </motion.h1>
     ),
-  });
+  };
 
   return (
     <div className={classes.now}>
       <div className="container section mvh-100">
         <div className={classes.card}>
           <ReactMarkdown
-            components={getCustomRenderers()}
+            components={getCustomRenderers}
             rehypePlugins={[rehypeRaw]}
             remarkPlugins={[remarkGfm]}
           >
