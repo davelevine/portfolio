@@ -22,7 +22,6 @@ const BlogItem = ({ blog }) => {
   // Ensure the blog has a valid id before rendering
   if (!id) return null;
 
-  // Format the date to "MMM DD, YYYY"
   const formattedDate = new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' });
 
   const renderBlogLinks = (
@@ -48,18 +47,18 @@ const BlogItem = ({ blog }) => {
     >
       <Link href={`/blog/${slug}`}>
         <div className={classes.cardContent}>
-          <h4>{title}</h4>
-          <p>{description}</p>
+          <h4 className={classes.title}>{title}</h4>
+          <p className={classes.description}>{description}</p>
         </div>
       </Link>
       <div className={classes.metaInfo}>
         <div className={classes.metaItem}>
           <i className='fa-regular fa-calendar-lines-pen'></i>
-          <p>{formattedDate}</p>
+          <p className={classes.date}>{formattedDate}</p>
         </div>
         <div className={classes.metaItem}>
           <i className='fa-regular fa-clock'></i>
-          <p>{readingTime} minute{readingTime !== 1 ? 's' : ''}</p>
+          <p className={classes.readingTime}>{readingTime} minute{readingTime !== 1 ? 's' : ''}</p>
         </div>
       </div>
       {renderBlogLinks}
@@ -76,7 +75,7 @@ BlogItem.propTypes = {
     date: PropTypes.string.isRequired,
     liveLink: PropTypes.string,
     slug: PropTypes.string.isRequired,
-    readingTime: PropTypes.number.isRequired, // Added readingTime as required prop
+    readingTime: PropTypes.number.isRequired,
   }).isRequired,
 };
 

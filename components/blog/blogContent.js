@@ -8,9 +8,10 @@ import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark, oneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import Lightbox from 'yet-another-react-lightbox';
-import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails';
+import { Thumbnails, Counter, Download, Fullscreen, Zoom } from 'yet-another-react-lightbox/plugins';
 import 'yet-another-react-lightbox/styles.css';
 import 'yet-another-react-lightbox/plugins/thumbnails.css';
+import 'yet-another-react-lightbox/plugins/counter.css';
 
 import classes from './blogContent.module.scss';
 
@@ -56,24 +57,29 @@ const BlogContent = ({ blog, currentTheme, showModal = false }) => {
         </div>
       );
     },
+    p({ node, children, ...props }) {
+      // Check if the paragraph contains just an image
+      if (children.length === 1 && children[0].type === 'img') {
+        return <div {...props}>{children}</div>;
+      }
+      return <p {...props}>{children}</p>;
+    },
     img({ src, alt }) {
       return (
-        <div className={classes.blogImage}>
-          <Image
-            src={src}
-            alt={alt || 'Blog image'}
-            width={700}
-            height={450}
-            className={classes.markdownImage}
-            priority
-            sizes="(max-width: 768px) 100vw, 700px"
-            onClick={() => {
-              const index = images.findIndex((img) => img.src === src); // Find the index of the clicked image
-              setLightboxIndex(index); // Set the starting slide index
-              setLightboxOpen(true); // Open the lightbox
-            }}
-          />
-        </div>
+        <Image
+          src={src}
+          alt={alt || 'Blog image'}
+          width={700}
+          height={450}
+          className={classes.markdownImage}
+          priority
+          sizes="(max-width: 768px) 100vw, 700px"
+          onClick={() => {
+            const index = images.findIndex((img) => img.src === src);
+            setLightboxIndex(index);
+            setLightboxOpen(true);
+          }}
+        />
       );
     },
   };
@@ -116,6 +122,16 @@ const BlogContent = ({ blog, currentTheme, showModal = false }) => {
       day: '2-digit',
     });
   }, [date]);
+
+  // Ensure consistent rendering to avoid hydration errors
+  const renderedContent = useMemo(() => (
+    <ReactMarkdown
+      components={customRenderers}
+      remarkPlugins={[remarkGfm]}
+    >
+      {content}
+    </ReactMarkdown>
+  ), [content, customRenderers]);
 
   return (
     <div className={classes.blogDetail}>
@@ -183,12 +199,7 @@ const BlogContent = ({ blog, currentTheme, showModal = false }) => {
 
           <div className={classes.divider}></div>
 
-          <ReactMarkdown
-            components={customRenderers}
-            remarkPlugins={[remarkGfm]}
-          >
-            {content}
-          </ReactMarkdown>
+          {renderedContent}
 
           <div className={classes.btnContainer}>
             <Link href="/blog/">
@@ -205,27 +216,28 @@ const BlogContent = ({ blog, currentTheme, showModal = false }) => {
       </div>
 
       <Lightbox
-          open={lightboxOpen}
-          close={() => setLightboxOpen(false)}
-          slides={images}
-          index={lightboxIndex}
-          onIndexChange={setLightboxIndex}
-          plugins={[Thumbnails]}  // Add the Thumbnails plugin
-          thumbnails={{
-            position: "bottom", // Position of the thumbnails
-            width: 100, // Width of each thumbnail
-            height: 60, // Height of each thumbnail
-            border: 2, // Border thickness
-            gap: 8, // Gap between thumbnails
-            borderRadius: 8, // Border radius for thumbnails
-          }}
-          controller={{
-            closeOnBackdropClick: true,
-            closeOnPullDown: true,
-            closeOnPullUp: true,
-          }}
-          carousel={{ finite: true }}
-        />
+        open={lightboxOpen}
+        close={() => setLightboxOpen(false)}
+        slides={images}
+        index={lightboxIndex}
+        onIndexChange={setLightboxIndex}
+        plugins={[Counter, Download, Fullscreen, Thumbnails, Zoom]}
+        thumbnails={{
+          position: 'bottom',
+          width: 100,
+          height: 60,
+          border: 2,
+          gap: 8,
+          borderRadius: 8,
+        }}
+        controller={{
+          closeOnBackdropClick: true,
+          closeOnPullDown: true,
+          closeOnPullUp: true,
+        }}
+        carousel={{ finite: true }}
+        counter={{ container: { style: { top: 'unset', bottom: 0 } } }}
+      />
     </div>
   );
 };
