@@ -7,13 +7,10 @@ date: "2020.09.06"
 description: A guide to enhancing the security of Nginx configurations.
 ---
 
-<!--markdownlint-disable-->
 
 ## Starting line
 
 A few weeks ago, I was reading an article on [Scott Helme's blog](https://scotthelme.co.uk/) about [caching Ghost with Nginx](https://scotthelme.co.uk/caching-ghost-with-nginx/). In doing this, I made this blog and a number of other services that I use kick into overdrive, but that whole endeavor is best left for its own article.
-
-<!-- more -->
 
 While reading that article, I noticed in the sidebar a service that he operates called [Security Headers](https://securityheaders.com/). Essentially, this measures measure how secure the headers of a web server are for a particular website. For kicks, I tried this site and my knowledge base; was I ever surprised by what I found.
 
@@ -62,7 +59,7 @@ For reference, the resources I used in order to make things work the way I wante
 
 The problem with having this site password protected is that I can't get an accurate read on the headers; only an approximation. This is done by using my knowledge base as a comparison since the same headers and caching are used throughout the Nginx config file.
 
-<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//09/Screen-Shot-2020-09-05-at-10.52.32-PM.png" alt="Screen Shot 2020-09-05 at 10.52.32 PM" />
+![Screen Shot 2020-09-05 at 10.52.32 PM](https://cdn.levine.io/uploads/images/gallery/2022-09//09/Screen-Shot-2020-09-05-at-10.52.32-PM.png)
 
 As you can see, my knowledge base headers are in great shape, which effectively means the headers for this blog are in great shape.
 

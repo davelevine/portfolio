@@ -12,8 +12,6 @@ description: This article will be a quick write-up on my static website hosting 
 
 This article will be a quick write-up on my static website hosting on [Cloudflare Pages](https://pages.cloudflare.com), also known as Jamstack.
 
-<!-- more -->
-
 ## Site Migration
 
 I decided to go through the exercise of exporting both my knowledge base and my blog into Markdown to host them as static websites. Static sites have a much lower attack surface, and have a lot less dependencies. In my case, both Bookstack and Ghost rely on MySQL, and are both currently living inside Docker containers.

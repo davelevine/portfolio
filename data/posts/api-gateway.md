@@ -7,15 +7,11 @@ date: "2020.04.06"
 description: A beginner's exploration of AWS API Gateway and its role in enabling communication between services.
 ---
 
-<!--markdownlint-disable-->
-
 ## Preface
 
 I have to preface this by saying that I am not a developer. I can read snippets of code and muddle my way through certain things, but coding is not my strong suit.
 
 Having said that, I need to break down API Gateway as much as I can in order to better understand it.
-
-<!-- more -->
 
 ### API Gateway
 
@@ -51,11 +47,11 @@ So which one is better? The answer is, it depends on what you're doing.
 
 ### Architecture
 
-<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09/04/Product-Page-Diagram_Amazon-API-Gateway-How-Works.png" alt="Product Page Diagram Amazon API Gateway How Works" />
+![Product Page Diagram Amazon API Gateway How Works](https://cdn.levine.io/uploads/images/gallery/2022-09/04/Product-Page-Diagram_Amazon-API-Gateway-How-Works.png)
 
 _Obtained from [AWS](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html)_
 
-<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09/04/Screen-Shot-2020-04-06-at-12.17.13-AM.png" alt="Screen Shot 2020-04-06 at 12.17.13 AM" />
+![Screen Shot 2020-04-06 at 12.17.13 AM](https://cdn.levine.io/uploads/images/gallery/2022-09/04/Screen-Shot-2020-04-06-at-12.17.13-AM.png)
 
 _Obtained from the [Orion Papers](https://interactive.linuxacademy.com/diagrams/AWSCSA.html)_
 

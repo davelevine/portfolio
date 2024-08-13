@@ -6,13 +6,10 @@ categories:
 date: "2023.06.08"
 description: I've been happy with DigitalOcean as my VPS provider since 2019, but their recent price increases have become too much for me.
 ---
-<!--markdownlint-disable-->
 
 ## Background
 
 I've been using [DigitalOcean](https://www.digitalocean.com) as my cloud provider of choice for VPS since late 2019, and overall, I've been very happy with them. While I can't say a bad thing about them as the service has been rock solid, as of late, they've gotten much too [expensive](https://www.fool.com/investing/2022/05/16/digitalocean-first-price-increase-20-percent/) for me.
-
-<!-- more -->
 
 This has been unfortunate as I really like DigitalOcean, but I can no longer justify the cost of continuing with them, especially for what I'm getting in return. As of this writing, I'm paying for a basic shared CPU instance with 2 vCPUs, 2GB of memory, and a 50GB hard drive, for $18/month.
 
@@ -31,11 +28,11 @@ In order to really understand the difference in pricing, the following pricing g
 
 ### DigitalOcean Pricing
 
-<Image src="https://cdn.levine.io/uploads/images/gallery/2023-06/do-pricing.png" alt="DigitalOcean Pricing" />
+![DigitalOcean Pricing](https://cdn.levine.io/uploads/images/gallery/2023-06/do-pricing.png)
 
 ### Hetzner Pricing
 
-<Image src="https://cdn.levine.io/uploads/images/gallery/2023-06/hetzner-pricing.png" alt="Hetzner Pricing" />
+![Hetzner Pricing](https://cdn.levine.io/uploads/images/gallery/2023-06/hetzner-pricing.png)
 
 After seeing the sheer difference in value that Hetzner brings for the price, it was exactly the sort of push I needed to finally migrate away from DigitalOcean.
 

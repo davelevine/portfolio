@@ -7,8 +7,6 @@ date: "2020.05.14"
 description: I finished the database section of the AWS Solutions Architect Associate course a few days ago, and it was by far the most challenging to wrap my head around.
 ---
 
-<!--markdownlint-disable-->
-
 ## Introduction
 
 I finished the database section of the AWS Solutions Architect Associate course a few days ago, and it was by far the most challenging to wrap my head around.
@@ -16,8 +14,6 @@ I finished the database section of the AWS Solutions Architect Associate course 
 Just to point it out for the record — I am by no means a database guy. I know what they are at a cursory level, but I have no real hands-on experience to speak of with any type of databases.
 
 This will be my attempt to make sense of all the database offerings from AWS.
-
-<!-- more -->
 
 ## SQL — Relational Database Service (RDS)
 
@@ -41,9 +37,8 @@ Each database is referred to as an instance, and each instance runs a database e
 
 The Orion Papers from Linux Academy have a number of diagrams that really outline this information well and can be seen below.
 
-<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//05/Screen-Shot-2020-05-13-at-11.43.07-PM.png" alt="Screen Shot 2020-05-13 at 11.43.07 PM" />
-<br></br>
-<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//05/Screen-Shot-2020-05-13-at-11.44.17-PM.png" alt="Screen Shot 2020-05-13 at 11.44.17 PM" />
+![Screen Shot 2020-05-13 at 11.43.07 PM](https://cdn.levine.io/uploads/images/gallery/2022-09//05/Screen-Shot-2020-05-13-at-11.43.07-PM.png)  
+![Screen Shot 2020-05-13 at 11.44.17 PM](https://cdn.levine.io/uploads/images/gallery/2022-09//05/Screen-Shot-2020-05-13-at-11.44.17-PM.png)
 
 ### Limitations
 
@@ -62,13 +57,13 @@ Some additional benefits of [Multi-AZ architecture](https://aws.amazon.com/rds/f
 
 A diagram from the Orion Papers can be seen below to show this further.
 
-<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//05/Screen-Shot-2020-05-13-at-11.44.33-PM.png" alt="Screen Shot 2020-05-13 at 11.44.33 PM" />
+![Screen Shot 2020-05-13 at 11.44.33 PM](https://cdn.levine.io/uploads/images/gallery/2022-09//05/Screen-Shot-2020-05-13-at-11.44.33-PM.png)
 
 ## Read Replicas
 
 Read replicas are something that I've seen before as an offering in my own environment, but didn't admittedly see the advantage of using at first. They allow for scaling the amount of reads to a database, and in the case of RDS, allow for up to 5x increase in reads. They can exist either in the same region or a different one and also support Multi-AZ architecture. The reads are done at an *eventually consistent* speed, which is normally seconds, so long as the application in question supports it.
 
-<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//05/Screen-Shot-2020-05-13-at-11.44.47-PM.png" alt="Screen Shot 2020-05-13 at 11.44.47 PM" />
+![Screen Shot 2020-05-13 at 11.44.47 PM](https://cdn.levine.io/uploads/images/gallery/2022-09//05/Screen-Shot-2020-05-13-at-11.44.47-PM.png)
 
 ## To be continued
 

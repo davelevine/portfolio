@@ -8,8 +8,6 @@ date: "2020.08.01"
 description: After ~6 months of studying, I finally took the AWS Certified Solutions Architect Associate exam today and I PASSED!
 ---
 
-<!--markdownlint-disable-->
-
 ## Primer
 
 I haven't written in awhile and that one is on me. I meant to keep this up regularly, but I've been slacking with it to say the least. Who knew that having a family, a full time job and responsibilities would take up so much of my time! I'm going to do my best to update regularly going forward.
@@ -18,15 +16,12 @@ I haven't written in awhile and that one is on me. I meant to keep this up regul
 
 Now that I've got that out of the way, the real reason for my post...
 
-<!-- more -->
-
 After ~6 months of studying, I finally took the AWS Certified Solutions Architect: Associate exam today and I `PASSED`! I'm incredibly excited about it and really proud of myself for sticking with it.
 
 Here is my certificate and badge. I earned them, so why not show them off!
 
-<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09/08/AWS-Certified-Solutions-Architect---Associate-certificate.png" alt="AWS Certified Solutions Architect: Associate certificate" />
-<br></br>
-<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09/08/aws-certified-solutions-architect-associate.png" alt="AWS Certified Solutions Architect Associate" />
+![AWS Certified Solutions Architect: Associate certificate](https://cdn.levine.io/uploads/images/gallery/2022-09/08/AWS-Certified-Solutions-Architect---Associate-certificate.png)
+![AWS Certified Solutions Architect Associate](https://cdn.levine.io/uploads/images/gallery/2022-09/08/aws-certified-solutions-architect-associate.png)
 
 ## Hindsight
 

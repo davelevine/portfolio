@@ -7,13 +7,10 @@ date: "2020.06.06"
 description: I meant to get to finishing this up shortly after my last post, but life comes at you fast sometimes.
 ---
 
-<!--markdownlint-disable-->
 
 ## Preface
 
 I meant to get to finishing this up shortly after my last post, but life comes at you fast sometimes. No excuses though, as I've been continuing with my course and should be finished within the next day or two. In the meantime, I still have a bunch of content to write, so let's get to it.
-
-<!-- more -->
 
 The link to the post about Aurora can be found [here](../blog/databases-part-2).
 
@@ -29,7 +26,7 @@ There are quite a few terms to be aware of when dealing with DynamoDB that I'll 
 * `ITEM` — a collection of attributes (up to `400 KB` in size) inside a table that shares the `same key structure` as every other item in the table.
 * `ATTRIBUTE` — a key and value — an attribute name and value.
 
-<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//06/Screen-Shot-2020-06-05-at-11.26.10-PM.png" alt="Screen Shot 2020-06-05 at 11.26.10 PM" />
+![Screen Shot 2020-06-05 at 11.26.10 PM](https://cdn.levine.io/uploads/images/gallery/2022-09//06/Screen-Shot-2020-06-05-at-11.26.10-PM.png)
 
 ## Capacity Modes
 
@@ -58,7 +55,7 @@ There are two capacity modes — `provisioned throughput` (default) and `on-dema
   * Five operations of 200 bytes consumes 5 WCU.
 * Atomic transactions require 2x the WCU to complete.
 
-<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//06/Screen-Shot-2020-06-05-at-11.42.46-PM.png" alt="Screen Shot 2020-06-05 at 11.42.46 PM" />
+![Screen Shot 2020-06-05 at 11.42.46 PM](https://cdn.levine.io/uploads/images/gallery/2022-09//06/Screen-Shot-2020-06-05-at-11.42.46-PM.png)
 
 ## DynamoDB Consistency
 
@@ -91,13 +88,13 @@ From the Linux Academy Orion Papers...
 
 From the Linux Academy Orion Papers...
 
-<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//06/Screen-Shot-2020-06-05-at-11.51.51-PM.png" alt="Screen Shot 2020-06-05 at 11.51.51 PM" />
+![Screen Shot 2020-06-05 at 11.51.51 PM](https://cdn.levine.io/uploads/images/gallery/2022-09//06/Screen-Shot-2020-06-05-at-11.51.51-PM.png)
 
 ## Indexes
 
 From the Linux Academy Orion Papers...
 
-<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//06/Screen-Shot-2020-06-05-at-11.52.43-PM.png" alt="Screen Shot 2020-06-05 at 11.52.43 PM" />
+![Screen Shot 2020-06-05 at 11.52.43 PM](https://cdn.levine.io/uploads/images/gallery/2022-09//06/Screen-Shot-2020-06-05-at-11.52.43-PM.png)
 
 ## An Understanding
 

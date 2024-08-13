@@ -1,13 +1,12 @@
 import { useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import rehypeRaw from 'rehype-raw';
 import Image from "next/image";
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { atomDark, oneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import remarkGfm from 'remark-gfm'; // Keep this if you use GFM features like tables, strikethroughs, task lists, etc.
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'; // Importing SyntaxHighlighter
+import { atomDark, oneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism'; // Importing styles
 
 import classes from './blogContent.module.scss';
 
@@ -39,6 +38,21 @@ const getCustomRenderers = (currentTheme) => ({
       </div>
     );
   },
+  img({ src, alt }) {
+    return (
+      <div className={classes.blogImage}>
+        <Image
+          src={src}
+          alt={alt}
+          width={700}
+          height={450}
+          className={classes.markdownImage}
+          priority
+          sizes="(max-width: 768px) 100vw, 700px"
+        />
+      </div>
+    );
+  },
 });
 
 const Spinner = () => (
@@ -48,28 +62,6 @@ const Spinner = () => (
     className={classes.spinner}
   />
 );
-
-const renderImage = (imageName) => {
-  const isSpecialImage = ['portfolio.webp', 'start-page.webp'].includes(imageName);
-  const dimensions = isSpecialImage ? { width: 850, height: 500 } : { width: 700, height: 450 };
-
-  return (
-    <div className={classes.blogImage}>
-      <Image
-        src={`https://cdn.levine.io/uploads/portfolio/public/images/blog/${imageName}`}
-        width={dimensions.width}
-        height={dimensions.height}
-        alt={imageName}
-        priority
-        style={{
-          maxWidth: "100%",
-          height: "auto",
-          aspectRatio: `${dimensions.width} / ${dimensions.height}`
-        }}
-      />
-    </div>
-  );
-};
 
 const BlogContent = ({ blog, currentTheme, showModal = false }) => {
   const {
@@ -115,7 +107,15 @@ const BlogContent = ({ blog, currentTheme, showModal = false }) => {
 
           {image && (
             <div className={classes.blogImage}>
-              {renderImage(image)}
+              <Image
+                src={`https://cdn.levine.io/uploads/portfolio/public/images/blog/${image}`}
+                width={700}
+                height={450}
+                alt={image}
+                priority
+                className={classes.blogMainImage}
+                sizes="(max-width: 768px) 100vw, 700px"
+              />
             </div>
           )}
 
@@ -138,8 +138,7 @@ const BlogContent = ({ blog, currentTheme, showModal = false }) => {
 
           <ReactMarkdown
             components={customRenderers}
-            rehypePlugins={[rehypeRaw]}
-            remarkPlugins={[remarkGfm]}
+            remarkPlugins={[remarkGfm]} // Keep this if using GFM features
           >
             {content}
           </ReactMarkdown>

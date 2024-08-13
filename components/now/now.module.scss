@@ -53,12 +53,22 @@
       color: var(--text-secondary);
     }
 
-    small {
-      color: var(--navbar-primary);
+    .metaInfo {
       margin-bottom: 10px;
-      font-size: 1.05rem;
-      line-height: 1.6;
-      display: block;
+      color: var(--text-primary);
+      font-size: 1rem;
+
+      span {
+        color: var(--navbar-primary);
+        font-size: 1.05rem;
+        line-height: 1.6;
+        display: block;
+      }
+
+      i {
+        margin-right: 5px;
+        color: var(--accent);
+      }
     }
 
     p {

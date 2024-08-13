@@ -12,8 +12,6 @@ I'm not entirely sure what I plan on writing in this, or if I even plan on keepi
 
 In any case, I'll get right into it...
 
-<!-- more -->
-
 Right now, I'm at a bit of a professional crossroads. I've gotten to a point in my career where I have enough skin in the game to be considered expensive, but I don't have enough of a proven track record to be considered in-demand.
 
 This unfortunately sucks. So instead of complaining, what do I do about it?

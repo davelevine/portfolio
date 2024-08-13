@@ -7,11 +7,8 @@ date: "2020.05.15"
 description: This will be a continuation in the Database series covering the AWS offerings as part of the AWS Solutions Architect Associate exam.
 ---
 
-<!--markdownlint-disable-->
 
 This will be a continuation in the Database series covering the AWS offerings as part of the AWS Solutions Architect: Associate exam. I covered RDS in [part 1](../blog/databases-part-1) and will continue with Aurora in this part.
-
-<!-- more -->
 
 ## Aurora
 
@@ -41,9 +38,8 @@ The following has been taken from the Orion Papers offered by Linux Academy:
 * Reads can use the `reader endpoint`, which balances connections over all
 replica instances.
 
-<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//05/Screen-Shot-2020-05-14-at-11.51.56-PM.png" alt="Screen Shot 2020-05-14 at 11.51.56 PM" />
-<br></br>
-<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//05/Screen-Shot-2020-05-15-at-12.06.28-AM.png" alt="Screen Shot 2020-05-15 at 12.06.28 AM" />
+![Screen Shot 2020-05-14 at 11.51.56 PM](https://cdn.levine.io/uploads/images/gallery/2022-09//05/Screen-Shot-2020-05-14-at-11.51.56-PM.png)  
+![Screen Shot 2020-05-15 at 12.06.28 AM](https://cdn.levine.io/uploads/images/gallery/2022-09//05/Screen-Shot-2020-05-15-at-12.06.28-AM.png)
 
 ### Best Practices
 
@@ -58,7 +54,7 @@ As mentioned in the above image, there are a handful of best practices to rememb
 The Orion Papers describe Aurora Serverless as follows:
 > Aurora Serverless is based on the same database engine as Aurora, but instead of provisioning certain resource allocation, Aurora Serverless handles this as a service. You simply specify a minimum and maximum number of Aurora capacity units (`ACUs`) — Aurora Serverless can use the `Data API`.
 
-<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//05/Screen-Shot-2020-05-15-at-12.18.01-AM.png" alt="Screen Shot 2020-05-15 at 12.18.01 AM" />
+![Screen Shot 2020-05-15 at 12.18.01 AM](https://cdn.levine.io/uploads/images/gallery/2022-09//05/Screen-Shot-2020-05-15-at-12.18.01-AM.png)
 
 ## Additional Resources
 

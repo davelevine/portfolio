@@ -7,15 +7,12 @@ categories:
 date: "2020.04.29"
 description: A high-level overview of DNS and the various routing policies available in AWS Route 53.
 ---
-<!--markdownlint-disable-->
 
 ## Baseline
 
 I'll start by saying I have a very general understanding of DNS. I know it's often dubbed the “*internet phone book*” and that it translates IP addresses into URLs. I know some of the various DNS record types off the top of my head — A, AAAA, CNAME, MX, TXT — along with how each of them are used, but mostly at a high level.
 
 As a baseline...
-
-<!-- more -->
 
 > * `A record` — an IPv4 record that corresponds with an IP address and the domain name it corresponds with.
 > * `AAAA record` — same as an A record, but for IPv6 only.
@@ -43,7 +40,7 @@ Failover routing is routing that exists with an active-passive configuration suc
 
 An example of the healthchecks interface can be seen below:
 
-<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//04/1_H4_Es0n0UVn4DeHMOIkN8w.png" alt="1_H4_Es0n0UVn4DeHMOIkN8w" />
+![healthchecks](https://cdn.levine.io/uploads/images/gallery/2022-09//04/1_H4_Es0n0UVn4DeHMOIkN8w.png)
 
 `Source`: [Amazon Route 53 — Routing Policies](https://medium.com/tensult/amazon-route-53-routing-policies-cbe356b851d3)
 
@@ -57,7 +54,7 @@ Geoproximity routing is used when there is a need to route traffic based on the 
 
 `NOTE:` A diagram of both Geolocation and Geoproximity routing can be seen below...
 
-<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//04/Screen-Shot-2020-04-29-at-12.09.52-AM.png" alt="Screen Shot 2020-04-29 at 12.09.52 AM" />
+![routing](https://cdn.levine.io/uploads/images/gallery/2022-09//04/Screen-Shot-2020-04-29-at-12.09.52-AM.png)
 
 ### `Latency routing`
 

@@ -7,15 +7,12 @@ date: "2020.03.25"
 description: A simple breakdown of the different types of storage options available for EC2 instances, helping to clarify when to use each one.
 ---
 
-<!--markdownlint-disable-->
 
-# Instance Store vs. Elastic Block Store
+## Instance Store vs. Elastic Block Store
 
 ## Preface
 
 Since I'm currently going through the [AWS Certified Solutions Architect course](https://linuxacademy.com/course/aws-certified-solutions-architect-2019-associate-level/) offered by [Linux Academy](https://linuxacademy.com), I'm going to need to write things out so that they make a bit more sense to me. Today, it's going to be the differences between Instance Stores and Elastic Block Stores.
-
-<!-- more -->
 
 ### Instance Store
 

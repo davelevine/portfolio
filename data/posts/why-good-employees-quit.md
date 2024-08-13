@@ -14,8 +14,6 @@ If I spend enough time on this post, it will go sideways quick, so I'll keep it 
 
 Good employees quit for a lot of reasons, and in most cases, it has nothing to do with salary. They want to be appreciated, recognized, given the opportunity to grow, work on something exciting, etc. There are so many more things that good employees strive for, but what they don't strive for is becoming stagnant.
 
-<!-- more -->
-
 This is something I personally struggle with. I often joke that I know the exact moment where I took a wrong turn in life — in the guidance office my freshman year of college when I was asked if I wanted to major in Computer Science or Information Management & Technology, which was what general IT was called at the time. Because I was lazy and because coding seemed hard, I chose Information Management & Technology. 15 years have passed and the decision has haunted me ever since.
 
 Not going into Computer Science really hobbled my career prospects, because it left me with a large gap in my skill-set. Nowadays, you can't even get your foot in the door doing without having some coding knowledge.

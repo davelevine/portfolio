@@ -7,13 +7,10 @@ date: "2021.02.27"
 description: A personal account of using rclone to back up photos and videos from Google Photos.
 ---
 
-<!--markdownlint-disable-->
 
 ## Summary
 
 Since my son was born, my wife and I have been taking what seems like an endless stream of photos and videos, all of which are backed up to Google Photos. This has been great as it's seamless and easy to distribute to family members. So what's the problem?
-
-<!-- more -->
 
 The problem amounts to my own paranoia. I have photos and videos that have become priceless to me. I'm not terribly concerned that Google will lose my data; they seem to know what they're doing. I'm more concerned with somehow losing access to my account. Although I go to great lengths to secure my account, I still firmly believe that I'd lose access to my account long before Google ever loses my data.
 

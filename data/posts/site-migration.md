@@ -11,8 +11,6 @@ description: A successful migration to a new professional domain and the lessons
 
 I've been thinking about obtaining a more professional domain name for some time now, but didn't actually pull the trigger on it until last week. I ended up purchasing two domains, which may seem silly, but there is some logic behind it.
 
-<!-- more -->
-
 The two domains I purchased are...
 
 * [davelevine.io](https://www.davelevine.io)

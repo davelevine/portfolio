@@ -8,15 +8,11 @@ date: "2020.04.03"
 description: An exploration of serverless architecture concepts and their practical applications in cloud computing.
 ---
 
-<!--markdownlint-disable-->
-
 ## Introduction
 
 Serverless architecture is the current topic I'm learning in the [AWS Certified Solutions Architect: Associate](https://linuxacademy.com/course/aws-certified-solutions-architect-2019-associate-level/) course from [Linux Academy](https://linuxacademy.com). It's a bit of a challenge for me because I don't have any real experience with it, but I understand the concepts at a 30,000 ft level.
 
 I'll start with what I know and then get into some theory I've compiled.
-
-<!-- more -->
 
 ### Serverless
 
@@ -46,7 +42,7 @@ Quite possibly the most attractive thing about serverless architecture is cost. 
 
 Common use cases for serverless architecture can be explained best through the following image:
 
-<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//04/x1aeniur0.jpg" alt="Use Cases for Serverless Architecture" />
+![Use Cases for Serverless Architecture](https://cdn.levine.io/uploads/images/gallery/2022-09//04/x1aeniur0.jpg)
 
 Obtained from [K&C](https://kruschecompany.com/why-enterprises-choose-serverless-architecture)
 
@@ -54,7 +50,7 @@ Obtained from [K&C](https://kruschecompany.com/why-enterprises-choose-serverless
 
 In lieu of writing out the concepts one-by-one, the page below from Linux Academy illustrates the serverless architecture perfectly.
 
-<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//04/Screen-Shot-2020-04-02-at-9.56.54-PM.png" alt="Serverless Architecture Concepts" />
+![Serverless Architecture Concepts](https://cdn.levine.io/uploads/images/gallery/2022-09//04/Screen-Shot-2020-04-02-at-9.56.54-PM.png)
 
 Obtained from the [Orion papers](https://interactive.linuxacademy.com/diagrams/AWSCSA.html)
 

@@ -1,7 +1,7 @@
-@import '../../styles/ui.scss'; // Adjust the path as needed
+@import '../../styles/ui.scss';
 
 .blogDetail {
-  // Mixin for common text styles to ensure reusability
+  // Common text styles
   @mixin text-styles($text-color, $margin-bottom: null, $font-size: null) {
     color: $text-color;
     @if $margin-bottom {
@@ -12,7 +12,6 @@
     }
   }
 
-  // Styles for heading elements
   h1, h2 {
     @include text-styles(var(--text-secondary));
   }
@@ -29,56 +28,46 @@
     font-weight: 600;
   }
 
-  // Reduce margin between h2 and bulleted lists
-  h2 + ul,
-  h2 + ol {
-    margin-top: 10px; // Adjust this value as needed
-  }
-
-  // Styles for small elements
   small {
-    @include text-styles(var(--accent), -10px, 1rem); // Reduced margin-bottom
+    @include text-styles(var(--accent), -10px, 1rem);
     display: block;
     font-weight: bold;
 
-    // Match "Sort by" text style
     span {
-      color: var(--navbar-primary); // Ensure the text is white
+      color: var(--navbar-primary);
       &:after {
-        content: ''; // Remove colon
+        content: '';
       }
 
       i {
-        margin-right: 5px; // Add spacing between icon and text
-        color: var(--accent); // Ensure icons use the --accent color
-        font-family: 'Font Awesome 6 Free'; // Ensure icons use FontAwesome
-        font-style: normal; // Prevents icon flash
-        font-weight: 400; // Default weight for FontAwesome icons
-        display: inline-block; // Ensures correct inline display
-        font-size: 1rem; // Ensures icons are appropriately sized
+        margin-right: 5px;
+        color: var(--accent);
+        font-family: 'Font Awesome 6 Free';
+        font-style: normal;
+        font-weight: 400;
+        display: inline-block;
+        font-size: 1rem;
       }
     }
   }
 
-  // Style for the dot separator
   .dot {
     color: var(--text-primary);
-    margin: 0 5px; // Add spacing around the dot
-    font-size: 1.1rem; // Increase the size of the dot
+    margin: 0 5px;
+    font-size: 1.1rem;
     &:after {
-      content: ''; // Prevent the colon from being added after the dot
+      content: '';
     }
   }
 
   .category {
-    color: var(--text-primary); // Apply accent color to categories
+    color: var(--text-primary);
   }
 
   .icon {
-    color: var(--accent); // Set icon color to the --accent variable
+    color: var(--accent);
   }
 
-  // Styles for anchor elements
   a {
     color: var(--accent);
     text-decoration: none;
@@ -90,23 +79,16 @@
     }
   }
 
-  // Styles for links in paragraph text
-  p a {
-    font-size: 1rem; // Smaller font size for links in paragraph text
-  }
-
-  // Styles for blog links
   .blogLinks a {
-    font-size: 1.2rem; // Larger font size for blog links
-    transition: color $transition-speed ease, transform $transition-speed ease; // Add transition for hover effect
+    font-size: 1.2rem;
+    transition: color $transition-speed ease, transform $transition-speed ease;
 
     &:hover {
       color: var(--link-hover);
-      transform: scale(1.1); // Slight scale-up on hover
+      transform: scale(1.1);
     }
   }
 
-  // Styles for strong elements
   strong {
     background: #cecece;
     padding: 0 4px;
@@ -116,7 +98,6 @@
     font-size: 0.8rem;
   }
 
-  // Common styles for card and description classes
   .card,
   .description {
     border-radius: 12px;
@@ -128,32 +109,9 @@
     display: flex;
     flex-direction: column;
     color: var(--navbar-primary);
-    overflow: hidden; // Ensure content does not overflow out of the card
+    overflow: hidden;
   }
 
-  // Specific styles for card class
-  .card {
-    h4 {
-      @include text-styles(var(--text-secondary), 0);
-      font-weight: 600;
-    }
-
-    time {
-      color: var(--text-tertiary);
-    }
-
-    .cardAction {
-      display: flex;
-      flex-direction: row;
-      margin-top: auto;
-
-      a {
-        color: var(--accent);
-      }
-    }
-  }
-
-  // Styles for blogImage class
   .blogImage {
     display: flex;
     justify-content: center;
@@ -162,8 +120,8 @@
     height: auto;
     border-radius: 12px;
     overflow: hidden;
-    margin: 0 auto; // Center the image within the container
-    max-width: 100%; // Ensure the image does not exceed the width of the container
+    margin: 0 auto;
+    max-width: 100%;
 
     img {
       max-width: 100%;
@@ -173,23 +131,26 @@
     }
   }
 
-  // Media query for screens with a minimum width of 768px
+  .markdownImage {
+    border-radius: 12px;
+    object-fit: cover;
+    margin: 20px 0;
+  }
+
   @media only screen and (min-width: 768px) {
     .blogImage {
-      width: 100%; // Ensure image takes the full width of the container
-      margin: 0; // Remove margin on larger screens
+      width: 100%;
+      margin: 0;
     }
   }
 
-  // Media query for screens smaller than 768px
   @media only screen and (max-width: 767px) {
     .blogImage {
-      width: 100%; // Ensure image takes the full width of the container on smaller screens
-      margin: 0; // Remove margin on smaller screens
+      width: 100%;
+      margin: 0;
     }
   }
 
-  // Styles for blogLinks class
   .blogLinks {
     display: flex;
     flex-direction: row;
@@ -210,7 +171,6 @@
     }
   }
 
-  // Add a white divider after blog links
   .divider {
     width: 100%;
     height: 1px;
@@ -218,26 +178,23 @@
     margin: 20px 0;
   }
 
-  // Media query for screens with a minimum width of 768px
   @media only screen and (min-width: 768px) {
     .blogDetail {
       margin-bottom: 0;
     }
   }
 
-  // Media query for screens smaller than 768px
   @media only screen and (max-width: 767px) {
     .card {
       margin-top: 50px;
     }
 
     ul, ol {
-      padding-left: 20px; // Adjust indentation for bullets on mobile
-      overflow-wrap: break-word; // Ensure list items do not overflow
+      padding-left: 20px;
+      overflow-wrap: break-word;
     }
   }
 
-  // Styles for code collapse functionality
   details > summary span {
     transition: all $transition-speed;
     margin-left: 5px;
@@ -257,7 +214,6 @@
     }
   }
 
-  // Styles for the button container
   .btnContainer {
     display: flex;
     justify-content: center;
@@ -268,7 +224,6 @@
     }
   }
 
-  // Improved styles for the button
   .btnFilledBlog {
     background: none;
     border: 2px solid var(--text-secondary);
@@ -278,22 +233,21 @@
     border-radius: 30px;
     transition: background-color $transition-speed ease, color $transition-speed ease, transform $transition-speed ease;
     text-align: center;
-    cursor: pointer; // Add pointer cursor for better UX
+    cursor: pointer;
 
     &:hover {
       background-color: var(--background-secondary);
       color: var(--background);
-      transform: scale(1.05); // Slight scale-up on hover
+      transform: scale(1.05);
     }
 
     @media only screen and (max-width: 767px) {
-      width: 100%; // Full width on mobile
+      width: 100%;
       padding: 14px 28px;
       font-size: 1.2rem;
     }
   }
 
-  // Styles for blockquote
   blockquote {
     padding: 15px;
     background-color: var(--background-card);
@@ -301,35 +255,32 @@
     margin: 20px 0;
     color: var(--text-primary);
     border-radius: 8px;
-    overflow-wrap: break-word; // Ensure blockquotes do not overflow
+    overflow-wrap: break-word;
   }
 
   code {
-    white-space: pre-wrap; // Ensure inline code does not break into new lines
-    word-wrap: break-word; // Allow long words to be broken and wrap to the next line
+    white-space: pre-wrap;
+    word-wrap: break-word;
     color: var(--background-secondary);
-    border-radius: 5px; // Slightly rounded corners for inline code
-    padding: 2px 4px; // Padding around inline code for better readability
+    border-radius: 5px;
+    padding: 2px 4px;
   }
 
-  // Styles for code blocks
   pre {
     background-color: var(--background-card);
-    padding: 1rem; // Added padding for better readability
+    padding: 1rem;
     border-radius: 8px;
-    overflow: auto; // Allow scrolling for long code blocks
-    max-width: 100%; // Ensure code blocks do not exceed the width of the container
-    word-wrap: break-word; // Allow long lines in code blocks to wrap
+    overflow: auto;
+    max-width: 100%;
+    word-wrap: break-word;
   }
 
-  // Styles for lists
   ul, ol {
-    margin: 10px 0; // Add margin for lists
-    padding-left: 20px; // Indent lists
-    overflow-wrap: break-word; // Ensure list items do not overflow
+    margin: 10px 0;
+    padding-left: 20px;
+    overflow-wrap: break-word;
   }
 
-  // Styles for strikethrough text
   del {
     text-decoration: line-through;
     color: var(--text-tertiary);

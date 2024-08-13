@@ -11,8 +11,6 @@ description: Searx has built-in statistics but doesn't support external analytic
 
 Although [Searx](https://github.com/searx/searx) comes with its own built in statistics, it doesn't natively allow for adding analytics. This is largely by design considering the privacy aspect of the project. However, I was curious to see if my instance gets any traffic that isn't from me.
 
-<!-- more -->
-
 ## Trial and Error
 
 In order to do this, I had to find out where the `base.html` file was located. This was confusing to find because the Searx config file resides in `/etc/searx`, although after some digging, I found `base.html` in the following directory...

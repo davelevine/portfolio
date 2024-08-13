@@ -8,7 +8,6 @@ date: "2021.08.07"
 description: I've decided to downsize my extensive homelab setup and my reasons are outlined below.
 # End of Selection
 ---
-<!--markdownlint-disable-->
 
 ## Preface
 
@@ -18,8 +17,6 @@ I've decided that my [HP Z620] Workstation will be deprecated in favor of an [In
 
 [HP Z620]: https://support.hp.com/us-en/document/c03270936
 [Intel NUC (NUC10i7FNH1)]: https://www.intel.com/content/www/us/en/products/sku/188811/intel-nuc-10-performance-kit-nuc10i7fnh/specifications.html
-
-<!-- more -->
 
 ## Need for Replacement
 
@@ -65,11 +62,11 @@ Install Docker and the following containers:
 - Migrate any crontabs from all VMs on the Z620:
   - Adjust file/folder paths as necessary and ensure they all work as they should.
   - Make absolutely sure that all files/folders have the proper permissions to work, especially regarding the Google Photos backup.
-- <s>Migrate Nagios XI to Raspberry Pi</s>
-  - This <s>may not even be</s> is not necessary as Glances will <s>likely</s> cover what's needed. <s>May need to take health notifications for disk, RAM, etc. into consideration.</s>
+- Migrate Nagios XI to Raspberry Pi
+  - This may not even be is not necessary as Glances will likely cover what's needed. May need to take health notifications for disk, RAM, etc. into consideration.
     - Edit: After looking into this further, I will install Smartmontools from the Ubuntu package repository and run it every month with a cron job. Reports will be sent to healthchecks.io.
       - Instructions to do this can be found [here](https://brismuth.com/scheduling-automated-storage-health-checks-d470b4283e3e)
-  - <s>Reimage the current Raspberry Pi that displays Nagios</s>
+  - Reimage the current Raspberry Pi that displays Nagios
 
 ### Backups
 

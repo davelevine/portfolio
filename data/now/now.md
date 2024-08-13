@@ -1,13 +1,5 @@
 <!--markdownlint-disable-->
 
-# Here and Now
-
-<small>
-<i class="fa-regular fa-calendar-lines-pen"></i> Aug 09, 2024
-<br>
-<i class="fa-regular fa-tags"></i> Personal • Professional
-</small>
-
 ---
 
 This is my [Now Page]: a brief update on what's currently happening in my life, inspired by [Derek Sivers].

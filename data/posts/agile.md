@@ -16,8 +16,6 @@ I spent some time a few nights ago completely overhauling my resume. This is rea
 * It was outdated.
 * It didn't showcase anything about me or my skillset.
 
-<!-- more -->
-
 One of the additions to my resume has been a `Technical Proficiencies` section, which includes a piece on `Methodologies`. In my current role as a Business Analyst, I'm always on the System Development Life Cycle (SDLC) wheel, but additionally, I'm also using Agile more than I may realize.
 
 ### What is Agile?

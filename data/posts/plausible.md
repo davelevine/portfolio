@@ -15,8 +15,6 @@ Analytics has been something that I've had mixed feelings about for as long as I
 
 However, because I see the appeal in having them, I wanted to setup my own to understand them a bit better. I figured that if I setup my own on my own personal sites, it would give me a better idea of how they work. The sites I run are all visited by me, except my portfolio, which is public (not sure how much traffic that one is currently getting, but I'll find out now).
 
-<!-- more -->
-
 ## Finding a Solution
 
 Right off the bat, I knew I didn't want to use Google Analytics. I've looked at the interface before, and although I know it's basically the gold standard for analytics, I still didn't want to use it simply because of the way Google operates.

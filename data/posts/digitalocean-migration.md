@@ -7,23 +7,20 @@ date: "2020.08.30"
 description: As much as I enjoy using AWS, to use it how I would like to use it is just too expensive.
 ---
 
-<!--markdownlint-disable-->
 
 ## Background
 
 As much as I enjoy using AWS, to use it how I would like to use it is just too expensive. Because of this, I've hosted the large majority of my cloud infrastructure on DigitalOcean. This boils down to two reasons — it's a lot easier to use than AWS, and the pricing is predictable.
 
-<!-- more -->
-
 Could I estimate how much it would cost for me to host everything on AWS? Sure, and here's the breakdown...
 
-<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//08/Screen-Shot-2020-08-29-at-11.46.13-PM.png" alt="Screen Shot 2020-08-29 at 11.46.13 PM" />
+![Screen Shot 2020-08-29 at 11.46.13 PM](https://cdn.levine.io/uploads/images/gallery/2022-09//08/Screen-Shot-2020-08-29-at-11.46.13-PM.png)
 
 Of course, this is based off a quick estimate that doesn't really account for actual usage, including snapshots and data transfer. The thing is, regardless of all that, nearly $50/month is a lot. Factor in something like data transfer, and it could end up being a lot more. The same configuration on DigitalOcean works out to be a lot cheaper.
 
 This is my bill as of the moment. This will end up being even cheaper next month since I decommissioned two droplets this month and also disabled backups in favor of snapshots.
 
-<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//08/Screen-Shot-2020-08-29-at-11.52.09-PM.png" alt="Screen Shot 2020-08-29 at 11.52.09 PM" />
+![Screen Shot 2020-08-29 at 11.52.09 PM](https://cdn.levine.io/uploads/images/gallery/2022-09//08/Screen-Shot-2020-08-29-at-11.52.09-PM.png)
 
 It may not seem like that big of a difference, but at ~$11-12/mo, that's pretty big to me. Anyway, let me not get too lost in the weeds with pricing and get back to the point of this article.
 

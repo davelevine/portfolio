@@ -77,7 +77,7 @@ function MyApp({ Component, pageProps }) {
   const isNavigating = useNavigation(router);
 
   return (
-    <>
+    <React.StrictMode>
       <Head>
         <title>Dave Levine - Solutions Engineer</title>
         <meta charSet="UTF-8" />
@@ -87,7 +87,7 @@ function MyApp({ Component, pageProps }) {
         <Navbar theme={theme} newTheme={setTheme} />
         <Component {...pageProps} currentTheme={theme} />
       </div>
-    </>
+    </React.StrictMode>
   );
 }
 

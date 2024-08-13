@@ -7,15 +7,11 @@ date: "2020.04.19"
 description: A summary of my experience and insights gained from the Virtual Private Cloud (VPC) section of the AWS Certified Solutions Architect course.
 ---
 
-<!--markdownlint-disable-->
-
 ## Introduction
 
 I just finished the Virtual Private Cloud (VPC) section of the AWS Certified Solutions Architect course and I wanted to write it out in order to gain some clarity around it.
 
 For some reason, this has been the hardest topic of the course so far. There were certain things that were easier than I thought they'd be (subnetting), while others were much more difficult (NAT Instance vs NAT Gateway).
-
-<!-- more -->
 
 ## VPC
 
@@ -44,7 +40,7 @@ All the concepts individually are not very difficult to understand, but putting 
 
 The following is what was required to be built for this lab, and what I'll be discussing below:
 
-<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//04/lab_diagram_customvpc.png" alt="lab diagram custom VPC" />
+![lab diagram custom VPC](https://cdn.levine.io/uploads/images/gallery/2022-09//04/lab_diagram_customvpc.png)
 
 ### Creation of VPC and Subnet Architecture
 
@@ -54,7 +50,7 @@ The lab has you create a three Availability Zone (AZ), three-app tier subnet lay
 
 The layout looked like the following:
 
-<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//04/Screen-Shot-2020-04-19-at-10.12.41-AM.png" alt="Screen Shot 2020-04-19 at 10.12.41 AM" />
+![Screen Shot 2020-04-19 at 10.12.41 AM](https://cdn.levine.io/uploads/images/gallery/2022-09//04/Screen-Shot-2020-04-19-at-10.12.41-AM.png)
 
 10.0.12.0/24, 10.0.13.0/24, 10.0.14.0/24, and 10.0.15.0/24 were reserved for the fourth tier in four AZs.
 
@@ -83,7 +79,7 @@ From the [AWS Documentation](https://docs.aws.amazon.com/vpc/latest/userguide/vp
 
 > The following diagram illustrates the architecture of a VPC with a NAT gateway. The main route table sends Internet traffic from the instances in the private subnet to the NAT gateway. The NAT gateway sends the traffic to the Internet gateway using the NAT gateway’s Elastic IP address as the source IP address.
 
-<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//04/nat-gateway-diagram.png" alt="NAT gateway diagram" />
+![NAT gateway diagram](https://cdn.levine.io/uploads/images/gallery/2022-09//04/nat-gateway-diagram.png)
 
 Three different NAT gateways were required to be created for this portion of the lab, one for each public subnet.
 

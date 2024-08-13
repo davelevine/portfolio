@@ -21,8 +21,6 @@ Although I have my documentation in a number of locations, it's not particularly
 
 This article will describe the challenges of each service/app, along with the current state of my documentation.
 
-<!-- more -->
-
 `Edit`: To configure Dracula theme for MkDocs, use this comment as a reference...
 
 <https://github.com/facelessuser/pymdown-extensions/pull/857#issuecomment-602085247>

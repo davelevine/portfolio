@@ -7,13 +7,10 @@ date: "2020.06.07"
 description: Rethinking my NAS RAID configuration to optimize storage while maintaining reliability.
 ---
 
-<!--markdownlint-disable-->
 
 ## Analysis
 
 Of all the systems I maintain in my homelab, the one I generally look at the least is my NAS. I'm not sure if that would come as a surprise to anyone, but it's become one of my most trusted “set it and forget it” systems.
-
-<!-- more -->
 
 This has been great for me because the less I have to think about, the better, especially when it comes to systems. The problem lately is that although everything is working as well as it should, I've been getting email notifications from it lately that it's beginning to run low on space.
 
@@ -23,7 +20,7 @@ Of course, running low on space is subjective — it still has north of 2TB rema
 
 My NAS backup architecture is fairly simple, but I suppose a bit more complex than average. The diagram below lists my backup architecture in broad strokes, but gives a good idea of what backs up to where.
 
-<Image src="https://cdn.levine.io/uploads/images/gallery/2022-09//06/Backup_Diagram.png" alt="Backup Diagram" />
+![Backup Diagram](https://cdn.levine.io/uploads/images/gallery/2022-09//06/Backup_Diagram.png)
 
 As can be seen from this diagram, all machines in one way or another all backup to my NAS. I'll break it down in broad strokes.
 

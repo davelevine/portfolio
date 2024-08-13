@@ -7,7 +7,6 @@ date: "2020.03.29"
 description: An exploration of knowledge management and its significance in documenting complex systems.
 ---
 
-<!--markdownlint-disable-->
 
 Ever since I started building systems, I've always had a near obsessive need to keep track of what I was doing. The problem at the time was that I never saw the importance of writing it all down; it was all 'in my head'. Needless to say, that method of doing things is terrible, particularly in a professional setting.
 
@@ -17,7 +16,7 @@ Aside from documenting numerous `how-to` guides and step-by-step tutorials, one 
 
 My latest flowchart for my home network can be seen below:
 
-<Image src="https://cdn.levine.io/uploads/images/gallery/2020-04/jEkYsXlr5RheldtB-Grove_Network-Diagram-Final.png" alt="Grove Network Diagram Final" />
+![Grove Network Diagram Final](https://cdn.levine.io/uploads/images/gallery/2020-04/jEkYsXlr5RheldtB-Grove_Network-Diagram-Final.png)
 
 This particular flowchart was started some time last year, and while maintaining it is a mood job, I do enjoy updating it. For me, it helps to really bring my network to life and also give me a true understanding of just how complex it's become. This extra work gives you a lot of insight into where your network currently is and where it's going. Having your entire network on paper is something I can't stress the importance of enough. It helps for planning and for maintaining.
 

@@ -7,13 +7,10 @@ date: "2020.10.04"
 description: A recent firewall change in my homelab led to unexpected issues instead of improvements.
 ---
 
-<!--markdownlint-disable-->
 
 ## Primer
 
 Much to my dismay, I often find myself making a configuration change with high hopes, only to encounter more problems than solutions. This was exactly the case a few days ago when I made a firewall change on my homelab.
-
-<!-- more -->
 
 ## What I Wanted to Do
 
@@ -32,7 +29,7 @@ In deciding to no longer go that route, I've focused on connecting as many servi
 
 My current notification setup is as follows:
 
-<Image src="https://cdn.levine.io/uploads/images/gallery/2020-10/Tv2MhDAaCI67cYgE-slack-mind-map.png" alt="Slack Mind Map" />
+![Slack Mind Map](https://cdn.levine.io/uploads/images/gallery/2020-10/Tv2MhDAaCI67cYgE-slack-mind-map.png)
 
 With that explanation aside, the downside is how nicely Cloudflare and Uptime Robot work with pfSense. All my services are monitored in some form by Uptime Robot, but everything in my homelab goes through:
 

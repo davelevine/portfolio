@@ -7,11 +7,7 @@ date: "2020.03.27"
 description: Reflections on the EC2 Fundamentals course as I prepare for the Intermediate coursework.
 ---
 
-<!--markdownlint-disable-->
-
 As I mentioned in my first post, I'm working my way through the [AWS Certified Solutions Architect certification training course](https://linuxacademy.com/course/aws-certified-solutions-architect-2019-associate-level/). I finished the EC2 Fundamentals course last night and just wanted to write some of my thoughts on it as I move onto the Intermediate coursework.
-
-<!-- more -->
 
 * EC2 as a whole is unbelievably daunting no matter how you look at it. I've only dipped my toe in the pool, and it's already apparent to me that this architecture is massive.
 
