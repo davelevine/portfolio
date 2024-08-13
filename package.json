@@ -31,7 +31,8 @@
     "sass": "^1.77.6",
     "sharp": "^0.33.4",
     "terser-webpack-plugin": "^5.3.10",
-    "turbo": "^2.0.6"
+    "turbo": "^2.0.6",
+    "yet-another-react-lightbox": "^3.21.3"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^6.5.2",
