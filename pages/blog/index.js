@@ -23,17 +23,21 @@ export default Blog;
 export const getStaticProps = async () => {
   const blog = await getBlog();
 
-  // Ensure that each blog has an id, description, and isFeatured before passing to the component
-  const validBlog = blog.map(item => ({
-    ...item,
-    id: item.id || 'default-id', // Ensure each blog has an id
-    description: item.description || 'No description available', // Ensure each blog has a description
-    isFeatured: item.isFeatured !== undefined ? item.isFeatured : false, // Ensure isFeatured is defined
+  // Only pass necessary data for rendering the blog list
+  const minimalBlogData = blog.map(({ id, title, description, date, categories, slug, isFeatured, readingTime }) => ({
+    id: id || 'default-id', // Ensure each blog has an id
+    title,
+    description: description || 'No description available', // Ensure each blog has a description
+    date,
+    categories,
+    slug,
+    isFeatured: isFeatured !== undefined ? isFeatured : false, // Ensure isFeatured is defined
+    readingTime, // Pass the calculated reading time
   }));
 
   return {
     props: {
-      blog: validBlog,
+      blog: minimalBlogData,
     },
   };
 };

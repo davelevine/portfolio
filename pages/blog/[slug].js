@@ -35,7 +35,7 @@ const BlogDetailPage = ({ blog, currentTheme }) => {
 // Refactored getStaticProps to use async/await for better readability and handling of asynchronous operations
 export const getStaticProps = async ({ params }) => {
   const { slug } = params;
-  const blogData = await getBlogData(slug);
+  const blogData = await getBlogData(slug); // This will now fetch full content when needed
 
   if (!blogData) {
     return {
@@ -48,6 +48,7 @@ export const getStaticProps = async ({ params }) => {
       blog: {
         ...blogData,
         id: blogData.id || 'default-id', // Ensure the blog has an id
+        content: blogData.content || '', // Ensure content is provided here
       },
     },
     revalidate: 600,

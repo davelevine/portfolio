@@ -17,16 +17,13 @@ const Link = dynamic(() => import('next/link'), {
  * @returns {JSX.Element|null} - The rendered blog item component or null if no valid id.
  */
 const BlogItem = ({ blog }) => {
-  const { id, title, description, date, liveLink, slug, content } = blog;
+  const { id, title, description, date, liveLink, slug, readingTime } = blog;
 
   // Ensure the blog has a valid id before rendering
   if (!id) return null;
 
   // Format the date to "MMM DD, YYYY"
   const formattedDate = new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' });
-
-  // Calculate reading time based on content length
-  const readingTime = Math.ceil(content.split(' ').length / 200); // Assuming average reading speed of 200 words per minute
 
   const renderBlogLinks = (
     <div className={classes.blogLinks}>
@@ -79,7 +76,7 @@ BlogItem.propTypes = {
     date: PropTypes.string.isRequired,
     liveLink: PropTypes.string,
     slug: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
+    readingTime: PropTypes.number.isRequired, // Added readingTime as required prop
   }).isRequired,
 };
 

@@ -47,8 +47,11 @@ const Blog = ({ blog }) => {
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState('');
 
-  // Ensure that each blog has an id, description, categories, and isFeatured before proceeding
-  const validBlog = useMemo(() => blog.filter((item) => item.id && item.description && item.categories && item.isFeatured !== undefined), [blog]);
+// Ensure that each blog has an id, description, categories, and isFeatured before proceeding
+  const validBlog = useMemo(
+    () => blog.filter((item) => item.id && item.description && item.categories && item.isFeatured !== undefined),
+    [blog]
+  );
 
   // Memoize selectedCategories using Set directly
   const selectedCategories = useMemo(() => {
@@ -112,7 +115,6 @@ const Blog = ({ blog }) => {
 
     // Initial call to set the progress bar width
     handleScroll();
-
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
@@ -136,7 +138,6 @@ const Blog = ({ blog }) => {
     };
 
     window.addEventListener('load', handleWindowLoad);
-
     return () => {
       window.removeEventListener('load', handleWindowLoad);
       window.removeEventListener('scroll', lazyLoadImages);
@@ -172,7 +173,7 @@ const Blog = ({ blog }) => {
                 opacity: 1,
                 x: 0,
                 transition: {
-                  staggerChildren: 0.05, // Speed up the button animation to match allProjects.js
+                  staggerChildren: 0.05,
                   duration: 0.3,
                   ease: 'easeInOut',
                 },
