@@ -4,7 +4,6 @@ import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 import classes from './now.module.scss';
 import ReactMarkdown from 'react-markdown';
-import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
 import Image from 'next/image';
 
@@ -106,7 +105,8 @@ const Now = ({ markdownContent, showModal = false }) => {
               <i className="fa-regular fa-tags" /> Personal • Professional
             </span>
           </div>
-          <ReactMarkdown components={getCustomRenderers} rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkGfm]}>
+          <hr className={classes.divider} /> {/* Divider added here */}
+          <ReactMarkdown components={getCustomRenderers} remarkPlugins={[remarkGfm]}>
             {markdownContent}
           </ReactMarkdown>
         </div>

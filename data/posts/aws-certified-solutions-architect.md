@@ -4,13 +4,13 @@ categories:
     - AWS
     - DevOps
     - Recommended
-date: "2020.08.01"
+date: "2020-08-01"
 description: After ~6 months of studying, I finally took the AWS Certified Solutions Architect Associate exam today and I PASSED!
 ---
 
 ## Primer
 
-I haven't written in awhile and that one is on me. I meant to keep this up regularly, but I've been slacking with it to say the least. Who knew that having a family, a full time job and responsibilities would take up so much of my time! I'm going to do my best to update regularly going forward.
+I haven't written in a while and that one is on me. I meant to keep this up regularly, but I've been slacking with it to say the least. Who knew that having a family, a full-time job, and responsibilities would take up so much of my time! I'm going to do my best to update regularly going forward.
 
 ## Validation
 
@@ -25,7 +25,7 @@ Here is my certificate and badge. I earned them, so why not show them off!
 
 ## Hindsight
 
-There were more than a few occasions where I wasn't sure if I was going to be able to finish — the life altering COVID-19 pandemic, childcare, and above all, my own self-doubt. This was particularly apparent after I completed the Linux Academy training course. That in itself felt like such a huge accomplishment that the thought of pressing on for the real thing just felt like a real uphill climb. This felt even more apparent once I was reimbursed for the training course by my job; as if that was it.
+There were more than a few occasions where I wasn't sure if I was going to be able to finish — the life-altering COVID-19 pandemic, childcare, and above all, my own self-doubt. This was particularly apparent after I completed the Linux Academy training course. That in itself felt like such a huge accomplishment that the thought of pressing on for the real thing just felt like a real uphill climb. This felt even more apparent once I was reimbursed for the training course by my job; as if that was it.
 
 I knew that I'd come this far, and I was willing to come a little further. This was around a month ago.
 
@@ -39,7 +39,7 @@ I've never been a good test taker, and that hasn't really changed. This exam was
 
 ## Reflection
 
-I needed to do this because I'm hopeful it will help me in my career. I also needed to do this for me, as a validation of the skill-set I know that I have. It's one thing to work on my homelab and do things here and there, but it's another to learn all about cloud architecture.
+I needed to do this because I'm hopeful it will help me in my career. I also needed to do this for me, as a validation of the skill set I know that I have. It's one thing to work on my homelab and do things here and there, but it's another to learn all about cloud architecture.
 
 I won't stop with just this exam. I plan on fulfilling the entire “Junior AWS Cloud Engineer — Entry Level” learning path on Linux Academy. As of the time of this writing, I'm 32% of the way through it.
 

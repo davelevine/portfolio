@@ -17,11 +17,15 @@ const BlogContent = dynamic(() => import('../../components/blog/blogContent'), {
 
 // Refactored BlogDetailPage to use destructuring directly in the function parameter for cleaner code
 const BlogDetailPage = ({ blog, currentTheme }) => {
+  if (!blog) {
+    return <p>Blog not found.</p>; // Handle case where blog data is not available
+  }
+
   return (
     <>
       <Head>
         <title>{blog.title}</title>
-        <meta name='description' content={blog.description} />
+        <meta name='description' content={blog.description || 'No description available'} /> {/* Fallback description */}
       </Head>
       <BlogContent blog={blog} currentTheme={currentTheme} />
     </>
@@ -32,6 +36,12 @@ const BlogDetailPage = ({ blog, currentTheme }) => {
 export const getStaticProps = async ({ params }) => {
   const { slug } = params;
   const blogData = await getBlogData(slug);
+
+  if (!blogData) {
+    return {
+      notFound: true, // Return 404 if blog data is not found
+    };
+  }
 
   return {
     props: {

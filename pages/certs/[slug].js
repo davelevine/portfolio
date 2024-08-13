@@ -16,13 +16,16 @@ const CertContent = dynamic(() => import('../../components/certs/certContent'), 
 });
 
 const CertDetailPage = ({ cert, currentTheme }) => {
-  // Destructured props directly in the function parameter for cleaner code
+  // Ensure cert is defined before accessing its properties
+  if (!cert) {
+    return <p>Certificate not found.</p>; // Handle case where cert data is not available
+  }
 
   return (
     <>
       <Head>
         <title>{cert.title}</title>
-        <meta name='description' content={cert.excerpt} />
+        <meta name='description' content={cert.excerpt || 'No description available'} /> {/* Fallback description */}
       </Head>
       <CertContent cert={cert} currentTheme={currentTheme} />
     </>
@@ -32,7 +35,14 @@ const CertDetailPage = ({ cert, currentTheme }) => {
 export const getStaticProps = async ({ params }) => {
   // Destructured context directly in the function parameter for cleaner code
   const { slug } = params;
-  const certData = await getCertData(slug); // Updated the function call and added async/await for better readability and handling of asynchronous operations
+  const certData = await getCertData(slug);
+
+  // Ensure certData is valid before returning
+  if (!certData) {
+    return {
+      notFound: true, // Return 404 if cert data is not found
+    };
+  }
 
   return {
     props: {

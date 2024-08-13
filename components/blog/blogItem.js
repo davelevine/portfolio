@@ -35,8 +35,7 @@ const BlogItem = ({ blog }) => {
       </Link>
       {liveLink && (
         <a href={liveLink} target='_blank' rel='noreferrer'>
-          <i className='fa-regular fa-arrow-up-right-from-square'></i>
-          Website
+          <i className='fa-regular fa-arrow-up-right-from-square'></i> Website
         </a>
       )}
     </div>
@@ -77,10 +76,10 @@ BlogItem.propTypes = {
     title: PropTypes.string.isRequired,
     categories: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]).isRequired,
     description: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired, // Added date prop type validation
+    date: PropTypes.string.isRequired,
     liveLink: PropTypes.string,
     slug: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired, // Added content prop type validation for reading time calculation
+    content: PropTypes.string.isRequired,
   }).isRequired,
 };
 

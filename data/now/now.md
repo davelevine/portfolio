@@ -1,6 +1,4 @@
-<!--markdownlint-disable-->
-
----
+#
 
 This is my [Now Page]: a brief update on what's currently happening in my life, inspired by [Derek Sivers].
 

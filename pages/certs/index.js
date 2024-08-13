@@ -15,8 +15,13 @@ const AllCerts = dynamic(() => import('../../components/certs/allCerts'), {
   ),
 });
 
-// Refactored Certs component to use destructuring directly in the function parameter
+// Certs component to display all certifications
 const Certs = ({ certs }) => {
+  // Ensure certs is defined before rendering
+  if (!certs || certs.length === 0) {
+    return <p>No certifications found.</p>; // Handle case where no certifications are available
+  }
+
   return (
     <>
       <Head>
@@ -30,11 +35,19 @@ const Certs = ({ certs }) => {
     </>
   );
 };
+
 export default Certs;
 
-// Refactored getStaticProps to use async/await for better readability and handling of asynchronous operations
+// getStaticProps to fetch all certifications
 export const getStaticProps = async () => {
   const allCerts = await getAllCerts();
+
+  // Ensure allCerts is valid before returning
+  if (!allCerts) {
+    return {
+      notFound: true, // Return 404 if no certifications are found
+    };
+  }
 
   return {
     props: {

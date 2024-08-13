@@ -1,4 +1,4 @@
-@import '../../styles/ui.scss'; // Adjust the path as needed
+@import '../../styles/ui.scss'; 
 
 .blogGallery {
   padding: 50px 15px;
@@ -15,7 +15,7 @@
   background: var(--navbar-primary);
   z-index: 1000;
   transition: width $transition-speed ease-out;
-  border-radius: 0 0 5px 5px; /* Rounded bottom corners */
+  border-radius: 0 0 5px 5px;
 }
 
 .blogGallery h1 {
@@ -24,8 +24,8 @@
   background: var(--text-gradient);
   -webkit-background-clip: text;
   background-clip: text;
-  color: transparent; /* Apply gradient text effect */
-  margin-top: 40px; /* Lower the title heading on mobile */
+  color: transparent;
+  margin-top: 40px;
 }
 
 .blogGallery .filter p {
@@ -44,7 +44,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 4px; /* Use gap for spacing between buttons */
+  gap: 4px;
 }
 
 .blogGallery .galleryWrap {
@@ -78,23 +78,23 @@
   }
 
   .blogGallery .gallery {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns for medium screens */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (min-width: 1200px) {
   .blogGallery .gallery {
-    grid-template-columns: repeat(3, 1fr); /* 3 columns for larger screens */
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 767px) {
   .blogGallery .scrollProgress {
-    display: block; /* Ensure the progress bar is visible on mobile */
+    display: block;
   }
 
   .blogGallery .gallery {
-    grid-template-columns: 1fr; /* Single column on mobile */
-    gap: 0 15px; /* Adjust gap for mobile */
+    grid-template-columns: 1fr;
+    gap: 0 15px;
   }
 }

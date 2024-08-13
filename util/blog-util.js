@@ -4,34 +4,34 @@ import matter from 'gray-matter';
 
 const blogDirectory = path.join(process.cwd(), 'data/posts');
 
-// Refactored to use arrow function with implicit return for brevity
-export const getBlogFiles = async () => await fs.readdir(blogDirectory);
+// Using implicit return for brevity
+export const getBlogFiles = async () => fs.readdir(blogDirectory);
 
-// Refactored to extract common logic into a helper function
-const getFilePath = (bloglug) => path.join(blogDirectory, `${bloglug}.md`);
+// Helper function to construct file path
+const getFilePath = (blogSlug) => path.join(blogDirectory, `${blogSlug}.md`);
 
 export const getBlogData = async (blogIdentifier) => {
-  const bloglug = blogIdentifier.replace(/\.md$/, ''); // removes the file extension
-  const filePath = getFilePath(bloglug); // Reused helper function
+  const blogSlug = blogIdentifier.replace(/\.md$/, ''); // removes the file extension
+  const filePath = getFilePath(blogSlug); // Reused helper function
   const fileContent = await fs.readFile(filePath, 'utf-8');
   const { data, content } = matter(fileContent);
 
   return {
-    slug: bloglug,
-    id: data.id || bloglug, // Ensure each blog has an id
+    slug: blogSlug,
+    id: data.id || blogSlug, // Ensure each blog has an id
     ...data,
     content,
   };
 };
 
-// Refactored to use array destructuring and implicit return
+// Using array destructuring and implicit return
 export const getBlog = async () => {
   const blogFiles = await getBlogFiles();
   const blogData = await Promise.all(blogFiles.map(getBlogData));
-  return blogData.sort((blogA, blogB) => (blogA.date > blogB.date ? -1 : 1));
+  return blogData.sort((blogA, blogB) => (new Date(blogB.date) - new Date(blogA.date))); // Ensure date comparison is correct
 };
 
-// Refactored to use implicit return and arrow function
+// Using implicit return and arrow function
 export const getFeaturedBlog = async () => {
   const blog = await getBlog();
   return blog.filter(blog => blog.isFeatured);

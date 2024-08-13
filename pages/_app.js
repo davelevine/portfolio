@@ -14,13 +14,18 @@ const useTheme = () => {
   const [theme, setTheme] = useState('dark');
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: light)');
+    const themeListener = (e) => setTheme(e.matches ? 'light' : 'dark');
+
     if (typeof window !== 'undefined') {
-      setTheme(initializeTheme());
-      const themeListener = (e) => setTheme(e.matches ? 'light' : 'dark');
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: light)');
       mediaQuery.addEventListener('change', themeListener);
-      return () => mediaQuery.removeEventListener('change', themeListener);
     }
+
+    return () => {
+      if (typeof window !== 'undefined') {
+        mediaQuery.removeEventListener('change', themeListener);
+      }
+    };
   }, []);
 
   return [theme, setTheme];
@@ -30,27 +35,23 @@ const useNavigation = (router) => {
   const [isNavigating, setIsNavigating] = useState(false);
 
   const handleLinkClick = useCallback((event) => {
-    if (typeof window !== 'undefined') {
-      const target = event.target.closest('a');
-      if (target && target.href && target.origin === window.location.origin) {
-        event.preventDefault();
+    const target = event.target.closest('a');
+    if (target && target.href && target.origin === window.location.origin) {
+      event.preventDefault();
 
-        if (isNavigating) return;
+      if (isNavigating) return;
 
-        setIsNavigating(true);
-        const url = target.getAttribute('href');
+      setIsNavigating(true);
+      const url = target.getAttribute('href');
 
-        const navigate = url === window.location.pathname ? router.replace : router.push;
-        navigate(url).finally(() => setIsNavigating(false));
-      }
+      const navigate = url === window.location.pathname ? router.replace : router.push;
+      navigate(url).finally(() => setIsNavigating(false));
     }
   }, [isNavigating, router]);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      document.addEventListener('click', handleLinkClick);
-      return () => document.removeEventListener('click', handleLinkClick);
-    }
+    document.addEventListener('click', handleLinkClick);
+    return () => document.removeEventListener('click', handleLinkClick);
   }, [handleLinkClick]);
 
   useEffect(() => {

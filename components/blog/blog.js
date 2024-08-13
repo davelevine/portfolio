@@ -14,7 +14,7 @@ const Modal = dynamic(() => import('../layout/modal/contactModal'), {
 // Component to animate blog items when they come into view
 const BlogItemWithAnimation = ({ blog }) => {
   const [ref, inView] = useInView({
-    triggerOnce: false, // Set to false to allow repeated triggering
+    triggerOnce: true, // Set to true to avoid re-triggering the animation
     threshold: 0.1, // Trigger when 10% of the item is visible
   });
 
@@ -24,7 +24,7 @@ const BlogItemWithAnimation = ({ blog }) => {
       initial={{ opacity: 0, y: 100, scale: 0.5 }}
       animate={inView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 100, scale: 0.5 }}
       exit={{ opacity: 0, y: -100, scale: 0.5 }}
-      transition={{ duration: 0.3, ease: 'easeInOut' }} // Speed up the animation to match allProjects.js
+      transition={{ duration: 0.3, ease: 'easeInOut' }}
       style={{ display: 'grid' }}
     >
       <BlogItem blog={blog} lazyLoad={inView} />
@@ -35,25 +35,27 @@ const BlogItemWithAnimation = ({ blog }) => {
 BlogItemWithAnimation.propTypes = {
   blog: PropTypes.shape({
     id: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired, // Added description prop type validation
+    description: PropTypes.string.isRequired,
+    categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+    isFeatured: PropTypes.bool.isRequired,
   }).isRequired,
 };
 
 const Blog = ({ blog }) => {
   const [filter, setFilter] = useState('all');
   const [activeButton, setActiveButton] = useState('all');
-  const [showModal, setShowModal] = useState(false); // State to control modal visibility
-  const [modalType, setModalType] = useState(''); // State to determine modal type
+  const [showModal, setShowModal] = useState(false);
+  const [modalType, setModalType] = useState('');
 
-  // Ensure that each blog has an id and description before proceeding
-  const validBlog = useMemo(() => blog.filter((blog) => blog.id && blog.description), [blog]);
+  // Ensure that each blog has an id, description, categories, and isFeatured before proceeding
+  const validBlog = useMemo(() => blog.filter((item) => item.id && item.description && item.categories && item.isFeatured !== undefined), [blog]);
 
   // Memoize selectedCategories using Set directly
   const selectedCategories = useMemo(() => {
     const categoriesSet = new Set();
     validBlog.forEach(({ categories }) => {
       if (Array.isArray(categories)) {
-        categories.forEach((t) => categoriesSet.add(t));
+        categories.forEach((category) => categoriesSet.add(category));
       }
     });
     return Array.from(categoriesSet).sort();
@@ -170,7 +172,7 @@ const Blog = ({ blog }) => {
                 opacity: 1,
                 x: 0,
                 transition: {
-                  staggerChildren: 0.05, // Speed up the tech logo animation to match allProjects.js
+                  staggerChildren: 0.05, // Speed up the button animation to match allProjects.js
                   duration: 0.3,
                   ease: 'easeInOut',
                 },
@@ -218,7 +220,7 @@ Blog.propTypes = {
   blog: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired, // Added description prop type validation
+      description: PropTypes.string.isRequired,
       categories: PropTypes.arrayOf(PropTypes.string).isRequired,
       isFeatured: PropTypes.bool.isRequired,
     })

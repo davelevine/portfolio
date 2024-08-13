@@ -1,41 +1,38 @@
 .footer {
-  background-color: var(--background); /* Set background color using CSS variable */
-  transition: background 1s; /* Smooth background transition */
-  color: var(--navbar-primary); /* Set text color using CSS variable */
-  text-align: center; /* Center-align text */
-  padding: 25px; /* Padding around the footer content */
+  background-color: var(--background);
+  transition: background 1s;
+  color: var(--navbar-primary);
+  text-align: center;
+  padding: 25px;
 
-  /* Apply styles for mobile devices in portrait orientation */
   @media only screen and (max-width: 767px) and (orientation: portrait) {
-    margin-top: 10vh; /* Add top margin to push footer down */
-    margin-bottom: auto; /* Reset bottom margin */
+    margin-top: 10vh;
+    margin-bottom: auto;
   }
 
-  /* Apply styles for mobile devices in landscape orientation */
   @media only screen and (orientation: landscape) {
-    margin-bottom: 0; /* Reset bottom margin */
+    margin-bottom: 0;
   }
 
   .socialMedia {
-    margin-bottom: 5px; /* Space below social media icons */
+    margin-bottom: 5px;
 
     i {
-      font-size: 2rem; /* Icon size */
-      margin: 0 5px; /* Space between icons */
-      color: var(--text-secondary); /* Icon color using CSS variable */
-      transition: color 0.3s; /* Smooth color transition on hover */
+      font-size: 2rem;
+      margin: 0 5px;
+      color: var(--text-secondary);
+      transition: color 0.3s;
     }
 
     i:hover {
-      color: var(--navbar-primary); /* Change icon color on hover */
+      color: var(--navbar-primary);
     }
   }
 
   small {
-    font-size: 0.7rem; /* Small text size */
+    font-size: 0.7rem;
   }
 
-  // Move the declaration inside &{} to opt into the new behavior
   & {
     margin-bottom: 0;
   }

@@ -1,4 +1,4 @@
-@import '../../styles/ui.scss'; // Adjust the path as needed
+@import '../../styles/ui.scss'; 
 
 .projectDetail {
   // Mixin for common text styles to ensure reusability
@@ -12,7 +12,6 @@
     }
   }
 
-  // Styles for heading elements
   h1, h2 {
     @include text-styles(var(--text-secondary));
   }
@@ -29,19 +28,16 @@
     font-weight: 600;
   }
 
-  // Reduce margin between h2 and bulleted lists
   h2 + ul,
   h2 + ol {
-    margin-top: 10px; // Adjust this value as needed
+    margin-top: 10px;
   }
 
-  // Styles for small elements
   small {
     @include text-styles(var(--navbar-primary), 25px, 1rem);
     display: block;
   }
 
-  // Styles for anchor elements
   a {
     color: var(--accent);
     text-decoration: none;
@@ -53,23 +49,20 @@
     }
   }
 
-  // Styles for links in paragraph text
   p a {
-    font-size: 1rem; // Smaller font size for links in paragraph text
+    font-size: 1rem;
   }
 
-  // Styles for project links
   .projectLinks a {
-    font-size: 1.2rem; // Larger font size for project links
-    transition: color $transition-speed ease, transform $transition-speed ease; // Add transition for hover effect
+    font-size: 1.2rem;
+    transition: color $transition-speed ease, transform $transition-speed ease;
 
     &:hover {
       color: var(--link-hover);
-      transform: scale(1.1); // Slight scale-up on hover
+      transform: scale(1.1);
     }
   }
 
-  // Styles for strong elements
   strong {
     background: #cecece;
     padding: 0 4px;
@@ -79,7 +72,6 @@
     font-size: 0.8rem;
   }
 
-  // Common styles for card and description classes
   .card,
   .description {
     border-radius: 12px;
@@ -93,7 +85,6 @@
     color: var(--navbar-primary);
   }
 
-  // Specific styles for card class
   .card {
     h4 {
       @include text-styles(var(--text-secondary), 0);
@@ -115,7 +106,6 @@
     }
   }
 
-  // Styles for projectImage class
   .projectImage {
     display: flex;
     justify-content: center;
@@ -129,11 +119,10 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 4px 8px rgba(0, 0, 0, 0.2); // Added 3D shadow effect to the image
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 4px 8px rgba(0, 0, 0, 0.2);
     }
   }
 
-  // Media query for screens with a minimum width of 768px
   @media only screen and (min-width: 768px) {
     .projectImage {
       width: 80%;
@@ -141,7 +130,6 @@
     }
   }
 
-  // Styles for projectLinks class
   .projectLinks {
     display: flex;
     flex-direction: row;
@@ -164,7 +152,6 @@
     }
   }
 
-  // Add a white divider after project links
   .divider {
     width: 100%;
     height: 1px;
@@ -172,25 +159,22 @@
     margin: 20px 0;
   }
 
-  // Media query for screens with a minimum width of 768px
   @media only screen and (min-width: 768px) {
     .projectDetail {
       margin-bottom: 0;
     }
   }
 
-  // Media query for screens smaller than 768px
   @media only screen and (max-width: 767px) {
     .card {
       margin-top: 50px;
     }
 
     ul, ol {
-      padding-left: 20px; // Adjust indentation for bullets on mobile
+      padding-left: 20px;
     }
   }
 
-  // Styles for code collapse functionality
   details > summary span {
     transition: all $transition-speed;
     margin-left: 5px;
@@ -210,7 +194,6 @@
     }
   }
 
-  // Styles for the button container
   .btnContainer {
     display: flex;
     justify-content: center;
@@ -221,7 +204,6 @@
     }
   }
 
-  // Improved styles for the button
   .btnFilledProject {
     background: none;
     border: 2px solid var(--text-secondary);
@@ -231,16 +213,16 @@
     border-radius: 30px;
     transition: background-color $transition-speed ease, color $transition-speed ease, transform $transition-speed ease;
     text-align: center;
-    cursor: pointer; // Add pointer cursor for better UX
+    cursor: pointer;
 
     &:hover {
       background-color: var(--background-secondary);
       color: var(--background);
-      transform: scale(1.05); // Slight scale-up on hover
+      transform: scale(1.05);
     }
 
     @media only screen and (max-width: 767px) {
-      width: 100%; // Full width on mobile
+      width: 100%;
       padding: 14px 28px;
       font-size: 1.2rem;
     }

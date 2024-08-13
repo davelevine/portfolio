@@ -3,7 +3,7 @@ title: API Gateway
 categories:
     - AWS
     - Knowledge
-date: "2020.04.06"
+date: "2020-04-06"
 description: A beginner's exploration of AWS API Gateway and its role in enabling communication between services.
 ---
 
@@ -19,7 +19,7 @@ API Gateway is a way of allowing functions from within AWS to communicate with o
 
 ### What is an API?
 
-APIs, or Application Programming Interface, are at their core, just snippets of code that allow for one piece of code to interface with another. This allows a piece of software to interface with other software that normally would not be able to.
+APIs, or Application Programming Interfaces, are at their core, just snippets of code that allow for one piece of code to interface with another. This allows a piece of software to interface with other software that normally would not be able to.
 
 For example, when an app is downloaded on a phone, the app will have an API that allows for the user to interact with the app. Without the API(s) in place, an OS such as Android would not necessarily be able to communicate with the app, or the experience would be degraded at best.
 
@@ -31,19 +31,19 @@ AWS defines API Gateway as follows:
 >
 > API Gateway acts as a “front door” for applications to access data, business logic, or functionality from your backend services, such as workloads running on Amazon Elastic Compute Cloud (Amazon EC2), code running on AWS Lambda, any web application, or real-time communication applications.*
 
-REST APIs are `HTTP based` and `stateless`, whereas WebSocket APIs use the WebSocket protocol, which makes it `stateful` and allows for sending and receiving information.
+REST APIs are `HTTP-based` and `stateless`, whereas WebSocket APIs use the WebSocket protocol, which makes it `stateful` and allows for sending and receiving information.
 
 So which one is better? The answer is, it depends on what you're doing.
 
 #### REST API
 
-- Utilizes HTTP protocol to transfer information when a user takes action.
+- Utilizes the HTTP protocol to transfer information when a user takes action.
 - Best used for less frequent requests.
 
 #### WebSocket API
 
 - Utilizes the WebSocket protocol to send and receive information between users and devices.
-- Best used with frequent back and forth communications such as chat apps.
+- Best used with frequent back-and-forth communications such as chat apps.
 
 ### Architecture
 

@@ -9,14 +9,14 @@ const Hero = dynamic(() => import('../components/home/hero'), {
   loading: () => <div className="skeleton-loader"></div>,
 });
 
-// Refactored Home component to remove unused destructured elements
+// Home component
 export default function Home() {
   return (
     <>
       <Head>
         <title>Dave Levine - Solutions Engineer</title>
         <meta
-          name='description' // Changed 'name' to 'description' for better semantics
+          name='description' 
           content='My personal portfolio including various projects and certifications.'
         />
       </Head>
@@ -25,11 +25,19 @@ export default function Home() {
   );
 }
 
-// Refactored getStaticProps to remove unused props and optimize fetch with Promise.all
+// getStaticProps to fetch featured certs, projects, and blog posts
 export const getStaticProps = async () => {
-  await Promise.all([getFeaturedCerts(), getFeaturedProjects(), getFeaturedBlog()]); // Changed 'getFeaturedPosts' to 'getFeaturedBlog'
+  const [featuredCerts, featuredProjects, featuredBlog] = await Promise.all([
+    getFeaturedCerts(),
+    getFeaturedProjects(),
+    getFeaturedBlog(),
+  ]);
 
   return {
-    props: {}, // No props are passed to the component
+    props: {
+      featuredCerts,
+      featuredProjects,
+      featuredBlog,
+    },
   };
 }

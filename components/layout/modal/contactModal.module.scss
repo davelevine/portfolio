@@ -1,9 +1,8 @@
-/* Styles for the contact modal */
 .contactModal {
   text-align: center;
   border-radius: 5px;
   background-color: var(--background-card);
-  padding: 1rem 1rem 3rem; /* Combined padding for consistency */
+  padding: 1rem 1rem 3rem;
   overflow: auto;
   z-index: 3;
   position: fixed;
@@ -16,32 +15,30 @@
   transform: translate(-50%, -50%);
 }
 
-/* Close button styles */
 .contactModal .close {
-  background: var(--background-card); /* Background color from CSS variable */
-  border: none; /* No border */
-  font-size: 1.5rem; /* Font size */
-  position: absolute; /* Absolute position */
-  top: 20px; /* Position from the top */
-  right: 20px; /* Position from the right */
-  cursor: pointer; /* Pointer cursor on hover */
+  background: var(--background-card);
+  border: none;
+  font-size: 1.5rem;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
   color: var(--text-primary);
-  display: flex; /* Flexbox layout */
-  align-items: center; /* Center items vertically */
-  justify-content: center; /* Center items horizontally */
-  width: 2.5rem; /* Width of the button */
-  height: 2.5rem; /* Height of the button */
-  border-radius: 50%; /* Rounded corners */
-  transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease; /* Smooth transitions */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
 }
 
 .contactModal .close:hover {
-  background-color: var(--background-secondary); /* Background color on hover */
+  background-color: var(--background-secondary);
   color: var(--transparent-primary);
-  transform: scale(1.1); /* Scale up on hover */
+  transform: scale(1.1);
 }
 
-/* Remaining modal styles */
 .contactModal .inputField {
   margin: 25px 0;
 }
@@ -74,7 +71,7 @@
 }
 
 .contactModal .action {
-  margin: 20px 0 0; /* Adjusted margin for consistency */
+  margin: 20px 0 0;
   display: flex;
   justify-content: space-between;
 }
@@ -111,28 +108,26 @@
   }
 
   .contactModal .action {
-    margin-bottom: 0; /* Reset margin for clarity */
+    margin-bottom: 0;
   }
 }
 
 @media only screen and (max-width: 767px) {
   .contactModal {
     min-height: 500px;
-    top: 45%; /* Adjusted to move the modal lower on mobile */
-    transform: translate(-50%, -45%); /* Adjusted to move the modal lower on mobile */
+    top: 45%;
+    transform: translate(-50%, -45%);
   }
 }
 
-/* Styles for contact links */
 .contactLinks a {
-  margin-right: 20px; /* Adjust this value as needed */
+  margin-right: 20px;
 }
 
 .contactLinks a i {
-  font-size: 3rem; /* Increase the size of the contact links */
+  font-size: 3rem;
 }
 
-/* Styles for the contact modal confirmation */
 .contactModalConfirmation {
   display: flex;
   flex-direction: column;
@@ -148,5 +143,5 @@
 }
 
 .contactModalConfirmation .contactLinks {
-  margin-top: 40px; /* Add additional space before contact links */
+  margin-top: 40px;
 }

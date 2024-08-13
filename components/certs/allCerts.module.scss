@@ -1,9 +1,9 @@
-@import '../../styles/ui.scss'; // Adjust the path as needed
+@import '../../styles/ui.scss'; 
 
 .certs {
   padding: 50px 15px;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .certs .scrollProgress {
@@ -15,7 +15,7 @@
   background: var(--navbar-primary);
   z-index: 1000;
   transition: width $transition-speed ease-out;
-  border-radius: 0 0 5px 5px; /* Rounded bottom corners */
+  border-radius: 0 0 5px 5px;
 }
 
 .certs h1 {
@@ -24,8 +24,8 @@
   background: var(--text-gradient);
   -webkit-background-clip: text;
   background-clip: text;
-  color: transparent; /* Apply gradient text effect */
-  margin-top: 40px; /* Lower the title heading on mobile */
+  color: transparent;
+  margin-top: 40px;
 }
 
 .certs .filter p {
@@ -44,7 +44,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 4px; /* Use gap for spacing between buttons */
+  gap: 4px;
 }
 
 .certs .galleryWrap {
@@ -86,11 +86,11 @@
 
 @media (max-width: 767px) {
   .certs .scrollProgress {
-    display: block; /* Ensure the progress bar is visible on mobile */
+    display: block;
   }
 
   .certs .gallery {
-    grid-template-columns: 1fr; /* Single column on mobile */
-    grid-gap: 0; /* Adjust gap for mobile to match allProjects.module.scss */
+    grid-template-columns: 1fr;
+    grid-gap: 0;
   }
 }

@@ -15,23 +15,33 @@ const ProjectContent = dynamic(() => import('../../components/projects/projectCo
   ),
 });
 
-// Refactored ProjectDetailPage to use destructuring directly in the function parameter for cleaner code
+// ProjectDetailPage component to display project details
 const ProjectDetailPage = ({ project, currentTheme }) => {
+  if (!project) {
+    return <p>Project not found.</p>; // Handle case where project data is not available
+  }
+
   return (
     <>
       <Head>
         <title>{project.title}</title>
-        <meta name='description' content={project.description} />
+        <meta name='description' content={project.description || 'No description available'} /> {/* Fallback description */}
       </Head>
       <ProjectContent project={project} currentTheme={currentTheme} />
     </>
   );
 };
 
-// Refactored getStaticProps to use async/await for better readability and handling of asynchronous operations
+// getStaticProps to fetch project data
 export const getStaticProps = async ({ params }) => {
   const { slug } = params;
   const projectData = await getProjectData(slug);
+
+  if (!projectData) {
+    return {
+      notFound: true, // Return 404 if project data is not found
+    };
+  }
 
   return {
     props: {
@@ -44,7 +54,7 @@ export const getStaticProps = async ({ params }) => {
   };
 };
 
-// Refactored getStaticPaths to use async/await for better readability and handling of asynchronous operations
+// getStaticPaths to fetch all project slugs
 export const getStaticPaths = async () => {
   const projectsFilenames = await getProjectsFiles();
   const slugs = projectsFilenames.map((fileName) =>

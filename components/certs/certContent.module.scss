@@ -1,15 +1,15 @@
 .certContent {
-  padding: 50px 15px; /* General padding for the certContent container */
-  text-align: center; /* Center text for all headings */
+  padding: 50px 15px;
+  text-align: center;
 }
 
 .certContent h1,
 .certContent h2 {
-  font-size: 2.7rem; /* Default font size for h1 and h2 */
+  font-size: 2.7rem;
 }
 
 .certContent h2 {
-  font-size: 2.7rem; /* Ensure h2 matches h1 size */
+  font-size: 2.7rem;
 }
 
 .certContent h3,
@@ -49,7 +49,7 @@
 
 @media only screen and (min-width: 768px) {
   .certContent {
-    padding: 100px 25px; /* Increased padding for larger screens */
+    padding: 100px 25px;
   }
 
   .certContent .container {
@@ -68,7 +68,7 @@
 
 @media only screen and (max-width: 767px) {
   .certContent h2 {
-    font-size: 2.0rem; /* Adjust h2 size for smaller screens */
+    font-size: 2.0rem;
   }
 
   .certContent p {
