@@ -4,8 +4,9 @@ import { getCertData, getCertsFiles } from '../../util/certs-util';
 import { motion } from 'framer-motion';
 import classes from '../../components/certs/certContent.module.scss';
 
-// Dynamically import CertContent for code splitting
+// Dynamically import CertContent for code splitting with SSR support
 const CertContent = dynamic(() => import('../../components/certs/certContent'), {
+  ssr: false, // Disable server-side rendering for this component
   loading: () => (
     <motion.div
       animate={{ rotate: 360 }}
@@ -16,16 +17,16 @@ const CertContent = dynamic(() => import('../../components/certs/certContent'), 
 });
 
 const CertDetailPage = ({ cert, currentTheme }) => {
-  // Ensure cert is defined before accessing its properties
+  // Use a fallback UI for better performance
   if (!cert) {
-    return <p>Certificate not found.</p>; // Handle case where cert data is not available
+    return <p>Certificate not found.</p>;
   }
 
   return (
     <>
       <Head>
         <title>{cert.title}</title>
-        <meta name='description' content={cert.excerpt || 'No description available'} /> {/* Fallback description */}
+        <meta name='description' content={cert.excerpt || 'No description available'} />
       </Head>
       <CertContent cert={cert} currentTheme={currentTheme} />
     </>
@@ -33,32 +34,29 @@ const CertDetailPage = ({ cert, currentTheme }) => {
 };
 
 export const getStaticProps = async ({ params }) => {
-  // Destructured context directly in the function parameter for cleaner code
   const { slug } = params;
   const certData = await getCertData(slug);
 
-  // Ensure certData is valid before returning
+  // Return 404 if cert data is not found
   if (!certData) {
-    return {
-      notFound: true, // Return 404 if cert data is not found
-    };
+    return { notFound: true };
   }
 
   return {
     props: {
       cert: certData,
     },
-    revalidate: 600,
+    revalidate: 600, // Incremental Static Regeneration
   };
 };
 
 export const getStaticPaths = async () => {
-  const certFilenames = await getCertsFiles(); // Updated the function call and added async/await for better readability and handling of asynchronous operations
-  const slugs = certFilenames.map((fileName) => fileName.replace(/\.md$/, ''));
+  const certFilenames = await getCertsFiles();
+  const slugs = certFilenames.map(fileName => fileName.replace(/\.md$/, ''));
 
   return {
-    paths: slugs.map((slug) => ({ params: { slug } })), // Simplified object property shorthand
-    fallback: false,
+    paths: slugs.map(slug => ({ params: { slug } })),
+    fallback: 'blocking', // Use blocking fallback for better performance
   };
 };
 

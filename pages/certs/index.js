@@ -4,8 +4,9 @@ import { motion } from 'framer-motion';
 import { getAllCerts } from '../../util/certs-util';
 import classes from '../../components/certs/certContent.module.scss';
 
-// Dynamically import AllCerts for code splitting
+// Dynamically import AllCerts for code splitting with SSR support
 const AllCerts = dynamic(() => import('../../components/certs/allCerts'), {
+  ssr: false, // Disable server-side rendering for this component
   loading: () => (
     <motion.div
       animate={{ rotate: 360 }}
@@ -17,7 +18,7 @@ const AllCerts = dynamic(() => import('../../components/certs/allCerts'), {
 
 // Certs component to display all certifications
 const Certs = ({ certs }) => {
-  // Ensure certs is defined before rendering
+  // Use a fallback UI for better performance
   if (!certs || certs.length === 0) {
     return <p>No certifications found.</p>; // Handle case where no certifications are available
   }
@@ -42,10 +43,10 @@ export default Certs;
 export const getStaticProps = async () => {
   const allCerts = await getAllCerts();
 
-  // Ensure allCerts is valid before returning
+  // Return 404 if no certifications are found
   if (!allCerts) {
     return {
-      notFound: true, // Return 404 if no certifications are found
+      notFound: true,
     };
   }
 
@@ -53,5 +54,6 @@ export const getStaticProps = async () => {
     props: {
       certs: allCerts,
     },
+    revalidate: 600, // Incremental Static Regeneration for better performance
   };
 };

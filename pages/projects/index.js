@@ -4,8 +4,8 @@ import AllProjects from '../../components/projects/allProjects';
 
 // Projects component to display all projects
 const Projects = ({ projects }) => {
-  // Ensure projects is defined and is an array before rendering
-  if (!projects || !Array.isArray(projects)) {
+  // Use a fallback UI for better performance
+  if (!projects || !Array.isArray(projects) || projects.length === 0) {
     return <p>No projects found.</p>; // Handle case where no projects are available
   }
 
@@ -22,28 +22,30 @@ const Projects = ({ projects }) => {
     </>
   );
 };
+
 export default Projects;
 
 // getStaticProps to fetch all projects
 export const getStaticProps = async () => {
   const allProjects = await getAllProjects();
 
-  // Ensure allProjects is valid before processing
-  if (!allProjects) {
+  // Return 404 if no projects are found
+  if (!allProjects || !Array.isArray(allProjects)) {
     return {
-      notFound: true, // Return 404 if no projects are found
+      notFound: true,
     };
   }
 
   // Ensure that each project has an id before passing to the component
-  const validProjects = allProjects.map(project => ({
+  const validProjects = allProjects.map(({ id = 'default-id', ...project }) => ({
     ...project,
-    id: project.id || 'default-id', // Ensure each project has an id
+    id,
   }));
 
   return {
     props: {
       projects: validProjects,
     },
+    revalidate: 600, // Incremental Static Regeneration for better performance
   };
 };

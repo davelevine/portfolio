@@ -4,8 +4,9 @@ import { motion } from 'framer-motion';
 import { getProjectData, getProjectsFiles } from '../../util/projects-util';
 import classes from '../../components/projects/projectContent.module.scss';
 
-// Dynamically import ProjectContent for code splitting
+// Dynamically import ProjectContent for code splitting with SSR support
 const ProjectContent = dynamic(() => import('../../components/projects/projectContent'), {
+  ssr: false, // Disable server-side rendering for this component
   loading: () => (
     <motion.div
       animate={{ rotate: 360 }}
@@ -50,20 +51,18 @@ export const getStaticProps = async ({ params }) => {
         id: projectData.id || 'default-id', // Ensure the project has an id
       },
     },
-    revalidate: 600,
+    revalidate: 600, // Incremental Static Regeneration
   };
 };
 
 // getStaticPaths to fetch all project slugs
 export const getStaticPaths = async () => {
   const projectsFilenames = await getProjectsFiles();
-  const slugs = projectsFilenames.map((fileName) =>
-    fileName.replace(/\.md$/, '')
-  );
+  const slugs = projectsFilenames.map(fileName => fileName.replace(/\.md$/, ''));
 
   return {
-    paths: slugs.map((slug) => ({ params: { slug } })),
-    fallback: false,
+    paths: slugs.map(slug => ({ params: { slug } })),
+    fallback: 'blocking', // Use blocking fallback for better performance
   };
 };
 
