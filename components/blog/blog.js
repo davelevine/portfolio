@@ -69,7 +69,7 @@ const Blog = ({ blog }) => {
 
   // Ensure that each blog has an id, description, categories, and isFeatured before proceeding
   const validBlog = useMemo(
-    () => blog.filter((item) => item.id && item.description && item.categories && item.isFeatured !== undefined),
+    () => blog.filter((item) => item.id && item.description && item.categories && item.isFeatured !== null),
     [blog]
   );
 

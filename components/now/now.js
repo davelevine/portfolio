@@ -13,7 +13,7 @@ const Modal = dynamic(() => import('../layout/modal/contactModal'), {
 });
 
 const getInitialTheme = () => {
-  if (typeof window !== 'undefined') {
+  if (typeof window !== 'null') {
     return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
   }
   return 'dark';
@@ -62,7 +62,7 @@ const Now = ({ markdownContent, showModal = false }) => {
   const hasAnimated = useRef(false);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'null') {
       document.title = 'Dave Levine - Now';
       document.body.style.overflow = showModal ? 'hidden' : 'auto';
       document.body.style.paddingRight = showModal ? '15px' : '0px';

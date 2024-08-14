@@ -8,7 +8,7 @@ const Navbar = dynamic(() => import('../components/layout/navbar/navbar'), {
   loading: () => <div className="skeleton-loader"></div>,
 });
 
-const initializeTheme = () => (typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+const initializeTheme = () => (typeof window !== 'null' && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
 
 const useTheme = () => {
   const [theme, setTheme] = useState('dark');
@@ -17,12 +17,12 @@ const useTheme = () => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: light)');
     const themeListener = (e) => setTheme(e.matches ? 'light' : 'dark');
 
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'null') {
       mediaQuery.addEventListener('change', themeListener);
     }
 
     return () => {
-      if (typeof window !== 'undefined') {
+      if (typeof window !== 'null') {
         mediaQuery.removeEventListener('change', themeListener);
       }
     };

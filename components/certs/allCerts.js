@@ -1,14 +1,11 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import dynamic from 'next/dynamic';
 import classes from './allCerts.module.scss';
 import CertItem from './certItem';
 import useModal from '../layout/modal/useModal';
 
-// Dynamically import the Modal component for code splitting
-const Modal = dynamic(() => import('../layout/modal/contactModal'), {
-  loading: () => <div className="skeleton-loader"></div>,
-});
+// Import the Modal component directly for server-side rendering
+import Modal from '../layout/modal/contactModal';
 
 const AllCerts = ({ certs }) => {
   const [filter, setFilter] = useState('all');

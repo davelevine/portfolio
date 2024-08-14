@@ -6,7 +6,6 @@ import classes from '../../components/projects/projectContent.module.scss';
 
 // Dynamically import ProjectContent for code splitting with SSR support
 const ProjectContent = dynamic(() => import('../../components/projects/projectContent'), {
-  ssr: false, // Disable server-side rendering for this component
   loading: () => (
     <motion.div
       animate={{ rotate: 360 }}

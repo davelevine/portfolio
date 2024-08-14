@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, lazy, Suspense } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classes from './certItem.module.scss';
 import Aos from 'aos';
@@ -91,26 +91,18 @@ const CertItem = ({ cert }) => {
           <i className="fa-regular fa-arrow-up-right-from-square"></i> View Certificate
         </button>
       </div>
-      <Suspense fallback={
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-          className={classes.spinner}
-        />
-      }>
-        <Modal
-          isOpen={modalIsOpen}
-          onRequestClose={toggleModal}
-          contentLabel="Certificate Image"
-          className={classes.modal}
-          overlayClassName={classes.overlay}
-        >
-          <button onClick={toggleModal} className={classes.closeButton}>
-            <i className='fa-regular fa-xmark'></i>
-          </button>
-          <Image src={linkPath} alt={`Certificate for ${title}`} className={classes.certImage} width={700} height={475} />
-        </Modal>
-      </Suspense>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={toggleModal}
+        contentLabel="Certificate Image"
+        className={classes.modal}
+        overlayClassName={classes.overlay}
+      >
+        <button onClick={toggleModal} className={classes.closeButton}>
+          <i className='fa-regular fa-xmark'></i>
+        </button>
+        <Image src={linkPath} alt={`Certificate for ${title}`} className={classes.certImage} width={700} height={475} />
+      </Modal>
     </div>
   );
 };

@@ -5,7 +5,7 @@ import BlogComponent from '../../components/blog/blog'; // Ensure this component
 // Blog component using destructuring directly in the function parameter
 const Blog = ({ blog }) => {
   if (!blog) {
-    return <p>No blog data available.</p>; // Handle case where blog data is undefined
+    return <p>No blog data available.</p>;
   }
 
   return (

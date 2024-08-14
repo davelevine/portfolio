@@ -6,7 +6,6 @@ import classes from '../../components/certs/certContent.module.scss';
 
 // Dynamically import AllCerts for code splitting with SSR support
 const AllCerts = dynamic(() => import('../../components/certs/allCerts'), {
-  ssr: false, // Disable server-side rendering for this component
   loading: () => (
     <motion.div
       animate={{ rotate: 360 }}
