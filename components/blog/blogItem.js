@@ -10,12 +10,6 @@ const Link = dynamic(() => import('next/link'), {
   loading: () => <div className="skeleton-loader"></div>,
 });
 
-/**
- * BlogItem component to display individual blog details.
- * @param {object} props - The component props.
- * @param {object} props.blog - The blog data.
- * @returns {JSX.Element|null} - The rendered blog item component or null if no valid id.
- */
 const BlogItem = ({ blog }) => {
   const { id, title, description, date, liveLink, slug, readingTime } = blog;
 

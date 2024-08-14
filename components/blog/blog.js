@@ -11,6 +11,26 @@ const Modal = dynamic(() => import('../layout/modal/contactModal'), {
   loading: () => <div className="skeleton-loader"></div>,
 });
 
+// Throttle function to optimize scroll events
+const throttle = (fn, limit) => {
+  let inThrottle;
+  return function() {
+    const args = arguments;
+    const context = this;
+    if (!inThrottle) {
+      fn.apply(context, args);
+      inThrottle = true;
+      setTimeout(() => (inThrottle = false), limit);
+    }
+  };
+};
+
+// Define buttonVariants for motion effects on buttons
+const buttonVariants = {
+  hidden: { opacity: 0, x: 100 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.3, ease: 'easeInOut' } },
+};
+
 // Component to animate blog items when they come into view
 const BlogItemWithAnimation = ({ blog }) => {
   const [ref, inView] = useInView({
@@ -94,21 +114,14 @@ const Blog = ({ blog }) => {
       : validBlog.filter(({ categories }) => categories.includes(filter));
   }, [filter, validBlog]);
 
-  // Motion variants for buttons
-  const buttonVariants = {
-    hidden: { opacity: 0, x: 100 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.3, ease: 'easeInOut' } },
-  };
-
-  // Function to handle scroll and update progress bar
-  const handleScroll = useCallback(() => {
+  const handleScroll = throttle(() => {
     const scrollProgress =
       (document.documentElement.scrollTop /
         (document.documentElement.scrollHeight - document.documentElement.clientHeight)) *
       100;
     const progressBar = document.getElementById('scroll-progress');
     if (progressBar) progressBar.style.width = `${scrollProgress}%`;
-  }, []);
+  }, 200);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -120,8 +133,8 @@ const Blog = ({ blog }) => {
     };
   }, [handleScroll]);
 
-  // Function to lazy load images
-  const lazyLoadImages = useCallback(() => {
+  // Function to lazy load images with throttling
+  const lazyLoadImages = useCallback(throttle(() => {
     const images = document.querySelectorAll('img[data-src]');
     images.forEach((img) => {
       if (img.getBoundingClientRect().top < window.innerHeight) {
@@ -129,7 +142,7 @@ const Blog = ({ blog }) => {
         img.removeAttribute('data-src');
       }
     });
-  }, []);
+  }, 200), []);
 
   useEffect(() => {
     const handleWindowLoad = () => {
