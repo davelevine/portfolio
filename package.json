@@ -39,7 +39,7 @@
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.2.4",
     "fontawesome-subset": "^4.4.0",
-    "vercel": "^34.3.0"
+    "vercel": "^36.0.0"
   },
   "license": "MIT",
   "author": "Dave Levine",
