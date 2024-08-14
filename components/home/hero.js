@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import { motion, AnimatePresence } from 'framer-motion';
-import debounce from 'lodash/debounce';
+import { debounce } from 'lodash';
 
 const Modal = dynamic(() => import('../layout/modal/modal'), {
   loading: () => <div className="skeleton-loader"></div>,
