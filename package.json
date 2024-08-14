@@ -35,10 +35,8 @@
     "yet-another-react-lightbox": "^3.21.3"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^6.5.2",
     "eslint": "^8.57.0",
-    "eslint-config-next": "^14.2.4",
-    "fontawesome-subset": "^4.4.0"
+    "eslint-config-next": "^14.2.4"
   },
   "license": "MIT",
   "author": "Dave Levine",

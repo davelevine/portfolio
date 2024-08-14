@@ -1,12 +1,10 @@
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classes from './certContent.module.scss';
 import { motion } from 'framer-motion';
-
-const ReactMarkdown = lazy(() => import('react-markdown'));
-const SyntaxHighlighter = lazy(() => import('react-syntax-highlighter').then(mod => mod.Prism));
-const atomDark = lazy(() => import('react-syntax-highlighter/dist/cjs/styles/prism').then(mod => mod.atomDark));
-const solarizedlight = lazy(() => import('react-syntax-highlighter/dist/cjs/styles/prism').then(mod => mod.solarizedlight));
+import ReactMarkdown from 'react-markdown';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { atomDark, solarizedlight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 /**
  * CertContent component renders the content of a certification.
@@ -36,17 +34,9 @@ const CertContent = ({ cert, currentTheme }) => {
     const style = currentTheme === 'dark' ? atomDark : solarizedlight;
 
     return (
-      <Suspense fallback={
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-          className={classes.spinner}
-        />
-      }>
-        <SyntaxHighlighter style={style} language={language} showLineNumbers>
-          {children}
-        </SyntaxHighlighter>
-      </Suspense>
+      <SyntaxHighlighter style={style} language={language} showLineNumbers>
+        {children}
+      </SyntaxHighlighter>
     );
   };
 
@@ -54,15 +44,7 @@ const CertContent = ({ cert, currentTheme }) => {
     <div className={classes.certContent}>
       <div className={classes.container}>
         <article>
-          <Suspense fallback={
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-              className={classes.spinner}
-            />
-          }>
-            <ReactMarkdown components={{ code: renderCode }}>{content}</ReactMarkdown>
-          </Suspense>
+          <ReactMarkdown components={{ code: renderCode }}>{content}</ReactMarkdown>
         </article>
       </div>
     </div>

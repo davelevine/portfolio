@@ -13,7 +13,6 @@ const BlogContent = dynamic(() => import('../../components/blog/blogContent'), {
       className={classes.spinner}
     />
   ),
-  ssr: false, // Disable server-side rendering for this component to improve performance
 });
 
 // BlogDetailPage component with early return for better performance
