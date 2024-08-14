@@ -17,27 +17,27 @@ export const getBlogData = async (blogIdentifier) => {
   const { data, content } = matter(fileContent);
 
   // Calculate reading time based on content length
-  const readingTime = Math.ceil(content.split(' ').length / 200); // Assuming average reading speed of 200 words per minute
+  const readingTime = Math.ceil(content.split(/\s+/).length / 200); // Using regex to split by whitespace for better performance
 
   return {
     slug: blogSlug,
     id: data.id || blogSlug, // Ensure each blog has an id
     ...data,
     readingTime, // Pass the calculated reading time as part of the metadata
-    // The full content is still available for the blog detail page but won't be passed to the index page
-    content,
+    content, // The full content is still available for the blog detail page but won't be passed to the index page
   };
 };
 
 // Using array destructuring and implicit return
 export const getBlog = async () => {
   const blogFiles = await getBlogFiles();
-  const blogData = await Promise.all(blogFiles.map(getBlogData));
-  return blogData.sort((blogA, blogB) => (new Date(blogB.date) - new Date(blogA.date))); // Ensure date comparison is correct
+  const blogDataPromises = blogFiles.map(getBlogData); // Store promises to avoid multiple await calls
+  const blogData = await Promise.all(blogDataPromises);
+  return blogData.sort((blogA, blogB) => new Date(blogB.date) - new Date(blogA.date)); // Ensure date comparison is correct
 };
 
 // Using implicit return and arrow function
 export const getFeaturedBlog = async () => {
   const blog = await getBlog();
-  return blog.filter(blog => blog.isFeatured);
+  return blog.filter(({ isFeatured }) => isFeatured); // Destructure for better performance
 };

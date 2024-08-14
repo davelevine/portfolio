@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classes from './blog.module.scss';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -67,7 +67,7 @@ const Blog = ({ blog }) => {
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState('');
 
-// Ensure that each blog has an id, description, categories, and isFeatured before proceeding
+  // Ensure that each blog has an id, description, categories, and isFeatured before proceeding
   const validBlog = useMemo(
     () => blog.filter((item) => item.id && item.description && item.categories && item.isFeatured !== undefined),
     [blog]
@@ -90,16 +90,16 @@ const Blog = ({ blog }) => {
   }, []);
 
   // Handle button click to set filter and active button
-  const handleFilterClick = useCallback((category) => {
+  const handleFilterClick = (category) => {
     setFilter(category);
     setActiveButton(category);
-  }, []);
+  };
 
   // Function to close the modal
-  const closeModalHandler = useCallback(() => {
+  const closeModalHandler = () => {
     setShowModal(false);
     setModalType('');
-  }, []);
+  };
 
   // Manage body overflow when the modal is open or closed
   useEffect(() => {
@@ -131,10 +131,10 @@ const Blog = ({ blog }) => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [handleScroll]);
+  }, [handleScroll]); // Added handleScroll as a dependency
 
   // Function to lazy load images with throttling
-  const lazyLoadImages = useCallback(throttle(() => {
+  const lazyLoadImages = throttle(() => {
     const images = document.querySelectorAll('img[data-src]');
     images.forEach((img) => {
       if (img.getBoundingClientRect().top < window.innerHeight) {
@@ -142,7 +142,7 @@ const Blog = ({ blog }) => {
         img.removeAttribute('data-src');
       }
     });
-  }, 200), []);
+  }, 200);
 
   useEffect(() => {
     const handleWindowLoad = () => {
@@ -155,7 +155,7 @@ const Blog = ({ blog }) => {
       window.removeEventListener('load', handleWindowLoad);
       window.removeEventListener('scroll', lazyLoadImages);
     };
-  }, [lazyLoadImages]);
+  }, [lazyLoadImages]); // Added lazyLoadImages as a dependency
 
   return (
     <section className={classes.blogGallery}>

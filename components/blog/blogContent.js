@@ -15,22 +15,17 @@ import 'yet-another-react-lightbox/plugins/counter.css';
 
 import classes from './blogContent.module.scss';
 
-const BlogContent = ({ blog, currentTheme, showModal = false }) => {
+const BlogContent = ({ 
+  blog: { content, title, categories, date }, 
+  currentTheme, 
+  showModal = false 
+}) => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [images, setImages] = useState([]); // Array to store all images in the post
 
-  const {
-    content,
-    githubLink,
-    liveLink,
-    title,
-    categories,
-    date,
-    image,
-  } = blog;
-
-  const customRenderers = {
+  // Move customRenderers inside useMemo
+  const customRenderers = useMemo(() => ({
     code({ node, inline, className, children, ...props }) {
       const match = /language-(\w+)/.exec(className || '');
       return !inline && match ? (
@@ -79,35 +74,34 @@ const BlogContent = ({ blog, currentTheme, showModal = false }) => {
             setLightboxIndex(index);
             setLightboxOpen(true);
           }}
+          role="img"
+          aria-label={alt || 'Blog image'}
         />
       );
     },
-  };
+  }), [currentTheme, images]);
 
   // Collect all images before rendering
   useEffect(() => {
-    const imgRegex = /!\[.*?\]\((.*?)\)/g; // Regex to match all images in markdown
+    const imgRegex = /!\[([^\]]+)\]\((https?:\/\/[^\s]+)\)/g; // Optimized regex to match all images in markdown
     const imgMatches = [];
     let match;
 
     while ((match = imgRegex.exec(content)) !== null) {
-      imgMatches.push({ src: match[1] });
-    }
-
-    // Add the main blog image to the array if it exists
-    if (image) {
-      imgMatches.unshift({
-        src: `https://cdn.levine.io/uploads/portfolio/public/images/blog/${image}`,
-      });
+      imgMatches.push({ src: match[2], alt: match[1] });
     }
 
     setImages(imgMatches);
-  }, [content, image]);
+  }, [content]);
 
   useEffect(() => {
     const bodyStyle = document.body.style;
     bodyStyle.overflow = showModal ? 'hidden' : 'auto';
     bodyStyle.paddingRight = '0px';
+
+    return () => {
+      bodyStyle.overflow = 'auto';
+    };
   }, [showModal]);
 
   const readingTime = useMemo(
@@ -164,39 +158,6 @@ const BlogContent = ({ blog, currentTheme, showModal = false }) => {
             )}
           </small>
 
-          {image && (
-            <div className={classes.blogImage}>
-              <Image
-                src={`https://cdn.levine.io/uploads/portfolio/public/images/blog/${image}`}
-                width={700}
-                height={450}
-                alt={title}
-                priority
-                className={classes.blogMainImage}
-                sizes="(max-width: 768px) 100vw, 700px"
-                onClick={() => {
-                  const index = images.findIndex((img) => img.src === `https://cdn.levine.io/uploads/portfolio/public/images/blog/${image}`);
-                  setLightboxIndex(index);
-                  setLightboxOpen(true);
-                }}
-              />
-            </div>
-          )}
-
-          <div className={classes.blogLinks}>
-            {githubLink && (
-              <a href={githubLink} target="_blank" rel="noreferrer">
-                <i className="fab fa-github"></i> Github
-              </a>
-            )}
-            {liveLink && (
-              <a href={liveLink} target="_blank" rel="noreferrer">
-                <i className="fa-regular fa-arrow-up-right-from-square"></i>{' '}
-                Website
-              </a>
-            )}
-          </div>
-
           <div className={classes.divider}></div>
 
           {renderedContent}
@@ -245,16 +206,13 @@ const BlogContent = ({ blog, currentTheme, showModal = false }) => {
 BlogContent.propTypes = {
   blog: PropTypes.shape({
     content: PropTypes.string.isRequired,
-    githubLink: PropTypes.string,
-    liveLink: PropTypes.string,
     title: PropTypes.string.isRequired,
     categories: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]).isRequired,
     date: PropTypes.string.isRequired,
-    image: PropTypes.string,
     slug: PropTypes.string.isRequired,
   }).isRequired,
   currentTheme: PropTypes.oneOf(['dark', 'light']).isRequired,
-  showModal: PropTypes.bool,
+  showModal: PropTypes.bool, // Optional prop
 };
 
 export default BlogContent;

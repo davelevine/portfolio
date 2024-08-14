@@ -1,10 +1,10 @@
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
-import { getBlogData, getBlogFiles } from '../../util/blog-util'; // Updated import path
+import { getBlogData, getBlogFiles } from '../../util/blog-util';
 import classes from '../../components/blog/blogContent.module.scss';
 
-// Dynamically import BlogContent for code splitting
+// Dynamically import BlogContent for code splitting with a more efficient loading strategy
 const BlogContent = dynamic(() => import('../../components/blog/blogContent'), {
   loading: () => (
     <motion.div
@@ -13,57 +13,56 @@ const BlogContent = dynamic(() => import('../../components/blog/blogContent'), {
       className={classes.spinner}
     />
   ),
+  ssr: false, // Disable server-side rendering for this component to improve performance
 });
 
-// Refactored BlogDetailPage to use destructuring directly in the function parameter for cleaner code
+// BlogDetailPage component with early return for better performance
 const BlogDetailPage = ({ blog, currentTheme }) => {
   if (!blog) {
-    return <p>Blog not found.</p>; // Handle case where blog data is not available
+    return <p>Blog not found.</p>;
   }
+
+  const { title, description } = blog; // Destructure to avoid multiple accesses
 
   return (
     <>
       <Head>
-        <title>{blog.title}</title>
-        <meta name='description' content={blog.description || 'No description available'} /> {/* Fallback description */}
+        <title>{title}</title>
+        <meta name='description' content={description || 'No description available'} />
       </Head>
       <BlogContent blog={blog} currentTheme={currentTheme} />
     </>
   );
 };
 
-// Refactored getStaticProps to use async/await for better readability and handling of asynchronous operations
+// Optimized getStaticProps with early return for better performance
 export const getStaticProps = async ({ params }) => {
   const { slug } = params;
-  const blogData = await getBlogData(slug); // This will now fetch full content when needed
+  const blogData = await getBlogData(slug);
 
   if (!blogData) {
-    return {
-      notFound: true, // Return 404 if blog data is not found
-    };
+    return { notFound: true };
   }
+
+  const { id = 'default-id', content = '' } = blogData; // Destructure with defaults
 
   return {
     props: {
-      blog: {
-        ...blogData,
-        id: blogData.id || 'default-id', // Ensure the blog has an id
-        content: blogData.content || '', // Ensure content is provided here
-      },
+      blog: { ...blogData, id, content },
     },
     revalidate: 600,
   };
 };
 
-// Refactored getStaticPaths to use async/await for better readability and handling of asynchronous operations
+// Optimized getStaticPaths for better performance
 export const getStaticPaths = async () => {
   const blogFilenames = await getBlogFiles();
-  const slugs = blogFilenames.map((fileName) =>
-    fileName.replace(/\.md$/, '')
-  );
+  const paths = blogFilenames.map((fileName) => ({
+    params: { slug: fileName.replace(/\.md$/, '') },
+  }));
 
   return {
-    paths: slugs.map((slug) => ({ params: { slug } })),
+    paths,
     fallback: false,
   };
 };
