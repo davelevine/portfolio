@@ -28,7 +28,7 @@ const ProjectItem = ({ project }) => {
                 src={imageSrc}
                 width={320}
                 height={220}
-                alt={title}
+                alt={`Visual representation of the project titled "${title}"`} // Updated to provide unique descriptive alt text
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 style={{
                   objectFit: "contain"
@@ -46,7 +46,7 @@ const ProjectItem = ({ project }) => {
               <div key={t} className={classes.techLogo}>
                 <Image
                   src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/logos/${t}.svg`}
-                  alt={`${t} logo`}
+                  alt={`${t} logo`} // Kept descriptive alt text for tech logos
                   width={24}
                   height={24}
                 />

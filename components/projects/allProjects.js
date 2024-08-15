@@ -174,6 +174,7 @@ const AllProjects = ({ projects }) => {
               }}
               style={{ borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
               aria-pressed={activeButton === 'all'}
+              aria-label="Show all projects" // Added accessible name
             >
               <div className={classes.techLogoContainer}>
                 <i className="fa-regular fa-asterisk" style={{ fontSize: '32px', color: 'currentColor' }} aria-hidden="true"></i>
@@ -193,6 +194,7 @@ const AllProjects = ({ projects }) => {
                 }}
                 style={{ borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 aria-pressed={activeButton === tech}
+                aria-label={`Filter projects by ${tech}`} // Added accessible name
               >
                 <div className={classes.techLogoContainer}>
                   <Image

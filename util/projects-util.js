@@ -36,3 +36,14 @@ export const getFeaturedProjects = async () => {
   const allProjects = await getAllProjects();
   return allProjects.filter(project => project.isFeatured);
 };
+
+// Function to preload project images
+export const preloadProjectImages = (projects) => {
+  projects.forEach(project => {
+    if (project.image) {
+      const imageSrc = `https://cdn.levine.io/uploads/portfolio/public/images/projects/${project.image}`;
+      // Preload the image by returning the src
+      return imageSrc;
+    }
+  });
+};
