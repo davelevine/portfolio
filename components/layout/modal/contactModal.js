@@ -100,7 +100,7 @@ const ContactModal = ({ onClose }) => {
       {renderBasedOnState() || (
         <div className={classes.contactModal}>
           <CloseButton />
-          <h2>Contact me</h2>
+          <h2>Contact Me</h2>
 
           <form id='contactForm' className={classes.contactForm} onSubmit={handleSubmit}>
             <div className={classes.row}>

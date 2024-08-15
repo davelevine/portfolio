@@ -83,9 +83,12 @@
     a {
       color: var(--accent);
       text-decoration: none;
+      font-weight: 600;
       position: relative;
 
-      &:hover {
+      &:hover,
+      &:focus,
+      &:active {
         color: var(--link-hover);
         text-decoration: underline;
       }
