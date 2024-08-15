@@ -100,11 +100,13 @@
     }
 
     .nowImage {
+      width: 100%;
       max-width: 80%;
       height: auto;
       width: auto;
       border-radius: 8px;
       margin: 10px auto;
+      aspect-ratio: 1536 / 720;
       display: block;
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 4px 8px rgba(0, 0, 0, 0.2);
       transform: translateY(2px);

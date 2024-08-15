@@ -49,8 +49,8 @@ const getCustomRenderers = {
       src={src}
       alt={alt}
       className={classes.nowImage}
-      width={700}
-      height={450}
+      width={1536}
+      height={720}
       loading="eager"
       priority
       {...props}
