@@ -38,8 +38,4 @@
   "devDependencies": {
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.2.4"
-  },
-  "license": "MIT",
-  "author": "Dave Levine",
-  "repository": "https://github.com/davelevine/portfolio"
 }
