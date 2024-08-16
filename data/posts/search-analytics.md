@@ -9,7 +9,7 @@ description: Searx has built-in statistics but doesn't support external analytic
 
 ## Summary
 
-Although [Searx](https://github.com/searx/searx) comes with its own built in statistics, it doesn't natively allow for adding analytics. This is largely by design considering the privacy aspect of the project. However, I was curious to see if my instance gets any traffic that isn't from me.
+Although [Searx] comes with its own built in statistics, it doesn't natively allow for adding analytics. This is largely by design considering the privacy aspect of the project. However, I was curious to see if my instance gets any traffic that isn't from me.
 
 ## Trial and Error
 
@@ -26,7 +26,7 @@ Once in the directory, I tried adding the following...
 
 This would allow me to [proxy the tracking snippet](https://plausible.io/docs/proxy/guides/cloudflare) through Cloudflare. I've already done this with most of the other services I manage, but for some reason, the tracking snippet kept returning a 404 error.
 
-The site was correct, - `https://search.cc/data/js/script.js` - but would not return the tracking snippet. After a lot of trial and error, I found that the tracking snippet was available at `https://www.search.cc/data/js/script.js`. I checked the `settings.yml` file for Searx, as well as my configuration in Cloudflare, but could not find where the `www` was coming from.
+The site was correct, - [https://search.cc/data/js/script.js] - but would not return the tracking snippet. After a lot of trial and error, I found that the tracking snippet was available at [https://www.search.cc/data/js/script.js]. I checked the `settings.yml` file for Searx, as well as my configuration in Cloudflare, but could not find where the `www` was coming from.
 
 ## Resolution
 
@@ -89,8 +89,8 @@ Once it was finished, I did the following...
 * Navigated back to my browser.
 * Opened the Developer Console.
 * Navigated to the `Network` tab.
-* Loaded `https://search.cc`
-* Confirmed the script appeared at `https://search.cc/js/script.js`
+* Loaded `search.cc`
+* Confirmed the script appeared at [https://search.cc/js/script.js]
 
 ## Outcome
 
@@ -102,3 +102,7 @@ The important thing is that I was able to configure it properly so that analytic
 
 * <https://plausible.io/docs/proxy/guides/cloudflare>
 * <https://plausible.io/docs/proxy/guides/nginx>
+
+[https://search.cc/data/js/script.js]: https://search.cc/data/js/script.js
+[https://search.cc/js/script.js]: https://search.cc/js/script.js
+[Searx]: https://github.com/searx/searx
