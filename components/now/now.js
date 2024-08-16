@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
@@ -12,63 +12,68 @@ const Modal = dynamic(() => import('../layout/modal/contactModal'), {
   ssr: false,
 });
 
-const getInitialTheme = () => {
-  if (typeof window !== 'null') {
+const getInitialTheme = (defaultTheme = 'dark') => {
+  if (typeof globalThis.window === 'object') {
     return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
   }
-  return 'dark';
-};
-
-const getCustomRenderers = {
-  code({ inline, className, children, ...props }) {
-    const match = /language-(\w+)/.exec(className || '');
-    return !inline && match ? (
-      <pre className={className} {...props}>
-        <code>{String(children).replace(/\n$/, '')}</code>
-      </pre>
-    ) : (
-      <code className={className} {...props}>
-        {children}
-      </code>
-    );
-  },
-  blockquote: ({ children, ...props }) => (
-    <div className={classes.quoteBox}>
-      <blockquote {...props}>{children}</blockquote>
-    </div>
-  ),
-  hr: () => <hr className={classes.divider} />,
-  strong: ({ children }) => <strong className={classes.highlighted}>{children}</strong>,
-  a: ({ href, children }) => (
-    <a href={href} className={classes.link} target="_blank" rel="noopener noreferrer">
-      {children}
-    </a>
-  ),
-  img: ({ src, alt, ...props }) => (
-    <Image
-      src={src}
-      alt={alt}
-      className={classes.nowImage}
-      width={1536}
-      height={720}
-      loading="eager"
-      priority
-      {...props}
-    />
-  ),
+  return defaultTheme; // Use the provided default theme for SSR
 };
 
 const Now = ({ markdownContent, showModal = false }) => {
   const hasAnimated = useRef(false);
+  const theme = useMemo(() => getInitialTheme(), []);
+
+  const getCustomRenderers = useMemo(() => ({
+    code({ inline, className, children, ...props }) {
+      const match = /language-(\w+)/.exec(className || '');
+      return !inline && match ? (
+        <pre className={className} {...props}>
+          <code>{String(children).replace(/\n$/, '')}</code>
+        </pre>
+      ) : (
+        <code className={className} {...props}>
+          {children}
+        </code>
+      );
+    },
+    blockquote: ({ children, ...props }) => (
+      <div className={classes.quoteBox}>
+        <blockquote {...props}>{children}</blockquote>
+      </div>
+    ),
+    hr: () => <hr className={classes.divider} />,
+    strong: ({ children }) => <strong className={classes.highlighted}>{children}</strong>,
+    a: ({ href, children }) => (
+      <a href={href} className={classes.link} target="_blank" rel="noopener noreferrer">
+        {children}
+      </a>
+    ),
+    img: ({ src, alt, ...props }) => {
+      const isLCPImage = src === "https://cdn.levine.io/uploads/portfolio/public/images/home-office.webp";
+      return (
+        <Image
+          src={src}
+          alt={alt}
+          className={classes.nowImage}
+          width={1536}
+          height={720}
+          priority={isLCPImage} // Use priority if this is the LCP image
+          loading={isLCPImage ? undefined : "lazy"} // Remove lazy loading if priority is used
+          {...props}
+        />
+      );
+    },
+  }), []);
 
   useEffect(() => {
-    if (typeof window !== 'null') {
+    if (typeof globalThis.window === 'object') {
       document.title = 'Dave Levine - Now';
       document.body.style.overflow = showModal ? 'hidden' : 'auto';
       document.body.style.paddingRight = showModal ? '15px' : '0px';
 
-      const initialTheme = getInitialTheme();
-      document.body.className = initialTheme;
+      if (theme) {
+        document.body.className = theme;
+      }
 
       const mediaQuery = window.matchMedia('(prefers-color-scheme: light)');
       const handleThemeChange = (e) => {
@@ -80,7 +85,7 @@ const Now = ({ markdownContent, showModal = false }) => {
         mediaQuery.removeEventListener('change', handleThemeChange);
       };
     }
-  }, [showModal]);
+  }, [showModal, theme]);
 
   return (
     <div className={classes.now}>
@@ -105,7 +110,7 @@ const Now = ({ markdownContent, showModal = false }) => {
               <i className="fa-regular fa-tags" /> Personal • Professional
             </span>
           </div>
-          <hr className={classes.divider} /> {/* Divider added here */}
+          <hr className={classes.divider} />
           <ReactMarkdown components={getCustomRenderers} remarkPlugins={[remarkGfm]}>
             {markdownContent}
           </ReactMarkdown>

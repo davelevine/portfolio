@@ -28,12 +28,13 @@ const ProjectItem = ({ project }) => {
                 src={imageSrc}
                 width={320}
                 height={220}
-                alt={`Visual representation of the project titled "${title}"`} // Updated to provide unique descriptive alt text
+                alt={`Visual representation of the project titled "${title}"`}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 style={{
                   objectFit: "contain"
                 }}
-                priority
+                priority={true} // Priority for LCP image
+                loading={imageSrc === `https://cdn.levine.io/uploads/portfolio/public/images/projects/${image}` ? undefined : 'lazy'}
               />
             </div>
           ) : (
@@ -46,9 +47,10 @@ const ProjectItem = ({ project }) => {
               <div key={t} className={classes.techLogo}>
                 <Image
                   src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/logos/${t}.svg`}
-                  alt={`${t} logo`} // Kept descriptive alt text for tech logos
+                  alt={`${t} logo`}
                   width={24}
                   height={24}
+                  loading="lazy" // Lazy load for non-LCP tech logos
                 />
               </div>
             ))}
