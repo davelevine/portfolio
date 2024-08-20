@@ -13,6 +13,26 @@ const SyntaxHighlighter = lazy(() => import('react-syntax-highlighter').then(mod
 const atomDark = lazy(() => import('react-syntax-highlighter/dist/cjs/styles/prism').then(mod => mod.atomDark));
 const solarizedlight = lazy(() => import('react-syntax-highlighter/dist/cjs/styles/prism').then(mod => mod.solarizedlight));
 
+// Tech logos mapping
+const techLogos = {
+  API: 'API.svg',
+  'Cloudflare Workers': 'Cloudflare Workers.svg',
+  CSS: 'CSS.svg',
+  Git: 'Git.svg',
+  HTML: 'HTML.svg',
+  Javascript: 'Javascript.svg',
+  Markdown: 'Markdown.svg',
+  MkDocs: 'MkDocs.svg',
+  'Next.js': 'Next.js.svg',
+  'Node.js': 'Node.js.svg',
+  Python: 'Python.svg',
+  React: 'React.svg',
+  Redis: 'Redis.svg',
+  Sass: 'Sass.svg',
+  'Tailwind CSS': 'Tailwind CSS.svg',
+  YAML: 'YAML.svg',
+};
+
 /**
  * Spinner component for loading fallback.
  * @returns {JSX.Element} The rendered Spinner component.
@@ -104,7 +124,31 @@ const ProjectContent = ({ project, currentTheme, showModal = false }) => {
       <div className='container section mvh-100 projectDetail'>
         <div className={classes.card}>
           <h1>{title}</h1>
-          <small>{Array.isArray(tech) ? tech.join(', ') : tech}</small>
+          <small>
+            {Array.isArray(tech) ? tech.map((t, index) => (
+              <span key={t} className={classes.techLogoContainer}>
+                <Image
+                  src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/logos/${techLogos[t]}`}
+                  alt={t}
+                  width={20}
+                  height={20}
+                  className={classes.techLogo}
+                />
+                {` ${t}`}{index < tech.length - 1 ? ' ' : ''}
+              </span>
+            )) : (
+              <span className={classes.techLogoContainer}>
+                <Image
+                  src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/logos/${techLogos[tech]}`}
+                  alt={tech}
+                  width={20}
+                  height={20}
+                  className={classes.techLogo}
+                />
+                {` ${tech}`}
+              </span>
+            )}
+          </small>
 
           {image && (
             <div className={classes.projectImage}>

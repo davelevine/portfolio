@@ -36,6 +36,55 @@
   small {
     @include text-styles(var(--navbar-primary), 25px, 1rem);
     display: block;
+
+    // Style for tech logo bubbles
+    span {
+      background: var(--link-hover);
+      color: var(--background);
+      padding: 4px 12px; // Adjusted padding
+      border-radius: 18px; // Slightly smaller border radius
+      margin: 4px;
+      display: inline-flex;
+      align-items: center;
+      font-size: 1rem; // Slightly reduced font size
+      font-weight: 600;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: background-color $transition-speed ease, transform $transition-speed ease;
+
+      img {
+        margin-right: 5px; // Reduced space between logo and text
+        width: 20px; // Slightly larger width
+        height: 20px; // Slightly larger height
+        background-color: transparent;
+        border: none;
+        display: block;
+        border-radius: 50%;
+        overflow: hidden;
+        object-fit: contain;
+      }
+    }
+  }
+
+  // Responsive adjustments for mobile
+  @media only screen and (max-width: 767px) {
+    span {
+      font-size: 0.9rem; // Reduced font size for mobile
+      padding: 3px 10px; // Reduced padding for mobile
+      border-radius: 15px; // Smaller border radius for mobile
+
+      img {
+        margin-right: 3px; // Reduced space between logo and text for mobile
+        width: 14px; // Smaller width for mobile
+        height: 14px; // Smaller height for mobile
+      }
+    }
+  }
+
+  @media only screen and (min-width: 768px) {
+    span {
+      font-size: 1rem; // Consistent font size for larger screens
+      padding: 4px 12px; // Adjusted padding for balance
+    }
   }
 
   a {
@@ -48,10 +97,6 @@
       color: var(--link-hover);
       text-decoration: underline;
     }
-  }
-
-  p a {
-    font-size: 1rem;
   }
 
   .projectLinks a {
@@ -76,7 +121,7 @@
   .card,
   .description {
     border-radius: 12px;
-    padding: 30px;
+    padding: 25px; // Reduced padding for a tighter appearance
     background-color: var(--background-card);
     transition: background $transition-speed;
     border: 1px solid var(--border-card);
@@ -158,12 +203,6 @@
     height: 1px;
     background-color: var(--text-primary);
     margin: 20px 0;
-  }
-
-  @media only screen and (min-width: 768px) {
-    .projectDetail {
-      margin-bottom: 0;
-    }
   }
 
   @media only screen and (max-width: 767px) {
