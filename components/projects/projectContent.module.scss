@@ -36,6 +36,8 @@
   small {
     @include text-styles(var(--navbar-primary), 25px, 1rem);
     display: block;
+    margin-left: -5px; // Remove any default margin
+    padding-left: 0; // Align with title
 
     // Style for tech logo bubbles
     span {
@@ -67,6 +69,14 @@
 
   // Responsive adjustments for mobile
   @media only screen and (max-width: 767px) {
+    h1 {
+      padding-left: 0; // Ensure title stays aligned on mobile
+    }
+
+    small {
+      padding-left: 0; // Align tech logos with title on mobile
+    }
+
     span {
       font-size: 0.9rem; // Reduced font size for mobile
       padding: 3px 10px; // Reduced padding for mobile
@@ -81,6 +91,10 @@
   }
 
   @media only screen and (min-width: 768px) {
+    small {
+      padding-left: 0; // Ensure alignment with the title on larger screens
+    }
+
     span {
       font-size: 1rem; // Consistent font size for larger screens
       padding: 4px 12px; // Adjusted padding for balance
