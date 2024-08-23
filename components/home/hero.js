@@ -93,6 +93,14 @@ const Hero = () => {
                     data-aos-delay='100'
                     data-aos-duration='500'></i>
                 </a>
+                <a href='/rss.xml' target='_blank' rel='noreferrer' aria-label="RSS Feed">
+                  <i
+                    className='fa fa-square-rss'
+                    data-aos='flip-up'
+                    data-aos-delay='200'
+                    data-aos-duration='500'
+                    style={{ fontSize: '2.02em', verticalAlign: 'baseline' }}></i>
+                </a>
                 <a href={PGP_KEY_PATH} target='_blank' rel='noreferrer' aria-label="PGP Key">
                   <i
                     className='fa-sharp fa-regular fa fa-key'
