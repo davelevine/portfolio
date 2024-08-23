@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import BlogItem from './blogItem';
 import { useInView } from 'react-intersection-observer';
 import dynamic from 'next/dynamic';
+import Head from 'next/head'; // Import Head component
 
 // Dynamically import the Modal component for code splitting
 const Modal = dynamic(() => import('../layout/modal/contactModal'), {
@@ -158,75 +159,80 @@ const Blog = ({ blog }) => {
   }, [lazyLoadImages]); // Added lazyLoadImages as a dependency
 
   return (
-    <section className={classes.blogGallery}>
-      <div id="scroll-progress" className={classes.scrollProgress}></div>
-      <div className={classes.container}>
-        <motion.h1
-          initial={{ opacity: 0, x: -600 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3, ease: 'easeInOut' }}
-        >
-          BLOG
-        </motion.h1>
-        <div className={classes.filter}>
-          <motion.h3
-            initial={{ opacity: 0, x: 300 }}
+    <>
+      <Head>
+        <link rel="alternate" type="application/rss+xml" title="RSS Feed for Dave Levine's Blog" href="/rss" />
+      </Head>
+      <section className={classes.blogGallery}>
+        <div id="scroll-progress" className={classes.scrollProgress}></div>
+        <div className={classes.container}>
+          <motion.h1
+            initial={{ opacity: 0, x: -600 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
-            <p>Sort By Category</p>
-          </motion.h3>
-          <motion.div
-            className={classes.filterButtons}
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: { opacity: 0, x: 100 },
-              visible: {
-                opacity: 1,
-                x: 0,
-                transition: {
-                  staggerChildren: 0.05,
-                  duration: 0.3,
-                  ease: 'easeInOut',
-                },
-              },
-            }}
-          >
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => handleFilterClick('all')}
-              className={`btn btn-outlined sm ${activeButton === 'all' ? 'active' : ''}`}
-              variants={buttonVariants}
+            BLOG
+          </motion.h1>
+          <div className={classes.filter}>
+            <motion.h3
+              initial={{ opacity: 0, x: 300 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
             >
-              All
-            </motion.button>
-            {selectedCategories.map((category) => (
+              <p>Sort By Category</p>
+            </motion.h3>
+            <motion.div
+              className={classes.filterButtons}
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: { opacity: 0, x: 100 },
+                visible: {
+                  opacity: 1,
+                  x: 0,
+                  transition: {
+                    staggerChildren: 0.05,
+                    duration: 0.3,
+                    ease: 'easeInOut',
+                  },
+                },
+              }}
+            >
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => handleFilterClick(category)}
-                className={`btn btn-outlined sm ${activeButton === category ? 'active' : ''}`}
-                key={category}
+                onClick={() => handleFilterClick('all')}
+                className={`btn btn-outlined sm ${activeButton === 'all' ? 'active' : ''}`}
                 variants={buttonVariants}
               >
-                {category}
+                All
               </motion.button>
-            ))}
-          </motion.div>
-        </div>
+              {selectedCategories.map((category) => (
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => handleFilterClick(category)}
+                  className={`btn btn-outlined sm ${activeButton === category ? 'active' : ''}`}
+                  key={category}
+                  variants={buttonVariants}
+                >
+                  {category}
+                </motion.button>
+              ))}
+            </motion.div>
+          </div>
 
-        <div className={classes.galleryWrap}>
-          <div className={classes.gallery}>
-            {filteredBlog.map((blog) => (
-              <BlogItemWithAnimation key={blog.id} blog={blog} />
-            ))}
+          <div className={classes.galleryWrap}>
+            <div className={classes.gallery}>
+              {filteredBlog.map((blog) => (
+                <BlogItemWithAnimation key={blog.id} blog={blog} />
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-      <AnimatePresence>{showModal && <Modal contact={modalType === 'contact'} onClose={closeModalHandler} />}</AnimatePresence>
-    </section>
+        <AnimatePresence>{showModal && <Modal contact={modalType === 'contact'} onClose={closeModalHandler} />}</AnimatePresence>
+      </section>
+    </>
   );
 };
 

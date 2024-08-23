@@ -39,3 +39,6 @@ public/workbox-*.js.gz
 
 # unlighthouse
 .unlighthouse
+
+#rss.xml
+public/rss.xml

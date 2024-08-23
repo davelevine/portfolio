@@ -1,18 +1,25 @@
-import fs from 'fs/promises';
 import path from 'path';
 import matter from 'gray-matter';
 
 const blogDirectory = path.join(process.cwd(), 'data/posts');
 
-// Using implicit return for brevity
-export const getBlogFiles = async () => fs.readdir(blogDirectory);
+let fs;
+if (typeof window === 'undefined') {
+  // Only import 'fs/promises' on the server
+  fs = require('fs/promises');
+}
 
-// Helper function to construct file path
+export const getBlogFiles = async () => {
+  if (!fs) return []; // Return an empty array if fs is not available (client-side)
+  return fs.readdir(blogDirectory);
+};
+
 const getFilePath = (blogSlug) => path.join(blogDirectory, `${blogSlug}.md`);
 
 export const getBlogData = async (blogIdentifier) => {
   const blogSlug = blogIdentifier.replace(/\.md$/, ''); // removes the file extension
   const filePath = getFilePath(blogSlug); // Reused helper function
+  if (!fs) return null; // Return null if fs is not available (client-side)
   const fileContent = await fs.readFile(filePath, 'utf-8');
   const { data, content } = matter(fileContent);
 
@@ -28,15 +35,14 @@ export const getBlogData = async (blogIdentifier) => {
   };
 };
 
-// Using array destructuring and implicit return
 export const getBlog = async () => {
+  if (!fs) return []; // Return an empty array if fs is not available (client-side)
   const blogFiles = await getBlogFiles();
   const blogDataPromises = blogFiles.map(getBlogData); // Store promises to avoid multiple await calls
   const blogData = await Promise.all(blogDataPromises);
   return blogData.sort((blogA, blogB) => new Date(blogB.date) - new Date(blogA.date)); // Ensure date comparison is correct
 };
 
-// Using implicit return and arrow function
 export const getFeaturedBlog = async () => {
   const blog = await getBlog();
   return blog.filter(({ isFeatured }) => isFeatured); // Destructure for better performance

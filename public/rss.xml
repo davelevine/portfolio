@@ -1,0 +1,1366 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title><![CDATA[Dave's Blog]]></title>
+        <description><![CDATA[Latest posts from Dave Levine's blog.]]></description>
+        <link>https://dave.levine.io</link>
+        <image>
+            <url>https://cdn.levine.io/uploads/portfolio/public/images/favicon/favicon.ico</url>
+            <title>Dave&apos;s Blog</title>
+            <link>https://dave.levine.io</link>
+        </image>
+        <generator>Dave&apos;s Blog RSS Feed</generator>
+        <lastBuildDate>Fri, 23 Aug 2024 16:49:51 GMT</lastBuildDate>
+        <atom:link href="https://dave.levine.io/rss.xml" rel="self" type="application/rss+xml"/>
+        <pubDate>Fri, 23 Aug 2024 16:49:51 GMT</pubDate>
+        <copyright><![CDATA[All rights reserved 2024, Dave Levine]]></copyright>
+        <language><![CDATA[en]]></language>
+        <ttl>60</ttl>
+        <item>
+            <title><![CDATA[DigitalOcean to Hetzner Migration]]></title>
+            <description><![CDATA[<h2>Background</h2>
+<p>I&#39;ve been using <a href="https://www.digitalocean.com">DigitalOcean</a> as my cloud provider of choice for VPS since late 2019, and overall, I&#39;ve been very happy with them. While I can&#39;t say a bad thing about them as the service has been rock solid, as of late, they&#39;ve gotten much too <a href="https://www.fool.com/investing/2022/05/16/digitalocean-first-price-increase-20-percent/">expensive</a> for me.</p>
+<p>This has been unfortunate as I really like DigitalOcean, but I can no longer justify the cost of continuing with them, especially for what I&#39;m getting in return. As of this writing, I&#39;m paying for a basic shared CPU instance with 2 vCPUs, 2GB of memory, and a 50GB hard drive, for $18/month.</p>
+<p>Admittedly, the large majority of DigitalOcean&#39;s competitors also have similar offerings, which is a real bummer because the cost difference hasn&#39;t been enough for me to seriously consider migrating away from DigitalOcean.</p>
+<p>This changed as I was looking around on Reddit a few days ago and someone suggested <a href="https://www.hetzner.com/cloud">Hetzner Cloud</a>. I&#39;ve looked into Hetzner on a few occasions in the past, but there were a few reasons I didn&#39;t really consider them:</p>
+<ul>
+<li>They largely deal in dedicated server hosting and server auctions, so they didn&#39;t really have a 1:1 offering.</li>
+<li>They didn&#39;t have any data centers in the US.</li>
+</ul>
+<p>I&#39;m not exactly sure when they launched their VPS offering, but they began opening US data centers in 2021. Little did I know how big of a difference the offerings from Hetzner are compared to DigitalOcean.</p>
+<h2>Comparison</h2>
+<p>In order to really understand the difference in pricing, the following pricing grids really tell the story:</p>
+<h3>DigitalOcean Pricing</h3>
+<p><img src="https://cdn.levine.io/uploads/images/gallery/2023-06/do-pricing.png" alt="DigitalOcean Pricing"></p>
+<h3>Hetzner Pricing</h3>
+<p><img src="https://cdn.levine.io/uploads/images/gallery/2023-06/hetzner-pricing.png" alt="Hetzner Pricing"></p>
+<p>After seeing the sheer difference in value that Hetzner brings for the price, it was exactly the sort of push I needed to finally migrate away from DigitalOcean.</p>
+<h2>Migration</h2>
+<p>As I had been weighing this decision for some time, I already had a bit of an idea of how I&#39;d go about doing this migration. DigitalOcean doesn&#39;t really make it easy to migrate away from them as they don&#39;t offer a way for you to obtain a backup or snapshot of your VPS.</p>
+<p>To get around this, I was planning on following the steps in this <a href="https://vpsranked.com/quickly-migrate-vps-servers-between-digitalocean-vultr-and-lunanode/">guide</a> to get me on the right track. The article boils down to a few tasks:</p>
+<ul>
+<li>Add a block storage volume to the VPS</li>
+<li>Copy the disk to an image file</li>
+<li>Use SimpleHTTPServer to launch a webserver for downloading the image file</li>
+<li>Upload the image to Hetzner and create a VPS from it</li>
+</ul>
+<p>This all would&#39;ve worked just fine but the more I thought about it, the more a &#39;lift and shift&#39; didn&#39;t sit well with me. I&#39;ve had this VPS since 2019, and since then I&#39;ve done who knows how much to it. While it&#39;s very much in working order, there&#39;s so many lingering files and folders on it from past projects that I made the decision to start fresh and migrate the files and configurations I still needed accordingly. Since my VPS on DigitalOcean primarily utilized Docker Compose, the migration wouldn&#39;t be too challenging.</p>
+<h2>Steps Taken</h2>
+<p>After creating the server on Hetzner, I used the console to obtain shell access. I created a new user so I wouldn&#39;t need to make use of the root user. After that, I granted it sudo privileges, created the home directory, and then once I tested the assigned privileges, I disabled login on the root account.</p>
+<p>One of the conveniences of installing the server on Hetzner is that they have a particular build that comes with Docker already installed. I took advantage of it and it saved me a few steps. I still needed to add my new user to the Docker group so the <code>docker</code> command could be run without <code>sudo</code>, but otherwise, it was all frontloaded for me.</p>
+<h2>Docker Compose</h2>
+<p>At this point, I was ready to begin migrating my apps. Since 99% of what I was using on DigitalOcean was installed via Docker Compose, it was a breeze to get everything installed again. I had to make some minor adjustments to my <code>docker-compose.yml</code> file to ensure it was up to date.</p>
+<p>After running <code>docker-compose up -d</code>, everything was installed successfully. There were a few things that needed to be done though:</p>
+<ul>
+<li>Copy over configuration files from DigitalOcean</li>
+<li>Migrate the SQLite database for <em>Overseerr</em></li>
+<li>Migrate dotfiles</li>
+<li>Migrate cronjobs (crontab)</li>
+</ul>
+<h2>Configuration</h2>
+<p>Since there were only a few configuration files and one crontab to migrate, I decided that I&#39;d just create them manually as it would&#39;ve been more work to set up a way to shuttle them over.</p>
+<p>After creating the configuration files, I restarted the respective containers and confirmed all apps were now running with the appropriate configurations. The <code>crontab</code> was just a simple cut/paste. The next thing to do, which I had no choice but to find a way to migrate it was to migrate the SQLite database.</p>
+<p>I decided to leverage <em>rclone</em> to shuttle the SQLite database to <a href="https://www.backblaze.com/b2/cloud-storage.html">Backblaze B2</a>. This would make it easy to get it off the server on DigitalOcean and allow me to either use <code>wget</code> or <code>curl</code> to download it.</p>
+<p>After setting up the Backblaze integration in rclone, I sent it to B2 and downloaded it with <code>wget</code>. I made sure to also download the associated <code>settings.json</code> file to ensure all user settings made it as well.</p>
+<p>Once completed, I restarted the <em>Overseerr</em> container and I was back in business.</p>
+<h2>Wrapping Up</h2>
+<p>At this point, I was able to shut down the DigitalOcean server. I couldn&#39;t delete it yet since I needed to wait for confirmation that all my cronjobs were going to run as planned. I gave it a day and found that one hadn&#39;t run. This was a false positive though because it was a job for backing up my Unifi controller to B2, but the controller itself hadn&#39;t yet made any backups so there was nothing to do.</p>
+<p>For good measure, I gave it 3 more days to confirm I didn&#39;t need anything from it and also that nothing unexpected happened. Earlier today, I took my final snapshot for the server and deleted it. As I tend to do, I&#39;ll keep the snapshot for the next 6 months, give or take, before deleting it.</p>
+<h2>Lessons Learned</h2>
+<p>During the process of migrating this server, there were a few things that I learned that I think are worth noting.</p>
+<p>I&#39;d never migrated a SQLite database before, which I thought was kind of comical since I&#39;ve worked with a number of apps that have relied on SQLite databases. It ended up being a breeze, which was nice because I was sweating this migration more than anything.</p>
+<p>Another thing is that I should&#39;ve done this a lot sooner than I did. I kept putting it off largely because I didn&#39;t think I&#39;d have the time to do it. After finally taking stock of what I had to actually do, I found that it wouldn&#39;t actually take much time at all. It ended up costing me quite a bit of money each month that wasn&#39;t necessary.</p>
+<p>Finally, it&#39;s worth noting that I&#39;m glad I did this migration. I was largely happy with DigitalOcean over the years which is why I never gave any serious thought to leaving. The reality is that the large majority of major cloud providers have similar levels of reliability so there&#39;s little risk in moving from one to the next. I still think DigitalOcean is awesome and wouldn&#39;t hesitate to recommend them, but for the time being, they aren&#39;t a good fit anymore.</p>
+<p>Here&#39;s hoping that Hetzner will be a good fit for years to come.</p>
+]]></description>
+            <link>https://dave.levine.io/blog/migration-to-hetzner</link>
+            <guid isPermaLink="true">https://dave.levine.io/blog/migration-to-hetzner</guid>
+            <dc:creator><![CDATA[Dave Levine]]></dc:creator>
+            <pubDate>Thu, 08 Jun 2023 04:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Search Analytics]]></title>
+            <description><![CDATA[<h2>Summary</h2>
+<p>Although <a href="https://github.com/searx/searx">Searx</a> comes with its own built in statistics, it doesn&#39;t natively allow for adding analytics. This is largely by design considering the privacy aspect of the project. However, I was curious to see if my instance gets any traffic that isn&#39;t from me.</p>
+<h2>Trial and Error</h2>
+<p>In order to do this, I had to find out where the <code>base.html</code> file was located. This was confusing to find because the Searx config file resides in <code>/etc/searx</code>, although after some digging, I found <code>base.html</code> in the following directory...</p>
+<p><code>/usr/local/searx/searx-src/searx/templates/oscar</code></p>
+<p>Once in the directory, I tried adding the following...</p>
+<pre><code class="language-html">  &lt;!--Plausible Analytics--&gt;
+  &lt;script defer data-domain=&quot;search.cc&quot; data-api=&quot;/data/api/event&quot; src=&quot;/data/js/script.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>This would allow me to <a href="https://plausible.io/docs/proxy/guides/cloudflare">proxy the tracking snippet</a> through Cloudflare. I&#39;ve already done this with most of the other services I manage, but for some reason, the tracking snippet kept returning a 404 error.</p>
+<p>The site was correct, - <a href="https://search.cc/data/js/script.js">https://search.cc/data/js/script.js</a> - but would not return the tracking snippet. After a lot of trial and error, I found that the tracking snippet was available at [<a href="https://www.search.cc/data/js/script.js%5D">https://www.search.cc/data/js/script.js]</a>. I checked the <code>settings.yml</code> file for Searx, as well as my configuration in Cloudflare, but could not find where the <code>www</code> was coming from.</p>
+<h2>Resolution</h2>
+<p>Because I wasn&#39;t able to locate where the <code>www</code> was coming from in the tracking snippet, I decided to <a href="https://plausible.io/docs/proxy/guides/nginx">proxy the snippet through Nginx</a>. Since I already use Nginx as the web server for Searx, it wasn&#39;t a big deal to modify the config file.</p>
+<p>To modify the config file, I added the following:</p>
+<pre><code class="language-nginx"># Only needed if you cache the plausible script. Speeds things up.
+proxy_cache_path /var/run/nginx-cache/jscache levels=1:2 keys_zone=jscache:100m inactive=30d  use_temp_path=off max_size=100m;
+
+server {
+    ...
+    location = /js/script.js {
+        # Change this if you use a different variant of the script
+        proxy_pass https://plausible.io/js/plausible.js;
+
+        # Tiny, negligible performance improvement. Very optional.
+        proxy_buffering on;
+
+        # Cache the script for 6 hours, as long as plausible.io returns a valid response
+        proxy_cache jscache;
+        proxy_cache_valid 200 6h;
+        proxy_cache_use_stale updating error timeout invalid_header http_500;
+
+        # Optional. Adds a header to tell if you got a cache hit or miss
+        add_header X-Cache $upstream_cache_status;
+    }
+
+    location = /api/event {
+        proxy_pass https://plausible.io/api/event;
+        proxy_buffering on;
+        proxy_http_version 1.1;
+
+        proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-Host  $host;
+    }
+</code></pre>
+<p>After reloading Nginx, I navigated back to <code>/usr/local/searx/searx-src/searx/templates/oscar</code> and added the following to <code>base.html</code>...</p>
+<pre><code class="language-html">  &lt;!--Plausible Analytics--&gt;
+&lt;script defer data-api=&quot;https://search.cc/api/event&quot; data-domain=&quot;search.cc&quot; src=&quot;https://search.cc/js/script.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>Once this was added, I navigated back to <code>/usr/local/searx/searx-src</code> and used the following command to update the Searx instance...</p>
+<pre><code class="language-bash">sudo -H ./utils/searx.sh update searx
+</code></pre>
+<p>During the update, I made sure to keep the same config file.</p>
+<h2>Testing</h2>
+<p>Once it was finished, I did the following...</p>
+<ul>
+<li>Navigated back to my browser.</li>
+<li>Opened the Developer Console.</li>
+<li>Navigated to the <code>Network</code> tab.</li>
+<li>Loaded <code>search.cc</code></li>
+<li>Confirmed the script appeared at <a href="https://search.cc/js/script.js">https://search.cc/js/script.js</a></li>
+</ul>
+<h2>Outcome</h2>
+<p>Although it&#39;s not perfect, it so far seems to be giving me what I&#39;m looking for. I&#39;d like to figure out how to get insight into usage from searching through a browser address bar, but I have a feeling this may be a bit of a limitation with either Plausible or Searx; likely the latter. I think it has something to do with Content Security Policy in Nginx, but I haven&#39;t dug far enough into it to be sure.</p>
+<p>The important thing is that I was able to configure it properly so that analytics are implemented and the tracking snippet is served from the <code>search.cc</code> domain.</p>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://plausible.io/docs/proxy/guides/cloudflare">https://plausible.io/docs/proxy/guides/cloudflare</a></li>
+<li><a href="https://plausible.io/docs/proxy/guides/nginx">https://plausible.io/docs/proxy/guides/nginx</a></li>
+</ul>
+]]></description>
+            <link>https://dave.levine.io/blog/search-analytics</link>
+            <guid isPermaLink="true">https://dave.levine.io/blog/search-analytics</guid>
+            <dc:creator><![CDATA[Dave Levine]]></dc:creator>
+            <pubDate>Thu, 19 Aug 2021 04:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Homelab Overhaul]]></title>
+            <description><![CDATA[<h2>Preface</h2>
+<p>In the last few months, I&#39;ve decided that I no longer have a use for quite an extensive homelab. I&#39;ll outline the reasons below, but this has prompted me to give considerable thought to replacing my current setup little by little.</p>
+<p>I&#39;ve decided that my <a href="https://support.hp.com/us-en/document/c03270936">HP Z620</a> Workstation will be deprecated in favor of an <a href="https://www.intel.com/content/www/us/en/products/sku/188811/intel-nuc-10-performance-kit-nuc10i7fnh/specifications.html">Intel NUC (NUC10i7FNH1)</a>. I haven&#39;t decided what to do with the Z620, but it&#39;s still a workhorse and can either be repurposed or sold.</p>
+<h2>Need for Replacement</h2>
+<p>This decision is due to a few reasons:</p>
+<ul>
+<li>General downsizing due to lack of time to devote to maintaining a homelab.</li>
+<li>Improper setup of XCP-NG.</li>
+<li>Inability to upgrade XCP-NG due to unsupported hardware.</li>
+<li>Overly complex setup.</li>
+<li>Unable to resolve an issue with broken RAID:<ul>
+<li>Because of this, the hypervisor is not installed on an SSD, but rather on a WD Red data drive, which is incorrect.</li>
+<li>The SSD is not seen or recognized, and the two WD Red drives function independently of one another.</li>
+<li>When one drive fails, the entire setup will be lost.</li>
+</ul>
+</li>
+<li>Backups are overly complex and cannot be easily migrated to another system.</li>
+<li>Hypervisor maintenance is difficult as it relies on one of two things:<ul>
+<li>Xen Orchestra:<ul>
+<li>Cannot be used (as far as I&#39;m aware) to perform any real maintenance on the system.</li>
+</ul>
+</li>
+<li>XCP-NG on Windows:<ul>
+<li>This is impractical as the Windows VM lives on my Manjaro box via VirtualBox.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Can the Box be Repurposed?</h2>
+<p>Of course. The box is great and works well, but my need for space and an overall smaller homelab footprint has become more important. The box has simply become overkill for my needs.</p>
+<h2>Path Forward</h2>
+<h3>Considerations</h3>
+<ul>
+<li>Leave the Z620 connected until the NUC has been fully set up and tested.</li>
+<li>Configure the NUC with Ubuntu Server to eliminate the need for a hypervisor.</li>
+</ul>
+<h3>Install</h3>
+<p>Install Docker and the following containers:</p>
+<ul>
+<li>Plex</li>
+<li>Tautulli</li>
+<li>Glances</li>
+<li>Portainer</li>
+</ul>
+<h3>Migrate</h3>
+<ul>
+<li>Migrate any crontabs from all VMs on the Z620:<ul>
+<li>Adjust file/folder paths as necessary and ensure they all work as they should.</li>
+<li>Make absolutely sure that all files/folders have the proper permissions to work, especially regarding the Google Photos backup.</li>
+</ul>
+</li>
+<li>Migrate Nagios XI to Raspberry Pi<ul>
+<li>This may not even be is not necessary as Glances will likely cover what&#39;s needed. May need to take health notifications for disk, RAM, etc. into consideration.<ul>
+<li>Edit: After looking into this further, I will install Smartmontools from the Ubuntu package repository and run it every month with a cron job. Reports will be sent to healthchecks.io.<ul>
+<li>Instructions to do this can be found <a href="https://brismuth.com/scheduling-automated-storage-health-checks-d470b4283e3e">here</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Reimage the current Raspberry Pi that displays Nagios</li>
+</ul>
+</li>
+</ul>
+<h3>Backups</h3>
+<ul>
+<li>Make sure to configure regular backups to NAS:<ul>
+<li>Can make use of Timeshift for command line. Instructions can be found <a href="https://dev.to/rahedmir/how-to-use-timeshift-from-command-line-in-linux-1l9b">here</a></li>
+<li>Once a backup is taken, use Rclone at some interval to send it to the NAS.<ul>
+<li>Once configured, set up a cron job and report to healthchecks.io.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Document</h3>
+<ul>
+<li>Archive/retire any documentation for systems that will no longer be in use.</li>
+<li>Change the overall documentation hierarchy accordingly to simplify navigation.</li>
+<li>Overhaul articles as needed.</li>
+</ul>
+<h2>Next Steps</h2>
+<p>This is going to be a long process as I&#39;ve spent a number of years implementing my current setup. The idea is to chip away at it a little at a time. The good news is that this is by far the most complex part of my homelab outside of the network itself. I have no desire to start tearing down the 4 VLANs anytime soon, but I&#39;ll get there in time.</p>
+]]></description>
+            <link>https://dave.levine.io/blog/homelab-overhaul</link>
+            <guid isPermaLink="true">https://dave.levine.io/blog/homelab-overhaul</guid>
+            <dc:creator><![CDATA[Dave Levine]]></dc:creator>
+            <pubDate>Sat, 07 Aug 2021 04:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Plausible Analytics]]></title>
+            <description><![CDATA[<h2>Scratching an Itch</h2>
+<p>Analytics has been something that I&#39;ve had mixed feelings about for as long as I&#39;ve been aware of them. I understand the obvious benefits that come from having them in place. I also understand the privacy implications that come from having them in place. For me personally, I generally block as much analytics and telemetry as I can.</p>
+<p>However, because I see the appeal in having them, I wanted to setup my own to understand them a bit better. I figured that if I setup my own on my own personal sites, it would give me a better idea of how they work. The sites I run are all visited by me, except my portfolio, which is public (not sure how much traffic that one is currently getting, but I&#39;ll find out now).</p>
+<h2>Finding a Solution</h2>
+<p>Right off the bat, I knew I didn&#39;t want to use Google Analytics. I&#39;ve looked at the interface before, and although I know it&#39;s basically the gold standard for analytics, I still didn&#39;t want to use it simply because of the way Google operates.</p>
+<p>After looking into what&#39;s out there, I narrowed it down to the following services:</p>
+<ul>
+<li>Fathom</li>
+<li>Matomo</li>
+<li>Plausible</li>
+<li>Umami</li>
+</ul>
+<p>Each of these had their own appeal, and I&#39;ll go through what ultimately caused me to go with Plausible.</p>
+<h3>Fathom</h3>
+<p>I had given Fathom a try probably a year ago, but I didn&#39;t have any sites to add to it at the time. What I didn&#39;t realize at the time, but realized this go-around was that Fathom has deprecated their self-hosted option, so it&#39;s ultimately a very stripped down version of their hosted option.</p>
+<p>When looking at the other alternatives and the amount of work to get Fathom setup, I knew I could do better.</p>
+<h3>Matomo</h3>
+<p>Matomo literally bills itself as “Google Analytics alternative that protects your data and your customers&#39; privacy”. On it&#39;s face, this is a pretty good draw. If you&#39;re looking for a slightly less complicated solution than Google Analytics, but still want a slick interface and the increased privacy, it&#39;s a great solution.</p>
+<p>Since I run nearly all my self-hosted apps in Docker containers, this would be no exception. The problem was that for some reason, I couldn&#39;t figure out how to get it running with an external MySQL database. It&#39;s possible I just didn&#39;t stick with it long enough, but frankly, I don&#39;t want to spend hours on a service to get it to work, especially one like this that&#39;s purely just satisfying my own curiosity.</p>
+<h3>Plausible</h3>
+<p>When I first saw Plausible and how simple and slick it looked, I was pretty sure this is what I was going to stick with. I figured it was worth starting a free trial on their site to see if I really liked it as much as I thought I would. Simply put, I was not disappointed.</p>
+<p>The interface was slick and super easy to get started. It&#39;s nice that it only has a very lightweight single snippet of tracking code. I added it to my portfolio, and it registered on the site with ease. At this point, I knew I found what I was looking for, but I wanted to try and self-host it because I really don&#39;t think this is something I need to pay for.</p>
+<p>The one thing that almost turned me off from pursuing this is that it requires a Postgres database to run, along with a Clickhouse big data server to register events. I have nothing against either of these, but having a managed MySQL database, I wanted to leverage it if possible. I looked around to see if it&#39;s possible, but it isn&#39;t. If I was using this in a Production environment, I&#39;d want a managed Postgres database since I have no experience with using Postgres. For my needs though, I went through the motions with installing a Postgres database in a Docker container.</p>
+<p>After adding everything to my Docker Compose file, I ran it and launched the Plausible stack. It took a little tweaking, but I got it up and running with no issues. I added my portfolio to it as a test, and it came up just as easily as the hosted Plausible did.</p>
+<p>The only thing I haven&#39;t gotten working, which frankly isn&#39;t that big of a deal is the geolocation. This would be neat, but after spending longer than I should&#39;ve on this, I just cannot figure out why it isn&#39;t working. Not a dealbreaker, but something that would be necessary to get working in a Production environment.</p>
+<h3>Umami</h3>
+<p>Umami might be the slickest of the bunch, and it runs on MySQL, so I figured it would be a no-brainer to get it working. Long story short, this was not the case. I&#39;m fairly sure after having issues with Matomo that it&#39;s me, but I once again could not get it running with a Docker container and an external MySQL database.</p>
+<p>I really thought that this was going to be the one I ended up with, but to say it again, I don&#39;t want to spend hours working on a service just to get it to work. I may go back to it some day to try again, but for now, I&#39;m content without it.</p>
+<h2>Lessons Learned</h2>
+<p>Ultimately, I decided on Plausible because with a bit of work, it accomplished what I set out to do. I learned a bit about analytics and have a slick setup to show for it. As stated, I may give Umami a try some day because of how slick it is, but I&#39;ll stick with what I have for now.</p>
+]]></description>
+            <link>https://dave.levine.io/blog/plausible</link>
+            <guid isPermaLink="true">https://dave.levine.io/blog/plausible</guid>
+            <dc:creator><![CDATA[Dave Levine]]></dc:creator>
+            <pubDate>Sat, 20 Mar 2021 04:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Why Good Employees Quit]]></title>
+            <description><![CDATA[<h2>Striving for Something Better</h2>
+<p>If I spend enough time on this post, it will go sideways quick, so I&#39;ll keep it brief(ish).</p>
+<p>Good employees quit for a lot of reasons, and in most cases, it has nothing to do with salary. They want to be appreciated, recognized, given the opportunity to grow, work on something exciting, etc. There are so many more things that good employees strive for, but what they don&#39;t strive for is becoming stagnant.</p>
+<p>This is something I personally struggle with. I often joke that I know the exact moment where I took a wrong turn in life — in the guidance office my freshman year of college when I was asked if I wanted to major in Computer Science or Information Management &amp; Technology, which was what general IT was called at the time. Because I was lazy and because coding seemed hard, I chose Information Management &amp; Technology. 15 years have passed and the decision has haunted me ever since.</p>
+<p>Not going into Computer Science really hobbled my career prospects, because it left me with a large gap in my skill-set. Nowadays, you can&#39;t even get your foot in the door doing without having some coding knowledge.</p>
+<p>But I digress, that&#39;s not the point of this post.</p>
+<p>The point is that because of my decision, I&#39;ve had a largely unfulfilling career doing jobs I don&#39;t like or care about. I started in IT Support and was rarely appreciated or recognized. I lacked the necessary skills to move up, so I haven&#39;t had a lot of opportunity to grow. Support is also largely the same questions being asked by a different person, day in / day out, so you&#39;re rarely working on something exciting. On and on.</p>
+<p>A few months back, I received an email from Quora because at some point, it would seem I signed up for their mailing list. There was an article that stood out to me that was aptly titled “<a href="https://www.quora.com/Why-do-good-employees-quit-in-almost-every-job/answer/Clay-Weiji">Why do good employees quit in almost every job?</a>”. After reading it, I saw so much of what I&#39;ve come across in my day-to-day.</p>
+<p>The full text is below...</p>
+<blockquote>
+<p>Most of the answers are from management or a leadership perspective. I can write from a ‘difficult to replace engineer’ perspective.</p>
+<p>For the first 6 months, no one knows what you are capable of. As projects complete over the first 18 months, others get to know how much you can do beyond their capabilities. More and more difficult problems find their way to your desk, even problems far outside your role.</p>
+<p>36 months pass, and you’ve maybe gotten multiple 3 to 5% raises for 3 years. However, workload has increased maybe 6 to 10x from the 12-month checkpoint. Managers take you for granted and keep piling on the work, keeping more bonuses for themselves every year. “Performance reviews” are a laughing joke because you can clearly see other employees getting solid bonuses while you do more work and get the same. 48 and 60 month checkpoints come and go with 1–2% raises and no bonus increase.</p>
+<p>Previous projects never die, and you can never move on to new projects. You are continually asked to babysit, operate, and maintain old stuff. The ratio of new to old projects shifts from 80:20 to 20:80, and you’re spending 45 hours/week fixing and consulting on old stuff that other teams are supposed to be owning and operating. Another 15 hours/wk goes to new projects because you’re the engineer and supposed to be improving the business.</p>
+<p>It’s 60 months, and you’re pushing 60–70 hours/week and management says you’re overloaded, and they hire a new guy to take all of your new projects. There’s no point in staying on the job to babysit infrastructure that no one wants to spend money on to fix correctly or decommission — so you find another job elsewhere for more compensation where you are the “new guy”. Wash, rinse and repeat every 5 years because the 401k has vested, and it will probably be better at the next place… for about 4–5 years.</p>
+<p>People that know they are valuable can find a job anywhere at any time. Perversely, they are also the people that get taken advantage of, unappreciated and dumped on when working in a team environment. People leave because they are unappreciated and unrewarded — not necessarily the money.</p>
+</blockquote>
+<h2>Conclusion</h2>
+<p>I&#39;ll conclude with a simple truth — what I wouldn&#39;t give to have an employer that would give me the opportunity to grow and do something interesting, fun, challenging, etc. I&#39;m sure it will come one day, but in the meantime, I need to work on my coding skills. They still suck 15 years later.</p>
+]]></description>
+            <link>https://dave.levine.io/blog/why-good-employees-quit</link>
+            <guid isPermaLink="true">https://dave.levine.io/blog/why-good-employees-quit</guid>
+            <dc:creator><![CDATA[Dave Levine]]></dc:creator>
+            <pubDate>Tue, 16 Mar 2021 04:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Jamstack]]></title>
+            <description><![CDATA[<h2>Summary</h2>
+<p>This article will be a quick write-up on my static website hosting on <a href="https://pages.cloudflare.com">Cloudflare Pages</a>, also known as Jamstack.</p>
+<h2>Site Migration</h2>
+<p>I decided to go through the exercise of exporting both my knowledge base and my blog into Markdown to host them as static websites. Static sites have a much lower attack surface, and have a lot less dependencies. In my case, both Bookstack and Ghost rely on MySQL, and are both currently living inside Docker containers.</p>
+<p>Because of Jamstack, static sites are incredibly easy to host, and even easier to work with. There&#39;s no worrying about the setup and maintenance of underlying infrastructure or having to scale up or down based on load. All of this is done for you behind the scenes.</p>
+<h2>Challenges</h2>
+<p>Easily the biggest challenge was to export the content for both of these.</p>
+<h3>Bookstack</h3>
+<p>Bookstack was a nightmare because it doesn&#39;t allow you to export to Markdown. I was forced to leverage Gitbook, which is convenient in that it writes content by default in Markdown and can automatically shuttle the content to a GitHub repo. The challenge though, was that because there was no easy or clean way to do this, I had to export everything an article at a time and create the entire site hierarchy.</p>
+<p>Speaking of creating the site hierarchy, although everything was exported appropriately, it&#39;s not that simple to just take your markdown and sent it up to a Jamstack host. It needs to first be worked into a static site generator.</p>
+<p>For Bookstack, I chose to use MkDocs, particularly because it allows for quick and easy editing and rebuilding. It&#39;s Python based and as long as the hierarchy is right, it just works. The hard part is that the hierarchy isn&#39;t automatically created for you. It needs to be written out using the folder hierarchy in YAML with each line displaying the relative path of the file.</p>
+<p>Needless to say, it took awhile, but I&#39;m happy with how it turned out.</p>
+<h3>Ghost</h3>
+<p>Ghost was challenging for similar reasons, except that I wanted to maintain the metadata from Ghost in my export. There are a ton of export tools out there for Ghost, and even an option for running Ghost headless that I couldn&#39;t wrap my head around.</p>
+<p>After an exhausting trial and error with Jekyll, Docsify &amp; Eleventy, I finally settled on Hugo. Hugo was honestly the easiest to work with, and it&#39;s quick. The content doesn&#39;t need a lot of structuring and the themes can all be added as git submodules, which isn&#39;t too bad once you get the hang of it.</p>
+<p>I used ghostToHugo to export the site content, and it exported everything cleanly using the Ghost API. All the metadata was intact and the content was there. I tried a few themes, but finally settled on one called Hermit (how fitting considering the times we live in). It&#39;s a clean and minimal theme that just worked. I had looked into two others, but I was either fighting with it because of JavaScript errors or because I just didn&#39;t really like it at the end of the day.</p>
+<h2>Hosting</h2>
+<p>Ideally, I wanted to host everything on GitHub Pages, but this is problematic for me because the repos would need to be public. Because of the sensitive information that I have in Bookstack, I absolutely cannot have it public.</p>
+<p>There were a few other hosting providers I looked into — Netlify, Cloudflare Pages &amp; DigitalOcean Apps. I even tried hosting in an S3 bucket, but although it&#39;s by far the most robust solution, it&#39;s clunky at best and requires a lot of moving parts and work.</p>
+<p>I figured I would try DigitalOcean Apps because I already use DigitalOcean heavily. It&#39;s got a super slick interface and is easy to connect the repos to, but ultimately, it was annoying to get setup. I kept running into issues where the build would complete successfully, but the site would return a 404 error.</p>
+<p>I didn&#39;t want to use Netlify if I didn&#39;t have to because I really just didn&#39;t want to sign up for another site. Because of that, I chose Cloudflare Pages. I already run my DNS and all my domains through them, so this would just be another extension of it.</p>
+<p>Long story short, it works and works well, but takes a lot of additional work to get the sites to build properly. This bothered me because I had no problem with building and serving the content from the local webserver, but Cloudflare Pages requires additional configuration such as requirements documents for MkDocs and additional work with identifying submodules for Hugo.</p>
+<p>Because Cloudflare Pages is still in open beta, I&#39;ll forgive it for the clunkiness. Some of this may even be my fault, especially since I&#39;ve only been working on this stuff for around a week now.</p>
+<h2>Closing Thoughts</h2>
+<p>After getting everything up and running, I&#39;m really happy with how easy it is to maintain. All the heavy lifting is done at this point, unless I want to change a theme or a submodule, so at this point, all I have to do is write content.</p>
+<p>I&#39;m not going to decommission Bookstack, Ghost or the managed MySQL DB on DigitalOcean for awhile. I want to really make sure this works well for me, because once I get rid of them, there&#39;s no going back.</p>
+<p>Something I could do now that I think about it is just export the DBs and run MySQL locally. I&#39;ve said it before, and I&#39;ll say it again — I&#39;m not a DB administrator, plain and simple. If a DB gets hosed for any reason, there&#39;s little I can do to fix it.</p>
+<p>I&#39;ll weigh the pros and cons and ultimately make a decision in the next few months. I&#39;ll still be keeping both Bookstack and Ghost up to date for the time being, just in case I decide to abandon this path. For now, I&#39;m enjoying this new lightweight setup, and I&#39;m hoping it ends up working out for the best.</p>
+]]></description>
+            <link>https://dave.levine.io/blog/jamstack</link>
+            <guid isPermaLink="true">https://dave.levine.io/blog/jamstack</guid>
+            <dc:creator><![CDATA[Dave Levine]]></dc:creator>
+            <pubDate>Sun, 14 Mar 2021 05:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Documentation Migration]]></title>
+            <description><![CDATA[<h2>Summary</h2>
+<p>I realized only within the last few days that it&#39;s not particularly easy to migrate my documentation if the opportunity were to arise. To take stock, I have my full set of documentation with the following services/apps:</p>
+<ul>
+<li>Bookstack</li>
+<li>Confluence</li>
+<li>Notion</li>
+</ul>
+<p>Although I have my documentation in a number of locations, it&#39;s not particularly easy to export all of it into Markdown, which is the format I want all my documentation to exist in. It&#39;s not that all the above don&#39;t support markdown to some degree, but rather that the export process is cumbersome.</p>
+<p>This article will describe the challenges of each service/app, along with the current state of my documentation.</p>
+<p><code>Edit</code>: To configure Dracula theme for MkDocs, use this comment as a reference...</p>
+<p><a href="https://github.com/facelessuser/pymdown-extensions/pull/857#issuecomment-602085247">https://github.com/facelessuser/pymdown-extensions/pull/857#issuecomment-602085247</a></p>
+<h2>Bookstack</h2>
+<p>To start, Bookstack is one of my favorite apps to write in. The entire app gets out of your way, so you can just write whatever you need to write down. That being said, it stores everything you write in a MySQL database. This is fine if you like working in MySQL and don&#39;t mind keeping your data there. The problem is taking it elsewhere in a different format.</p>
+<p>My understanding is that exporting documentation from a MySQL database is not something that&#39;s particularly easy to accomplish. I looked into it briefly and the two most common types of formats that can easily come out of a MySQL database are .csv files and JSON files. This is fine if you&#39;re working with a database, but neither of them would ever convert properly into Markdown.</p>
+<p>Again, I&#39;m not implying that it&#39;s a bad thing to work in an app that uses MySQL as a backend, but rather that it doesn&#39;t make your documentation portable if there isn&#39;t some sort of built-in markdown export.</p>
+<h2>Confluence</h2>
+<p>Confluence is probably the first app I used to start writing documentation, so it will always have a special place for me. That being said, Atlassian has moved over to its cloud hosted service, which is clunky and slow at best. Confluence allows you to export your data, but only one space at a time, and the feature is buried in their labyrinth of features. Once you find the export area, the best you&#39;ll get is HTML. This is alright if you&#39;re cool with working in HTML. I personally am not there yet.</p>
+<p>The export of HTML is clean and the one advantage it has is that other services will readily take the export to import into their service (more on this later). I&#39;ve used it occasionally to import into other services, and it works just fine, but it doesn&#39;t get the job done if markdown is what you&#39;re after.</p>
+<h2>Notion</h2>
+<p>Notion is second to none when it comes to organization. I personally organize a fair chunk of my life in it, and it&#39;s become invaluable to me. I enjoy writing in it because it allows you to write in Markdown and gets out of your way once you learn how to use it.</p>
+<p>It even has an option to export into Markdown/csv, which on its face seems awesome. Here&#39;s the problem — it doesn&#39;t export cleanly at all, especially if you have a lot of tables in your documentation like I do. When you export a page and all the sub-pages below it (this entire knowledge base), it will export somewhere in the neighborhood of 600+ files. This is because if you write one article and have three tables in it, each table will be exported as its own .csv file. The documentation will be exported as a markdown file, but will not contain the tables. In turn, you&#39;re left with 4 separate files.</p>
+<p>The Notion export is fine if all you do is document things without tables, but for my needs, it wouldn&#39;t work.</p>
+<h2>Solution</h2>
+<p>My solution ended up being a weird one, but it ultimately worked.</p>
+<p>There&#39;s a service called Gitbook that allows you to import documentation from another service and will turn it into Markdown. One of the services happens to be Confluence. What I did was I exported the three spaces I work with (shelves in Bookstack) and imported them all into Gitbook. The result was pretty good, but the organization was largely lost. This is because of the ridiculous way that Confluence chooses for documentation. Because it doesn&#39;t allow you to group sections like Bookstack does with chapters, you&#39;re left with nesting pages upon pages underneath one another. This is fine if you never leave Confluence, but once you do, your documentation is unstructured. Not to mention that there were some formatting differences between the services.</p>
+<p>It took awhile, but I was able to get the documentation structured and the formatting straightened out. The problem was that I didn&#39;t want to use Gitbook. It&#39;s not particularly polished, and it&#39;s a bit clunky to work with. What it does have in its favor is the ability to leverage the GitHub API. I was able to connect my GitHub account to Gitbook, create a documentation repo and shuttle all my documentation into it in Markdown.</p>
+<p>Problem solved.</p>
+<h2>Conclusion</h2>
+<p>Although it took awhile, it was an incredibly worthwhile exercise to allow for portability of all my documentation. Not that I&#39;m necessarily going to be leaving the aforementioned services (Confluence may be on the chopping block), but I&#39;d like the option to in case the day arises.</p>
+]]></description>
+            <link>https://dave.levine.io/blog/documentation-migration</link>
+            <guid isPermaLink="true">https://dave.levine.io/blog/documentation-migration</guid>
+            <dc:creator><![CDATA[Dave Levine]]></dc:creator>
+            <pubDate>Tue, 09 Mar 2021 05:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Google Photos / Rclone Issue]]></title>
+            <description><![CDATA[<h2>Summary</h2>
+<p>Since my son was born, my wife and I have been taking what seems like an endless stream of photos and videos, all of which are backed up to Google Photos. This has been great as it&#39;s seamless and easy to distribute to family members. So what&#39;s the problem?</p>
+<p>The problem amounts to my own paranoia. I have photos and videos that have become priceless to me. I&#39;m not terribly concerned that Google will lose my data; they seem to know what they&#39;re doing. I&#39;m more concerned with somehow losing access to my account. Although I go to great lengths to secure my account, I still firmly believe that I&#39;d lose access to my account long before Google ever loses my data.</p>
+<p>It basically amounts to having all your eggs in one basket, and amounts to having no recourse should disaster strike. This is where rclone comes in.</p>
+<h2>Rclone</h2>
+<p>Rclone has been an unbelievably reliable tool for backing up my Google Photos account. It just works. I have a number of cron jobs setup that run when they&#39;re supposed to, and the whole setup has amounted to “set it and forget it”. So it really shocked me when I got a notification from healthchecks.io that backup jobs for my account started failing on 2/6/21.</p>
+<h2>Workflow</h2>
+<p>Rclone has two jobs for my account — one to download all my photos/videos, and one to download all my albums. Both jobs handle the content the same, but having them separate keeps things way more organized.</p>
+<p>For this post to make more sense, it&#39;s important to understand the workflow. Because of the priceless nature of these photos and videos, I back them up multiple times in multiple locations. The intervals are not relevant to this post. This amounts to the following:</p>
+<ul>
+<li>Rclone downloads everything to a Debian VM on my server every 12 hours for photos/videos and once a week for my albums.</li>
+<li>Rclone then backs up to two additional locations:<ul>
+<li>Daily backups to Synology NAS (local)</li>
+<li>Weekly backups to Backblaze B2 (remote)</li>
+</ul>
+</li>
+<li>Rclone runs a clean-up on B2 3x/month to allow for it to remove anything that&#39;s been deleted from the source and keep costs down.</li>
+</ul>
+<h2>Job Failures</h2>
+<p>As I mentioned, the jobs for my photos/videos and albums started failing on 2/6/21. I really didn&#39;t think much of it since there have been instances where the photos haven&#39;t backed up at a certain time, but will get picked up during the next time the job runs. That wasn&#39;t happening this time around.</p>
+<p>I have a log file on the Debian VM that rclone dumps verbose information in for all the jobs. I combed through the logs for each job and began seeing a ton of 403, 429 and 500 errors. This is concerning because I couldn&#39;t understand what would be causing it to fail over and over again.</p>
+<p>I tried the following:</p>
+<ul>
+<li>Renew Google Photos API credentials</li>
+<li>Check the disk space and integrity</li>
+<li>Re-run the jobs with different parameters to ignore errors</li>
+<li>Download the skipped files one-by-one</li>
+</ul>
+<p>Nothing worked to solve the issue.</p>
+<p>I scoured the rclone forums and the Issues section of the rclone GitHub repo for answers as to what might be happening. Long story short, I came up largely empty, and anything similar that I could find seemed to all point to corruption on the source. I checked the source, and the videos played fine.</p>
+<p>The log files seemed to point to 4 videos that were failing to upload on both jobs. This was due to the videos existing in both my photo bucket and a handful of albums. Looking at the filenames from the log file, I compared it to the photos taken on 2/6/21 on Google Photos. They all ended up pointing to videos that were taken with a slow-motion filter. This is not something I ever use, but watching my son in a sled having the time of his life deserved the slow-motion effect.</p>
+<p>The problem is that this seems to stem from a limitation with the Google Photos API. Whether it&#39;s being handled by Google, I can&#39;t say.</p>
+<h2>Resolution</h2>
+<p>What I ended up doing was downloading the videos directly from Google Photos, then copying them to the Debian VM. Since the problem stemmed from not being able to pull them from Google Photos via the API, I figured I&#39;d do things manually.</p>
+<p>After the videos were added to the Debian VM, I re-ran both jobs, which passed without any issues and reported their status to healthchecks.io.</p>
+]]></description>
+            <link>https://dave.levine.io/blog/google-photos-rclone-issue</link>
+            <guid isPermaLink="true">https://dave.levine.io/blog/google-photos-rclone-issue</guid>
+            <dc:creator><![CDATA[Dave Levine]]></dc:creator>
+            <pubDate>Sat, 27 Feb 2021 05:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[The Road to Better Email Security]]></title>
+            <description><![CDATA[<h2>Preface</h2>
+<p>This is going to be a pretty long post as the project has span almost an entire week. I think in order to understand where I am today, it&#39;s worth knowing where I started.</p>
+<h2>Gmail</h2>
+<p>I&#39;ve had a Gmail account since it was in beta around 2004/2005 and have been using it ever since. Those were much simpler times back then, and even though privacy was a big deal back then, it was hardly the nightmare it is today.</p>
+<p>Because I&#39;ve used it for so long, it&#39;s become integrated in every corner of my online life. Every service, subscription, person I know, etc, all has my Gmail email address. Although email is not a primary way of contacting me, it still gets a lot of use based on the amount of emails I get. I&#39;ve cut that down a lot, but I&#39;d say I still receive between 10-15 per day, give or take.</p>
+<p>I&#39;m well aware of the sheer lack of privacy that Gmail inherently comes with, but cutting Gmail out of your life is hardly an easy task. So what to do? Enter ProtonMail.</p>
+<h2>ProtonMail</h2>
+<p>Back in 2016, I wanted to try and branch away from being so heavily reliant on Gmail, and particularly Google. I began using different search engines like DuckDuckGo, using password managers, etc. This was all well and good, but I still had crappy email hygiene.</p>
+<p>After finding and subscribing to Protonmail, I felt like I had a much more secure form of communication, and although I did, it felt a lot like starting over. No one had this address — no companies or people — so I had a blank slate. I started adding more important communications to it, but it was a big ordeal to slowly transition things over to it. It was something I tinkered with, but as usual, life got in the way, and it got used sparingly.</p>
+<h2>SimpleLogin</h2>
+<p>Nowadays, with Google scanning everyone&#39;s emails and prying into as much of your digital life as possible, it&#39;s gotten to the point where I want to scale back on my exposure. I was browsing Reddit and came across the idea of email aliases. I had a cursory understanding of it, but decided to look into it further because it seemed like something I could make good use of.</p>
+<p>The more I looked into it, the more I kept seeing a company called <a href="https://simplelogin.io">SimpleLogin</a>. Their service allows you to link your personal inbox to a seemingly unlimited number of aliases. The following diagram from their website shows how it works.</p>
+<p><img src="https://cdn.levine.io/uploads/images/gallery/2022-09//02/hero.svg" alt="SimpleLogin Diagram"></p>
+<p>I found this concept to be a game changer because you can seemingly create an alias for every service you use. Not only that, but you can add a PGP key to each mailbox to encrypt everything that is sent to that alias (more on that later). Having virtually every email that arrives at my mailbox be encrypted, and also see exactly who is selling your email address should you start getting spam to a certain alias? Sign me up!</p>
+<p>This is where things became work. Although I signed up for the service, linked both my Gmail and ProtonMail (because why not?) to SimpleLogin, I now had to go through the arduous task of updating my email address everywhere. To save from the chore of going into detail on this, let&#39;s just say that ~16 hours over two days and 130 email aliases later, I finally updated everything I could. There were some exceptions, however, where some services just won&#39;t let you update your email, as well as some important services that I don&#39;t want tied to an alias.</p>
+<p>This has been a giant leap forward, but I still wanted to take it a step further. Being able to have everything sent to alias addresses is great, but this only brings the privacy end of it so far. Google still has the ability to scan the information in my inbox, so although it&#39;s not nothing, all that&#39;s really been accomplished is giving the services I use one less bit of contact information. Since SimpleLogin also natively includes PGP, I wanted to take full advantage of that so all the emails received will be encrypted.</p>
+<h2>Pretty Good Privacy</h2>
+<p>Making use of PGP is not an easy task, and I&#39;m sure that people much better than I am also struggle with it. It&#39;s not so much getting setup, but managing encryption keys is not an easy task. Admittedly, when I started this project, I had very little understanding of PGP. I knew it was a way of encrypting your email with a cryptographic key, but that&#39;s basically as far as it went.</p>
+<p>Probably the most important thing about PGP is being able to verify that the information being sent to you has not been modified along the way. Also, very important is ensuring that the information being sent to you is from whom it claims to be from. Both of these points can be accomplished by using PGP. Again, since I knew very little, I didn&#39;t really know where to create a PGP key pair (public and private key).</p>
+<p>The more I looked around, the more I kept seeing <a href="https://www.mailvelope.com/en/">Mailvelope</a>. It&#39;s basically a browser extension that allows you to encrypt emails with PGP. It integrates with a number of email providers, including Gmail. What&#39;s great about this is that it doesn&#39;t require you to trust anyone with key management or the use of the PGP keys as everything runs directly on the browser itself. The downside of this is that in my case, I have multiple computers, so I needed to setup Mailvelope manually on both computers.</p>
+<p>Mailvelope allowed me to create a key pair, to which I took the public key and added it to SimpleLogin. Once PGP was enabled in SimpleLogin and the public key was added, it automatically enabled PGP on all aliases so everything coming into my inbox that isn&#39;t sent directly to my Gmail account is now encrypted and signed with my public key.</p>
+<p>Mailvelope also allows for API integration into Gmail so that I can send encrypted emails and/or at least sign them with my key. I spent a lot of time testing this, and it works flawlessly. Now all that was left to do was to safely store my keys. I made use of the Mailvelope key server as the functionality is already built into the extension, but also uploaded it to <a href="https://keys.openpgp.org">https://keys.openpgp.org</a>. This allows it to be searchable, which is pretty slick. I also exported the public key, private key and the combined key and stored them in Bitwarden as attachments.</p>
+<h2>Closing Thoughts</h2>
+<p>This has been a long overdue exercise that I feel has really brought my email into the 21st century. The only caveat to having this setup is that I&#39;m not really able to view these encrypted emails on my phone. I&#39;m in the process of working on this, although at the moment with being home all the time, it&#39;s not really that big of a deal. To be honest, if I never got it figured out and had to rely on my desktop or laptop to these emails, I&#39;d be alright with that.</p>
+<p>Although the idea of privacy is more of a myth nowadays, it should always be something to strive for. If I can freely give out less information and keep some more of it private, I&#39;ll put in the work. Even though I&#39;ve only had this setup for a few days, I feel that it&#39;s already a huge improvement.</p>
+]]></description>
+            <link>https://dave.levine.io/blog/the-road-to-better-email-security</link>
+            <guid isPermaLink="true">https://dave.levine.io/blog/the-road-to-better-email-security</guid>
+            <dc:creator><![CDATA[Dave Levine]]></dc:creator>
+            <pubDate>Mon, 08 Feb 2021 05:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Firewall Misconfiguration]]></title>
+            <description><![CDATA[<h2>Primer</h2>
+<p>Much to my dismay, I often find myself making a configuration change with high hopes, only to encounter more problems than solutions. This was exactly the case a few days ago when I made a firewall change on my homelab.</p>
+<h2>What I Wanted to Do</h2>
+<p>First, some background...</p>
+<p>I don&#39;t believe I&#39;ve ever posted about it (although I should), but I&#39;ve grown quite a distaste for monitoring dashboards. There always seems to be something missing or unsatisfactory, usually boiling down to one or more of the following:</p>
+<ul>
+<li>Functionality</li>
+<li>UI/UX</li>
+<li>Cost</li>
+<li>Time spent configuring</li>
+</ul>
+<p>I could write an entirely separate post about this, but the bottom line is that I want a dashboard that looks great, doesn&#39;t cost an entire paycheck, and won&#39;t take eons to configure. Asking a lot, right?</p>
+<p>In deciding to no longer go that route, I&#39;ve focused on connecting as many services as I can to Slack. This way, if something happens, I&#39;ll immediately get a notification instead of relying on a monitoring dashboard.</p>
+<p>My current notification setup is as follows:</p>
+<p><img src="https://cdn.levine.io/uploads/images/gallery/2020-10/Tv2MhDAaCI67cYgE-slack-mind-map.png" alt="Slack Mind Map"></p>
+<p>With that explanation aside, the downside is how nicely Cloudflare and Uptime Robot work with pfSense. All my services are monitored in some form by Uptime Robot, but everything in my homelab goes through:</p>
+<p>pfSense &gt; Cloudflare &gt; Uptime Robot &gt; etc.</p>
+<p>The problem is that after a few days, I begin receiving notifications from Uptime Robot that my internal services are down, resulting in a 503 or 522 error. The services, however, aren&#39;t actually down; for some reason, Cloudflare thinks otherwise.</p>
+<p>I&#39;ve gone through countless configuration changes in Cloudflare to ensure it plays nicely with Uptime Robot, even allowlisting all Uptime Robot IP ranges in Cloudflare. However, the problem persists.</p>
+<p>I figured it might be worthwhile to allowlist the <a href="https://www.cloudflare.com/ips-v4">Cloudflare IPs</a> on pfSense.</p>
+<p>I created this allowlist in pfSense under <code>pfBlockerNG &gt; IP &gt; IPv4</code> and set it to <code>Permit Outbound</code>. However, this configuration only permits outbound traffic and does not allow inbound traffic from Cloudflare, which is essential for the services to function correctly. Both outbound and inbound traffic must be allowed for proper communication. I updated the service, and everything seemed to be running as it should.</p>
+<p>This brings us to the present.</p>
+<h2>What I Ended Up Doing</h2>
+<p>Yesterday, I added a handful of movies to Plex, which uploaded just fine. However, I noticed that the metadata wasn&#39;t automatically being pulled in.</p>
+<p>This is unusual because my Plex VM has become incredibly self-sufficient, so everything about it is now &#39;set it and forget it&#39;.</p>
+<p>I tried pulling in the metadata manually, but noticed that it wasn&#39;t finding any. The metadata pulls in from the following two sources:</p>
+<ul>
+<li><a href="https://www.themoviedb.org">The Movie Database</a></li>
+<li><a href="https://thetvdb.com">TheTVDB</a></li>
+</ul>
+<p>I let it go overnight because I didn&#39;t have the time to troubleshoot further. Fast-forward to today...</p>
+<p>Again, I tried pulling the metadata in manually and found it still not working. I rebooted the Plex VM; no change. I used SSH to check the VM after noticing that Plex was a version behind. This is highly unusual since I have a <a href="https://github.com/mrworf/plexupdate">script</a> that runs daily to check/update Plex as needed. The script runs flawlessly, so Plex is up to date 99.9% of the time.</p>
+<p>I tried running the script manually to fetch the latest version. This is where I noticed that the script was hanging and ultimately failed when trying to download the <a href="https://downloads.plex.tv/plex-media-server-new/1.20.2.3370-b1b651549/debian/plexmediaserver_1.20.2.3370-b1b651549_amd64.deb">.deb package</a>.</p>
+<p>I used Xen Orchestra to access the GUI for the Plex VM to check for anything unusual. I disconnected and reconnected the network interface; no change. I went for broke and tried to download the .deb package manually through the browser, only to find that the page wouldn&#39;t resolve for <a href="https://plex.tv">https://plex.tv</a>.</p>
+<p>I checked on both my MacBook Pro and my Manjaro box, and both were able to resolve the site without an issue. I tried <a href="https://bitwarden.com">https://bitwarden.com</a>, just because it was in my “top sites”; same issue. The Plex site is hosted on AWS, but running a traceroute on <a href="https://downloads.plex.tv">https://downloads.plex.tv</a> shows it resolving to — you guessed it — a Cloudflare IP. It&#39;s very likely their whole infrastructure is on AWS, but they use Cloudflare CDN.</p>
+<h2>How I Resolved It</h2>
+<p>At this point, I was nearly convinced there was something wrong with the VM. I looked for a recent snapshot and kicked myself because the last snapshot was two months ago (this VM has gotten so large that I can no longer create an incremental backup because of Xen Orchestra limitations; another story for another time). This is when I remembered that the only other change I made was the addition of the Cloudflare IPs to pfBlockerNG.</p>
+<p>I logged back into pfSense and removed the Cloudflare IP list from pfBlockerNG, then updated it. I went back to the Plex VM and tried using the browser again; it&#39;s now working fine. I tried to download the .deb package again; it downloaded without an issue. I logged back into Plex to find that all the metadata was now there.</p>
+<p>I realized that what I did was permit traffic outbound, but not inbound. Effectively, I blocked all Cloudflare IP ranges coming into my network. It didn&#39;t occur to me that anything was wrong because I was still able to access my sites hosted by Cloudflare since traffic was flowing outbound.</p>
+<p>Problem solved? Not quite. I still wanted to get the Cloudflare IPs allowlisted on pfSense.</p>
+<p>Because of an authentication issue I had a while back with getting Plex working on one of my restricted VLANs, I set up an alias to allow traffic from <a href="https://plex.tv">https://plex.tv</a> to that particular VLAN. This has been tremendously helpful, so I figured I might get lucky with doing the same for the Cloudflare IPs.</p>
+<p>I went into <code>Firewall &gt; Aliases &gt; URLs</code> and added the <a href="https://www.cloudflare.com/ips-v4">Cloudflare IPs</a> site. I navigated to <code>Firewall &gt; Rules</code> and created the following firewall rule:</p>
+<ul>
+<li><code>Action</code>: Pass</li>
+<li><code>Interface</code>: WAN</li>
+<li><code>Source</code>: Single host or alias | Cloudflare alias</li>
+<li><code>Destination</code>: LAN Net</li>
+<li><code>Gateway</code>: WAN_DHCP</li>
+</ul>
+<p>As of the time of this writing, it&#39;s only been about 6 hours since I made this change, so it may be too soon to tell. However, things have been stable, and I haven&#39;t received any notifications. I&#39;ll continue to monitor things and update if necessary, but hopefully, I won&#39;t have to.</p>
+]]></description>
+            <link>https://dave.levine.io/blog/firewall-misconfiguration</link>
+            <guid isPermaLink="true">https://dave.levine.io/blog/firewall-misconfiguration</guid>
+            <dc:creator><![CDATA[Dave Levine]]></dc:creator>
+            <pubDate>Sun, 04 Oct 2020 04:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[The Chase is Better Than the Catch]]></title>
+            <description><![CDATA[<p>I&#39;m a bit of a strange case in the sense that I greatly prefer setting up and configuring something over actually using it. There&#39;s something about the challenge of figuring things out that I just tend to lose myself in. The problem is that I spend a lot of time getting something up and running only to lose interest in it shortly after. I know it seems strange, but what I&#39;m trying to figure out is whether it&#39;s time well spent.</p>
+<h2>Deep Dive</h2>
+<p>Where did it all begin?</p>
+<p>The short answer is that, it&#39;s hard to say. I&#39;ve always been fascinated with having a project of some sort — building a computer, playing guitar, learning something new, etc, so the idea of keeping busy is comfortable for me. The thing is, I like being busy, but only with the things that I enjoy doing.</p>
+<p>I guess that&#39;s everyone though. Moving on...</p>
+<p>I think it&#39;s more to do with having that &#39;aha&#39; moment where things just click. I find myself chasing it with most things I do. The idea of the &#39;finished product&#39; in itself is so rewarding to me.</p>
+<p>A good example of this is when I bought my house and I wanted to have a network closet. Running cable sucks, so that was something I paid to have done for me, but actually doing things like connecting the patch cables from the patch panel to the switch and setting up vLANs was unbelievably rewarding.</p>
+<p>Something I didn&#39;t account for was the sheer amount of time it would take me to do this. I&#39;m always guilty of thinking something is going to take a shorter amount of time than it actually will. The problem is not so much that it takes a large amount of time to do these things, but rather that I find myself neglecting myself. This takes shape in ways such as forgetting to eat/skipping a meal or staying up half the night doing the job.</p>
+<p>My wife gets annoyed at me about this, and I don&#39;t think she&#39;s necessarily wrong. From the outside looking in, the only thing it looks like is obsession. I&#39;m by no means a workaholic, but when I get into these projects, you&#39;d think I was. I find myself racing to finish something, but also to find a good balance of speed and efficiency. Efficiency is particularly important to me because there&#39;s not much I hate more than having to do something twice.</p>
+<p>It comes down to the old saying “do you want it fast, cheap or good?” because you can&#39;t have all three. At best, you can pick two. Steer clear of anyone who says they can provide you with all three.</p>
+<p>In my case, I&#39;m generally willing to pay a bit more to get good quality, so strike &#39;cheap&#39; from the equation. Fast and good? Well, I can do both, but I sacrifice doing other things to make it happen.</p>
+<p>I think what it comes down to is give and take. Devoting your time to something takes it from something else. It makes sense, but the question, and the point of writing all this is, is it worth it?</p>
+<h2>Time Well Spent?</h2>
+<p>Is any of this time well spent? The answer is, it depends on the project. Most of my projects result in me learning something, so I personally think the answer is yes, although not without sone caveats.</p>
+<p>Not all projects where something is learned are worth the time spent on it. In my case, I live learning because it&#39;s fulfilling, but the things that I&#39;ve learned don&#39;t necessarily translate to being able to move me forward. If I learn how to properly configure vLANs on a pfSense router with Ubiquiti access points, is that going to help me with anything else that may come my way, or is it a completely niche scenario?</p>
+<p>In my case, I don&#39;t do networking for a living, nor do I know anyone with this kind of setup, so the answer becomes two-fold:</p>
+<ul>
+<li>It&#39;s time well spent because I have a very robust and reliable homelab.</li>
+<li>It&#39;s not time well spent because I don&#39;t do networking for a living and the skills I&#39;ve learned don&#39;t transfer.</li>
+</ul>
+<h2>Doing Things for Yourself</h2>
+<p>This has been a sobering write for me because I ended up realizing that not everything I do is worthwhile, as much as I think it is at the moment. Could I have just as reliable of a networking setup with a consumer grade router? Possibly. Do I learn anything worthwhile with a consumer grade setup? Nope.</p>
+<p>The element of give and take is always there. It comes down to making sure that if you&#39;re going to do something, make sure it&#39;s not at the expense of doing something more important.</p>
+]]></description>
+            <link>https://dave.levine.io/blog/the-chase-is-better-than-the-catch</link>
+            <guid isPermaLink="true">https://dave.levine.io/blog/the-chase-is-better-than-the-catch</guid>
+            <dc:creator><![CDATA[Dave Levine]]></dc:creator>
+            <pubDate>Mon, 07 Sep 2020 04:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Securing Nginx]]></title>
+            <description><![CDATA[<h2>Starting line</h2>
+<p>A few weeks ago, I was reading an article on <a href="https://scotthelme.co.uk/">Scott Helme&#39;s blog</a> about <a href="https://scotthelme.co.uk/caching-ghost-with-nginx/">caching Ghost with Nginx</a>. In doing this, I made this blog and a number of other services that I use kick into overdrive, but that whole endeavor is best left for its own article.</p>
+<p>While reading that article, I noticed in the sidebar a service that he operates called <a href="https://securityheaders.com/">Security Headers</a>. Essentially, this measures measure how secure the headers of a web server are for a particular website. For kicks, I tried this site and my knowledge base; was I ever surprised by what I found.</p>
+<p>Both sites came back with a sobering &#39;D&#39; rating out of &#39;A&#39; through &#39;F&#39;. I wish I had taken a screenshot of this at the time to illustrate what I&#39;m referring to, but unfortunately, I didn&#39;t.</p>
+<p>These results were particularly concerning because I was under the assumption that I had secured not only the services pretty well, but also Nginx and Cloudflare. I realized quickly that I had a lot to learn.</p>
+<h2>Re-evaluation</h2>
+<p>There were a number of resources I found about securing Nginx, but the problem was making it work for my environment. This was actually a lot harder than it may sound because I had to factor services like Cloudflare into the mix.</p>
+<p>For example, I tried the following header that kept cropping up in my research, only to find out that it completely bypassed multi-factor auth:</p>
+<p><code>proxy_hide_header Set-Cookie;</code></p>
+<p>The breakdown of the <code>proxy_hide_header</code> is as follows:</p>
+<blockquote>
+<p>By default, nginx does not pass the header fields “Date”, “Server”, “X-Pad”, and “X-Accel-...” from the response of a proxied server to a client. The proxy_hide_header directive sets additional fields that will not be passed. If, on the contrary, the passing of fields needs to be permitted, the proxy_pass_header directive can be used.</p>
+</blockquote>
+<p>Because the header was effectively being bypassed, it was breaking multi-factor auth. To be clear, I have multi-factor auth enabled through <a href="https://www.cloudflare.com/teams-access/">Cloudflare Access</a> using <a href="https://www.okta.com/">Okta</a> as the IdP.</p>
+<h2>Trial and Error</h2>
+<p>The amount of trial and error that took place in all this was staggering, but I was finally able to narrow the new headers down to the following list:</p>
+<ul>
+<li>add_header X-Frame-Options SAMEORIGIN;</li>
+<li>add_header X-XSS-Protection “1; mode=block”;</li>
+<li>add_header X-Content-Type-Options nosniff;</li>
+<li>add_header Referrer-Policy “no-referrer”;</li>
+<li>add_header Feature-Policy strict-origin-when-cross-origin;</li>
+<li>add_header hide_server_tokens on;</li>
+<li>add_header Content-Security-Policy “default-src * data: &#39;unsafe-eval&#39; &#39;unsafe-inline&#39;” always;</li>
+</ul>
+<p>This gave me a nice balance between adding the additional security, while still retaining the performance benefits from the caching directives already put in place.</p>
+<h2>Resources</h2>
+<p>For reference, the resources I used in order to make things work the way I wanted them to are as follows:</p>
+<ul>
+<li><a href="https://www.keycdn.com/blog/http-security-headers">https://www.keycdn.com/blog/http-security-headers</a></li>
+<li><a href="https://gist.github.com/plentz/6737338">https://gist.github.com/plentz/6737338</a></li>
+<li><a href="https://8gwifi.org/docs/nginx-secure.jsp">https://8gwifi.org/docs/nginx-secure.jsp</a></li>
+<li><a href="https://www.keycdn.com/support..-security-policy">https://www.keycdn.com/support..-security-policy</a></li>
+</ul>
+<h2>Finish Line</h2>
+<p>The problem with having this site password protected is that I can&#39;t get an accurate read on the headers; only an approximation. This is done by using my knowledge base as a comparison since the same headers and caching are used throughout the Nginx config file.</p>
+<p><img src="https://cdn.levine.io/uploads/images/gallery/2022-09//09/Screen-Shot-2020-09-05-at-10.52.32-PM.png" alt="Screen Shot 2020-09-05 at 10.52.32 PM"></p>
+<p>As you can see, my knowledge base headers are in great shape, which effectively means the headers for this blog are in great shape.</p>
+<p>This was a good exercise to go through, even though I&#39;m effectively the only traffic going to any of these sites. It&#39;s a good reminder that even if you think you&#39;ve done enough to secure your services, there&#39;s always additional work to be done.</p>
+]]></description>
+            <link>https://dave.levine.io/blog/securing-nginx</link>
+            <guid isPermaLink="true">https://dave.levine.io/blog/securing-nginx</guid>
+            <dc:creator><![CDATA[Dave Levine]]></dc:creator>
+            <pubDate>Sun, 06 Sep 2020 04:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[DigitalOcean Migration]]></title>
+            <description><![CDATA[<h2>Background</h2>
+<p>As much as I enjoy using AWS, to use it how I would like to use it is just too expensive. Because of this, I&#39;ve hosted the large majority of my cloud infrastructure on DigitalOcean. This boils down to two reasons — it&#39;s a lot easier to use than AWS, and the pricing is predictable.</p>
+<p>Could I estimate how much it would cost for me to host everything on AWS? Sure, and here&#39;s the breakdown...</p>
+<p><img src="https://cdn.levine.io/uploads/images/gallery/2022-09//08/Screen-Shot-2020-08-29-at-11.46.13-PM.png" alt="Screen Shot 2020-08-29 at 11.46.13 PM"></p>
+<p>Of course, this is based off a quick estimate that doesn&#39;t really account for actual usage, including snapshots and data transfer. The thing is, regardless of all that, nearly $50/month is a lot. Factor in something like data transfer, and it could end up being a lot more. The same configuration on DigitalOcean works out to be a lot cheaper.</p>
+<p>This is my bill as of the moment. This will end up being even cheaper next month since I decommissioned two droplets this month and also disabled backups in favor of snapshots.</p>
+<p><img src="https://cdn.levine.io/uploads/images/gallery/2022-09//08/Screen-Shot-2020-08-29-at-11.52.09-PM.png" alt="Screen Shot 2020-08-29 at 11.52.09 PM"></p>
+<p>It may not seem like that big of a difference, but at ~$11-12/mo, that&#39;s pretty big to me. Anyway, let me not get too lost in the weeds with pricing and get back to the point of this article.</p>
+<h2>Reasoning</h2>
+<p>I&#39;ve been using DigitalOcean now for close to a year, and they&#39;ve been rock solid. The entire reason I migrated to DigitalOcean to begin with is because I was initially self-hosting everything I use in my homelab.</p>
+<p>While this is all well and good, my knowledge base also lived in my homelab. Although I&#39;m pretty confident in my abilities with disaster recovery and managing everything, I&#39;m by no means a database guy.</p>
+<p>For my knowledge base, I use <a href="https://bookstackapp.com">Bookstack</a>, which is just fantastic. It uses a MySQL database, which is fine, although the more content I wrote, the more I worried about data corruption from something stupid like a power outage. Also, as confident as I am in my backups, I&#39;m guilty of not testing them out as often as I should.</p>
+<h2>Some History</h2>
+<p>I decided to spin up a $5 droplet on DigitalOcean and import my knowledge base into it. I installed Bookstack and cobbled together a MySQL dump of my entire Bookstack database. I was able to import the database into the newly created droplet, and after verifying all the content was still in one piece, I was feeling pretty good.</p>
+<p>This lasted for a few months before I started thinking about what would happen if my droplet ever got hosed for some reason. All I really did was move my knowledge base from a locally hosted VM to a cloud hosted VM.</p>
+<p>Enter the <a href="https://www.digitalocean.com/products/managed-databases/">Managed Databases</a> from DigitalOcean.</p>
+<p>Now, these are a little expensive, especially coming from just a single $5/mo droplet, so I figured I would create a cluster, create a MySQL dump of my knowledge base and import it into the managed cluster. If I didn&#39;t like it, I could just move back to the single droplet.</p>
+<p>What a game changer!</p>
+<p>I did a real deep dive into DigitalOcean&#39;s offering and realized what I was really getting for that additional money. In short, peace of mind.</p>
+<p>I only have a single cluster without a standby node or a read replica, but that&#39;s honestly not needed for my use case. Because the database allows for point-in-time recovery and takes daily backups, should the underlying database ever get hosed, the node would automatically be re-provisioned with a backup close enough to the point of failure. Of course, this would have some downtime, but that&#39;s hardly a concern considering I&#39;m the only one using it.</p>
+<p>I created the managed cluster in January, and I&#39;ve never looked back.</p>
+<h2>Migration</h2>
+<p>In addition to hosting my knowledge base, I ended up hosting this blog, as well as my Unifi controller. This blog also utilizes the managed database, making the investment even more worthwhile.</p>
+<p>Because I&#39;m always thinking whether an app will interfere with another, I ended up running each in separate $5 VMs. This went on for a few months until I realized that there&#39;s a better way.</p>
+<p>I decided to scrap my Unifi controller VM as it was and re-purpose it to utilize Docker instead. Everything I was hosting separately in multiple VMs could be run inside of containers. This also utilized a lot less space.</p>
+<p>First I uninstalled my Unifi controller and installed the container version of it. I restored from my last backup, and I was up and running again like nothing ever happened. I was barely utilizing any CPU and memory as well with this setup, so I decided to migrate this blog next.</p>
+<p>The blog was almost as seamless, but did take some extra configuring to connect it to the managed database, along with updating the IP information with Cloudflare. Once connected, I verified everything was still in one piece, took a final snapshot of the droplet (just in case) and destroyed it.</p>
+<p>Finally, it was time for my knowledge base. I spun up a container of Bookstack, pointed it towards the managed database, updated the IP information with Cloudflare. I navigated to the URL and there it was.</p>
+<p><code>Some background</code> — my knowledge base has grown very large, currently sitting at the following stats:</p>
+<ul>
+<li>218 pages</li>
+<li>66 chapters</li>
+<li>18 books</li>
+<li>3 shelves</li>
+</ul>
+<p>Because of the sheer amount of content I was sitting on, I decided to snapshot the droplet and power it down. I hung onto it for a week while I went through literally every single page, chapter, book and shelf to verify nothing was missing.</p>
+<p>Everything was there, so I took a final snapshot and destroyed the droplet.</p>
+<p>This led to another configuration change. The managed database does not host any images, but rather, those sit on the droplet. I&#39;ve seen enough horror stories in articles and on Reddit to know that VM storage should generally be considered ephemeral.</p>
+<p>I backed up the images to B2 using Rclone, although since Backblaze is on the west coast, the latency really slowed things down when trying to load the images. Because of this, I decided to make use of S3.</p>
+<p>I created a bucket and configured it so that it would use S3 Standard, but included a lifecycle rule that content not used for 30 days would transfer automatically to S3 Infrequent Access. No point in paying more for content that isn&#39;t being used all the time, but can still be accessed at a moment&#39;s notice. Bookstack allowed this integration seamlessly, so now everything is backed up.</p>
+<h2>Current State</h2>
+<p>At this point, the droplet was beginning to show signs of slowing down, so I needed to resize it. I started small and kept the single CPU, but bumped the memory to 2GB. It seemed fine at first, but any real usage started showing it wasn&#39;t enough. I played around with a few different configurations until finally settling on my current one...</p>
+<ul>
+<li>2vCPUs</li>
+<li>4GB of RAM</li>
+<li>80GB SSD</li>
+</ul>
+<p>I should also mention I installed a number of miscellaneous apps that I was hosting on my homelab. The decision to migrate them had more to do with their value than anything else. If I had something catastrophic happen to my homelab, I&#39;d like to know those are safe.</p>
+<p>I currently have three cron jobs running daily and weekly to backup everything to B2. This ensures complete peace of mind in my setup. Anything in my homelab is nearly &#39;take it or leave it&#39;, and my cloud environment can be restored with a single Docker compose file, and a handful of rclone commands. Because I&#39;m so neurotic, I ever wrote a <a href="https://knowledge.davelevine.io/books/digitalocean/page/how-to-restore-digitalocean-environment">knowledge article</a> on it.</p>
+<p>I know that sounds almost silly because, what if everything is lost? Well, I also copy every article I write into Confluence, which is hosted by Atlassian. That way, I have complete redundancy of my knowledge base, so if disaster should strike, I&#39;ll be ready for it.</p>
+]]></description>
+            <link>https://dave.levine.io/blog/digitalocean-migration</link>
+            <guid isPermaLink="true">https://dave.levine.io/blog/digitalocean-migration</guid>
+            <dc:creator><![CDATA[Dave Levine]]></dc:creator>
+            <pubDate>Sun, 30 Aug 2020 04:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[AWS Certified Solutions Architect]]></title>
+            <description><![CDATA[<h2>Primer</h2>
+<p>I haven&#39;t written in a while and that one is on me. I meant to keep this up regularly, but I&#39;ve been slacking with it to say the least. Who knew that having a family, a full-time job, and responsibilities would take up so much of my time! I&#39;m going to do my best to update regularly going forward.</p>
+<h2>Validation</h2>
+<p>Now that I&#39;ve got that out of the way, the real reason for my post...</p>
+<p>After ~6 months of studying, I finally took the AWS Certified Solutions Architect: Associate exam today and I <code>PASSED</code>! I&#39;m incredibly excited about it and really proud of myself for sticking with it.</p>
+<p>Here is my certificate and badge. I earned them, so why not show them off!</p>
+<p><img src="https://cdn.levine.io/uploads/images/gallery/2022-09/08/AWS-Certified-Solutions-Architect---Associate-certificate.png" alt="AWS Certified Solutions Architect: Associate certificate">
+<img src="https://cdn.levine.io/uploads/images/gallery/2022-09/08/aws-certified-solutions-architect-associate.png" alt="AWS Certified Solutions Architect Associate"></p>
+<h2>Hindsight</h2>
+<p>There were more than a few occasions where I wasn&#39;t sure if I was going to be able to finish — the life-altering COVID-19 pandemic, childcare, and above all, my own self-doubt. This was particularly apparent after I completed the Linux Academy training course. That in itself felt like such a huge accomplishment that the thought of pressing on for the real thing just felt like a real uphill climb. This felt even more apparent once I was reimbursed for the training course by my job; as if that was it.</p>
+<p>I knew that I&#39;d come this far, and I was willing to come a little further. This was around a month ago.</p>
+<h2>Growth</h2>
+<p>Fast-forward to today, the day of the exam. I&#39;d spent the last month taking practice exams every few days and just getting myself prepped for this. The self-doubt hit me hard the last few days. I had scheduled the exam a few weeks ago and after a few of the practice exams, I wasn&#39;t feeling all that confident.</p>
+<p>At this point, it was getting a bit too late to back out, so I reconciled that if I didn&#39;t pass it on the first attempt, I&#39;d take it again. Failing the exam was not the end of the world.</p>
+<p>I&#39;ve never been a good test taker, and that hasn&#39;t really changed. This exam was hard, no question about it. I had a few moments where I swore that my eyes glazed over from reading some of these questions. I made it though, and I&#39;m immensely proud of myself for it.</p>
+<h2>Reflection</h2>
+<p>I needed to do this because I&#39;m hopeful it will help me in my career. I also needed to do this for me, as a validation of the skill set I know that I have. It&#39;s one thing to work on my homelab and do things here and there, but it&#39;s another to learn all about cloud architecture.</p>
+<p>I won&#39;t stop with just this exam. I plan on fulfilling the entire “Junior AWS Cloud Engineer — Entry Level” learning path on Linux Academy. As of the time of this writing, I&#39;m 32% of the way through it.</p>
+<p>I can do this, but for now, I feel good.</p>
+]]></description>
+            <link>https://dave.levine.io/blog/aws-certified-solutions-architect</link>
+            <guid isPermaLink="true">https://dave.levine.io/blog/aws-certified-solutions-architect</guid>
+            <dc:creator><![CDATA[Dave Levine]]></dc:creator>
+            <pubDate>Sat, 01 Aug 2020 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[RAID Migration]]></title>
+            <description><![CDATA[<h2>Analysis</h2>
+<p>Of all the systems I maintain in my homelab, the one I generally look at the least is my NAS. I&#39;m not sure if that would come as a surprise to anyone, but it&#39;s become one of my most trusted “set it and forget it” systems.</p>
+<p>This has been great for me because the less I have to think about, the better, especially when it comes to systems. The problem lately is that although everything is working as well as it should, I&#39;ve been getting email notifications from it lately that it&#39;s beginning to run low on space.</p>
+<p>Of course, running low on space is subjective — it still has north of 2TB remaining out of 16TB in total. This all has to do with my RAID configuration, and has made me rethink my configuration a bit to give me a bit more breathing room.</p>
+<h2>Breakdown</h2>
+<p>My NAS backup architecture is fairly simple, but I suppose a bit more complex than average. The diagram below lists my backup architecture in broad strokes, but gives a good idea of what backs up to where.</p>
+<p><img src="https://cdn.levine.io/uploads/images/gallery/2022-09//06/Backup_Diagram.png" alt="Backup Diagram"></p>
+<p>As can be seen from this diagram, all machines in one way or another all backup to my NAS. I&#39;ll break it down in broad strokes.</p>
+<ul>
+<li><code>XCP-NG</code>: All VMs, configs and metadata</li>
+<li><code>Dave&#39;s Computers</code>:<ul>
+<li><code>Manjaro</code>: Timeshift snapshots and data</li>
+<li><code>MBP</code>: Snapshots</li>
+</ul>
+</li>
+<li><code>Maria&#39;s Computers</code>:<ul>
+<li><code>Win7</code>: N/A</li>
+<li><code>MBP</code>: Time Machine backups</li>
+</ul>
+</li>
+</ul>
+<p>Of course, this is an oversimplification of it, but for the purpose of this post, further breakdown is unnecessary.</p>
+<p>Additionally, my NAS information...</p>
+<ul>
+<li>Synology DS918+</li>
+<li>SHR-2 — Two disk fault tolerance</li>
+<li>32TB Raw / 16TB usable</li>
+</ul>
+<p>Obviously, just from looking at that amount of wasted space, I can do better.</p>
+<h2>RAID Reconfiguration</h2>
+<p>I can&#39;t speak for other NAS systems like QNAP or UnRAID, but Synology really sucks in regard to changing RAID types. Most RAID types can be changed to some degree, but when you get locked into Synology Hybrid RAID 2 (SHR-2), you need to have an understanding of its pros and cons.</p>
+<p><code>Pros</code>:</p>
+<ul>
+<li>Reliable</li>
+<li>Mirrors data across all disks</li>
+<li>Two disk fault tolerance</li>
+<li>Essentially RAID 6</li>
+</ul>
+<p><code>Cons</code>:</p>
+<ul>
+<li>Changing RAID types requires the creation of a new volume</li>
+<li>Wasted space</li>
+</ul>
+<p>When I originally set this up, I wasn&#39;t using much cloud storage at the time as it was a lot more expensive than it is now. Therefore, my priority at the time was being able to tolerate disk failure. The idea of being able to survive two out of four disks failing was too appealing. I also didn&#39;t think I would come anywhere near filling up 16TB!</p>
+<p>Now, as my entire setup has changed dramatically since the creation of this RAID array, it&#39;s time to rethink things.</p>
+<h2>Achieving a Balance</h2>
+<p>Although a lot of the data passing through my NAS eventually makes its way to the cloud, I don&#39;t particularly like having to retrieve data from the cloud unless I have to. I&#39;d much rather retrieve it from my NAS since it&#39;s on premises and is its reason for existing in the first place. Therefore, I still need to maintain a balance of fault tolerance and maximizing available storage capacity.</p>
+<p>I reviewed a lot of information on different types of RAID. I&#39;ve run a few different ones in the past — RAID 1, RAID 6 &amp; RAID 10 — but I wanted something different this time around.</p>
+<p>The <a href="https://www.synology.com/en-global/support/RAID_calculator">Synology RAID calculator</a> was a huge help in figuring out how exactly to best achieve what I&#39;m looking for. The conclusion is to use RAID 5. It has exactly what I want — one disk fault tolerance, maximizes space, no loss in performance, etc.</p>
+<p>Not that I know what I want, how do I go about doing it?</p>
+<h2>Breaking New Ground</h2>
+<p>Converting away from SHR-2 is something I&#39;ve wondered about for awhile now on and off. This is mostly because I&#39;ll need to get rid of the existing volume and migrate everything to a new volume, all while maintaining uptime and now losing data in the process. I thought it out and came to the following conclusion of how to make it happen:</p>
+<ul>
+<li>Break the existing RAID by removing and reinserting one drive.</li>
+<li>Create a new basic volume on this drive.</li>
+<li>Break the RAID further by removing and reinserting another drive.</li>
+<li>Create a new RAID configuration using these two drives and the basic volume.</li>
+<li>Migrate shared folders from the old volume to the new volume.</li>
+<li>Once all data has been migrated to the new volume, delete the old volume.</li>
+<li>Create a new RAID configuration with these two drives.</li>
+</ul>
+<h2>Outcome</h2>
+<p>I put this into play this weekend, and it has been relatively smooth. The biggest drawback is by far the amount of time it takes to rebuild the RAID array. As of the time of this writing, the array has been building for around 48 hours and is only ~50% complete.</p>
+<p>Once the array finishes rebuilding, my NAS will have 24TB raw usable storage with one drive being reserved for parity. Gaining an additional 8TB of storage space will definitely hold me over for years (it has to, since double-digit TB storage still isn&#39;t that cheap).</p>
+<p>Overall, this has been a good experience, but my takeaway is that I really need to carefully consider the convenience I&#39;m trading for added reliability. In this case, although it served me well, I&#39;m not sure if it was the best decision. Of course, this is looking at it in hindsight. With fresh eyes, I believe this new configuration will serve me even better going forward.</p>
+]]></description>
+            <link>https://dave.levine.io/blog/raid-migration</link>
+            <guid isPermaLink="true">https://dave.levine.io/blog/raid-migration</guid>
+            <dc:creator><![CDATA[Dave Levine]]></dc:creator>
+            <pubDate>Sun, 07 Jun 2020 04:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Databases (Part 3)]]></title>
+            <description><![CDATA[<h2>Preface</h2>
+<p>I meant to get to finishing this up shortly after my last post, but life comes at you fast sometimes. No excuses though, as I&#39;ve been continuing with my course and should be finished within the next day or two. In the meantime, I still have a bunch of content to write, so let&#39;s get to it.</p>
+<p>The link to the post about Aurora can be found <a href="../blog/databases-part-2">here</a>.</p>
+<h2>NoSQL</h2>
+<p>NoSQL databases are just as they sound — they contain unstructured data that has been added to tables without the use of SQL. In this case, I&#39;m referring to DynamoDB, the AWS NoSQL offering.</p>
+<p><em><code>Because I&#39;m in no way a database guy, I&#39;ll be relying a lot on the material from Linux Academy.</code></em></p>
+<p>There are quite a few terms to be aware of when dealing with DynamoDB that I&#39;ll outline below...</p>
+<ul>
+<li><code>TABLE</code> — a collection of items that share the same partition key (PK) or partition key and sort key (SK) together with other configuration and performance settings.</li>
+<li><code>ITEM</code> — a collection of attributes (up to <code>400 KB</code> in size) inside a table that shares the <code>same key structure</code> as every other item in the table.</li>
+<li><code>ATTRIBUTE</code> — a key and value — an attribute name and value.</li>
+</ul>
+<p><img src="https://cdn.levine.io/uploads/images/gallery/2022-09//06/Screen-Shot-2020-06-05-at-11.26.10-PM.png" alt="Screen Shot 2020-06-05 at 11.26.10 PM"></p>
+<h2>Capacity Modes</h2>
+<p>Capacity modes are what DynamoDB uses in order to read/write data to tables.</p>
+<p>There are two capacity modes — <code>provisioned throughput</code> (default) and <code>on-demand mode</code>. Both of which handle performance differently, which is outlined below...</p>
+<ul>
+<li>When using on-demand mode, DynamoDB automatically scales to handle performance demands and bills a per-request charge.</li>
+<li>When using provisioned throughput mode, each table is configured with read capacity units (<code>RCU</code>) and write capacity units (<code>WCU</code>).</li>
+</ul>
+<blockquote>
+<p>Every operation on ITEMS consumes at least 1 RCU or WCU — partial RCU/WCU cannot be consumed.</p>
+</blockquote>
+<h3>Read Capacity Units</h3>
+<ul>
+<li>One RCU is 4 KB of data read from a table per second in a strongly consistent way.<ul>
+<li>Reading 2 KB of data consumes 1 RCU.</li>
+<li>Reading 4.5 KB of data takes 2 RCU.</li>
+<li>Reading 10× 400 bytes takes 10 RCU.</li>
+</ul>
+</li>
+<li>If eventually consistent reads are okay, 1 RCU can allow for 2 × 4 KB of data reads per second. Atomic transactions require 2x the RCU.</li>
+</ul>
+<h3>Write Capacity Units</h3>
+<ul>
+<li>One WCU is 1 KB of data or less written to a table.<ul>
+<li>An operation that writes 200 bytes consumes 1 WCU.</li>
+<li>An operation that writes 2 KB consumes 2 WCU.</li>
+<li>Five operations of 200 bytes consumes 5 WCU.</li>
+</ul>
+</li>
+<li>Atomic transactions require 2x the WCU to complete.</li>
+</ul>
+<p><img src="https://cdn.levine.io/uploads/images/gallery/2022-09//06/Screen-Shot-2020-06-05-at-11.42.46-PM.png" alt="Screen Shot 2020-06-05 at 11.42.46 PM"></p>
+<h2>DynamoDB Consistency</h2>
+<p>From the Linux Academy Orion Papers...</p>
+<blockquote>
+<p>DynamoDB is highly resilient and replicates data across multiple AZs in a region. When you receive a HTTP 200 code, a write has been completed and is durable. This doesn&#39;t mean it&#39;s been written to all AZs — this generally occurs within a second.</p>
+<p>An eventually consistent read will request data, preferring speed. It&#39;s possible the data received may not reflect a recent write. Eventual consistency is the default for read operations in DDB.</p>
+<p>A strongly consistent read ensures DynamoDB returns the most up-to-date copy of data — it takes longer but is sometimes required for applications that require consistency.</p>
+</blockquote>
+<h2>Provisioned Throughput Calculations</h2>
+<p>From the Linux Academy Orion Papers...</p>
+<blockquote>
+<p>A system needs to store 60 patient records of 1.5 KB, each, every minute. What WCU should you allocate on the patient record table?</p>
+<ul>
+<li>60 records per minute = ~1 per second (and the DDB RCU/WCU buffer can smooth this out if not)</li>
+<li>Each record is 1.5 KB. 1 WCU = 1 KB per second, so each record requires 2 WCU.</li>
+<li>A WCU setting of 2 is required on the table.</li>
+</ul>
+<p>A weather application reads data from a DynamoDB table. Each item in the table is 7 KB in size. How many RCUs should be set on the table to allow for 10 reads per second?</p>
+<ul>
+<li>1 item is 7 KB, which is 2 RCU (1 RCU is 4 KB).</li>
+<li>10 reads per second for 7 KB items = 20 RCU</li>
+<li>But the question didn&#39;t specify if eventual or strong consistency is required. The default is eventual, which allows for 2 reads of 4 KB per second for 1 RCU.</li>
+<li>Assuming eventually consistent reads, the answer is 10 RCU.</li>
+</ul>
+</blockquote>
+<h2>Streams</h2>
+<p>From the Linux Academy Orion Papers...</p>
+<p><img src="https://cdn.levine.io/uploads/images/gallery/2022-09//06/Screen-Shot-2020-06-05-at-11.51.51-PM.png" alt="Screen Shot 2020-06-05 at 11.51.51 PM"></p>
+<h2>Indexes</h2>
+<p>From the Linux Academy Orion Papers...</p>
+<p><img src="https://cdn.levine.io/uploads/images/gallery/2022-09//06/Screen-Shot-2020-06-05-at-11.52.43-PM.png" alt="Screen Shot 2020-06-05 at 11.52.43 PM"></p>
+<h2>An Understanding</h2>
+<p>As I&#39;ve mentioned before, I&#39;m very far from a database guy, and a lot of this information still doesn&#39;t quite click. This may seem like it shows from the way a lot of this is written word-for-word from the Orion Papers. While that&#39;s partially true, I also attribute it to the lateness of the hour, and a bit of laziness.</p>
+<p>If there&#39;s good news to be had, as I was going through this material again, almost all of it felt familiar. Hopefully, as I continue to go through it to prep myself for the exam, it will feel that much clearer to me.</p>
+<p>I use ad-hoc reporting tools at work, one of which is from SAP, and it helps to already have some hands-on experience with NoSQL tables. I may still go back and rewatch the Linux Academy training on NoSQL just as a refresher before moving on to practice exams. At this point, I&#39;ll use whatever resources I can to better understand the content.</p>
+]]></description>
+            <link>https://dave.levine.io/blog/databases-part-3</link>
+            <guid isPermaLink="true">https://dave.levine.io/blog/databases-part-3</guid>
+            <dc:creator><![CDATA[Dave Levine]]></dc:creator>
+            <pubDate>Sat, 06 Jun 2020 04:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Databases (Part 2)]]></title>
+            <description><![CDATA[<p>This will be a continuation in the Database series covering the AWS offerings as part of the AWS Solutions Architect: Associate exam. I covered RDS in <a href="../blog/databases-part-1">part 1</a> and will continue with Aurora in this part.</p>
+<h2>Aurora</h2>
+<p>Aurora is a relational database offering from AWS that is designed to be an improvement over RDS. It&#39;s a fully managed SQL database service, but is up to five times faster than MySQL and up to three times faster than PostgreSQL. It&#39;s built for speed, reliability and is offered at 1/10th the cost of commercial databases at the time of this writing.</p>
+<h3>Clusters</h3>
+<p>Aurora is architected differently than RDS is. Aurora has a base configuration of a cluster instead of just one primary node and one or more standby nodes. The cluster contains a primary instance and zero or more replicas.</p>
+<p>The cluster storage is configured so that all instances share the same storage, regardless of being primary or replicas. Because Aurora is built to scale, a cluster volume can grow to up to 64TB in size.</p>
+<p>The cluster data is replicated six times across three AZs, making it extremely durable. Aurora can also tolerate two failures without writes being impacted and three failures before reads are impacted. Aurora storage is also automatically configured for auto-healing. This means that if any physical storage fails, the instance will instantly fail over to healthy storage until the failed physical storage can be replaced.</p>
+<h3>Backtrack</h3>
+<p>Because Aurora is constantly backing up to S3, it allows for point in time restorations using backtracking. This is not a good replacement for traditional backups, but is generally suitable for recovering from user errors.</p>
+<p>Additional information on Backtrack can be found <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Managing.Backtrack.html">here</a>.</p>
+<h3>Cluster Architecture</h3>
+<p>The following has been taken from the Orion Papers offered by Linux Academy:</p>
+<ul>
+<li>Cluster volume scales automatically, only bills for consumed data, and is constantly backed up to S3.</li>
+<li>Aurora replicas improve availability, can be promoted to be a primary instance quickly, and allow for efficient read scaling.</li>
+<li>Reads and writes use the <code>cluster endpoint</code>.</li>
+<li>Reads can use the <code>reader endpoint</code>, which balances connections over all
+replica instances.</li>
+</ul>
+<p><img src="https://cdn.levine.io/uploads/images/gallery/2022-09//05/Screen-Shot-2020-05-14-at-11.51.56-PM.png" alt="Screen Shot 2020-05-14 at 11.51.56 PM"><br><img src="https://cdn.levine.io/uploads/images/gallery/2022-09//05/Screen-Shot-2020-05-15-at-12.06.28-AM.png" alt="Screen Shot 2020-05-15 at 12.06.28 AM"></p>
+<h3>Best Practices</h3>
+<p>As mentioned in the above image, there are a handful of best practices to remember regarding resiliency and scaling that I&#39;ll list below:</p>
+<ul>
+<li>To improve resiliency, use additional replicas</li>
+<li>To scale <code>write</code> workloads, scale up the instance size.</li>
+<li>To scale <code>read</code> workloads, scale out (add additional replicas)</li>
+</ul>
+<h2>Aurora Serverless</h2>
+<p>The Orion Papers describe Aurora Serverless as follows:</p>
+<blockquote>
+<p>Aurora Serverless is based on the same database engine as Aurora, but instead of provisioning certain resource allocation, Aurora Serverless handles this as a service. You simply specify a minimum and maximum number of Aurora capacity units (<code>ACUs</code>) — Aurora Serverless can use the <code>Data API</code>.</p>
+</blockquote>
+<p><img src="https://cdn.levine.io/uploads/images/gallery/2022-09//05/Screen-Shot-2020-05-15-at-12.18.01-AM.png" alt="Screen Shot 2020-05-15 at 12.18.01 AM"></p>
+<h2>Additional Resources</h2>
+<p>There are additional topics that lend to database migration and working with queries. Because of the level of detail involved in discussing these topics, I&#39;m going to link the resources provided by Linux Academy that cover these topics.</p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Migrating.RDSMySQL.Import.html">Migrating an RDS MySQL Snapshot to Aurora</a></li>
+<li><a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Managing.FaultInjectionQueries.html">Testing Amazon Aurora Using Fault Injection Queries</a></li>
+<li><a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-mysql-parallel-query.html">Working with Parallel Query for Amazon Aurora MySQL</a></li>
+</ul>
+<h2>To Be Continued</h2>
+<p>This marks the end of part 2, and the SQL end of AWS databases. <a href="../blog/databases-part-3">Part 3</a> will focus on NoSQL databases, specifically DynamoDB.</p>
+]]></description>
+            <link>https://dave.levine.io/blog/databases-part-2</link>
+            <guid isPermaLink="true">https://dave.levine.io/blog/databases-part-2</guid>
+            <dc:creator><![CDATA[Dave Levine]]></dc:creator>
+            <pubDate>Fri, 15 May 2020 04:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Databases (Part 1)]]></title>
+            <description><![CDATA[<h2>Introduction</h2>
+<p>I finished the database section of the AWS Solutions Architect Associate course a few days ago, and it was by far the most challenging to wrap my head around.</p>
+<p>Just to point it out for the record — I am by no means a database guy. I know what they are at a cursory level, but I have no real hands-on experience to speak of with any type of databases.</p>
+<p>This will be my attempt to make sense of all the database offerings from AWS.</p>
+<h2>SQL — Relational Database Service (RDS)</h2>
+<h3>Overview</h3>
+<p>RDS is one of the managed database offerings from AWS. It&#39;s SQL based, so it allows for you to spin up a number of the most popular SQL database engines such as:</p>
+<ul>
+<li>MySQL</li>
+<li>PostgreSQL</li>
+<li>Microsoft SQL Server</li>
+<li>Oracle Database</li>
+<li>MariaDB</li>
+</ul>
+<p>Since RDS is a managed database, it takes over a lot of the management tasks of a relational database such as:</p>
+<ul>
+<li>Scaling</li>
+<li>Backups</li>
+<li>High availability (if configured)</li>
+</ul>
+<p>Each database is referred to as an instance, and each instance runs a database engine. The database instance is the database environment that exists within the AWS cloud. The instance can be accessed and modified by making use of the AWS Command Line Interface, the Amazon RDS API, or the AWS Management Console.</p>
+<p>The Orion Papers from Linux Academy have a number of diagrams that really outline this information well and can be seen below.</p>
+<p><img src="https://cdn.levine.io/uploads/images/gallery/2022-09//05/Screen-Shot-2020-05-13-at-11.43.07-PM.png" alt="Screen Shot 2020-05-13 at 11.43.07 PM"><br><img src="https://cdn.levine.io/uploads/images/gallery/2022-09//05/Screen-Shot-2020-05-13-at-11.44.17-PM.png" alt="Screen Shot 2020-05-13 at 11.44.17 PM"></p>
+<h3>Limitations</h3>
+<p>There are a handful of constraints and quotas that are imposed on RDS. Instead of listing them all out, AWS has it <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Limits.html">documented</a> very well.</p>
+<h3>Multi-AZ Deployment</h3>
+<p>One of the biggest benefits of using RDS is that it can be deployed using a number of Availability Zones (AZs). This provides an increased amount of availability and durability. When a database is deployed to multiple AZs, the data is synchronously replicated to a standby note in a different AZ.</p>
+<p>Some additional benefits of <a href="https://aws.amazon.com/rds/features/multi-az/">Multi-AZ architecture</a> are:</p>
+<ul>
+<li>Enhanced Durability</li>
+<li>Increased Availability</li>
+<li>Database Performance</li>
+<li>Automatic Failover</li>
+</ul>
+<p>A diagram from the Orion Papers can be seen below to show this further.</p>
+<p><img src="https://cdn.levine.io/uploads/images/gallery/2022-09//05/Screen-Shot-2020-05-13-at-11.44.33-PM.png" alt="Screen Shot 2020-05-13 at 11.44.33 PM"></p>
+<h2>Read Replicas</h2>
+<p>Read replicas are something that I&#39;ve seen before as an offering in my own environment, but didn&#39;t admittedly see the advantage of using at first. They allow for scaling the amount of reads to a database, and in the case of RDS, allow for up to 5x increase in reads. They can exist either in the same region or a different one and also support Multi-AZ architecture. The reads are done at an <em>eventually consistent</em> speed, which is normally seconds, so long as the application in question supports it.</p>
+<p><img src="https://cdn.levine.io/uploads/images/gallery/2022-09//05/Screen-Shot-2020-05-13-at-11.44.47-PM.png" alt="Screen Shot 2020-05-13 at 11.44.47 PM"></p>
+<h2>To be continued</h2>
+<p>I don&#39;t want this post to become unmanageable by writing in detail about all the AWS database offerings. To accomplish this, I&#39;m going to split this post into a few parts so that it doesn&#39;t become overwhelming.</p>
+<p>Part 2 can be found <a href="../blog/databases-part-2">here</a>.</p>
+]]></description>
+            <link>https://dave.levine.io/blog/databases-part-1</link>
+            <guid isPermaLink="true">https://dave.levine.io/blog/databases-part-1</guid>
+            <dc:creator><![CDATA[Dave Levine]]></dc:creator>
+            <pubDate>Thu, 14 May 2020 04:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Choosing a Routing Policy]]></title>
+            <description><![CDATA[<h2>Baseline</h2>
+<p>I&#39;ll start by saying I have a very general understanding of DNS. I know it&#39;s often dubbed the “<em>internet phone book</em>” and that it translates IP addresses into URLs. I know some of the various DNS record types off the top of my head — A, AAAA, CNAME, MX, TXT — along with how each of them is used, but mostly at a high level.</p>
+<p>As a baseline...</p>
+<blockquote>
+<ul>
+<li><code>A record</code> — an IPv4 record that corresponds with an IP address and the domain name it corresponds with.</li>
+<li><code>AAAA record</code> — same as an A record, but for IPv6 only.</li>
+<li><code>CNAME</code> — an alias for an A record, generally used with subdomains.</li>
+<li><code>MX record</code> — short for Mail Exchange, associated with email servers.</li>
+<li><code>TXT record</code> — associates arbitrary text or information with a domain name.</li>
+</ul>
+</blockquote>
+<h2>Route 53</h2>
+<p>My entire homelab, although traveling through a VPN to leave my network, passes through Cloudflare. It&#39;s where I have my domains registered and all traffic proxied, so getting my feet wet with Route 53 felt very different; more involved.</p>
+<p>As I mentioned in the preface, my experience with DNS is limited in comparison to Route 53. Although the breadth of features is incredibly varied, I wanted to focus this post on the various routing policies and how they affect traffic traversing through Route 53.</p>
+<h2>Routing Policy</h2>
+<p>In routing policies, the policy defines the behavior of the service. There are trade-offs that need to be understood before implementation. Each policy will be outlined below.</p>
+<h3>Simple routing</h3>
+<p>Simple routing is a generic routing of a service such as a web server that gives function to a domain. My understanding is that it&#39;s the closest to Cloudflare, for example, in the sense that a single IP is assigned to a single domain name.</p>
+<h3>Failover routing</h3>
+<p>Failover routing exists with an active-passive configuration such as a primary and disaster recovery site. Failover is determined with health checks done within Route 53. If a resource replies to a health check based on pre-determined criteria, the resource is deemed healthy and passes the check. If it doesn&#39;t, the route is automatically switched to the secondary failover site.</p>
+<p>An example of the health checks interface can be seen below:</p>
+<p><img src="https://cdn.levine.io/uploads/images/gallery/2022-09//04/1_H4_Es0n0UVn4DeHMOIkN8w.png" alt="healthchecks"></p>
+<p><code>Source</code>: <a href="https://medium.com/tensult/amazon-route-53-routing-policies-cbe356b851d3">Amazon Route 53 — Routing Policies</a></p>
+<h3>Geolocation routing</h3>
+<p>Geolocation routing is used when there is a business need to have particular traffic routed to a specific set of users within a geographic region.</p>
+<h3>Geoproximity routing</h3>
+<p>Geoproximity routing is used when there is a need to route traffic based on the location of resources. It relies on Route 53 traffic flow. When routing to AWS resources, it routes closest to the AWS Region the resources were created in. For non-AWS resources, it routes based on latitude and longitude.</p>
+<p><code>NOTE:</code> A diagram of both Geolocation and Geoproximity routing can be seen below...</p>
+<p><img src="https://cdn.levine.io/uploads/images/gallery/2022-09//04/Screen-Shot-2020-04-29-at-12.09.52-AM.png" alt="routing"></p>
+<h3>Latency routing</h3>
+<p>Latency routing can be used when resources reside in multiple regions. When implemented, it will automatically route to the region with the least amount of latency.</p>
+<h3>Multi-value answer routing</h3>
+<p>This is one that I&#39;m not entirely clear on and wasn&#39;t covered in much detail in the AWS Certified Solutions Architect course. Because of that, I&#39;ll list the explanation from the AWS documentation below.</p>
+<blockquote>
+<p>Multivalue answer routing lets you configure Amazon Route 53 to return multiple values, such as IP addresses for your web servers, in response to DNS queries. You can specify multiple values for almost any record, but multivalue answer routing also lets you check the health of each resource, so Route 53 returns only values for healthy resources. It&#39;s not a substitute for a load balancer, but the ability to return multiple health-checkable IP addresses is a way to use DNS to improve availability and load balancing.</p>
+<p><code>Source</code> — <a href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy.html">Choosing a Routing Policy</a></p>
+</blockquote>
+<h3>Weighted routing</h3>
+<p>Weighted routing is used to route traffic based on proportions that you specify. This is best used in testing and not necessarily in production. An example of this works by specifying two values for two separate instances that combined add up to an arbitrary number. For example, one instance is assigned the number 90, while the other instance is assigned the number 10. Whichever instance has the highest numerical value will receive the most traffic.</p>
+<h2>Re-baselining</h2>
+<p>Writing out the definitions for the different types of routing policies in Route 53 has in itself been a learning experience. I need to study these a bit more because they&#39;re not obvious to me yet, particularly the policies concerning geographic locations.</p>
+<p>It&#39;s easy to see how much there is to know about Route 53 compared to traditional DNS. Aside from the difficulty in understanding certain routing policies, it&#39;s eye-opening to see what else is possible to get out of DNS.</p>
+]]></description>
+            <link>https://dave.levine.io/blog/choosing-a-routing-policy</link>
+            <guid isPermaLink="true">https://dave.levine.io/blog/choosing-a-routing-policy</guid>
+            <dc:creator><![CDATA[Dave Levine]]></dc:creator>
+            <pubDate>Wed, 29 Apr 2020 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Virtual Private Cloud (VPC)]]></title>
+            <description><![CDATA[<h2>Introduction</h2>
+<p>I just finished the Virtual Private Cloud (VPC) section of the AWS Certified Solutions Architect course and I wanted to write it out in order to gain some clarity around it.</p>
+<p>For some reason, this has been the hardest topic of the course so far. There were certain things that were easier than I thought they&#39;d be (subnetting), while others were much more difficult (NAT Instance vs NAT Gateway).</p>
+<h2>VPC</h2>
+<p>VPCs are essentially a private network that various instances and other architecture reside in. In AWS, every environment starts within a default VPC. This default VPC has basic functionality such as DHCP, Internet access, etc. While this is all very basic, building one from the ground up is where it becomes challenging.</p>
+<h2>Network Design</h2>
+<p>Designing and building a custom VPC from scratch is not easy. There&#39;s a lot that goes into the architecture and should be fully realized before being implemented.</p>
+<p>During the VPC section of the course, I was required to build and connect the following during the lab portion:</p>
+<ul>
+<li>VPC</li>
+<li>Subnets</li>
+<li>Internet gateway</li>
+<li>NAT gateways</li>
+<li>Bastion host</li>
+<li>Route tables</li>
+<li>Security groups</li>
+<li>Network access control lists (NACLs)</li>
+</ul>
+<p>All the concepts individually are not very difficult to understand, but putting them together to work seamlessly is another story.</p>
+<h2>Design &amp; Build</h2>
+<h3>Diagram</h3>
+<p>The following is what was required to be built for this lab, and what I&#39;ll be discussing below:</p>
+<p><img src="https://cdn.levine.io/uploads/images/gallery/2022-09//04/lab_diagram_customvpc.png" alt="lab diagram custom VPC"></p>
+<h3>Creation of VPC and Subnet Architecture</h3>
+<p>The creation of the VPC was straightforward, although it&#39;s important to consider the CIDR block range before proceeding. The default VPC in AWS starts you off with a 172.31.0.0/16, which provides 65,536 private IPv4 addresses. This is suitable for most projects, regardless of scale. This lab used 10.0.0.0/16, which ends up being the same amount, but just using a different CIDR range.</p>
+<p>The lab has you create a three Availability Zone (AZ), three-app tier subnet layout while leaving spaces for a fourth AZ and fourth tier. This is already outside the scope of anything I&#39;ve ever worked with.</p>
+<p>The layout looked like the following:</p>
+<p><img src="https://cdn.levine.io/uploads/images/gallery/2022-09//04/Screen-Shot-2020-04-19-at-10.12.41-AM.png" alt="Screen Shot 2020-04-19 at 10.12.41 AM"></p>
+<p>10.0.12.0/24, 10.0.13.0/24, 10.0.14.0/24, and 10.0.15.0/24 were reserved for the fourth tier in four AZs.</p>
+<h3>Creating the Internet Gateway, Public Routing, and Bastion Host</h3>
+<p>This is where I feel I lost my way. Setting up the subnets for DHCP was fine, but assigning those subnets to an Internet Gateway and then configuring the route table, as well as public routing to associate with those subnets threw me for a loop.</p>
+<p>The main points to remember are:</p>
+<ul>
+<li>Create the Internet Gateway and attach it to the VPC.</li>
+<li>Create a route table and set the destination to 0.0.0.0/0. Repeat for ::/0 (IPv6)<ul>
+<li>Point it to the Internet Gateway.</li>
+</ul>
+</li>
+<li>Open the route table and tag the required subnets.</li>
+</ul>
+<h3>Bastion Hosts</h3>
+<p>I&#39;ve never heard this terminology prior to this course. I&#39;ve always known them as <code>jump boxes</code>, but I understand why <code>bastion host</code> is used. This section didn&#39;t give me much trouble as I was already familiar with them, but I just wanted to point a real world example for future reference...</p>
+<p>At my job, I often have to run a SQL query to obtain foreign grant sponsors for reporting. Because I have to run the query from a Production database, the security around it is tight. The jump box lives on a server and hosts MS SQL Server with access to the Production database. I have access to RDP into the server and appropriate credentials to run these queries.</p>
+<h3>NAT Gateway</h3>
+<p>Allows for private instances to gain access to the public Internet and/or other AWS services. The Internet cannot initiate a connection with those instances.</p>
+<p>From the <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html">AWS Documentation</a>:</p>
+<blockquote>
+<p>The following diagram illustrates the architecture of a VPC with a NAT gateway. The main route table sends Internet traffic from the instances in the private subnet to the NAT gateway. The NAT gateway sends the traffic to the Internet gateway using the NAT gateway’s Elastic IP address as the source IP address.</p>
+</blockquote>
+<p><img src="https://cdn.levine.io/uploads/images/gallery/2022-09//04/nat-gateway-diagram.png" alt="NAT gateway diagram"></p>
+<p>Three different NAT gateways were required to be created for this portion of the lab, one for each public subnet.</p>
+<h3>Routing</h3>
+<p>At this point in the course, I was required to create three private route tables and associate the private subnets from the same AZs. After associating the subnets, each route table needed to be assigned to a NAT gateway.</p>
+<h3>Security Groups</h3>
+<p>After running pfSense in my own lab, along with running multiple hosts from DigitalOcean, I&#39;m pretty familiar with firewall configuration.</p>
+<p>The final portion of the lab was to allow only SSH connections from the bastion host to the internal resources. After configuring the security group and adjusting the network ACL to explicitly allow/deny inbound traffic from my IP, the lab was finished.</p>
+<h2>Conclusion</h2>
+<p>As I said in the beginning and a few times throughout, this was not an easy section of the course. It took me a few times to pass the exam at the end of the section. I even had to go back and watch two of the videos in order to get a better understanding of things before attempting the practice exam again.</p>
+<p>Of course, there are more advanced VPC topics, which is the next section I&#39;ll be working through. All of this has really made me think of network design differently, so I&#39;m looking forward to continuing on with the course and learning as much as I can.</p>
+]]></description>
+            <link>https://dave.levine.io/blog/virtual-private-cloud</link>
+            <guid isPermaLink="true">https://dave.levine.io/blog/virtual-private-cloud</guid>
+            <dc:creator><![CDATA[Dave Levine]]></dc:creator>
+            <pubDate>Sun, 19 Apr 2020 04:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Site Migration]]></title>
+            <description><![CDATA[<h2>Analysis</h2>
+<p>I&#39;ve been thinking about obtaining a more professional domain name for some time now, but didn&#39;t actually pull the trigger on it until last week. I ended up purchasing two domains, which may seem silly, but there is some logic behind it.</p>
+<p>The two domains I purchased are...</p>
+<ul>
+<li><a href="https://www.davelevine.io">davelevine.io</a></li>
+<li><a href="https://distributedcomputing.io">distributedcomputing.io</a></li>
+</ul>
+<p>My reasoning behind it is two-fold — <a href="https://www.davelevine.io">davelevine.io</a> will serve as my professional domain, while <a href="https://distributedcomputing.io">distributedcomputing.io</a> will serve as my homelab domain. Additionally, <a href="https://distributedcomputing.io">distributedcomputing.io</a> really spoke to me and described what I enjoy doing, which became my motivation for purchasing the domain.</p>
+<p>Because my homelab is one project and my professional career, in a sense, is another, I wanted to keep them separate. This leads me into the point of this post — site migration.</p>
+<h2>Purpose Built</h2>
+<p>While purchasing a domain is one thing, migrating 30 systems is no small task.</p>
+<p>I have everything I work on, professional and homelab, proxied through Cloudflare. Locally, I use a combination of Squid Reverse Proxy and Nginx.</p>
+<p>My personal preference is Nginx, although when I first started building my network with purpose, I began using Squid simply because it was easier to use than Nginx. Although most of my subdomains proxy through Squid, I began to quickly realize that this is something I hadn&#39;t properly documented.</p>
+<p>Updating the mappings within Squid didn&#39;t take very long, but was awfully time-consuming. I also needed to generate a new origin certificate to include the new domain name.</p>
+<p>Since I still own my previous domain — <a href="https://dowhatimeant.xyz">dowhatimeant.xyz</a>, I decided to just add the subdomain to the existing certificate request through Let&#39;s Encrypt. Generating the cert was quick and after revoking the old certificate, I was on my way.</p>
+<h2>Migration</h2>
+<p>I began migrating services that I knew would give me the fewest headaches — mostly Docker containers and smaller pieces of software running within VMs. The biggest challenge I realized as I began moving them one-by-one was how many disparate 3rd party tools would be affected by it.</p>
+<p>The first thing I realized was the need to update my email for different services — Reddit, Atlassian (backup KB), etc. This was easy, but still time-consuming.</p>
+<p>Next, I needed to update ddclient to continue to make sure that DDNS still kept up to date. As of this posting, I still haven&#39;t completely configured it, but that will be tomorrow&#39;s project.</p>
+<p>Last but not least was updating the CNAME for the custom domain I have through Uptime Robot...which led me to realize I needed to update all my subdomains within Uptime Robot.</p>
+<h2>Residuals</h2>
+<p>At the time of this writing, I still have two subdomains to square away — Nagios XI and pfSense.</p>
+<p>I tried updating the domain for Nagios earlier, but after doing so, the domain wouldn&#39;t resolve, so I had to revert. It&#39;s probably something fairly easy, but I&#39;ll get it resolved tomorrow.</p>
+<p>The next is pfSense. Because I use pfSense as my firewall/router, it&#39;s important that I get this one right or else it will take my entire network down. I made the switch and all seems to be well so far, but I&#39;ll need to give it a few days to really make sure.</p>
+<h2>Lessons Learned</h2>
+<p>A few things I learned through this:</p>
+<ul>
+<li>My network is a lot more complex than I realized</li>
+<li>I need to properly document all reverse proxy settings, configurations and locations of the config files.</li>
+<li>There were a few outliers I hadn&#39;t accounted for that slowed me down.</li>
+</ul>
+<p>All in all, the migration was a success. I&#39;m happy with the new domain, and hopefully I&#39;ll stick with it for awhile.</p>
+]]></description>
+            <link>https://dave.levine.io/blog/site-migration</link>
+            <guid isPermaLink="true">https://dave.levine.io/blog/site-migration</guid>
+            <dc:creator><![CDATA[Dave Levine]]></dc:creator>
+            <pubDate>Thu, 09 Apr 2020 04:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[API Gateway]]></title>
+            <description><![CDATA[<h2>Preface</h2>
+<p>I have to preface this by saying that I am not a developer. I can read snippets of code and muddle my way through certain things, but coding is not my strong suit.</p>
+<p>Having said that, I need to break down API Gateway as much as I can in order to better understand it.</p>
+<h3>API Gateway</h3>
+<p>API Gateway is a way of allowing functions from within AWS to communicate with other services within and outside of AWS. This is, of course, a very rudimentary way of explaining API Gateway, but I&#39;ll get into it more as I go on. First, it&#39;s important to understand what an API is.</p>
+<h3>What is an API?</h3>
+<p>APIs, or Application Programming Interfaces, are at their core, just snippets of code that allow for one piece of code to interface with another. This allows a piece of software to interface with other software that normally would not be able to.</p>
+<p>For example, when an app is downloaded on a phone, the app will have an API that allows for the user to interact with the app. Without the API(s) in place, an OS such as Android would not necessarily be able to communicate with the app, or the experience would be degraded at best.</p>
+<h3>Definitions</h3>
+<p>AWS defines API Gateway as follows:</p>
+<blockquote>
+<p>*Amazon API Gateway is an AWS service for creating, publishing, maintaining, monitoring, and securing REST, HTTP, and WebSocket APIs at any scale. API developers can create APIs that access AWS or other web services, as well as data stored in the AWS Cloud.</p>
+<p>API Gateway acts as a “front door” for applications to access data, business logic, or functionality from your backend services, such as workloads running on Amazon Elastic Compute Cloud (Amazon EC2), code running on AWS Lambda, any web application, or real-time communication applications.*</p>
+</blockquote>
+<p>REST APIs are <code>HTTP-based</code> and <code>stateless</code>, whereas WebSocket APIs use the WebSocket protocol, which makes it <code>stateful</code> and allows for sending and receiving information.</p>
+<p>So which one is better? The answer is, it depends on what you&#39;re doing.</p>
+<h4>REST API</h4>
+<ul>
+<li>Utilizes the HTTP protocol to transfer information when a user takes action.</li>
+<li>Best used for less frequent requests.</li>
+</ul>
+<h4>WebSocket API</h4>
+<ul>
+<li>Utilizes the WebSocket protocol to send and receive information between users and devices.</li>
+<li>Best used with frequent back-and-forth communications such as chat apps.</li>
+</ul>
+<h3>Architecture</h3>
+<p><img src="https://cdn.levine.io/uploads/images/gallery/2022-09/04/Product-Page-Diagram_Amazon-API-Gateway-How-Works.png" alt="Product Page Diagram Amazon API Gateway How Works"></p>
+<p><em>Obtained from <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html">AWS</a></em></p>
+<p><img src="https://cdn.levine.io/uploads/images/gallery/2022-09/04/Screen-Shot-2020-04-06-at-12.17.13-AM.png" alt="Screen Shot 2020-04-06 at 12.17.13 AM"></p>
+<p><em>Obtained from the <a href="https://interactive.linuxacademy.com/diagrams/AWSCSA.html">Orion Papers</a></em></p>
+<h3>Wrapping Up</h3>
+<p>There&#39;s a lot about API Gateway that I haven&#39;t gotten into for two reasons:</p>
+<ul>
+<li>This post would need to be broken out into multiple posts to capture it all.</li>
+<li>I don&#39;t know anything more than this about API Gateway at the time of this writing.</li>
+</ul>
+<p>I&#39;m sure I&#39;ll have more to write once I get into Step Functions in the next lesson.</p>
+]]></description>
+            <link>https://dave.levine.io/blog/api-gateway</link>
+            <guid isPermaLink="true">https://dave.levine.io/blog/api-gateway</guid>
+            <dc:creator><![CDATA[Dave Levine]]></dc:creator>
+            <pubDate>Mon, 06 Apr 2020 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Serverless Architecture]]></title>
+            <description><![CDATA[<h2>Introduction</h2>
+<p>Serverless architecture is the current topic I&#39;m learning in the <a href="https://linuxacademy.com/course/aws-certified-solutions-architect-2019-associate-level/">AWS Certified Solutions Architect: Associate</a> course from <a href="https://linuxacademy.com">Linux Academy</a>. It&#39;s a bit of a challenge for me because I don&#39;t have any real experience with it, but I understand the concepts at a 30,000 ft level.</p>
+<p>I&#39;ll start with what I know and then get into some theory I&#39;ve compiled.</p>
+<h3>Serverless</h3>
+<p>The term <code>serverless</code> has always been a bit of a mystery to me. It&#39;s a term I&#39;ve heard tossed around, but never quite understood what it meant. In any type of architecture that operates or can operate at scale, there are always servers involved, so what does the term actually mean?</p>
+<p>Essentially, serverless means either a user or an entity (company) does not personally manage the underlying infrastructure. Comparing this to EC2, serverless does not require you to spin up an instance, manage updates, install software, handle networking, etc. With EC2, all the aforementioned is required. All the responsibility of maintaining an instance or any underlying virtual infrastructure is shifted to the provider with serverless.</p>
+<p>What this all boils down to is this — all you&#39;re responsible for is the code and any additional libraries that may be required in order to run that code.</p>
+<h3>Cost</h3>
+<p>Quite possibly the most attractive thing about serverless architecture is cost. Because every run of a function uses very little compute power and can run in the span of milliseconds, it costs a fraction of what a traditional VM would cost. With serverless, you only pay for the time it takes to run the function.</p>
+<h3>Examples</h3>
+<h4>What serverless can be used for</h4>
+<ul>
+<li>Checking the temperature of an IoT thermostat</li>
+<li>Ensuring a dynamic IP address is always up to date (DDNS)</li>
+</ul>
+<h4>What serverless should not be used for</h4>
+<ul>
+<li>Monolithic applications</li>
+<li>Any application that requires an OS</li>
+</ul>
+<h3>Use Cases</h3>
+<p>Common use cases for serverless architecture can be explained best through the following image:</p>
+<p><img src="https://cdn.levine.io/uploads/images/gallery/2022-09//04/x1aeniur0.jpg" alt="Use Cases for Serverless Architecture"></p>
+<p>Obtained from <a href="https://kruschecompany.com/why-enterprises-choose-serverless-architecture">K&amp;C</a></p>
+<h3>Concepts</h3>
+<p>In lieu of writing out the concepts one-by-one, the page below from Linux Academy illustrates the serverless architecture perfectly.</p>
+<p><img src="https://cdn.levine.io/uploads/images/gallery/2022-09//04/Screen-Shot-2020-04-02-at-9.56.54-PM.png" alt="Serverless Architecture Concepts"></p>
+<p>Obtained from the <a href="https://interactive.linuxacademy.com/diagrams/AWSCSA.html">Orion papers</a></p>
+<h3>Lambda</h3>
+<p>Lambda is without question the most popular example of serverless architecture at the time of this writing. My understanding so far is limited, but what I do know can be summarized below:</p>
+<ul>
+<li>Lambda is known as FAAS or Function as a Service.</li>
+<li>The word <code>function</code> in this case means an <code>event</code>.</li>
+<li>Every function is stateless — each run is completely clean, meaning that functions are isolated from other functions.</li>
+<li>Lambda can integrate seamlessly with other AWS services such as S3, as well as 3rd party hardware and services.</li>
+<li>Lambda can leverage virtually any type of codebase.</li>
+<li>Serverless architecture uses such low amounts of compute power than its scaling potential is infinite.</li>
+</ul>
+<h3>Bringing it all together</h3>
+<p>Serverless architecture is next-gen computing, plain and simple. There will always be a need for traditional instances, but with limitless scaling potential, cost benefits and a bare essentials approach, serverless is here to stay.</p>
+]]></description>
+            <link>https://dave.levine.io/blog/serverless-architecture</link>
+            <guid isPermaLink="true">https://dave.levine.io/blog/serverless-architecture</guid>
+            <dc:creator><![CDATA[Dave Levine]]></dc:creator>
+            <pubDate>Fri, 03 Apr 2020 04:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Working With Agile]]></title>
+            <description><![CDATA[<h2>Primer</h2>
+<p>I spent some time a few nights ago completely overhauling my resume. This is really for a few reasons:</p>
+<ul>
+<li>It was a mess and needed the overhaul.</li>
+<li>It was outdated.</li>
+<li>It didn&#39;t showcase anything about me or my skillset.</li>
+</ul>
+<p>One of the additions to my resume has been a <code>Technical Proficiencies</code> section, which includes a piece on <code>Methodologies</code>. In my current role as a Business Analyst, I&#39;m always on the System Development Life Cycle (SDLC) wheel, but additionally, I&#39;m also using Agile more than I may realize.</p>
+<h3>What is Agile?</h3>
+<p>Agile is officially summarized by the following four points:</p>
+<ul>
+<li><code>Individuals and interactions</code> over processes and tools</li>
+<li><code>Working software</code> over comprehensive documentation</li>
+<li><code>Customer collaboration</code> over contract negotiation</li>
+<li><code>Responding to change</code> over following a plan</li>
+</ul>
+<p>That&#39;s a good high-level overview, but I think it&#39;s important to find out what exactly that means to me. Let&#39;s dive in...</p>
+<h3>Scrum vs. Kanban</h3>
+<p>Whenever the topic of Agile comes up, the first thing that likely comes to mind for people who are familiar with it is Scrum. It&#39;s wildly popular in the software development and project management world, and with good reason.</p>
+<p>Atlassian has a great write-up of the differences between <a href="https://www.atlassian.com/agile/kanban/kanban-vs-scrum">Scrum and Kanban</a>. Without going off on too much of a tangent, I&#39;ll outline what I think are the most important parts of each below:</p>
+<h4>Scrum</h4>
+<ul>
+<li>Each team member has certain roles and responsibilities.</li>
+<li>Sprints, or set periods of time set aside for work, are heavily used.</li>
+<li>Modifications during a sprint are discouraged.  # Fixed typo from &quot;spring&quot; to &quot;sprint&quot;</li>
+<li>Best for teams with stable priorities.</li>
+</ul>
+<h4>Kanban</h4>
+<ul>
+<li>No pre-defined roles for a team. Everyone chips in.</li>
+<li>Work is delivered continuously.</li>
+<li>Changes can be made at any point.</li>
+<li>Best for teams with varying priorities.</li>
+</ul>
+<p>Personally, I&#39;m a huge fan of Kanban. The boards are fantastic and can be as simple or complex as you want. It also allows for an entire team to chip in on tasks, which I think ultimately leads to a better end result.</p>
+<h3>Applying to Software Development</h3>
+<p>I started reading a <a href="https://blog.pragmaticengineer.com/">blog by Gergely Orosz</a>, who is an engineer building large-scale distributed systems for companies such as Uber. He wrote a fantastic piece on <a href="https://blog.pragmaticengineer.com/what-agile-really-means/">what Agile really means</a> in terms of software development. He wrote the following basics, which I couldn&#39;t agree more with:</p>
+<ul>
+<li>When writing code, do it in an agile way. Decide what you want to achieve, do a small change, test it, learn from it, adjust, and repeat. Try to write code that&#39;s easy to change later.</li>
+<li>When building a product, do it in an agile way. Do small changes, get immediate feedback, do small iterations, and make decisions that allow future changes as much as possible.</li>
+<li>Similarly, when working as a team, solve problems using these basic principles, a small step at a time.</li>
+<li>The tools and methodologies you use should help achieve this kind of agility. If they only add more process — ditch them.</li>
+</ul>
+<p>This is a perfect way of looking at software development without getting lost in all the technicalities.</p>
+<h3>What Agile Means to Me</h3>
+<p>I think it&#39;s easy to get lost in the weeds with theory and jargon because Agile can mean a lot of things to a lot of different people. Businesses and disciplines in general can look at Agile and take any approach they want. All of that is completely acceptable, but that&#39;s not what we&#39;re doing here.</p>
+<p>Agile to me comes down to a few important things:</p>
+<ul>
+<li>Make small changes.</li>
+<li>Learn from these changes and make adjustments accordingly.</li>
+<li>Improve on what you&#39;re working on based on these changes.</li>
+<li>Rinse and repeat until you&#39;ve reached your goal.</li>
+</ul>
+<h3>Conclusion</h3>
+<p>It&#39;s easy to get lost in the weeds with Agile. As I mentioned, it means a lot of things to a lot of people. In short, stick to the basics, learn from them, and make improvements until you&#39;ve reached your goal.</p>
+]]></description>
+            <link>https://dave.levine.io/blog/agile</link>
+            <guid isPermaLink="true">https://dave.levine.io/blog/agile</guid>
+            <dc:creator><![CDATA[Dave Levine]]></dc:creator>
+            <pubDate>Mon, 30 Mar 2020 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Knowledge Management]]></title>
+            <description><![CDATA[<p>Ever since I started building systems, I&#39;ve always had a near obsessive need to keep track of what I was doing. The problem at the time was that I never saw the importance of writing it all down; it was all &#39;in my head&#39;. Needless to say, that method of doing things is terrible, particularly in a professional setting.</p>
+<p>When I first started getting into writing down what I was working on, I didn&#39;t really have any system of organization to do it. I was vaguely familiar with the idea of a knowledge base, but it was something that was so unattainable for me, and it just seemed like a lot of work to maintain. Fast-forward a number of years later and I now administer my own knowledge base, which is hosted on two different platforms for redundancy — DigitalOcean in a Ubuntu 18.04LTS droplet, and Confluence, hosted by Atlassian.</p>
+<p>Aside from documenting numerous <code>how-to</code> guides and step-by-step tutorials, one of my favorite things to work on is flowcharts. Nothing tells the story of your network quite like a flowchart. They can be large, small, simple or complex. I personally prefer to flesh mine out as much as I can, but still maintain readability.</p>
+<p>My latest flowchart for my home network can be seen below:</p>
+<p><img src="https://cdn.levine.io/uploads/images/gallery/2020-04/jEkYsXlr5RheldtB-Grove_Network-Diagram-Final.png" alt="Grove Network Diagram Final"></p>
+<p>This particular flowchart was started some time last year, and while maintaining it is a mood job, I do enjoy updating it. For me, it helps to really bring my network to life and also give me a true understanding of just how complex it&#39;s become. This extra work gives you a lot of insight into where your network currently is and where it&#39;s going. Having your entire network on paper is something I can&#39;t stress the importance of enough. It helps for planning and for maintaining.</p>
+<p>The point of all of this is to always make sure to keep everything well documented. While I still do have everything all &#39;in my head&#39;, the more I learn, the more I need to write down. I can only see this becoming even more of a trend as my network grows larger and larger.</p>
+]]></description>
+            <link>https://dave.levine.io/blog/knowledge-management</link>
+            <guid isPermaLink="true">https://dave.levine.io/blog/knowledge-management</guid>
+            <dc:creator><![CDATA[Dave Levine]]></dc:creator>
+            <pubDate>Sun, 29 Mar 2020 04:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Server-Based Compute (EC2) Fundamentals]]></title>
+            <description><![CDATA[<p>As I mentioned in my first post, I&#39;m working my way through the <a href="https://linuxacademy.com/course/aws-certified-solutions-architect-2019-associate-level/">AWS Certified Solutions Architect certification training course</a>. I finished the EC2 Fundamentals course last night and just wanted to write some of my thoughts on it as I move onto the Intermediate coursework.</p>
+<ul>
+<li><p>EC2 as a whole is unbelievably daunting no matter how you look at it. I&#39;ve only dipped my toe in the pool, and it&#39;s already apparent to me that this architecture is massive.</p>
+</li>
+<li><p>This course is ultimately teaching me to look at system architecture differently — to break down an entire machine into tangible bits and fully understand the purpose of every part. A few examples...</p>
+<ul>
+<li>EC2 instances are just base images without any attributes other than the defaults. Configuration is performed as necessary before or after an instance is created.</li>
+<li>EBS volumes are just that... storage volumes. They can be attached and remove at will, the same way as hard drives.</li>
+</ul>
+</li>
+</ul>
+<p>Learning about system architecture this way is making me think differently about computing and what&#39;s possible.</p>
+<p>I&#39;ll be moving onto the EC2 Intermediate training next. Although I&#39;m nervous being one step closer to the exam, I&#39;m also incredibly excited. I think that combination alone means I&#39;m exactly where I need to be.</p>
+]]></description>
+            <link>https://dave.levine.io/blog/server-based-compute-ec2-fundamentals</link>
+            <guid isPermaLink="true">https://dave.levine.io/blog/server-based-compute-ec2-fundamentals</guid>
+            <dc:creator><![CDATA[Dave Levine]]></dc:creator>
+            <pubDate>Fri, 27 Mar 2020 04:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[EC2 Volume Types]]></title>
+            <description><![CDATA[<h2>Instance Store vs. Elastic Block Store</h2>
+<h2>Preface</h2>
+<p>Since I&#39;m currently going through the <a href="https://linuxacademy.com/course/aws-certified-solutions-architect-2019-associate-level/">AWS Certified Solutions Architect course</a> offered by <a href="https://linuxacademy.com">Linux Academy</a>, I&#39;m going to need to write things out so that they make a bit more sense to me. Today, it&#39;s going to be the differences between Instance Stores and Elastic Block Stores.</p>
+<h3>Instance Store</h3>
+<ul>
+<li>Provides temporary block level storage for an EC2 instance.</li>
+<li>Ephemeral; best used to store data temporarily that frequently changes.<ul>
+<li>ex. buffers, cache or scratch data.</li>
+</ul>
+</li>
+<li>Data will not survive if the instance is stopped, terminated or if the underlying drive just fails.</li>
+</ul>
+<h3>Elastic Block Store</h3>
+<ul>
+<li>Provides either SSD or traditional HDD backed volumes, depending on need, performance requirements and/or price.<ul>
+<li>SSD volumes:<ul>
+<li>Best for transactional workloads such as frequent read / write operations.</li>
+<li>Two types of SSDs — General purposed (gp2) and Provisioned IOPS (io1).<ul>
+<li>General purpose favors balance of price and performance.</li>
+<li>IOPS favors high performance (mission-critical low-latency / high-throughput)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>HDD volumes:<ul>
+<li>Best for larger streaming workloads where throughput is more desirable than IOPS.</li>
+<li>Two types of HDDs — Throughput optimized (st1) and Cold HDD (sc1).<ul>
+<li>Throughput optimized is better used towards hot storage where data is frequently accessed and throughput is essential.</li>
+<li>Cold HDD is low cost storage designed for less frequently accessed workloads such as archiving.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>I&#39;m not going to get into IOPS or I/O credit balances since I think those topics require their own page(s). This should serve as a great reference since my understanding after watching the video was still a bit hazy.</p>
+<p>Next up — EBS Snapshots</p>
+<h3>References</h3>
+<p><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html">Instance Store</a></p>
+<p><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html">Elastic Block Store</a></p>
+]]></description>
+            <link>https://dave.levine.io/blog/ec2-volume-types</link>
+            <guid isPermaLink="true">https://dave.levine.io/blog/ec2-volume-types</guid>
+            <dc:creator><![CDATA[Dave Levine]]></dc:creator>
+            <pubDate>Wed, 25 Mar 2020 04:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[An Introduction]]></title>
+            <description><![CDATA[<p>First and foremost, I&#39;m Dave. Rather than a formal introduction, <a href="/about">click here</a> instead to learn about me.</p>
+<p>I&#39;m not entirely sure what I plan on writing in this, or if I even plan on keeping it. It&#39;s more of a spur of the moment thing to do, especially since I&#39;ve never really had any interest in creating or maintaining a blog.</p>
+<p>In any case, I&#39;ll get right into it...</p>
+<p>Right now, I&#39;m at a bit of a professional crossroads. I&#39;ve gotten to a point in my career where I have enough skin in the game to be considered expensive, but I don&#39;t have enough of a proven track record to be considered in-demand.</p>
+<p>This unfortunately sucks. So instead of complaining, what do I do about it?</p>
+<p>The answer — learn something new!</p>
+<p>In comes AWS, or should I say, AWS training.</p>
+<p>I&#39;ve looked at my professional skillset and found that the best path forward would be to obtain the AWS Certified Solutions Architect: Associate certification.</p>
+<p>Aside from just being a certification I can get to bolster my resume and hopefully get my foot in the right door(s), it&#39;s incredibly interesting. I have a fair bit of knowledge when it comes to working with distributed systems, considering my entire homelab consists of them, so this is just applying that knowledge to an exponentially larger platform! No pressure...</p>
+<p>That&#39;s fine though; I&#39;m not afraid of it, although I will admit the nickel and dime billing model they have is pretty intimidating!</p>
+<p>This is an interesting leap for me, because I haven&#39;t been this excited to learn something new in a long time. I keep myself busy by finding seemingly random projects across GitHub, Docker Hub, etc and integrating them into my existing setup. I enjoy pushing the boundaries of what I can accomplish, so why should this be any different?</p>
+<p>Should I decide to keep this blog, much of the content will likely be what I&#39;m learning, my frustrations with it, and so on. I hope to also write about projects I&#39;m currently working on, along with ones that are completed.</p>
+<p>I&#39;ve already written more than I imagined I would for a first post. I think that&#39;s enough for tonight, but I have a feeling I&#39;ll be back for more.</p>
+<p>Stay tuned.</p>
+]]></description>
+            <link>https://dave.levine.io/blog/introduction</link>
+            <guid isPermaLink="true">https://dave.levine.io/blog/introduction</guid>
+            <dc:creator><![CDATA[Dave Levine]]></dc:creator>
+            <pubDate>Tue, 24 Mar 2020 04:00:00 GMT</pubDate>
+        </item>
+    </channel>
+</rss>

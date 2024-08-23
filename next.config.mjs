@@ -1,4 +1,3 @@
-// Import necessary packages
 import pkg from 'next-compose-plugins';
 import CompressionPlugin from 'compression-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
@@ -96,6 +95,14 @@ const nextConfig = {
         pathname: '/**',
       },
     ],
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/rss',
+        destination: '/rss.xml',
+      },
+    ];
   },
 };
 

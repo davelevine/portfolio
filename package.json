@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && node util/rss.js",
     "start": "next start",
     "lint": "next lint"
   },
@@ -17,6 +17,7 @@
     "framer-motion": "^11.2.12",
     "gray-matter": "^4.0.3",
     "lodash": "^4.17.21",
+    "marked": "^14.0.0",
     "next": "^14.2.4",
     "next-compose-plugins": "^2.2.1",
     "next-images": "^1.8.5",
@@ -29,6 +30,7 @@
     "react-syntax-highlighter": "^15.5.0",
     "rehype-raw": "^7.0.0",
     "remark-gfm": "^4.0.0",
+    "rss": "^1.2.2",
     "sass": "^1.77.6",
     "sharp": "^0.33.4",
     "terser-webpack-plugin": "^5.3.10",
