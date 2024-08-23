@@ -84,9 +84,9 @@ const renderImage = (imageName) => {
       alt={imageName}
       priority
       style={{
-        maxWidth: "100%",
-        height: "auto",
-        aspectRatio: `${dimensions.width} / ${dimensions.height}`,
+        maxWidth: "100%", // Ensure the image does not exceed its container
+        height: "auto", // Maintain the aspect ratio
+        // Removed aspectRatio to prevent conflict
       }}
     />
   );
