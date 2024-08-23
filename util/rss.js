@@ -1,11 +1,11 @@
+// util/rss.js
 import RSS from 'rss';
-import { getBlog } from '../../util/blog-util';
+import { getBlog } from './blog-util'; // Adjust the path as needed
 import fs from 'fs';
 import path from 'path';
 import { marked } from 'marked';
 
-export default async function handler(req, res) {
-  // Generate the RSS feed
+export async function generateRSS() {
   const feed = new RSS({
     title: "Dave's Blog",
     description: "Latest posts from Dave Levine's blog.",
@@ -40,6 +40,5 @@ export default async function handler(req, res) {
   const rssPath = path.join(process.cwd(), 'public', 'rss.xml');
   fs.writeFileSync(rssPath, rss);
 
-  // You don't need to send a response here since the file is being generated.
-  res.status(204).end(); // No Content response, since it's just generating the file.
+  console.log('RSS feed generated successfully!');
 }

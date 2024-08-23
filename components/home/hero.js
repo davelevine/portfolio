@@ -93,7 +93,7 @@ const Hero = () => {
                     data-aos-delay='100'
                     data-aos-duration='500'></i>
                 </a>
-                <a href='/rss.xml' target='_blank' rel='noreferrer' aria-label="RSS Feed">
+                <a href='/rss' target='_blank' rel='noreferrer' aria-label="RSS Feed">
                   <i
                     className='fa fa-square-rss'
                     data-aos='flip-up'
