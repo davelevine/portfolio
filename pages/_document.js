@@ -36,7 +36,7 @@ class MyDocument extends Document {
           />
 
           {/* RSS Feed Link */}
-          <link rel="alternate" type="application/rss+xml" title="RSS Feed for Dave Levine's Blog" href="/rss" />
+          <link rel="alternate" type="application/rss+xml" title="RSS Feed for Dave Levine's Blog" href="/rss.xml" />
 
           {/* Preload the appropriate LCP images */}
           {this.props.lcpImages?.map((src, index) => (
