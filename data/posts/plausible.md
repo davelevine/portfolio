@@ -4,7 +4,7 @@ categories:
     - Knowledge
     - Recommended
     - Tools
-date: "2021.03.20T14:13Z"
+date: "2021-03-20T14:13Z"
 description: A personal exploration of self-hosted analytics solutions and their implications on privacy.
 ---
 

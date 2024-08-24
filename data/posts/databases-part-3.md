@@ -3,7 +3,7 @@ title: Databases (Part 3)
 categories:
     - AWS
     - Knowledge
-date: "2020.06.06T09:29Z"
+date: "2020-06-06T09:29Z"
 description: I meant to get to finishing this up shortly after my last post, but life comes at you fast sometimes.
 ---
 

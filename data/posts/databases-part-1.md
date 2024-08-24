@@ -3,7 +3,7 @@ title: Databases (Part 1)
 categories:
     - AWS
     - Knowledge
-date: "2020.05.14T00:31Z"
+date: "2020-05-14T00:31Z"
 description: I finished the database section of the AWS Solutions Architect Associate course a few days ago, and it was by far the most challenging to wrap my head around.
 ---
 

@@ -3,7 +3,7 @@ title: Securing Nginx
 categories:
     - Recommended
     - Security
-date: "2020.09.06T17:21Z"
+date: "2020-09-06T17:21Z"
 description: A guide to enhancing the security of Nginx configurations.
 ---
 

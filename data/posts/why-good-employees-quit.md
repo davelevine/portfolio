@@ -4,7 +4,7 @@ categories:
     - Knowledge
     - Methodologies
     - Opinion
-date: "2021.03.16T14:13Z"
+date: "2021-03-16T14:13Z"
 description: An exploration of the key reasons why good employees leave their jobs, beyond just salary.
 ---
 

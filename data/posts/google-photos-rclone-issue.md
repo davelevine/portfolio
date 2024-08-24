@@ -3,7 +3,7 @@ title: Google Photos / Rclone Issue
 categories:
     - Knowledge
     - Tools
-date: "2021.02.27T11:36Z"
+date: "2021-02-27T11:36Z"
 description: A personal account of using rclone to back up photos and videos from Google Photos.
 ---
 

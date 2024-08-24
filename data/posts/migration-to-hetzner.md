@@ -3,7 +3,7 @@ title: DigitalOcean to Hetzner Migration
 categories:
     - Cloud
     - Recommended
-date: "2023.06.08T17:31Z"
+date: "2023-06-08T17:31Z"
 description: I've been happy with DigitalOcean as my VPS provider since 2019, but their recent price increases have become too much for me.
 ---
 

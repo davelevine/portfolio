@@ -3,7 +3,7 @@ title: Firewall Misconfiguration
 categories:
     - Case Studies
     - Security
-date: "2020.10.04T17:21Z"
+date: "2020-10-04T17:21Z"
 description: A recent firewall change in my homelab led to unexpected issues instead of improvements.
 ---
 
