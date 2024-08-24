@@ -42,4 +42,4 @@ Lately, I’ve been focusing on:
   [Weill Cornell Medicine]: https://weill.cornell.edu/
   [Derek Sivers]: https://sive.rs/now
   [Meditations]: https://en.wikipedia.org/wiki/Meditations
-  [RSS feed]: /rss
+  [RSS feed]: /rss.xml
