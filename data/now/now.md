@@ -31,7 +31,7 @@ Lately, I’ve been focusing on:
 
 ## Changelog
 
-* **Aug 24, 2024**: Added RSS feed for Blog section.
+* **Aug 23, 2024**: Added RSS feed for Blog section.
 * **Aug 09, 2024**: Initial creation of the Now page.
 
   [now page]: https://nownownow.com/about
@@ -43,4 +43,3 @@ Lately, I’ve been focusing on:
   [Derek Sivers]: https://sive.rs/now
   [Meditations]: https://en.wikipedia.org/wiki/Meditations
   [RSS feed]: /rss
-  
