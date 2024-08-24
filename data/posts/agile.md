@@ -4,7 +4,7 @@ categories:
     - Knowledge
     - Methodologies
     - Productivity
-date: "2020-03-30T14:13Z"  # Added time to the date
+date: "2020-03-30T14:13Z"
 description: An overview of my experiences with Agile methodologies in software development and project management.
 ---
 

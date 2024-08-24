@@ -5,7 +5,6 @@ import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-// Webpack configuration
 const configureWebpack = (config, { isServer }) => {
   if (!isServer && isProduction) {
     config.optimization.minimizer.push(new TerserPlugin());
@@ -13,7 +12,6 @@ const configureWebpack = (config, { isServer }) => {
   if (isProduction) {
     config.optimization.minimizer.push(new CssMinimizerPlugin());
 
-    // Configure Gzip compression for assets
     config.plugins.push(
       new CompressionPlugin({
         test: /\.(js|css|html|svg|woff|woff2|ttf|otf|jpeg|jpg|ico|png|webp|gif)$/,
@@ -44,14 +42,6 @@ const nextConfig = {
         pathname: '/**',
       },
     ],
-  },
-  async rewrites() {
-    return [
-      {
-        source: '/rss',
-        destination: '/rss.xml',
-      },
-    ];
   },
 };
 
