@@ -2,7 +2,7 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { getFeaturedCerts } from '../util/certs-util';
 import { getFeaturedProjects } from '../util/projects-util';
-import { getFeaturedBlog } from '../util/blog-util'; // Changed 'posts-util' to 'blog-util'
+import { getFeaturedBlog } from '../util/blog-util';
 
 // Dynamically import the Hero component for code splitting
 const Hero = dynamic(() => import('../components/home/hero'), {

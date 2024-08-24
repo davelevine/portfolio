@@ -4,16 +4,14 @@ import { useForm, ValidationError } from '@formspree/react';
 import { motion } from 'framer-motion';
 
 const ContactModal = ({ onClose }) => {
-  const [state, handleSubmit] = useForm('xzbloaed'); // TODO: replaceWithYourOwn
+  const [state, handleSubmit] = useForm('xzbloaed');
 
-  // Common close button component
   const CloseButton = () => (
     <button className={classes.close} onClick={onClose} aria-label="Close Modal">
       ✕
     </button>
   );
 
-  // Refactored common modal content into a separate function for reusability and clarity
   const renderModalContent = (title, message, showLinks = true) => (
     <div className={classes.modal}>
       <div className={`${classes.contactModal} ${classes.contactModalConfirmation}`}>
@@ -78,7 +76,7 @@ const ContactModal = ({ onClose }) => {
                 whileTap={{ scale: 0.9 }}
                 className='btn btn-filled'
                 onClick={onClose}
-                aria-label="Close Confirmation" // Accessible name for the button
+                aria-label="Close Confirmation"
               >
                 OK
               </motion.button>
@@ -131,7 +129,7 @@ const ContactModal = ({ onClose }) => {
                   type='submit'
                   disabled={state.submitting}
                   className='btn btn-filled'
-                  aria-label="Send Message" // Accessible name for the button
+                  aria-label="Send Message"
                 >
                   Send Message
                 </motion.button>

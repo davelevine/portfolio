@@ -4,15 +4,13 @@ import matter from 'gray-matter';
 
 const certsDirectory = path.join(process.cwd(), 'data/certs');
 
-// Refactored to use arrow function with implicit return for brevity
 export const getCertsFiles = async () => await fs.readdir(certsDirectory);
 
-// Refactored to extract common logic into a helper function
 const getFilePath = (certSlug) => path.join(certsDirectory, `${certSlug}.md`);
 
 export const getCertData = async (certIdentifier) => {
-  const certSlug = certIdentifier.replace(/\.md$/, ''); // removes the file extension
-  const filePath = getFilePath(certSlug); // Reused helper function
+  const certSlug = certIdentifier.replace(/\.md$/, '');
+  const filePath = getFilePath(certSlug);
   const fileContent = await fs.readFile(filePath, 'utf-8');
   const { data, content } = matter(fileContent);
 
@@ -23,20 +21,12 @@ export const getCertData = async (certIdentifier) => {
   };
 };
 
-// Refactored to use array destructuring and implicit return
 export const getAllCerts = async () => {
   const certFiles = await getCertsFiles();
   const certsData = await Promise.all(certFiles.map(getCertData));
-
-  // Convert date strings to Date objects and sort by achievedDate in descending order
-  return certsData.sort((certA, certB) => {
-    const dateA = new Date(certA.achievedDate); // certA.achievedDate corresponds to achievedDate
-    const dateB = new Date(certB.achievedDate); // certB.achievedDate corresponds to achievedDate
-    return dateB - dateA; // Sort in descending order
-  });
+  return certsData.sort((certA, certB) => new Date(certB.achievedDate) - new Date(certA.achievedDate));
 };
 
-// Refactored to use implicit return and arrow function
 export const getFeaturedCerts = async () => {
   const allCerts = await getAllCerts();
   return allCerts.filter(cert => cert.isFeatured);

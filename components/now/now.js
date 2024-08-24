@@ -65,6 +65,11 @@ const Now = ({ markdownContent, showModal = false }) => {
     },
   }), []);
 
+  // Extract the latest Changelog date using regex
+  const changelogDateRegex = /##\s*Changelog[\s\S]*?\*\*\s*(\w+\s+\d{1,2},\s+\d{4})\s*\*\*/;
+  const latestChangelogDateMatch = markdownContent.match(changelogDateRegex);
+  const latestChangelogDate = latestChangelogDateMatch ? latestChangelogDateMatch[1] : 'Unknown Date';
+
   useEffect(() => {
     if (typeof globalThis.window === 'object') {
       document.title = 'Dave Levine - Now';
@@ -103,12 +108,20 @@ const Now = ({ markdownContent, showModal = false }) => {
             Here and Now
           </motion.h1>
           <div className={classes.metaInfo}>
-            <span>
-              <i className="fa-regular fa-calendar-lines-pen" /> Aug 09, 2024
-            </span>
-            <span>
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, ease: 'easeInOut', delay: 0.2 }}
+            >
+              <i className="fa-regular fa-calendar-lines-pen" /> {latestChangelogDate}
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, ease: 'easeInOut', delay: 0.4 }}
+            >
               <i className="fa-regular fa-tags" /> Personal • Professional
-            </span>
+            </motion.span>
           </div>
           <hr className={classes.divider} />
           <ReactMarkdown components={getCustomRenderers} remarkPlugins={[remarkGfm]}>

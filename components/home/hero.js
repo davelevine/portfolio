@@ -76,28 +76,28 @@ const Hero = () => {
               <div className={classes.socialMedia}>
                 <a href='https://github.com/davelevine' target='_blank' rel='noreferrer' aria-label="GitHub Profile">
                   <i className='fab fa-github' data-aos='flip-up'
-                    data-aos-delay='25'
+                    data-aos-delay='100'
                     data-aos-duration='500'></i>
                 </a>
                 <a href='https://www.linkedin.com/in/iamdavelevine' target='_blank' rel='noreferrer' aria-label="LinkedIn Profile">
                   <i
                     className='fab fa-linkedin'
                     data-aos='flip-up'
-                    data-aos-delay='50'
+                    data-aos-delay='150'
                     data-aos-duration='500'></i>
                 </a>{' '}
                 <a href='https://kb.levine.io' target='_blank' rel='noreferrer' aria-label="Knowledge Base">
                   <i
                     className='fa fa-globe'
                     data-aos='flip-up'
-                    data-aos-delay='100'
+                    data-aos-delay='200'
                     data-aos-duration='500'></i>
                 </a>
                 <a href='/rss' target='_blank' rel='noreferrer' aria-label="RSS Feed">
                   <i
                     className='fa fa-square-rss'
                     data-aos='flip-up'
-                    data-aos-delay='150'
+                    data-aos-delay='250'
                     data-aos-duration='500'
                     style={{ fontSize: '2.02em', verticalAlign: 'baseline' }}></i>
                 </a>
@@ -105,7 +105,7 @@ const Hero = () => {
                   <i
                     className='fa-sharp fa-regular fa fa-key'
                     data-aos='flip-up'
-                    data-aos-delay='200'
+                    data-aos-delay='300'
                     data-aos-duration='500'></i>
                 </a>
               </div>

@@ -13,7 +13,6 @@ const SyntaxHighlighter = lazy(() => import('react-syntax-highlighter').then(mod
 const atomDark = lazy(() => import('react-syntax-highlighter/dist/cjs/styles/prism').then(mod => mod.atomDark));
 const solarizedlight = lazy(() => import('react-syntax-highlighter/dist/cjs/styles/prism').then(mod => mod.solarizedlight));
 
-// Tech logos mapping
 const techLogos = {
   API: 'API.svg',
   'Cloudflare Workers': 'Cloudflare Workers.svg',

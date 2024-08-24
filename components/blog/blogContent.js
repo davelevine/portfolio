@@ -1,4 +1,4 @@
-import { useMemo, useEffect, useState } from 'react';
+import { useMemo, useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -23,6 +23,7 @@ const BlogContent = ({
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [images, setImages] = useState([]); // Array to store all images in the post
+  const hasAnimated = useRef(false); // Reference to track animation state
 
   // Move customRenderers inside useMemo
   const customRenderers = useMemo(() => ({
@@ -131,8 +132,21 @@ const BlogContent = ({
     <div className={classes.blogDetail}>
       <div className="container section mvh-100 blogDetail">
         <div className={classes.card}>
-          <h1>{title}</h1>
-          <small>
+          <motion.h1
+            initial={hasAnimated.current ? {} : { opacity: 0, x: -600 }}
+            animate={hasAnimated.current ? {} : { opacity: 1, x: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            onAnimationComplete={() => {
+              hasAnimated.current = true;
+            }}
+          >
+            {title}
+          </motion.h1>
+          <motion.small
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut', delay: 0.2 }}
+          >
             <span>
               <i className="fa-regular fa-calendar-lines-pen" /> {formattedDate}
             </span>
@@ -156,7 +170,7 @@ const BlogContent = ({
             ) : (
               <span className={classes.category}>{categories}</span>
             )}
-          </small>
+          </motion.small>
 
           <div className={classes.divider}></div>
 

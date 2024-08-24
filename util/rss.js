@@ -1,6 +1,5 @@
-// util/rss.js
 import RSS from 'rss';
-import { getBlog } from './blog-util'; // Adjust the path as needed
+import { getBlog } from './blog-util';
 import fs from 'fs';
 import path from 'path';
 import { marked } from 'marked';
@@ -36,7 +35,6 @@ export async function generateRSS() {
 
   const rss = feed.xml({ indent: true });
 
-  // Save the RSS file in the public directory (for access via /rss.xml)
   const rssPath = path.join(process.cwd(), 'public', 'rss.xml');
   fs.writeFileSync(rssPath, rss);
 

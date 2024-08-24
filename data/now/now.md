@@ -15,6 +15,7 @@ Also, I've been getting back into exercising after a prolonged hiatus. It's been
 Whatever’s left of my spare time is spent:
 
 * Updating my [portfolio] to showcase my latest projects and achievements.
+  * **Aug 23, 2023**: Finally got around to adding an [RSS feed] for the Blog section of the site. Although there's hardly a need for it, this amounted to scratching an itch.
 * Building out my personal [knowledge base] with new content and resources.
 * Managing and updating my [homelab], which is a constant yet rewarding project.
 
@@ -30,6 +31,7 @@ Lately, I’ve been focusing on:
 
 ## Changelog
 
+* **Aug 24, 2024**: Added RSS feed for Blog section.
 * **Aug 09, 2024**: Initial creation of the Now page.
 
   [now page]: https://nownownow.com/about
@@ -40,3 +42,5 @@ Lately, I’ve been focusing on:
   [Weill Cornell Medicine]: https://weill.cornell.edu/
   [Derek Sivers]: https://sive.rs/now
   [Meditations]: https://en.wikipedia.org/wiki/Meditations
+  [RSS feed]: /rss
+  
