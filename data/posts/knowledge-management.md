@@ -3,7 +3,7 @@ title: Knowledge Management
 categories:
     - Knowledge
     - Productivity
-date: "2020.03.29"
+date: "2020.03.29T17:31Z"
 description: An exploration of knowledge management and its significance in documenting complex systems.
 ---
 

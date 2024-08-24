@@ -3,7 +3,7 @@ title: Server-Based Compute (EC2) Fundamentals
 categories:
     - AWS
     - Knowledge
-date: "2020.03.27"
+date: "2020.03.27T11:36Z"
 description: Reflections on the EC2 Fundamentals course as I prepare for the Intermediate coursework.
 ---
 

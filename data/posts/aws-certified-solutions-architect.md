@@ -4,7 +4,7 @@ categories:
     - AWS
     - DevOps
     - Recommended
-date: "2020-08-01"
+date: "2020-08-01T17:21Z"
 description: After ~6 months of studying, I finally took the AWS Certified Solutions Architect Associate exam today and I PASSED!
 ---
 

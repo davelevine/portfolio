@@ -3,7 +3,7 @@ title: The Road to Better Email Security
 categories:
     - Recommended
     - Security
-date: "2021.02.08"
+date: "2021.02.08T17:21Z"
 description: A detailed account of my week-long journey to enhance email security and privacy.
 ---
 
