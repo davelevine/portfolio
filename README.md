@@ -5,7 +5,6 @@ My personal portfolio developed with Next.js and React. Certs and Projects secti
 ## Key Takeaways
 
 - Built with [Next.js] and [React]
-- Lighthouse score: [94/100] (Mobile), [100/100] (Desktop)
 - Static Site
 - Posts and projects written in markdown
 - Rendered using [react-markdown] and [react-syntax-highlighter]
