@@ -5,10 +5,11 @@ import dynamic from 'next/dynamic';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import { motion, AnimatePresence } from 'framer-motion';
-import { debounce } from 'lodash';
 
+// Dynamic import for Modal with a skeleton loader
 const Modal = dynamic(() => import('../layout/modal/modal'), {
   loading: () => <div className="skeleton-loader"></div>,
+  ssr: false, // Disable SSR for the modal
 });
 
 const PGP_KEY_PATH = 'https://cdn.levine.io/uploads/portfolio/public/assets/dave.levine.io-pgp-key-pub.asc';
@@ -30,6 +31,12 @@ const Hero = () => {
     setModalType('');
   }, []);
 
+  const aosProps = useCallback((animation, delay = 0, duration = 500) => ({
+    'data-aos': animation,
+    'data-aos-delay': delay,
+    'data-aos-duration': duration,
+  }), []);
+
   useEffect(() => {
     const bodyStyle = document.body.style;
     bodyStyle.overflow = showModal ? 'hidden' : 'auto';
@@ -41,143 +48,96 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
-    const updateImageSrc = () => {
-      setImageSrc(window.matchMedia("(max-width: 767px)").matches ? PROFILE_PIC_LOW_RES_PATH : PROFILE_PIC_PATH);
-    };
-
-    const debouncedUpdateImageSrc = debounce(updateImageSrc, 200);
-
-    updateImageSrc();
-    window.addEventListener('resize', debouncedUpdateImageSrc);
-
-    return () => {
-      window.removeEventListener('resize', debouncedUpdateImageSrc);
-    };
+    setImageSrc(window.innerWidth <= 767 ? PROFILE_PIC_LOW_RES_PATH : PROFILE_PIC_PATH);
   }, []);
 
   return (
-    <>
-      <section className={classes.greetings}>
-        <div className={classes.container}>
-          <div className={classes.row}>
-            <div className={classes.columnLeft}>
-              <h2 data-aos='fade-left' data-aos-duration='500'>Hey, I&apos;m{' '}
-                <span className={classes.name}>
-                  Dave
-                </span>!{' '}
-              </h2>
-              <h1 data-aos='fade-right' data-aos-duration='500'>Solutions Engineer</h1>
-              <h3 data-aos='fade-left' data-aos-delay='100' data-aos-duration='500'>
-                I design and implement systems
-                <span className={classes.punctuation}><b>.</b></span>
-                <span>
-                </span>{' '}
-              </h3>
-              <div className={classes.socialMedia}>
-                <a href='https://github.com/davelevine' target='_blank' rel='noreferrer' aria-label="GitHub Profile">
-                  <i className='fab fa-github' data-aos='flip-up'
-                    data-aos-delay='100'
-                    data-aos-duration='500'></i>
-                </a>
-                <a href='https://www.linkedin.com/in/iamdavelevine' target='_blank' rel='noreferrer' aria-label="LinkedIn Profile">
-                  <i
-                    className='fab fa-linkedin'
-                    data-aos='flip-up'
-                    data-aos-delay='150'
-                    data-aos-duration='500'></i>
-                </a>{' '}
-                <a href='https://kb.levine.io' target='_blank' rel='noreferrer' aria-label="Knowledge Base">
-                  <i
-                    className='fa fa-globe'
-                    data-aos='flip-up'
-                    data-aos-delay='200'
-                    data-aos-duration='500'></i>
-                </a>
-                <a href='/rss.xml' target='_blank' rel='noreferrer' aria-label="RSS Feed">
-                  <i
-                    className='fa fa-square-rss'
-                    data-aos='flip-up'
-                    data-aos-delay='250'
-                    data-aos-duration='500'
-                    style={{ fontSize: '2.02em', verticalAlign: 'baseline' }}></i>
-                </a>
-                <a href={PGP_KEY_PATH} target='_blank' rel='noreferrer' aria-label="PGP Key">
-                  <i
-                    className='fa-sharp fa-regular fa fa-key'
-                    data-aos='flip-up'
-                    data-aos-delay='300'
-                    data-aos-duration='500'></i>
-                </a>
-              </div>
-              <div className={classes.ctaButtons}>
-                <motion.button
-                  initial="hidden"
-                  animate="visible"
-                  className='btn btn-filled'
-                  data-aos='fade-up'
-                  data-aos-delay='100'
-                  data-aos-duration='500'
-                  onClick={() => showModalHandler('resume')}
-                  aria-label="My Resume"
-                  whileHover={{ 
-                    scale: 1.1, 
-                    boxShadow: "0px 0px 8px rgb(0, 0, 0)",
-                    transition: { duration: 0.001 }
-                  }}
-                >
-                  MY RESUME
-                </motion.button>
-                <motion.button
-                  initial="hidden"
-                  animate="visible"
-                  className='btn btn-outlined'
-                  data-aos='fade-down'
-                  data-aos-delay='100'
-                  data-aos-duration='500'
-                  onClick={() => showModalHandler('contact')}
-                  aria-label="Contact Me"
-                  whileHover={{ 
-                    scale: 1.1, 
-                    boxShadow: "0px 0px 8px rgb(0, 0, 0)",
-                    transition: { duration: 0.001 }
-                  }}
-                >
-                  CONTACT
-                </motion.button>
-              </div>
+    <section className={classes.greetings}>
+      <div className={classes.container}>
+        <div className={classes.row}>
+          <div className={classes.columnLeft}>
+            <h2 {...aosProps('fade-left')}>Hey, I&apos;m{' '}
+              <span className={classes.name}>Dave</span>!{' '}
+            </h2>
+            <h1 {...aosProps('fade-right')}>Solutions Engineer</h1>
+            <h3 {...aosProps('fade-left', 100)}>
+              I design and implement systems
+              <span className={classes.punctuation}><b>.</b></span>
+            </h3>
+            <div className={classes.socialMedia}>
+              <a href='https://github.com/davelevine' target='_blank' rel='noreferrer' aria-label="GitHub Profile">
+                <i className='fab fa-github' {...aosProps('flip-up', 100)}></i>
+              </a>
+              <a href='https://www.linkedin.com/in/iamdavelevine' target='_blank' rel='noreferrer' aria-label="LinkedIn Profile">
+                <i className='fab fa-linkedin' {...aosProps('flip-up', 150)}></i>
+              </a>{' '}
+              <a href='https://kb.levine.io' target='_blank' rel='noreferrer' aria-label="Knowledge Base">
+                <i className='fa fa-globe' {...aosProps('flip-up', 200)}></i>
+              </a>
+              <a href='/rss.xml' target='_blank' rel='noreferrer' aria-label="RSS Feed">
+                <i className='fa fa-square-rss' {...aosProps('flip-up', 250)} style={{ fontSize: '2.02em', verticalAlign: 'baseline' }}></i>
+              </a>
+              <a href={PGP_KEY_PATH} target='_blank' rel='noreferrer' aria-label="PGP Key">
+                <i className='fa-sharp fa-regular fa fa-key' {...aosProps('flip-up', 300)}></i>
+              </a>
             </div>
+            <div className={classes.ctaButtons}>
+              <motion.button
+                className='btn btn-filled'
+                {...aosProps('fade-up', 100)}
+                onClick={() => showModalHandler('resume')}
+                aria-label="My Resume"
+                whileHover={{ 
+                  scale: 1.1, 
+                  boxShadow: "0px 0px 8px rgb(0, 0, 0)",
+                  transition: { duration: 0.001 }
+                }}
+              >
+                MY RESUME
+              </motion.button>
+              <motion.button
+                className='btn btn-outlined'
+                {...aosProps('fade-down', 100)}
+                onClick={() => showModalHandler('contact')}
+                aria-label="Contact Me"
+                whileHover={{ 
+                  scale: 1.1, 
+                  boxShadow: "0px 0px 8px rgb(0, 0, 0)",
+                  transition: { duration: 0.001 }
+                }}
+              >
+                CONTACT
+              </motion.button>
+            </div>
+          </div>
 
-            <div className={`${classes.columnRight} ${classes.profilePic}`}>
-              <div className={classes.imageContainer}>
-                <Image
-                  src={imageSrc}
-                  width={640}
-                  height={640}
-                  alt='profile-pic'
-                  data-aos='fade-left'
-                  data-aos-delay='50'
-                  data-aos-duration='500'
-                  style={{
-                    maxWidth: "100%",
-                    height: "auto",
-                    borderRadius: "50%",
-                    objectFit: "contain"
-                  }} 
-                  priority={true}
-                  placeholder="blur"
-                  blurDataURL={PROFILE_PIC_LOW_RES_PATH}
-                  sizes="(max-width: 767px) 480px, 640px"
-                />
-              </div>
-              <div className={classes.quote} data-aos='fade-right' data-aos-duration='500'></div>
+          <div className={`${classes.columnRight} ${classes.profilePic}`}>
+            <div className={classes.imageContainer}>
+              <Image
+                src={imageSrc}
+                width={640}
+                height={640}
+                alt='profile-pic'
+                {...aosProps('fade-left', 50)}
+                style={{
+                  maxWidth: "100%",
+                  height: "auto",
+                  borderRadius: "50%",
+                  objectFit: "contain"
+                }} 
+                priority={true}
+                placeholder="blur"
+                blurDataURL={PROFILE_PIC_LOW_RES_PATH}
+                sizes="(max-width: 767px) 480px, 640px"
+              />
             </div>
           </div>
         </div>
-        <AnimatePresence>
-          {showModal && <Modal contact={modalType === 'contact'} resume={modalType === 'resume'} onClose={closeModalHandler} />}
-        </AnimatePresence>
-      </section>
-    </>
+      </div>
+      <AnimatePresence>
+        {showModal && <Modal contact={modalType === 'contact'} resume={modalType === 'resume'} onClose={closeModalHandler} />}
+      </AnimatePresence>
+    </section>
   );
 };
 
