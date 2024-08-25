@@ -3,7 +3,7 @@ title: Databases (Part 2)
 categories:
     - AWS
     - Knowledge
-date: "2020-05-15T17:21Z"
+date: "2020-05-15T17:21:00Z"
 description: This will be a continuation in the Database series covering the AWS offerings as part of the AWS Solutions Architect Associate exam.
 ---
 

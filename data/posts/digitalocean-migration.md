@@ -3,7 +3,7 @@ title: DigitalOcean Migration
 categories:
     - Cloud
     - Recommended
-date: "2020-08-30T23:15Z"
+date: "2020-08-30T23:15:00Z"
 description: As much as I enjoy using AWS, to use it how I would like to use it is just too expensive.
 ---
 

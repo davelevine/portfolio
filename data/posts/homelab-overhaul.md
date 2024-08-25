@@ -3,7 +3,7 @@ title: Homelab Overhaul
 categories:
     - Cloud
     - Recommended
-date: "2021-08-07T00:23Z"
+date: "2021-08-07T00:23:00Z"
 description: I've decided to downsize my extensive homelab setup and my reasons are outlined below.
 ---
 

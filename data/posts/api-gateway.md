@@ -3,7 +3,7 @@ title: API Gateway
 categories:
     - AWS
     - Knowledge
-date: "2020-04-06T17:21Z"  # Removed seconds from the date
+date: "2020-04-06T17:21:00Z"  # Removed seconds from the date
 description: A beginner's exploration of AWS API Gateway and its role in enabling communication between services.
 ---
 

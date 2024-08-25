@@ -3,7 +3,7 @@ title: Jamstack
 categories:
     - Knowledge
     - Recommended
-date: "2021-03-14T14:13Z"
+date: "2021-03-14T14:13:00Z"
 description: This article will be a quick write-up on my static website hosting on Cloudflare Pages, also known as Jamstack.
 ---
 

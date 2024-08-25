@@ -3,7 +3,7 @@ title: Documentation Migration
 categories:
     - Knowledge
     - Tools
-date: "2021-03-09T00:31Z"
+date: "2021-03-09T00:31:00Z"
 # Start of Selection
 description: Migrating my documentation to Markdown has proven to be more challenging than I thought.
 # End of Selection

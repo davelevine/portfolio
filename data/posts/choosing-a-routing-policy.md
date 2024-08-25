@@ -4,7 +4,7 @@ categories:
     - AWS
     - DevOps
     - Knowledge
-date: "2020-04-29T00:02Z"  # Changed date format to use hyphens instead of periods
+date: "2020-04-29T00:02:00Z"  # Changed date format to use hyphens instead of periods
 description: A high-level overview of DNS and the various routing policies available in AWS Route 53.
 ---
 
