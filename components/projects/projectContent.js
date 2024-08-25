@@ -122,10 +122,27 @@ const ProjectContent = ({ project, currentTheme, showModal = false }) => {
     <div className={classes.projectDetail}>
       <div className='container section mvh-100 projectDetail'>
         <div className={classes.card}>
-          <h1>{title}</h1>
-          <small>
+          <motion.h1
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+          >
+            {title}
+          </motion.h1>
+
+          <motion.small
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, ease: 'easeOut', delay: 0.1 }}
+          >
             {Array.isArray(tech) ? tech.map((t, index) => (
-              <span key={t} className={classes.techLogoContainer}>
+              <motion.span
+                key={t}
+                className={classes.techLogoContainer}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, ease: 'easeOut', delay: 0.1 + index * 0.1 }} // Icons load one at a time
+              >
                 <Image
                   src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/logos/${techLogos[t]}`}
                   alt={t}
@@ -134,9 +151,14 @@ const ProjectContent = ({ project, currentTheme, showModal = false }) => {
                   className={classes.techLogo}
                 />
                 {` ${t}`}{index < tech.length - 1 ? ' ' : ''}
-              </span>
+              </motion.span>
             )) : (
-              <span className={classes.techLogoContainer}>
+              <motion.span
+                className={classes.techLogoContainer}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, ease: 'easeOut', delay: 0.1 }}
+              >
                 <Image
                   src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/logos/${techLogos[tech]}`}
                   alt={tech}
@@ -145,9 +167,9 @@ const ProjectContent = ({ project, currentTheme, showModal = false }) => {
                   className={classes.techLogo}
                 />
                 {` ${tech}`}
-              </span>
+              </motion.span>
             )}
-          </small>
+          </motion.small>
 
           {image && (
             <div className={classes.projectImage}>
