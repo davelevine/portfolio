@@ -8,7 +8,7 @@ description: A guide to enhancing the security of Nginx configurations.
 ---
 
 
-## Starting line
+## Starting Line
 
 A few weeks ago, I was reading an article on [Scott Helme's blog](https://scotthelme.co.uk/) about [caching Ghost with Nginx](https://scotthelme.co.uk/caching-ghost-with-nginx/). In doing this, I made this blog and a number of other services that I use kick into overdrive, but that whole endeavor is best left for its own article.
 

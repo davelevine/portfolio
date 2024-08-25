@@ -21,6 +21,8 @@ Since I'm currently going through the [AWS Certified Solutions Architect course]
   * ex. buffers, cache or scratch data.
 * Data will not survive if the instance is stopped, terminated or if the underlying drive just fails.
 
+More information can be found in the [Instance Store documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html).
+
 ### Elastic Block Store
 
 * Provides either SSD or traditional HDD backed volumes, depending on need, performance requirements and/or price.
@@ -35,12 +37,8 @@ Since I'm currently going through the [AWS Certified Solutions Architect course]
       * Throughput optimized is better used towards hot storage where data is frequently accessed and throughput is essential.
       * Cold HDD is low cost storage designed for less frequently accessed workloads such as archiving.
 
+More information can be found in the [Elastic Block Store documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html).
+
 I'm not going to get into IOPS or I/O credit balances since I think those topics require their own page(s). This should serve as a great reference since my understanding after watching the video was still a bit hazy.
 
 Next up — EBS Snapshots
-
-### References
-
-[Instance Store](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html)
-
-[Elastic Block Store](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)

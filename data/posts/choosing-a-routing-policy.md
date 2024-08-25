@@ -30,11 +30,11 @@ As I mentioned in the preface, my experience with DNS is limited in comparison t
 
 In routing policies, the policy defines the behavior of the service. There are trade-offs that need to be understood before implementation. Each policy will be outlined below.
 
-### Simple routing
+### Simple Routing
 
 Simple routing is a generic routing of a service such as a web server that gives function to a domain. My understanding is that it's the closest to Cloudflare, for example, in the sense that a single IP is assigned to a single domain name.
 
-### Failover routing
+### Failover Routing
 
 Failover routing exists with an active-passive configuration such as a primary and disaster recovery site. Failover is determined with health checks done within Route 53. If a resource replies to a health check based on pre-determined criteria, the resource is deemed healthy and passes the check. If it doesn't, the route is automatically switched to the secondary failover site.
 
@@ -44,11 +44,11 @@ An example of the health checks interface can be seen below:
 
 `Source`: [Amazon Route 53 — Routing Policies](https://medium.com/tensult/amazon-route-53-routing-policies-cbe356b851d3)
 
-### Geolocation routing
+### Geolocation Routing
 
 Geolocation routing is used when there is a business need to have particular traffic routed to a specific set of users within a geographic region.
 
-### Geoproximity routing
+### Geoproximity Routing
 
 Geoproximity routing is used when there is a need to route traffic based on the location of resources. It relies on Route 53 traffic flow. When routing to AWS resources, it routes closest to the AWS Region the resources were created in. For non-AWS resources, it routes based on latitude and longitude.
 
@@ -56,18 +56,18 @@ Geoproximity routing is used when there is a need to route traffic based on the 
 
 ![routing](https://cdn.levine.io/uploads/images/gallery/2022-09//04/Screen-Shot-2020-04-29-at-12.09.52-AM.png)
 
-### Latency routing
+### Latency Routing
 
 Latency routing can be used when resources reside in multiple regions. When implemented, it will automatically route to the region with the least amount of latency.
 
-### Multi-value answer routing
+### Multi-value Answer Routing
 
 This is one that I'm not entirely clear on and wasn't covered in much detail in the AWS Certified Solutions Architect course. Because of that, I'll list the explanation from the AWS documentation below.
 > Multivalue answer routing lets you configure Amazon Route 53 to return multiple values, such as IP addresses for your web servers, in response to DNS queries. You can specify multiple values for almost any record, but multivalue answer routing also lets you check the health of each resource, so Route 53 returns only values for healthy resources. It's not a substitute for a load balancer, but the ability to return multiple health-checkable IP addresses is a way to use DNS to improve availability and load balancing.
 >
 > `Source` — [Choosing a Routing Policy](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy.html)
 
-### Weighted routing
+### Weighted Routing
 
 Weighted routing is used to route traffic based on proportions that you specify. This is best used in testing and not necessarily in production. An example of this works by specifying two values for two separate instances that combined add up to an arbitrary number. For example, one instance is assigned the number 90, while the other instance is assigned the number 10. Whichever instance has the highest numerical value will receive the most traffic.
 

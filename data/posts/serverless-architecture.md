@@ -28,12 +28,12 @@ Quite possibly the most attractive thing about serverless architecture is cost. 
 
 ### Examples
 
-#### What serverless can be used for
+#### What Serverless Can Be Used For
 
 * Checking the temperature of an IoT thermostat
 * Ensuring a dynamic IP address is always up to date (DDNS)
 
-#### What serverless should not be used for
+#### What Serverless Should Not Be Used For
 
 * Monolithic applications
 * Any application that requires an OS
@@ -65,6 +65,6 @@ Lambda is without question the most popular example of serverless architecture a
 * Lambda can leverage virtually any type of codebase.
 * Serverless architecture uses such low amounts of compute power than its scaling potential is infinite.
 
-### Bringing it all together
+### Bringing It All Together
 
 Serverless architecture is next-gen computing, plain and simple. There will always be a need for traditional instances, but with limitless scaling potential, cost benefits and a bare essentials approach, serverless is here to stay.

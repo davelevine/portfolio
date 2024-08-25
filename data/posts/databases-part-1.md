@@ -65,7 +65,7 @@ Read replicas are something that I've seen before as an offering in my own envir
 
 ![Screen Shot 2020-05-13 at 11.44.47 PM](https://cdn.levine.io/uploads/images/gallery/2022-09//05/Screen-Shot-2020-05-13-at-11.44.47-PM.png)
 
-## To be continued
+## To Be Continued
 
 I don't want this post to become unmanageable by writing in detail about all the AWS database offerings. To accomplish this, I'm going to split this post into a few parts so that it doesn't become overwhelming.
 

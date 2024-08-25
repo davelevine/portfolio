@@ -112,15 +112,14 @@ const Now = ({ markdownContent, showModal = false }) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, ease: 'easeInOut', delay: 0.2 }}
+              className={classes.inlineMeta}
             >
-              <i className="fa-regular fa-calendar-lines-pen" /> {latestChangelogDate}
-            </motion.span>
-            <motion.span
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, ease: 'easeInOut', delay: 0.4 }}
-            >
-              <i className="fa-regular fa-tags" /> Personal • Professional
+              <span className={classes.inlineItem}>
+                <i className="fa-regular fa-calendar-lines-pen" /> {latestChangelogDate}
+              </span>
+              <span className={classes.inlineItem}>
+                <i className="fa-regular fa-tags" /> Personal • Professional
+              </span>
             </motion.span>
           </div>
           <hr className={classes.divider} />
