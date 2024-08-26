@@ -1,3 +1,6 @@
+---
+date: "2024-08-23T22:14:00Z"
+---
 #
 
 This is my [Now Page]: a brief update on what's currently happening in my life, inspired by [Derek Sivers].
@@ -28,11 +31,6 @@ Lately, I’ve been focusing on:
 * Refining application architecture to stay ahead of the curve.
 * Helping our team work better together by simplifying processes and ensuring everyone’s on the same page.
 * Working closely with others to design solutions that fit the organization's needs and make a difference in how we operate.
-
-## Changelog
-
-* **Aug 23, 2024**: Added RSS feed for Blog section.
-* **Aug 09, 2024**: Initial creation of the Now page.
 
   [now page]: https://nownownow.com/about
   [Essentialism: The Disciplined Pursuit of Less]: https://gregmckeown.com/books/essentialism/

@@ -8,10 +8,9 @@ import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark, oneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import Lightbox from 'yet-another-react-lightbox';
-import { Thumbnails, Counter, Download, Fullscreen, Zoom } from 'yet-another-react-lightbox/plugins';
+import { Thumbnails, Download, Fullscreen, Zoom } from 'yet-another-react-lightbox/plugins';
 import 'yet-another-react-lightbox/styles.css';
 import 'yet-another-react-lightbox/plugins/thumbnails.css';
-import 'yet-another-react-lightbox/plugins/counter.css';
 
 import classes from './blogContent.module.scss';
 
@@ -115,9 +114,6 @@ const BlogContent = ({
       year: 'numeric',
       month: 'short',
       day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false,
     });
   }, [date]);
 
@@ -199,7 +195,7 @@ const BlogContent = ({
         slides={images}
         index={lightboxIndex}
         onIndexChange={setLightboxIndex}
-        plugins={[Counter, Download, Fullscreen, Thumbnails, Zoom]}
+        plugins={[Download, Fullscreen, Thumbnails, Zoom]}
         thumbnails={{
           position: 'bottom',
           width: 100,

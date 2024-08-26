@@ -65,10 +65,15 @@ const Now = ({ markdownContent, showModal = false }) => {
     },
   }), []);
 
-  // Extract the latest Changelog date using regex
-  const changelogDateRegex = /##\s*Changelog[\s\S]*?\*\*\s*(\w+\s+\d{1,2},\s+\d{4})\s*\*\*/;
-  const latestChangelogDateMatch = markdownContent.match(changelogDateRegex);
-  const latestChangelogDate = latestChangelogDateMatch ? latestChangelogDateMatch[1] : 'Unknown Date';
+  // Extract the date from the @now.md front matter
+  const nowDateMatch = markdownContent.match(/date:\s*"([^"]+)"/);
+  const nowDate = nowDateMatch ? new Date(nowDateMatch[1]).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : 'Unknown Date';
+
+  // Remove the date from the markdown content to prevent it from showing up as text
+  const contentWithoutDate = markdownContent.replace(/date:\s*"[^"]+"/, '');
+
+  // Calculate word count
+  const wordCount = contentWithoutDate.split(/\s+/).filter(Boolean).length;
 
   useEffect(() => {
     if (typeof globalThis.window === 'object') {
@@ -115,16 +120,16 @@ const Now = ({ markdownContent, showModal = false }) => {
               className={classes.inlineMeta}
             >
               <span className={classes.inlineItem}>
-                <i className="fa-regular fa-calendar-lines-pen" /> {latestChangelogDate}
+                <i className="fa-regular fa-calendar-lines-pen" /> {nowDate} &nbsp;•&nbsp; <i className="fa-regular fa-font" /> {wordCount} words
               </span>
               <span className={classes.inlineItem}>
-                <i className="fa-regular fa-tags" /> Personal • Professional
+                <i className="fa-regular fa-tags" /> Personal &nbsp;•&nbsp; Professional
               </span>
             </motion.span>
           </div>
           <hr className={classes.divider} />
           <ReactMarkdown components={getCustomRenderers} remarkPlugins={[remarkGfm]}>
-            {markdownContent}
+            {contentWithoutDate}
           </ReactMarkdown>
         </div>
       </div>
