@@ -24,7 +24,7 @@
     background-color: var(--background-card);
     transition: background $transition-speed;
     border: 1px solid var(--border-card);
-    margin: -35px -15px;
+    margin: -35px -15px; // Restored original negative margins for card consistency
     display: flex;
     flex-direction: column;
     color: var(--navbar-primary);
@@ -38,15 +38,15 @@
     }
 
     h2 {
-      margin-top: 20px;
-      margin-bottom: 0;
+      margin-top: 15px; // Adjusted margin for consistency
+      margin-bottom: 10px;
       font-size: 1.8rem;
       font-weight: 600;
       color: var(--text-secondary);
     }
 
     h3 {
-      margin-top: 15px;
+      margin-top: 10px; // Adjusted margin for consistency
       margin-bottom: 0;
       font-size: 1.5rem;
       font-weight: 500;
@@ -73,6 +73,7 @@
 
     p {
       font-size: 1rem;
+      margin-top: 0;
       color: var(--text-primary);
     }
     
@@ -96,7 +97,7 @@
 
     .imageContainer {
       text-align: center;
-      margin: 20px 0;
+      margin: 30px 0; // Increased margin for better spacing
     }
 
     .nowImage {
@@ -105,7 +106,7 @@
       height: auto;
       width: auto;
       border-radius: 8px;
-      margin: 10px auto;
+      margin: 15px auto; // Adjusted margin for better spacing
       aspect-ratio: 1536 / 720;
       display: block;
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -123,8 +124,12 @@
     }        
 
     ul, ol {
-      margin-top: 0;
+      margin-top: 0; // Adjusted to avoid negative margins
       padding-left: auto;
+    }
+
+    li {
+      margin-top: 10px;
     }
 
     i {
@@ -142,6 +147,20 @@
       &.fa-2x {
         font-size: 2rem;
       }
+    }
+
+    blockquote {
+      padding: 15px;
+      padding-left: 15px;
+      padding-bottom: 0;
+      background-color: var(--background-card);
+      border: 1px solid var(--accent);
+      margin: 20px 0;
+      margin-top: 5px;
+      color: var(--text-primary);
+      border-radius: 12px;
+      overflow-wrap: break-word;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     }
 
     @media only screen and (max-width: 767px) {

@@ -139,9 +139,9 @@ const ProjectContent = ({ project, currentTheme, showModal = false }) => {
               <motion.span
                 key={t}
                 className={classes.techLogoContainer}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, ease: 'easeOut', delay: 0.1 + index * 0.1 }} // Icons load one at a time
+                initial={{ opacity: 0 }} // Start from invisible
+                animate={{ opacity: 1 }} // Fade in
+                transition={{ duration: 0.3, ease: 'easeInOut', delay: 0.1 + index * 0.05 }} // Increased speed
               >
                 <Image
                   src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/logos/${techLogos[t]}`}
@@ -155,9 +155,9 @@ const ProjectContent = ({ project, currentTheme, showModal = false }) => {
             )) : (
               <motion.span
                 className={classes.techLogoContainer}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, ease: 'easeOut', delay: 0.1 }}
+                initial={{ opacity: 0 }} // Start from invisible
+                animate={{ opacity: 1 }} // Fade in
+                transition={{ duration: 0.3, ease: 'easeInOut', delay: 0.1 }} // Increased speed
               >
                 <Image
                   src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/logos/${techLogos[tech]}`}

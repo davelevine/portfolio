@@ -9,6 +9,8 @@ This is my [Now Page]: a brief update on what's currently happening in my life, 
 
 ## Personal
 
+> **Update:** I finally got around to adding an [RSS feed] for the Blog section of the site. Although there's hardly a need for it, this amounted to scratching an itch.
+
 I've officially been in my house for 8 years now. Between that, my wife, and two kids, I have no problem staying busy. It’s hard to believe I’ve been working remotely for nearly 4.5 years, which allows me to maintain a healthy work-life balance. Watching my kids grow up so quickly has been both wonderful and surreal.
 
 I’m currently reading [Essentialism: The Disciplined Pursuit of Less] by Greg McKeown. It’s been eye-opening in terms of managing both my personal and professional life more effectively. Once I finish, I'll be getting back to [Meditations] by Marcus Aurelius.
@@ -18,7 +20,6 @@ Also, I've been getting back into exercising after a prolonged hiatus. It's been
 Whatever’s left of my spare time is spent:
 
 * Updating my [portfolio] to showcase my latest projects and achievements.
-  * **Aug 23, 2023**: Finally got around to adding an [RSS feed] for the Blog section of the site. Although there's hardly a need for it, this amounted to scratching an itch.
 * Building out my personal [knowledge base] with new content and resources.
 * Managing and updating my [homelab], which is a constant yet rewarding project.
 
