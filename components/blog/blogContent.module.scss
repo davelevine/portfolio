@@ -12,7 +12,7 @@
     }
   }
 
-  h1, h2 {
+  h1, h2, h3 { // Added h3
     @include text-styles(var(--text-secondary));
   }
 
@@ -23,9 +23,17 @@
   }
 
   h2 {
-    font-size: 1.5rem;
-    margin-bottom: auto;
+    font-size: 1.6rem; // Increased font size for better spacing
+    margin-top: 0;
+    margin-bottom: 0.5rem; // Added margin for spacing
     font-weight: 600;
+  }
+
+  h3 { // Styles for h3
+    font-size: 1.4rem; // Increased font size for better spacing
+    margin-bottom: 0.5rem; // Added margin for spacing
+    margin-top: 0.5rem; // Adjusted margin for spacing
+    font-weight: 500; // Set font weight for h3
   }
 
   small {
@@ -82,7 +90,7 @@
 
   .blogLinks a {
     font-size: 1.2rem;
-    transition: color $transition-speed ease, transform $transition-speed ease;
+    transition: color var(--transition-speed) ease, transform var(--transition-speed) ease;
 
     &:hover {
       color: var(--link-hover);
@@ -96,7 +104,7 @@
     border-radius: 8px;
     color: black;
     font-weight: 400;
-    font-size: 0.8rem;
+    font-size: 0.9rem; // Increased font size for better spacing
   }
 
   .card,
@@ -104,7 +112,7 @@
     border-radius: 12px;
     padding: 30px;
     background-color: var(--background-card);
-    transition: background $transition-speed;
+    transition: background var(--transition-speed);
     border: 1px solid var(--border-card);
     margin: 25px 0;
     display: flex;
@@ -203,7 +211,7 @@
   }
 
   details > summary span {
-    transition: all $transition-speed;
+    transition: all var(--transition-speed);
     margin-left: 5px;
   }
 
@@ -238,7 +246,7 @@
     padding: 12px 24px;
     font-size: 1rem;
     border-radius: 30px;
-    transition: background-color $transition-speed ease, color $transition-speed ease, transform $transition-speed ease;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, transform var(--transition-speed) ease;
     text-align: center;
     cursor: pointer;
 
@@ -272,15 +280,21 @@
     border-radius: 5px;
     padding: 2px 4px;
     font-weight: 500;
+    overflow-wrap: break-word;
   }
 
   pre {
     background-color: var(--background-card);
-    padding: 1rem;
+    padding: 0;
+    margin-top: 0;
     border-radius: 8px;
-    overflow: auto;
+    overflow-x: auto;  // Enable horizontal scrolling for overflow
     max-width: 100%;
-    word-wrap: break-word;
+    white-space: pre;  // Keep the text as is, with wrapping and scrolling
+    code {
+      background-color: transparent; // Ensure inline code style doesn't conflict
+      padding: 0;
+    }
   }
 
   ul, ol {
@@ -293,4 +307,4 @@
     text-decoration: line-through;
     color: var(--text-tertiary);
   }
-}  
+}

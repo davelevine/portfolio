@@ -36,7 +36,8 @@ To modify the config file, I added the following:
 
 ```nginx
 # Only needed if you cache the plausible script. Speeds things up.
-proxy_cache_path /var/run/nginx-cache/jscache levels=1:2 keys_zone=jscache:100m inactive=30d  use_temp_path=off max_size=100m;
+proxy_cache_path /var/run/nginx-cache/jscache levels=1:2
+keys_zone=jscache:100m inactive=30d  use_temp_path=off max_size=100m;
 
 server {
     ...
@@ -71,7 +72,8 @@ After reloading Nginx, I navigated back to `/usr/local/searx/searx-src/searx/tem
 
 ```html
   <!--Plausible Analytics-->
-<script defer data-api="https://search.cc/api/event" data-domain="search.cc" src="https://search.cc/js/script.js"></script>
+<script defer data-api="https://search.cc/api/event" data-domain="search.cc" 
+src="https://search.cc/js/script.js"></script>
 ```
 
 Once this was added, I navigated back to `/usr/local/searx/searx-src` and used the following command to update the Searx instance...
