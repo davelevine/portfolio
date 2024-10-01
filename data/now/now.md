@@ -1,5 +1,5 @@
 ---
-date: "2024-08-23T22:14:00Z"
+date: "2024-10-01T12:50:00Z"
 ---
 #
 
@@ -9,11 +9,11 @@ This is my [Now Page]: a brief update on what's currently happening in my life, 
 
 ## Personal
 
-> **Update:** I finally got around to adding an [RSS feed] for the Blog section of the site. Although there's hardly a need for it, this amounted to scratching an itch.
+> **Update:** I finally got around to reading [The Hitchiker's Guide to the Galaxy] by Douglas Adams. This is one I've had in my queue for some time now, and I'm glad I finally got around to it.
 
 I've officially been in my house for 8 years now. Between that, my wife, and two kids, I have no problem staying busy. It’s hard to believe I’ve been working remotely for nearly 4.5 years, which allows me to maintain a healthy work-life balance. Watching my kids grow up so quickly has been both wonderful and surreal.
 
-I’m currently reading [Essentialism: The Disciplined Pursuit of Less] by Greg McKeown. It’s been eye-opening in terms of managing both my personal and professional life more effectively. Once I finish, I'll be getting back to [Meditations] by Marcus Aurelius.
+I’m currently reading [The Hitchiker's Guide to the Galaxy] by Douglas Adams. This is one I've had in my queue for some time now, and I'm glad I finally got around to it. Once I finish, I'll be getting back to [Meditations] by Marcus Aurelius.
 
 Also, I've been getting back into exercising after a prolonged hiatus. It's been great to prioritize my health and well-being again. Small steps, but I'm feeling better for it.
 
@@ -34,11 +34,10 @@ Lately, I’ve been focusing on:
 * Working closely with others to design solutions that fit the organization's needs and make a difference in how we operate.
 
   [now page]: https://nownownow.com/about
-  [Essentialism: The Disciplined Pursuit of Less]: https://gregmckeown.com/books/essentialism/
+  [The Hitchiker's Guide to the Galaxy]: https://en.wikipedia.org/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy
   [portfolio]: https://dave.levine.io
   [knowledge base]: https://kb.levine.io
   [homelab]: https://cdn.levine.io/uploads/images/gallery/2023-11/network-diagram-1.png
   [Weill Cornell Medicine]: https://weill.cornell.edu/
   [Derek Sivers]: https://sive.rs/now
   [Meditations]: https://en.wikipedia.org/wiki/Meditations
-  [RSS feed]: /rss.xml
