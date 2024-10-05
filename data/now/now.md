@@ -34,7 +34,7 @@ Lately, I’ve been focusing on:
 * Working closely with others to design solutions that fit the organization's needs and make a difference in how we operate.
 
   [now page]: https://nownownow.com/about
-  [The Hitchiker's Guide to the Galaxy]: https://en.wikipedia.org/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy
+  [The Hitchhiker's Guide to the Galaxy]: https://en.wikipedia.org/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy
   [portfolio]: https://dave.levine.io
   [knowledge base]: https://kb.levine.io
   [homelab]: https://cdn.levine.io/uploads/images/gallery/2023-11/network-diagram-1.png
