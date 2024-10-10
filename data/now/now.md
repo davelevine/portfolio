@@ -1,5 +1,5 @@
 ---
-date: "2024-10-01T12:50:00Z"
+date: "2024-10-10T10:21:00Z"
 ---
 #
 
@@ -14,6 +14,8 @@ This is my [Now Page]: a brief update on what's currently happening in my life, 
 I've officially been in my house for 8 years now. Between that, my wife, and two kids, I have no problem staying busy. It’s hard to believe I’ve been working remotely for nearly 4.5 years, which allows me to maintain a healthy work-life balance. Watching my kids grow up so quickly has been both wonderful and surreal.
 
 I’m currently reading [The Hitchhiker's Guide to the Galaxy] by Douglas Adams. This is one I've had in my queue for some time now, and I'm glad I finally got around to it. Once I finish, I'll be getting back to [Meditations] by Marcus Aurelius.
+
+A non-exhaustive list of some of the books I've enjoyed over the years can be found [here].
 
 Also, I've been getting back into exercising after a prolonged hiatus. It's been great to prioritize my health and well-being again. Small steps, but I'm feeling better for it.
 
@@ -41,3 +43,4 @@ Lately, I’ve been focusing on:
   [Weill Cornell Medicine]: https://weill.cornell.edu/
   [Derek Sivers]: https://sive.rs/now
   [Meditations]: https://en.wikipedia.org/wiki/Meditations
+  [here]: https://kb.levine.io/about/lists/books/
