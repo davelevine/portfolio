@@ -1,5 +1,5 @@
 ---
-date: "2024-10-10T10:21:00Z"
+date: "2024-10-16T16:54:00Z"
 ---
 #
 
@@ -9,7 +9,7 @@ This is my [Now Page]: a brief update on what's currently happening in my life, 
 
 ## Personal
 
-> **Update:** I finally got around to reading [The Hitchiker's Guide to the Galaxy] by Douglas Adams. This is one I've had in my queue for some time now, and I'm glad I finally got around to it.
+> **Update:** I finally got around to reading [The Hitchhiker's Guide to the Galaxy] by Douglas Adams. This is one I've had in my queue for some time now, and I'm glad I finally got around to it.
 
 I've officially been in my house for 8 years now. Between that, my wife, and two kids, I have no problem staying busy. It’s hard to believe I’ve been working remotely for nearly 4.5 years, which allows me to maintain a healthy work-life balance. Watching my kids grow up so quickly has been both wonderful and surreal.
 
