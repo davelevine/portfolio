@@ -42,7 +42,6 @@ const ContactModal = ({ onClose }) => {
     </div>
   );
 
-  // Render different modal content based on the state
   const renderBasedOnState = () => {
     if (state.submitting) {
       return renderModalContent('Sending Message', 'Just a sec...');
@@ -103,13 +102,27 @@ const ContactModal = ({ onClose }) => {
           <form id='contactForm' className={classes.contactForm} onSubmit={handleSubmit}>
             <div className={classes.row}>
               <div className={classes.inputField}>
-                <label htmlFor='email'>Email Address</label>
-                <input id='email' type='email' name='email' required autoComplete="email" />
+                <label htmlFor='email'>Your Email Address:</label>
+                <input 
+                  id='email' 
+                  type='email' 
+                  name='email' 
+                  required 
+                  autoComplete="email" 
+                  placeholder="Where can I send a response?"
+                />
                 <ValidationError prefix='Email' field='email' errors={state.errors} />
               </div>
             </div>
             <div className={classes.inputField}>
-              <textarea id='message' name='message' required autoComplete="message" />
+            <label htmlFor='email'>Message:</label>
+              <textarea 
+                id='message' 
+                name='message' 
+                required 
+                autoComplete="message" 
+                placeholder="What would you like to talk about?"
+              />
               <ValidationError prefix='Message' field='message' errors={state.errors} />
             </div>
 

@@ -45,6 +45,7 @@
 
 .contactModal .inputField label {
   margin-bottom: 5px;
+  font-size: 1.2rem;
   text-align: left;
   display: block;
   color: var(--navbar-primary);
@@ -54,6 +55,7 @@
 .contactModal .inputField input,
 .contactModal .inputField textarea {
   color: var(--text-primary);
+  font-size: 1.0rem;
   background-color: transparent;
   width: 100%;
   border: none;
@@ -90,7 +92,11 @@
   .contactModal {
     min-width: 600px;
     overflow: hidden;
-    padding: 2rem;
+    padding: 2rem 2rem 4rem; // Adjust padding for desktop screens
+  }
+
+  .contactModal h2 {
+    margin-bottom: 1rem; // Adjust the heading's bottom margin to control spacing
   }
 
   .contactModal .contactForm {
@@ -106,6 +112,7 @@
 
   .contactModal .inputField {
     width: 100%;
+    margin-top: 10px; // Reduce top margin to decrease spacing between heading and first input field
   }
 
   .contactModal .action {
