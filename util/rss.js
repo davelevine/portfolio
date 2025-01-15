@@ -13,7 +13,7 @@ export async function generateRSS() {
     language: 'en',
     image_url: 'https://cdn.levine.io/uploads/portfolio/public/images/favicon/favicon.ico',
     favicon: 'https://cdn.levine.io/uploads/portfolio/public/images/favicon/favicon.ico',
-    copyright: 'All rights reserved 2024, Dave Levine',
+    copyright: 'All rights reserved 2025, Dave Levine',
     pubDate: new Date().toUTCString(),
     ttl: 60,
     generator: "Dave's Blog RSS Feed",
