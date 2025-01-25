@@ -6,7 +6,7 @@
     - Node.js
   description: A proof of concept for a URL shortener developed with Cloudflare Workers, demonstrating the process of creating a fully functional URL shortening service using serverless architecture.
 
-  liveLink: https://dl.is
+  liveLink: https://go.dl.is
   githubLink: https://github.com/davelevine/atomic-url
   image: atomic-url.webp
   isFeatured: true
