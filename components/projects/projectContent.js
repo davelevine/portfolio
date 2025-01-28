@@ -24,11 +24,13 @@ const techLogos = {
   MkDocs: 'MkDocs.svg',
   'Next.js': 'Next.js.svg',
   'Node.js': 'Node.js.svg',
+  'Nuxt.js': 'Nuxt.js.svg',
   Python: 'Python.svg',
   React: 'React.svg',
   Redis: 'Redis.svg',
   Sass: 'Sass.svg',
   'Tailwind CSS': 'Tailwind CSS.svg',
+  'Vue': 'Vue.svg',
   YAML: 'YAML.svg',
 };
 
