@@ -35,7 +35,7 @@
     "yet-another-react-lightbox": "^3.21.3"
   },
   "devDependencies": {
-    "eslint": "^8.57.0",
+    "eslint": "^9.0.0",
     "eslint-config-next": "^15.0.0"
   }
 }
