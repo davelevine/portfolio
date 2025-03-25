@@ -1,7 +1,6 @@
 ---
   title: Sharrr
   tech:
-    - Doppler
     - PostgreSQL
     - Prisma
     - SvelteKit

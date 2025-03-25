@@ -16,7 +16,6 @@ const solarizedlight = lazy(() => import('react-syntax-highlighter/dist/cjs/styl
 const techLogos = {
   'Cloudflare Workers': 'Cloudflare Workers.svg',
   CSS: 'CSS.svg',
-  Doppler: 'Doppler.svg',
   Git: 'Git.svg',
   HTML: 'HTML.svg',
   Javascript: 'Javascript.svg',
