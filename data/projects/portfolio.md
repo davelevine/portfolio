@@ -12,11 +12,6 @@
   githubLink: https://github.com/davelevine/portfolio
   image: hero.webp
   isFeatured: true
-  screenshots:
-    - screenshot: 01-certs.png
-    - screenshot: 02-about.png
-      description: >-
-              My personal portfolio developed with Next.js and React. Certs and Projects sections are written in markdown and rendered with react-markdown and react-syntax-highlighter.
 
 ---
 

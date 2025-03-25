@@ -11,11 +11,6 @@
   githubLink: https://github.com/davelevine/atomic-url
   image: atomic-url.webp
   isFeatured: true
-  screenshots:
-    - screenshot: 01-home.webp
-    - screenshot: 02-home.webp
-      description: >-
-              A proof of concept for a URL shortener developed with Cloudflare Workers, demonstrating the process of creating a fully functional URL shortening service using serverless architecture.
 
 ---
 

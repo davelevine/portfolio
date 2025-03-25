@@ -12,11 +12,7 @@
   githubLink: https://github.com/davelevine/docs-public
   image: atw.webp
   isFeatured: true
-  screenshots:
-    - screenshot: 01-home.webp
-    - screenshot: 02-home.webp
-      description: >-
-              A knowledge base I started in 2016. It has since amassed to hundreds of articles, guides and documents that serve as a source of truth, second brain and a labor of love.
+  
 ---
 
 ## Description

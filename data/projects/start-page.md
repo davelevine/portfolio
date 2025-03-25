@@ -11,11 +11,6 @@
   githubLink: https://github.com/davelevine/start-page
   image: start-page.webp
   isFeatured: true
-  screenshots:
-    - screenshot: 01-home.webp
-    - screenshot: 02-home.webp
-      description: >-
-              A sleek, terminal-inspired browser start page that offers extensive customization options for tech enthusiasts. It includes a built-in editor for seamless personalization.
 
 ---
 

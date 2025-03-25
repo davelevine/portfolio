@@ -14,9 +14,9 @@ const atomDark = lazy(() => import('react-syntax-highlighter/dist/cjs/styles/pri
 const solarizedlight = lazy(() => import('react-syntax-highlighter/dist/cjs/styles/prism').then(mod => mod.solarizedlight));
 
 const techLogos = {
-  API: 'API.svg',
   'Cloudflare Workers': 'Cloudflare Workers.svg',
   CSS: 'CSS.svg',
+  Doppler: 'Doppler.svg',
   Git: 'Git.svg',
   HTML: 'HTML.svg',
   Javascript: 'Javascript.svg',
@@ -25,10 +25,13 @@ const techLogos = {
   'Next.js': 'Next.js.svg',
   'Node.js': 'Node.js.svg',
   'Nuxt.js': 'Nuxt.js.svg',
+  PostgreSQL: 'PostgreSQL.svg',
+  Prisma: 'Prisma.svg',
   Python: 'Python.svg',
   React: 'React.svg',
   Redis: 'Redis.svg',
   Sass: 'Sass.svg',
+  SvelteKit: 'SvelteKit.svg',
   'Tailwind CSS': 'Tailwind CSS.svg',
   'Vue': 'Vue.svg',
   YAML: 'YAML.svg',

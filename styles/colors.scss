@@ -1,18 +1,18 @@
 // Light theme variables
 :root {
-  --background: #f5f5f5; // Light background color
-  --background-card: #f9f9f9; // Card background color
-  --background-secondary: #d81b60; // Secondary background color
+  --background: #F8F8FA; // Updated light background color
+  --background-card: #F5F5F5; // Card background with increased contrast
+  --background-secondary: #FF0084; // Secondary background color
   --text-primary: #2c3e50; // Primary text color
-  --text-secondary: #d81b60; // Secondary text color
+  --text-secondary: #FF0084; // Secondary text color
   --text-tertiary: #607d8b; // Tertiary text color
-  --accent: #d81b60; // Accent color
+  --accent: #FF0084; // Accent color
   --valid-forever-cert: #B8860B; // Darker gold color for light theme for better contrast
-  --transparent-primary: #fffffff2; // Primary transparent color
-  --transparent-secondary: #fffffffc; // Secondary transparent color
-  --border: #d0d0d0; // Border color
-  --border-light: #e0e0e0; // Light border color
-  --border-card: #bdbdbd; // Card border color
+  --transparent-primary: #F5F5F5f2; // Primary transparent color
+  --transparent-secondary: #F5F5F5fc; // Secondary transparent color
+  --border: #c5cad3; // Border color
+  --border-light: #d0d7e3; // Light border color
+  --border-card: #c5cad3; // Card border color
   --button-color: #3e4a56; // Button color
   --button-border: #3e4a5663; // Button border color
   --gradient-primary: #607d8b; // Primary gradient color
@@ -22,15 +22,15 @@
   --link-hover: #1a2a38; // Link hover color
   --modal-background: #2c2c2c; // Modal background color
   --modal-border: #555; // Modal border color
-  --project-button: #2c3e50; // Project button color (darker but still visible for black icons)
+  --project-button: #2c3e50; // Project button color
   --valid-cert: #388E3C;
 }
 
 
 // Dark theme variables
 [data-theme='dark'] {
-  --background: #1E2533; // Dark background color
-  --background-card: #272E3B; // Card background color
+  --background: #1B1C32; // Dark background color
+  --background-card: #222538; // Card background color
   --background-secondary: #a3e600; // Secondary background color
   --text-primary: #cdd9e5; // Primary text color
   --text-secondary: #a3e600; // Secondary text color
@@ -38,11 +38,11 @@
   --accent: #ff5d5d; // Accent color
   --accent-secondary: #a3e600; // Secondary accent color
   --valid-forever-cert: #FFD700; // Gold color for dark theme
-  --transparent-primary: #272E3Bed; // Primary transparent color
-  --transparent-secondary: #242729fc; // Secondary transparent color
-  --border: #5a5f63; // Border color
+  --transparent-primary: #242736ed; // Primary transparent color
+  --transparent-secondary: #1B1C32fc; // Secondary transparent color
+  --border: #5A5F63; // Border color
   --border-light: #ffffff0d; // Light border color
-  --border-card: #5a5f63; // Card border color
+  --border-card: #5A5F63; // Card border color
   --button-color: #a3e600; // Button color
   --button-border: #4a5a6a63; // Button border color
   --gradient-primary: #6a8a99; // Primary gradient color
@@ -51,5 +51,5 @@
   --text-gradient: linear-gradient(180deg, var(--accent-secondary), #6ef5c9); // Text gradient
   --link-hover: #cdd9e5; // Link hover color
   --project-button: #cdd9e5; // Project button color
-  --valid-cert: #a3e600;
+  --valid-cert: #a3e600; // Valid cert color
 }
