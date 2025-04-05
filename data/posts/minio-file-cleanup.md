@@ -108,7 +108,7 @@ My first attempt at running the script failed with an "Access Denied" error.
 
 I logged into MinIO and checked the access key. After inspecting the policy, I realized I was missing the `s3:DeleteObject` permission. I added it in and ensured the following policy was attached:
 
-```JSON
+```json
 {
  "Version": "2012-10-17",
  "Statement": [
