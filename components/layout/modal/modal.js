@@ -4,7 +4,7 @@ import classes from './modal.module.scss';
 
 const ContactModalDynamic = lazy(() => import('./contactModal'));
 
-const RESUME_FILE_PATH = 'https://cdn.levine.io/uploads/portfolio/public/assets/davelevine-resume.pdf';
+const RESUME_FILE_PATH = 'davelevine-resume.pdf';
 
 const Modal = ({ contact, resume, onClose, ...props }) => {
   const fadeIn = useMemo(() => ({
