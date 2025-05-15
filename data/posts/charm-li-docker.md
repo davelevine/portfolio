@@ -29,12 +29,10 @@ There are essentially three components needed to make this work properly:
 
 While there aren't any official setup instructions that I'm aware of, someone took a crack at this and added it to [GitHub](https://github.com/rOzzy1987/charm.li). The instructions are fairly straightforward:
 
-```text
-1. Create directory: mkdir ./lmdb-pages
-2. Mount squashfs: (as root) mount -o loop -t squashfs ./lmdb-pages.sqsh ./lmdb-pages
-3. Install Node.js dependencies: npm install
-4. Start server: npm start / 8080 to start on http://localhost:8080
-```
+- Create directory: mkdir ./lmdb-pages
+- Mount squashfs: (as root) mount -o loop -t squashfs ./lmdb-pages.sqsh ./lmdb-pages
+- Install Node.js dependencies: npm install
+- Start server: npm start / 8080 to start on http://localhost:8080
 
 However, making this run in Docker and persistent across reboots requires additional effort.
 
@@ -48,7 +46,7 @@ I posted the link earlier in the thread, but in case it was missed, here it is a
 
 As I mentioned before, my setup involves hosting the data on my NAS with the charm.li files stored at `/mnt/backup/operation-charm`. Adjust the paths accordingly to match your setup. Setting up this mount is outside the scope of this article, but here is my `/etc/fstab` entry for reference:
 
-```bash
+```ini
 # NAS Directory Mount
 192.168.1.6:/volume1/Files/     /mnt/Backup     nfs auto,noatime,nolock,bg,nfsvers=4,intr,tcp,actimeo=1800 0 0
 ```
@@ -108,7 +106,7 @@ sudo nano /etc/systemd/system/mount-charm.service
 
 Add this service definition:
 
-```text
+```ini
 [Unit]
 Description=Mount charm.li squashfs file
 After=network.target remote-fs.target
@@ -164,7 +162,7 @@ I think it's worth mentioning that during my testing, I discovered that Node.js 
 
 While I originally tested Node.js 18 and got it to work reliably, I needed to use the newer Node.js 20. However, when changing the version number and rebuilding the container, I encountered this error:
 
-```Text
+```log
 Error: The module '/app/node_modules/node-lmdb/build/Release/node-lmdb.node'
 was compiled against a different Node.js version using
 NODE_MODULE_VERSION 108. This version of Node.js requires

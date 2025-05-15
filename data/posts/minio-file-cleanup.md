@@ -139,7 +139,7 @@ The only thing I felt was missing at this point was a way for me to find out if 
 
 I created a new check and added it to my crontab:
 
-```plaintext
+```crontab
 0 1 * * * /home/<user>/scripts/minio-cleanup.sh && curl -fsS -m 10 --retry 5 -o /dev/null https://hc-ping.com/my-unique-uuid
 ```
 

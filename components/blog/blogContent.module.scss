@@ -276,7 +276,7 @@
   code {
     white-space: pre-wrap;
     word-wrap: break-word;
-    color: var(--valid-cert);
+    color: var(--accent);
     border-radius: 5px;
     padding: 2px 4px;
     font-weight: 500;
@@ -306,5 +306,64 @@
   del {
     text-decoration: line-through;
     color: var(--text-tertiary);
+  }
+}
+
+.codeBlockContainer {
+  position: relative;
+  margin: auto 0;
+  overflow: hidden;
+  border-radius: 0;
+
+  &:hover {
+    .codeHeader {
+      opacity: 1;
+    }
+  }
+}
+
+.codeHeader {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.copyButton {
+  background-color: rgba(0, 0, 0, 0.3);
+  border: none;
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  color: #cdd9e5;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.inlineCode {
+  background-color: var(--border-light);
+  color: var(--accent);
+  font-family: monospace;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+/* Mobile adjustments */
+@media only screen and (max-width: 767px) {
+  .codeHeader {
+    opacity: 1; /* Always show copy button on mobile */
   }
 }
