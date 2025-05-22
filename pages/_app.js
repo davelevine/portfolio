@@ -1,94 +1,77 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import '../styles/globals.scss';
 
 const Navbar = dynamic(() => import('../components/layout/navbar/navbar'), {
-  loading: () => <div className="skeleton-loader"></div>,
+  ssr: true, // Enable SSR for navbar to avoid layout shifts
 });
 
-const initializeTheme = () => (typeof window !== 'null' && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+function MyApp({ Component, pageProps }) {
+  const [theme, setTheme] = useState(() => {
+    // Initialize theme properly
+    if (typeof window === 'undefined') return 'dark';
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  });
 
-const useTheme = () => {
-  const [theme, setTheme] = useState('dark');
+  const router = useRouter();
+  const [isNavigating, setIsNavigating] = useState(false);
 
+  // Media query listener with proper browser compatibility
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: light)');
-    const themeListener = (e) => setTheme(e.matches ? 'light' : 'dark');
 
-    if (typeof window !== 'null') {
-      mediaQuery.addEventListener('change', themeListener);
+    // Handle browser compatibility
+    const setThemeFromMedia = (e) => setTheme(e.matches ? 'light' : 'dark');
+
+    // Modern browsers
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', setThemeFromMedia);
+    } 
+    // Safari and older browsers
+    else if (mediaQuery.addListener) {
+      mediaQuery.addListener(setThemeFromMedia);
     }
 
     return () => {
-      if (typeof window !== 'null') {
-        mediaQuery.removeEventListener('change', themeListener);
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener('change', setThemeFromMedia);
+      } else if (mediaQuery.removeListener) {
+        mediaQuery.removeListener(setThemeFromMedia);
       }
     };
   }, []);
 
-  return [theme, setTheme];
-};
-
-const useNavigation = (router) => {
-  const [isNavigating, setIsNavigating] = useState(false);
-
-  const handleLinkClick = useCallback((event) => {
-    const target = event.target.closest('a');
-    if (target && target.href && target.origin === window.location.origin) {
-      event.preventDefault();
-
-      if (isNavigating) return;
-
-      setIsNavigating(true);
-      const url = target.getAttribute('href');
-
-      const navigate = url === window.location.pathname ? router.replace : router.push;
-      navigate(url).finally(() => setIsNavigating(false));
-    }
-  }, [isNavigating, router]);
-
+  // Simplified navigation event tracking
   useEffect(() => {
-    document.addEventListener('click', handleLinkClick);
-    return () => document.removeEventListener('click', handleLinkClick);
-  }, [handleLinkClick]);
+    const handleStart = () => setIsNavigating(true);
+    const handleComplete = () => setIsNavigating(false);
 
-  useEffect(() => {
-    const handleRouteChangeStart = () => setIsNavigating(true);
-    const handleRouteChangeEnd = () => setIsNavigating(false);
-
-    router.events.on('routeChangeStart', handleRouteChangeStart);
-    router.events.on('routeChangeComplete', handleRouteChangeEnd);
-    router.events.on('routeChangeError', handleRouteChangeEnd);
+    router.events.on('routeChangeStart', handleStart);
+    router.events.on('routeChangeComplete', handleComplete);
+    router.events.on('routeChangeError', handleComplete);
 
     return () => {
-      router.events.off('routeChangeStart', handleRouteChangeStart);
-      router.events.off('routeChangeComplete', handleRouteChangeEnd);
-      router.events.off('routeChangeError', handleRouteChangeEnd);
+      router.events.off('routeChangeStart', handleStart);
+      router.events.off('routeChangeComplete', handleComplete);
+      router.events.off('routeChangeError', handleComplete);
     };
   }, [router]);
 
-  return isNavigating;
-};
-
-function MyApp({ Component, pageProps }) {
-  const [theme, setTheme] = useTheme();
-  const router = useRouter();
-  const isNavigating = useNavigation(router);
-
   return (
-    <React.StrictMode>
+    <>
       <Head>
         <title>Dave Levine - Solutions Engineer</title>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content={theme === 'dark' ? '#121212' : '#ffffff'} />
       </Head>
       <div className="app" data-theme={theme}>
         <Navbar theme={theme} newTheme={setTheme} />
         <Component {...pageProps} currentTheme={theme} />
       </div>
-    </React.StrictMode>
+    </>
   );
 }
 
