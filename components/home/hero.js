@@ -89,15 +89,11 @@ const Hero = () => {
     setImageSrc(windowWidth <= 767 ? PROFILE_PIC_LOW_RES_PATH : PROFILE_PIC_PATH);
   }, [windowWidth]);
 
-  // Control body scroll when modal is open
+  // EXACT ORIGINAL IMPLEMENTATION
   useEffect(() => {
-    if (typeof document === 'undefined') return;
-
-    document.body.style.overflow = showModal ? 'hidden' : '';
-
-    return () => {
-      document.body.style.overflow = '';
-    };
+    const bodyStyle = document.body.style;
+    bodyStyle.overflow = showModal ? 'hidden' : 'auto';
+    bodyStyle.paddingRight = '0px';
   }, [showModal]);
 
   // Memoize social media links
