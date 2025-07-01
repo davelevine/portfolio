@@ -15,6 +15,8 @@ class MyDocument extends Document {
 
           <link rel="preconnect" href="https://cdn.levine.io" />
           <link rel="dns-prefetch" href="https://cdn.levine.io" />
+          <link rel="preconnect" href="https://stats.levine.io" />
+          <link rel="dns-prefetch" href="https://stats.levine.io" />
 
           <link
             rel="preload"
@@ -47,7 +49,7 @@ class MyDocument extends Document {
           <Main />
           <NextScript />
           {/* Umami tracking script */}
-          <script defer data-website-id="6c39846d-da66-4f2d-91b8-79f01360682d" src="/script.js"></script>
+          <script defer src="https://stats.levine.io/script.js" data-website-id="6c39846d-da66-4f2d-91b8-79f01360682d"></script>
         </body>
       </Html>
     );
