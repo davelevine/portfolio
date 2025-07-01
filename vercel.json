@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/data/js/script.js",
-      "destination": "https://plausible.io/js/script.js"
+      "destination": "https://stats.levine.io/script.js"
     },
     {
-      "source": "/data/api/event",
-      "destination": "https://plausible.io/api/event"
+      "source": "/data/api/collect",
+      "destination": "https://stats.levine.io/api/collect"
     }
   ],
   "headers": [

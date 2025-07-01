@@ -46,8 +46,8 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          {/* Plausible tracking script */}
-          <script defer data-domain="dave.levine.io" data-api="/data/api/event" src="/data/js/script.js"></script>
+          {/* Umami tracking script */}
+          <script defer data-website-id="6c39846d-da66-4f2d-91b8-79f01360682d" src="/data/js/script.js"></script>
         </body>
       </Html>
     );
