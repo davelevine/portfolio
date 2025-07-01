@@ -47,7 +47,7 @@ class MyDocument extends Document {
           <Main />
           <NextScript />
           {/* Umami tracking script */}
-          <script defer data-website-id="6c39846d-da66-4f2d-91b8-79f01360682d" src="/data/js/script.js"></script>
+          <script defer data-website-id="6c39846d-da66-4f2d-91b8-79f01360682d" src="/script.js"></script>
         </body>
       </Html>
     );
