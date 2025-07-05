@@ -12,6 +12,9 @@ const Modal = dynamic(() => import('../../layout/modal/modal'), {
   loading: () => <div className="skeleton-loader"></div>,
 });
 
+// Create a motion-enabled Link component
+const MotionLink = motion(Link);
+
 // Debounce function to limit the rate at which a function can fire
 const debounce = (func, wait) => {
   let timeout;
@@ -64,6 +67,13 @@ const Navbar = ({ theme, newTheme, children }) => {
     toggleOpen();
   }, [toggleOpen]);
 
+  // Close mobile menu on navigation
+  const handleNavClick = useCallback(() => {
+    if (window.innerWidth <= 768 && isOpen) {
+      toggleOpen();
+    }
+  }, [isOpen, toggleOpen]);
+
   // Effect to control body overflow when the modal is shown or hidden
   useEffect(() => {
     document.body.classList.toggle('modal-open', showModal);
@@ -89,18 +99,17 @@ const Navbar = ({ theme, newTheme, children }) => {
           <nav className={isOpen ? `${classes.navMenu} ${classes.responsive}` : classes.navMenu} id='navMenu'>
             <div className={classes.linkWrapper}>
               {['/', '/projects', '/certs', '/blog', '/now', '/about'].map((path, index) => (
-                <motion.a
+                <MotionLink
                   key={path}
                   href={path}
-                  style={{ cursor: 'pointer' }}
+                  onClick={handleNavClick}
+                  className={isLinkActive(path) ? classes.activeLink : ''}
                   initial={{ opacity: 0, y: -100 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 + index * 0.075 }}
-                  onClick={() => window.innerWidth <= 768 && toggleNav()}
-                  className={isLinkActive(path) ? classes.activeLink : ''}
                 >
                   {path === '/about' ? 'ABOUT ME' : path.toUpperCase().replace('/', '') || 'HOME'}
-                </motion.a>
+                </MotionLink>
               ))}
             </div>
           </nav>
