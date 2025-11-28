@@ -1,38 +1,8 @@
-import pkg from 'next-compose-plugins';
-import CompressionPlugin from 'compression-webpack-plugin';
-import TerserPlugin from 'terser-webpack-plugin';
-import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
-
-const isProduction = process.env.NODE_ENV === 'production';
-
-const configureWebpack = (config, { isServer }) => {
-  if (!isServer && isProduction) {
-    config.optimization.minimizer.push(new TerserPlugin());
-  }
-  if (isProduction) {
-    config.optimization.minimizer.push(new CssMinimizerPlugin());
-
-    config.plugins.push(
-      new CompressionPlugin({
-        test: /\.(js|css|html|svg|woff|woff2|ttf|otf|jpeg|jpg|ico|png|webp|gif)$/,
-        filename: '[path][base].gz',
-        algorithm: 'gzip',
-        threshold: 10240,
-        minRatio: 0.8,
-      })
-    );
-  }
-
-  return config;
-};
-
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  basePath: '',
-  experimental: {
-    webpackBuildWorker: true,
-  },
-  webpack: configureWebpack,
+  // Use Turbopack (Next.js 16 default) - handles minification and optimization automatically
+  turbopack: {},
   images: {
     remotePatterns: [
       {
@@ -45,4 +15,4 @@ const nextConfig = {
   },
 };
 
-export default pkg([], nextConfig);
+export default nextConfig;

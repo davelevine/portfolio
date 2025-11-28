@@ -7,21 +7,17 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@formspree/react": "^3.0.0",
     "aos": "^3.0.0-beta.6",
-    "compression-webpack-plugin": "^11.1.0",
-    "css-minimizer-webpack-plugin": "^7.0.0",
     "framer-motion": "^12.0.0",
     "gray-matter": "^4.0.3",
     "marked": "^17.0.0",
-    "next": "^15.0.0",
-    "next-compose-plugins": "^2.2.1",
-    "next-images": "^1.8.5",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "next": "^16.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react-intersection-observer": "10.0.0",
     "react-markdown": "^10.0.0",
     "react-modal": "^3.16.1",
@@ -31,11 +27,16 @@
     "rss": "^1.2.2",
     "sass": "^1.77.6",
     "sharp": "^0.34.0",
-    "terser-webpack-plugin": "^5.3.10",
     "yet-another-react-lightbox": "^3.21.3"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.39.1",
     "eslint": "^9.0.0",
-    "eslint-config-next": "^15.0.0"
+    "eslint-config-next": "^16.0.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "globals": "^16.5.0"
   }
 }
