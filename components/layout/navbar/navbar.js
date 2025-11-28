@@ -13,7 +13,7 @@ const Modal = dynamic(() => import('../../layout/modal/modal'), {
 });
 
 // Create a motion-enabled Link component
-const MotionLink = motion(Link);
+const MotionLink = motion.create(Link);
 
 // Debounce function to limit the rate at which a function can fire
 const debounce = (func, wait) => {
