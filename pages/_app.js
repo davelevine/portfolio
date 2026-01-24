@@ -33,7 +33,7 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>Dave Levine - Solutions Engineer</title>
         <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <meta name="theme-color" content={theme === 'dark' ? '#121212' : '#ffffff'} />
       </Head>
       <div className="app" data-theme={theme}>
