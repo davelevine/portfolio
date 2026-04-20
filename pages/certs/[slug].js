@@ -48,7 +48,6 @@ export const getStaticProps = async ({ params }) => {
     props: {
       cert: certData,
     },
-    revalidate: 600,
   };
 };
 

@@ -50,7 +50,6 @@ export const getStaticProps = async ({ params }) => {
         id: projectData.id || 'default-id', // Ensure the project has an id
       },
     },
-    revalidate: 600,
   };
 };
 

@@ -41,6 +41,5 @@ export const getStaticProps = async () => {
     props: {
       blog: minimalBlogData,
     },
-    revalidate: 600, // Add revalidation for better performance
   };
 };
