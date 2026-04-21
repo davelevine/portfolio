@@ -51,11 +51,11 @@ const About = () => {
             <h1>Designing effective solutions, organizing knowledge, and conveying complexity through visual design.</h1>
             <br />
             <p className={classes.h3}>
-              I&apos;m an information systems pro with a knack for building relationships and technical expertise to make great things happen. I&apos;m experienced in leading diverse teams, and together, we&apos;ve tackled the finer details of business processes, enhanced the technical aspects, ensured top-notch quality, and made web-based solutions shine.
+              I&apos;m a Solutions Engineer at Weill Cornell Medicine, where I help keep a portfolio of research administration systems running smoothly. Most of my work lives somewhere between infrastructure, security, and documentation. I like figuring out how things fit together, writing it down clearly, and making sure the next person doesn&apos;t have to start from scratch.
             </p>
             <br />
             <p className={classes.h3}>
-              Most recently, my role involves shaping application architecture, fine-tuning development processes, and actively participating in solution design discussions to meet specific business needs.
+              Lately, a lot of my time goes to drawing architecture diagrams, mapping how our services depend on one another, and helping with a big migration to a new system. Outside of work, I build and self-host things I find useful, like a micro-journaling app, my personal knowledge base, and a homelab that&apos;s a constant yet rewarding project.
             </p>
           </div>
 

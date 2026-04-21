@@ -33,7 +33,7 @@ Everything lives in a single SQLite file you control. No cloud accounts, no subs
 * Full [PWA] support with a three-layer cache (memory, localStorage, IndexedDB) for instant offline navigation.
 * Optional [Dreams, Wisdom, Ideas, and Notes] modules that stay hidden until enabled.
 
-  [Journalistic]: https://journalisticapp.com
+  [Journalistic]: https://journal-dev.levine.io
   [SQLite]: https://www.sqlite.org/
   [Litestream]: https://litestream.io/
   [#tags and @people]: https://journal-dev.levine.io
