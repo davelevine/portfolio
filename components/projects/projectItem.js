@@ -5,11 +5,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const ProjectItem = ({ project }) => {
-  const { id, title, tech, image, description, githubLink, liveLink, slug } = project;
+  const { id, title, tech, image, description, githubLink, githubComingSoon, liveLink, slug } = project;
 
   if (!id) return null;
 
-  const imageSrc = `https://cdn.levine.io/uploads/portfolio/public/images/projects/${image}`;
+  const imageSrc = image?.startsWith('http')
+    ? image
+    : `https://cdn.levine.io/uploads/portfolio/public/images/projects/${image}`;
   const techLogos = Array.isArray(tech) ? tech : [tech];
 
   return (
@@ -34,7 +36,6 @@ const ProjectItem = ({ project }) => {
                   objectFit: "contain"
                 }}
                 priority={true} // Priority for LCP image
-                loading={imageSrc === `https://cdn.levine.io/uploads/portfolio/public/images/projects/${image}` ? undefined : 'lazy'}
               />
             </div>
           ) : (
@@ -65,6 +66,17 @@ const ProjectItem = ({ project }) => {
             Github
           </a>
         )}
+        {!githubLink && githubComingSoon && (
+          <span
+            className={classes.comingSoon}
+            aria-label={`${title} GitHub repository coming soon`}
+            tabIndex={0}
+          >
+            <i className='fab fa-github'></i>
+            Github
+            <span className={classes.tooltip} role='tooltip'>Coming soon</span>
+          </span>
+        )}
         {liveLink && (
           <a href={liveLink} target='_blank' rel='noreferrer' aria-label={`View ${title} live`}>
             <i className='fa-regular fa-arrow-up-right-from-square'></i>
@@ -87,6 +99,7 @@ ProjectItem.propTypes = {
     image: PropTypes.string,
     description: PropTypes.string.isRequired,
     githubLink: PropTypes.string,
+    githubComingSoon: PropTypes.bool,
     liveLink: PropTypes.string,
     slug: PropTypes.string.isRequired,
   }).isRequired,
