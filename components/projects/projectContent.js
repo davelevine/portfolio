@@ -16,6 +16,8 @@ const solarizedlight = lazy(() => import('react-syntax-highlighter/dist/cjs/styl
 const techLogos = {
   'Cloudflare Workers': 'Cloudflare Workers.svg',
   CSS: 'CSS.svg',
+  Docker: 'Docker.svg',
+  Fastify: 'Fastify.svg',
   Git: 'Git.svg',
   HTML: 'HTML.svg',
   Javascript: 'Javascript.svg',
@@ -30,8 +32,10 @@ const techLogos = {
   React: 'React.svg',
   Redis: 'Redis.svg',
   Sass: 'Sass.svg',
+  SQLite: 'SQLite.svg',
   SvelteKit: 'SvelteKit.svg',
   'Tailwind CSS': 'Tailwind CSS.svg',
+  TypeScript: 'TypeScript.svg',
   'Vue': 'Vue.svg',
   YAML: 'YAML.svg',
 };
@@ -78,10 +82,13 @@ const getCustomRenderers = (currentTheme) => ({
 const renderImage = (imageName) => {
   const isSpecialImage = ['portfolio.webp', 'start-page.webp'].includes(imageName);
   const dimensions = isSpecialImage ? { width: 850, height: 500 } : { width: 700, height: 450 };
+  const src = imageName?.startsWith('http')
+    ? imageName
+    : `https://cdn.levine.io/uploads/portfolio/public/images/projects/${imageName}`;
 
   return (
     <Image
-      src={`https://cdn.levine.io/uploads/portfolio/public/images/projects/${imageName}`}
+      src={src}
       width={dimensions.width}
       height={dimensions.height}
       alt={imageName}
@@ -107,6 +114,7 @@ const ProjectContent = ({ project, currentTheme, showModal = false }) => {
   const {
     content,
     githubLink,
+    githubComingSoon,
     liveLink,
     title,
     tech,
@@ -188,6 +196,17 @@ const ProjectContent = ({ project, currentTheme, showModal = false }) => {
                 Github
               </a>
             )}
+            {!githubLink && githubComingSoon && (
+              <span
+                className={classes.comingSoon}
+                aria-label={`${title} GitHub repository coming soon`}
+                tabIndex={0}
+              >
+                <i className='fab fa-github'></i>
+                Github
+                <span className={classes.tooltip} role='tooltip'>Coming soon</span>
+              </span>
+            )}
             {liveLink && (
               <a href={liveLink} target='_blank' rel='noreferrer'>
                 <i className='fa-regular fa-arrow-up-right-from-square'></i>
@@ -228,6 +247,7 @@ ProjectContent.propTypes = {
   project: PropTypes.shape({
     content: PropTypes.string.isRequired,
     githubLink: PropTypes.string,
+    githubComingSoon: PropTypes.bool,
     liveLink: PropTypes.string,
     title: PropTypes.string.isRequired,
     tech: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]).isRequired,

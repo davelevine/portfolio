@@ -198,6 +198,7 @@
   .projectLinks {
     display: flex;
     flex-direction: row;
+    align-items: center;
     margin-top: 25px;
 
     a {
@@ -214,6 +215,44 @@
       margin-right: 5px;
       color: var(--accent);
       font-weight: normal;
+    }
+
+    .comingSoon {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      margin-right: 15px;
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: var(--text-primary);
+      font-weight: bold;
+      opacity: 0.6;
+      cursor: help;
+
+      .tooltip {
+        position: absolute;
+        visibility: hidden;
+        opacity: 0;
+        bottom: 135%;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        background-color: var(--background-card);
+        border: 1px solid var(--border-card);
+        color: var(--text-secondary);
+        font-size: 0.8rem;
+        font-weight: normal;
+        padding: 4px 8px;
+        border-radius: 6px;
+        z-index: 1;
+        transition: opacity $transition-speed ease, visibility $transition-speed ease;
+      }
+
+      &:hover .tooltip,
+      &:focus .tooltip {
+        visibility: visible;
+        opacity: 1;
+      }
     }
   }
 

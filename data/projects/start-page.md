@@ -7,7 +7,7 @@
     - Tailwind CSS
   description: A sleek, terminal-inspired browser start page that offers extensive customization options for tech enthusiasts. It includes a built-in editor for seamless personalization.
 
-  liveLink: https://dash.xdv.com
+  liveLink: https://daves-start-page.vercel.app/
   githubLink: https://github.com/davelevine/start-page
   image: start-page.webp
   isFeatured: true
