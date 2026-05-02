@@ -35,7 +35,7 @@ I looked for a different course and found the [Getting Started with Ansible](htt
 
 Finishing a course and doing the work are two very different things. The first weeks of `homelab-iac` were rough. I'd write a role, run it, watch it blow up, fix it, watch it blow up somewhere else, and repeat. The papercuts piled up fast:
 
-- Tasks that worked the first time and changed something the second — the opposite of idempotency.
+- Tasks that worked the first time and changed something the second, the opposite of idempotency.
 - Tripping over `become` and file ownership.
 - Getting the order of operations wrong and breaking a host mid-run.
 
@@ -71,7 +71,7 @@ Importing existing infrastructure was, again, less about the tool and more about
 The thing I'm most happy with on the OpenTofu side is how state is handled. State lives in Cloudflare R2, and credentials are pulled out of Bitwarden Secrets Manager at runtime via a small wrapper script:
 
 ```bash
-# tofu-bw.sh — exports R2 creds for the backend, then exec's tofu
+# tofu-bw.sh: exports R2 creds for the backend, then exec's tofu
 export AWS_ACCESS_KEY_ID=$(bws secret get "$R2_KEY_ID_UUID"     --output json | jq -r '.value')
 export AWS_SECRET_ACCESS_KEY=$(bws secret get "$R2_SECRET_UUID" --output json | jq -r '.value')
 
@@ -111,7 +111,7 @@ on:
 
 Getting it reliable took a while. A non-exhaustive list of what had to be sorted out before I could walk away from the system:
 
-- Playbooks intermittently failing because Bitwarden Secrets Manager was being hit too many times in parallel — fixed by serializing host execution so BWS lookups didn't pile up.
+- Playbooks intermittently failing because Bitwarden Secrets Manager was being hit too many times in parallel. Fixed by serializing host execution so BWS lookups didn't pile up.
 - Compose files on hosts slowly drifting out of sync with the repo when a deploy was interrupted partway through, with reconciliation not always noticing.
 - A multi-PR effort to detect drift, self-heal it, pre-resolve sudo passwords once per run instead of per-task, and fix a callback plugin that was reporting "success" for tasks that had actually skipped.
 
@@ -148,10 +148,10 @@ A homelab without monitoring is just a collection of things you'll find out are 
 
 I consolidated around four pieces:
 
-- **[Homepage](https://gethomepage.dev)** — my dashboard, and the first thing I see when I open a browser tab.
-- **[Gatus](https://github.com/TwiN/gatus)** — replaced Uptime Kuma for health checking. Configured in YAML, so the entire thing lives in the repo alongside everything else.
-- **[Beszel](https://beszel.dev/)** — host-level metrics.
-- **[Ntfy](https://ntfy.sh)** — the pipe through which everything reaches my phone.
+- **[Homepage](https://gethomepage.dev)**: my dashboard, and the first thing I see when I open a browser tab.
+- **[Gatus](https://github.com/TwiN/gatus)**: replaced Uptime Kuma for health checking. Configured in YAML, so the entire thing lives in the repo alongside everything else.
+- **[Beszel](https://beszel.dev/)**: host-level metrics.
+- **[Ntfy](https://ntfy.sh)**: the pipe through which everything reaches my phone.
 
 [Healthchecks.io](https://healthchecks.io/) sits alongside all of that as my dead-man's-switch monitor for systemd timers and cron jobs. If a backup doesn't check in on time, I know about it. If a `package-updates` run skips a host, I know about it. The mental load of "I hope that thing ran" is gone, and that alone has been worth it.
 
@@ -170,9 +170,9 @@ Once the foundation was in place, the homelab stopped feeling like a project and
 - **An Astro Starlight docs site.** The homelab documentation had been spread across READMEs and a Bookstack instance, neither of which was great. I set up a [Starlight](https://starlight.astro.build/) site that lives next to the code at [wired.io](https://wired.io). I tried to migrate the site from Cloudflare Pages to Workers about a week after standing it up, hit a problem I didn't want to debug at 11pm on a Friday, and reverted it back to Pages. That revert is sitting in the git log staring at me, and I'll come back to it eventually.
 - **Dotfiles via chezmoi.** I added an Ansible role that bootstraps [chezmoi](https://www.chezmoi.io/) on any new machine and pulls down my dotfiles. Going from "format a laptop and spend an evening getting it back to the way I like it" to a single command is genuinely satisfying.
 - **A multi-week Postgres detour for Journalistic.** I run a small open-source project called [Journalistic](https://github.com/davelevine/journalistic), and at one point I decided to move its storage from SQLite plus [Litestream](https://litestream.io/) over to PostgreSQL with point-in-time recovery. The path went something like this:
-    1. restic for `pg_dump` snapshots and [WAL-G](https://github.com/wal-g/wal-g) for WAL archiving to R2 — WAL-G didn't fit.
-    2. Swapped to [pgBackRest](https://pgbackrest.org/) — wasn't the right shape either.
-    3. Tried barman-cloud via the [CNPG](https://cloudnative-pg.io/) image with gzip-compressed WAL and base backups — got it working, but had to admit the operational surface area was way more than the project needed.
+    1. restic for `pg_dump` snapshots and [WAL-G](https://github.com/wal-g/wal-g) for WAL archiving to R2. WAL-G didn't fit.
+    2. Swapped to [pgBackRest](https://pgbackrest.org/), which wasn't the right shape either.
+    3. Tried barman-cloud via the [CNPG](https://cloudnative-pg.io/) image with gzip-compressed WAL and base backups. Got it working, but had to admit the operational surface area was way more than the project needed.
     4. Ripped it out and reverted to SQLite plus Litestream.
 
     The detour cost weeks. I learned a lot about WAL archiving, but mostly it was a lesson in knowing when to stop.
@@ -184,7 +184,7 @@ Once the foundation was in place, the homelab stopped feeling like a project and
     4. Swap the Homepage tile.
     5. Drop the SMB mount.
 
-The pilot itself was not smooth — CORS had to be set explicitly for the WebGUI, the healthcheck had to be TCP instead of HTTP, the backend had to come off SMB onto local disk because of file locking weirdness, the external gateway URL had to be advertised correctly to the WebUI, and the Sharrr IAM credentials had to be resolved directly from Bitwarden when the indirect path didn't work. Each fix was small. Collectively they were the kind of grind that doesn't show up in a feature list.
+The pilot itself was not smooth: CORS had to be set explicitly for the WebGUI, the healthcheck had to be TCP instead of HTTP, the backend had to come off SMB onto local disk because of file locking weirdness, the external gateway URL had to be advertised correctly to the WebUI, and the Sharrr IAM credentials had to be resolved directly from Bitwarden when the indirect path didn't work. Each fix was small. Collectively they were the kind of grind that doesn't show up in a feature list.
 
 None of these are huge headline features. They're the kind of small, steady improvements that I never used to make because the cost of touching anything was too high. With everything in code, the cost is now low enough that I just do them. That doesn't mean any individual change is easy. It means the friction is in the actual problem, not in the act of making the change.
 
@@ -201,8 +201,8 @@ The next stretch is more about polish than new construction. I want to get to th
 
 Beyond that, I'd like to extend the GitOps approach to the corners of my setup I haven't touched yet:
 
-- **pfSense** — still managed through its web UI.
-- **UniFi controller** — config managed by the controller itself, which is fine until the day it isn't.
+- **pfSense**: still managed through its web UI.
+- **UniFi controller**: config managed by the controller itself, which is fine until the day it isn't.
 
 Both are candidates for the same treatment, though I haven't decided whether the juice is worth the squeeze.
 

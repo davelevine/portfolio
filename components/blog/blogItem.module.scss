@@ -1,4 +1,4 @@
-@import '../../styles/ui.scss'; 
+@use '../../styles/ui' as *;
 
 .card {
   border-radius: 8px;
