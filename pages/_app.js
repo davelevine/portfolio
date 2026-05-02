@@ -1,7 +1,15 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
+import { Fira_Code } from 'next/font/google';
 import '../styles/globals.scss';
+
+const firaCode = Fira_Code({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-fira-code',
+  weight: ['400', '500'],
+});
 
 // Disable SSR for Navbar to preserve framer-motion animations and avoid hydration mismatch
 const Navbar = dynamic(() => import('../components/layout/navbar/navbar'), {
@@ -36,7 +44,7 @@ function MyApp({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <meta name="theme-color" content={theme === 'dark' ? '#121212' : '#ffffff'} />
       </Head>
-      <div className="app" data-theme={theme}>
+      <div className={`app ${firaCode.variable}`} data-theme={theme}>
         <Navbar theme={theme} newTheme={setTheme} />
         <Component {...pageProps} currentTheme={theme} />
       </div>

@@ -24,6 +24,26 @@
   --modal-border: #555; // Modal border color
   --project-button: #2c3e50; // Project button color
   --valid-cert: #388E3C;
+
+  // Inline code styling
+  --inline-code-bg: #ecedf2;
+  --inline-code-color: #c4146b; // Muted accent for readability on light bg
+  --inline-code-border: #d4d8e0;
+
+  // Code block theme
+  --code-block-bg: #eef0f5;
+  --code-block-border: #d0d7e3;
+  --code-block-header-bg: #e2e5ec;
+  --code-block-text: #2c3e50;
+  --code-block-comment: #8a8a8a;
+  --code-block-keyword: #FF0084;
+  --code-block-number: #EF5350;
+  --code-block-string: #0a7d4a;
+  --code-block-line-number: #a0a0a0;
+  --code-block-meta: #607d8b;
+
+  // Animation
+  --transition-speed: 0.25s;
 }
 
 
@@ -52,4 +72,21 @@
   --link-hover: #cdd9e5; // Link hover color
   --project-button: #cdd9e5; // Project button color
   --valid-cert: #a3e600; // Valid cert color
+
+  // Inline code styling - matches syntax highlighter palette
+  --inline-code-bg: #2d3147;
+  --inline-code-color: #ff5d5d; // Coral red (matches --accent)
+  --inline-code-border: #3a3f5a;
+
+  // Code block theme
+  --code-block-bg: #222538;
+  --code-block-border: #3a3f5a;
+  --code-block-header-bg: #2a2d44;
+  --code-block-text: #cdd9e5;
+  --code-block-comment: #7a9aa9;
+  --code-block-keyword: #a3e600;
+  --code-block-number: #ff5d5d;
+  --code-block-string: #e8c468;
+  --code-block-line-number: #6a8a99;
+  --code-block-meta: #8a9aa6;
 }

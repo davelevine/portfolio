@@ -1,4 +1,4 @@
-@import '../../styles/ui.scss'; 
+@use '../../styles/ui' as *;
 
 .projectsGallery {
   padding: 50px 15px;

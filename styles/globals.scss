@@ -1,7 +1,7 @@
-@import './colors';
-@import './buttons';
-@import './utils';
-@import './ui';
+@use './colors';
+@use './buttons';
+@use './utils';
+@use './ui';
 
 // Reset default padding and margin for html and body
 html,
@@ -24,7 +24,7 @@ body {
 // Set specific font-family for code blocks
 pre {
   span {
-    font-family: 'Fira Code', monospace;
+    font-family: var(--font-fira-code), Menlo, monospace;
   }
 }
 

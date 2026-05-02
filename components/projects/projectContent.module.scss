@@ -1,4 +1,4 @@
-@import '../../styles/ui.scss';
+@use '../../styles/ui' as *;
 
 .projectDetail {
   // Mixin for common text styles to ensure reusability

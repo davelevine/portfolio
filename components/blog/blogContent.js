@@ -65,178 +65,89 @@ import 'yet-another-react-lightbox/plugins/thumbnails.css';
 
 import classes from './blogContent.module.scss';
 
-// Custom syntax highlighting theme for dark mode
-const syntaxTheme = {
-  'code[class*="language-"]': {
-    color: '#cdd9e5',
-    background: '#1B1C32',
-    fontFamily: 'monospace',
-    fontSize: '14px',
-    textAlign: 'left',
-    whiteSpace: 'pre',
-    wordSpacing: 'normal',
-    wordBreak: 'normal',
-    wordWrap: 'normal',
-    lineHeight: '1.5',
-    tabSize: 4,
-    hyphens: 'none',
-    padding: 0,
-  },
-  'pre[class*="language-"]': {
-    color: '#cdd9e5',
-    background: '#1B1C32',
-    fontFamily: 'monospace',
-    fontSize: '14px',
-    textAlign: 'left',
-    whiteSpace: 'pre',
-    wordSpacing: 'normal',
-    wordBreak: 'normal',
-    wordWrap: 'normal',
-    lineHeight: '1.5',
-    tabSize: 4,
-    hyphens: 'none',
-    margin: 0,
-    padding: 0,
-    overflow: 'auto',
-  },
-  // Comments - consistent across all languages
-  comment: { color: '#6a8a99' },
-  prolog: { color: '#6a8a99' },
-  doctype: { color: '#6a8a99' },
-  cdata: { color: '#6a8a99' },
+// Single theme driven by CSS variables — light/dark switch via :root vs [data-theme='dark']
+const KEYWORD = 'var(--code-block-keyword)';
+const NUMBER = 'var(--code-block-number)';
+const STRING = 'var(--code-block-string)';
+const TEXT = 'var(--code-block-text)';
+const COMMENT = 'var(--code-block-comment)';
 
-  // Keywords, properties, tags, selectors - consistently in lime green
-  keyword: { color: '#a3e600' },
-  property: { color: '#a3e600' },
-  tag: { color: '#a3e600' },
-  'class-name': { color: '#a3e600' },
-  'attr-name': { color: '#a3e600' },
-  selector: { color: '#a3e600' },
-  'selector-tag': { color: '#a3e600' },
-  'selector-class': { color: '#a3e600' },
-  'selector-attr': { color: '#a3e600' },
-  'selector-pseudo': { color: '#a3e600' },
-
-  // Functions and methods - lime green
-  function: { color: '#a3e600' },
-  'function-variable': { color: '#a3e600' },
-  method: { color: '#a3e600' },
-
-  // Numbers, booleans, regex - accent color
-  number: { color: '#ff5d5d' },
-  boolean: { color: '#ff5d5d' },
-  regex: { color: '#ff5d5d' },
-  'attr-value': { color: '#ff5d5d' },
-
-  // Strings, punctuation, operators - default text
-  string: { color: '#cdd9e5' },
-  char: { color: '#cdd9e5' },
-  builtin: { color: '#cdd9e5' },
-  entity: { color: '#cdd9e5' },
-  url: { color: '#cdd9e5' },
-  symbol: { color: '#cdd9e5' },
-  punctuation: { color: '#cdd9e5' },
-  operator: { color: '#cdd9e5' },
-
-  // Language specific tokens
-  // Markup (HTML/XML)
-  namespace: { color: '#cdd9e5' },
-
-  // CSS
-  important: { color: '#a3e600' },
-  rule: { color: '#a3e600' },
-  atrule: { color: '#a3e600' },
-
-  // JavaScript/TypeScript
-  'template-string': { color: '#cdd9e5' },
-  literal: { color: '#ff5d5d' },
-  variable: { color: '#a3e600' },
-  'attr-equals': { color: '#cdd9e5' },
-
-  // PHP
-  delimiter: { color: '#cdd9e5' },
-
-  // Shell
-  'shell-symbol': { color: '#a3e600' },
-  command: { color: '#a3e600' },
-  parameter: { color: '#a3e600' },
-  'command-name': { color: '#a3e600' },
-
-  // YAML
-  'yaml-punctuation': { color: '#cdd9e5' },
-
-  // INI-specific tokens
-  section: { color: '#a3e600' },
-  constant: { color: '#ff5d5d' },
-
-  // Special formats
-  bold: { fontWeight: 'bold' },
-  italic: { fontStyle: 'italic' },
+const baseBlock = {
+  color: TEXT,
+  background: 'var(--code-block-bg)',
+  fontFamily: 'var(--font-fira-code), Menlo, monospace',
+  fontSize: '14px',
+  textAlign: 'left',
+  whiteSpace: 'pre',
+  wordSpacing: 'normal',
+  wordBreak: 'normal',
+  wordWrap: 'normal',
+  lineHeight: '1.5',
+  tabSize: 4,
+  hyphens: 'none',
 };
 
-// Light theme version with consistent styling
-const lightSyntaxTheme = {
-  ...syntaxTheme,
-  'code[class*="language-"]': {
-    ...syntaxTheme['code[class*="language-"]'],
-    color: '#2c3e50',
-    background: '#f5f5f5',
-  },
-  'pre[class*="language-"]': {
-    ...syntaxTheme['pre[class*="language-"]'],
-    color: '#2c3e50',
-    background: '#f5f5f5',
-  },
-  // Matching the exact colors from the screenshot
-  comment: { color: '#a0a0a0' },
-  prolog: { color: '#a0a0a0' },
-  doctype: { color: '#a0a0a0' },
-  cdata: { color: '#a0a0a0' },
+const syntaxTheme = {
+  'code[class*="language-"]': { ...baseBlock, padding: 0 },
+  'pre[class*="language-"]': { ...baseBlock, margin: 0, padding: 0, overflow: 'auto' },
 
-  // Keywords in magenta
-  keyword: { color: '#FF0084' },
-  property: { color: '#FF0084' },
-  tag: { color: '#FF0084' },
-  'class-name': { color: '#FF0084' },
-  'attr-name': { color: '#FF0084' },
-  selector: { color: '#FF0084' },
-  'selector-tag': { color: '#FF0084' },
-  'selector-class': { color: '#FF0084' },
-  'selector-attr': { color: '#FF0084' },
-  'selector-pseudo': { color: '#FF0084' },
-  function: { color: '#FF0084' },
-  'function-variable': { color: '#FF0084' },
-  method: { color: '#FF0084' },
+  // Comments
+  comment: { color: COMMENT, fontStyle: 'italic' },
+  prolog: { color: COMMENT },
+  doctype: { color: COMMENT },
+  cdata: { color: COMMENT },
 
-  // Numbers and values in slightly different color
-  number: { color: '#EF5350' },
-  boolean: { color: '#EF5350' },
-  regex: { color: '#EF5350' },
-  'attr-value': { color: '#EF5350' },
+  // Keywords / identifiers / structure
+  keyword: { color: KEYWORD },
+  property: { color: KEYWORD },
+  tag: { color: KEYWORD },
+  'class-name': { color: KEYWORD },
+  'attr-name': { color: KEYWORD },
+  selector: { color: KEYWORD },
+  'selector-tag': { color: KEYWORD },
+  'selector-class': { color: KEYWORD },
+  'selector-attr': { color: KEYWORD },
+  'selector-pseudo': { color: KEYWORD },
+  function: { color: KEYWORD },
+  'function-variable': { color: KEYWORD },
+  method: { color: KEYWORD },
+  variable: { color: KEYWORD },
+  important: { color: KEYWORD },
+  rule: { color: KEYWORD },
+  atrule: { color: KEYWORD },
+  'shell-symbol': { color: KEYWORD },
+  command: { color: KEYWORD },
+  parameter: { color: KEYWORD },
+  'command-name': { color: KEYWORD },
+  section: { color: KEYWORD },
 
-  // Regular text/strings in dark gray
-  string: { color: '#2c3e50' },
-  char: { color: '#2c3e50' },
-  builtin: { color: '#2c3e50' },
-  entity: { color: '#2c3e50' },
-  url: { color: '#2c3e50' },
-  symbol: { color: '#2c3e50' },
-  punctuation: { color: '#2c3e50' },
-  operator: { color: '#2c3e50' },
+  // Numbers / booleans / literals
+  number: { color: NUMBER },
+  boolean: { color: NUMBER },
+  regex: { color: NUMBER },
+  'attr-value': { color: NUMBER },
+  literal: { color: NUMBER },
+  constant: { color: NUMBER },
 
-  // Other language-specific tokens for light theme
-  variable: { color: '#FF0084' },
-  important: { color: '#FF0084' },
-  rule: { color: '#FF0084' },
-  atrule: { color: '#FF0084' },
-  'shell-symbol': { color: '#FF0084' },
-  command: { color: '#FF0084' },
-  parameter: { color: '#FF0084' },
-  'command-name': { color: '#FF0084' },
+  // Strings (now distinct from default text)
+  string: { color: STRING },
+  char: { color: STRING },
+  'template-string': { color: STRING },
+  url: { color: STRING },
 
-  // INI-specific tokens for light theme
-  section: { color: '#FF0084' },
-  constant: { color: '#EF5350' },
+  // Default-text tokens
+  builtin: { color: TEXT },
+  entity: { color: TEXT },
+  symbol: { color: TEXT },
+  punctuation: { color: TEXT },
+  operator: { color: TEXT },
+  namespace: { color: TEXT },
+  'attr-equals': { color: TEXT },
+  delimiter: { color: TEXT },
+  'yaml-punctuation': { color: TEXT },
+
+  bold: { fontWeight: 'bold' },
+  italic: { fontStyle: 'italic' },
 };
 
 // Component for copy button
@@ -259,15 +170,16 @@ const CopyButton = ({ text }) => {
     <button
       onClick={copyToClipboard}
       className={classes.copyButton}
-      aria-label="Copy code to clipboard"
-      title="Copy code to clipboard"
+      aria-label={copied ? 'Code copied to clipboard' : 'Copy code to clipboard'}
+      aria-live="polite"
+      title={copied ? 'Copied!' : 'Copy code to clipboard'}
     >
       {copied ? (
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
           <polyline points="20 6 9 17 4 12"></polyline>
         </svg>
       ) : (
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
           <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
           <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
         </svg>
@@ -396,13 +308,13 @@ const BlogContent = ({
               <CopyButton text={codeString} />
             </div>
             <SyntaxHighlighter
-              style={currentTheme === 'dark' ? syntaxTheme : lightSyntaxTheme}
+              style={syntaxTheme}
               language={mappedLang}
               PreTag="div"
               showLineNumbers={true}
-              lineNumberStyle={{ 
+              lineNumberStyle={{
                 minWidth: '2em',
-                color: currentTheme === 'dark' ? '#6a8a99' : '#a0a0a0',
+                color: 'var(--code-block-line-number)',
                 textAlign: 'right',
                 paddingRight: '1em',
                 userSelect: 'none',
@@ -410,8 +322,8 @@ const BlogContent = ({
               }}
               customStyle={{
                 margin: 0,
-                padding: '0.75em 0',
-                background: currentTheme === 'dark' ? '#1B1C32' : '#f5f5f5',
+                padding: '1em 1.25em',
+                background: 'var(--code-block-bg)',
                 borderRadius: 0,
               }}
               {...props}

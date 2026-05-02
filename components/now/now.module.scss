@@ -1,4 +1,4 @@
-@import '../../styles/ui.scss';
+@use '../../styles/ui' as *;
 
 .now {
   padding: 60px 15px;

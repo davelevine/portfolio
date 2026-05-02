@@ -1,4 +1,4 @@
-@import '../../styles/ui.scss';
+@use '../../styles/ui' as *;
 
 .blogDetail {
   // Common text styles
@@ -99,12 +99,8 @@
   }
 
   strong {
-    background: #cecece;
-    padding: 0 4px;
-    border-radius: 8px;
-    color: black;
-    font-weight: 400;
-    font-size: 0.9rem; // Increased font size for better spacing
+    color: var(--navbar-primary);
+    font-weight: 700;
   }
 
   .card,
@@ -276,10 +272,6 @@
   code {
     white-space: pre-wrap;
     word-wrap: break-word;
-    color: var(--accent);
-    border-radius: 5px;
-    padding: 2px 4px;
-    font-weight: 500;
     overflow-wrap: break-word;
   }
 
@@ -311,40 +303,43 @@
 
 .codeBlockContainer {
   position: relative;
-  margin: auto 0;
+  margin: 1em 0;
   overflow: hidden;
-  border-radius: 0;
+  border-radius: 8px;
+  border: 1px solid var(--code-block-border);
+  background-color: var(--code-block-bg);
 
-  &:hover {
-    .codeHeader {
-      opacity: 1;
-    }
+  &:hover .codeHeader,
+  &:focus-within .codeHeader {
+    opacity: 1;
   }
 }
 
 .codeHeader {
   position: absolute;
-  top: 8px;
-  right: 8px;
-  z-index: 10;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 1;
   opacity: 0;
-  transition: opacity 0.2s ease-in-out;
+  transition: opacity var(--transition-speed) ease;
 }
 
 .copyButton {
-  background-color: rgba(0, 0, 0, 0.3);
-  border: none;
+  background-color: var(--code-block-header-bg);
+  border: 1px solid var(--code-block-border);
   border-radius: 4px;
-  padding: 0.25rem 0.5rem;
+  padding: 0.25rem 0.4rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
-  color: #cdd9e5;
+  transition: background-color var(--transition-speed) ease,
+              color var(--transition-speed) ease,
+              transform var(--transition-speed) ease;
+  color: var(--code-block-meta);
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.5);
+    color: var(--code-block-text);
   }
 
   &:active {
@@ -352,18 +347,21 @@
   }
 }
 
-.inlineCode {
-  background-color: var(--border-light);
-  color: var(--accent);
-  font-family: monospace;
-  padding: 0.2em 0.4em;
-  border-radius: 4px;
-  font-size: 0.9em;
-}
-
-/* Mobile adjustments */
-@media only screen and (max-width: 767px) {
+@media (hover: none) {
   .codeHeader {
-    opacity: 1; /* Always show copy button on mobile */
+    opacity: 1;
   }
 }
+
+.inlineCode {
+  background-color: var(--inline-code-bg);
+  color: var(--inline-code-color);
+  font-family: var(--font-fira-code), Menlo, monospace;
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.875em;
+  font-weight: 500;
+  border: 1px solid var(--inline-code-border);
+  overflow-wrap: anywhere;
+}
+
